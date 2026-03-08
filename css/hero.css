@@ -1,0 +1,219 @@
+/* ═══════════════════════════════════════════════════════════
+   hero.css — Hero / Landing section
+   Full-viewport orbital view with Three.js globe canvas
+═══════════════════════════════════════════════════════════ */
+
+.section--hero {
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: radial-gradient(ellipse at 50% 40%, #0a1628 0%, var(--c-bg) 70%);
+}
+
+/* Three.js canvas */
+#hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* HUD frame */
+.hero__hud {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hud__scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--c-teal), transparent);
+    opacity: 0.3;
+    animation: scanMove 4s linear infinite;
+}
+
+@keyframes scanMove {
+    0% {
+        top: 0;
+    }
+
+    100% {
+        top: 100%;
+    }
+}
+
+.hud__corner {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-color: var(--c-teal);
+    border-style: solid;
+    opacity: 0.25;
+}
+
+.hud__corner--tl {
+    top: 20px;
+    left: 20px;
+    border-width: 2px 0 0 2px;
+}
+
+.hud__corner--tr {
+    top: 20px;
+    right: 20px;
+    border-width: 2px 2px 0 0;
+}
+
+.hud__corner--bl {
+    bottom: 20px;
+    left: 20px;
+    border-width: 0 0 2px 2px;
+}
+
+.hud__corner--br {
+    bottom: 20px;
+    right: 20px;
+    border-width: 0 2px 2px 0;
+}
+
+/* Content */
+.hero__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-lg);
+}
+
+.hero__title {
+    font-family: var(--ff-display);
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, var(--c-teal) 0%, var(--c-gold) 50%, var(--c-crimson) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    filter: drop-shadow(0 0 30px rgba(0, 240, 212, 0.3));
+    line-height: 1.1;
+}
+
+/* Glitch effect layers */
+.glitch-text {
+    position: relative;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+}
+
+.glitch-text:hover::before {
+    opacity: 0.6;
+    animation: glitch1 0.3s linear;
+}
+
+.glitch-text:hover::after {
+    opacity: 0.4;
+    animation: glitch2 0.3s linear;
+}
+
+@keyframes glitch1 {
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-3px, 2px);
+    }
+
+    40% {
+        transform: translate(3px, -2px);
+    }
+
+    60% {
+        transform: translate(-2px, -1px);
+    }
+
+    80% {
+        transform: translate(2px, 1px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes glitch2 {
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(2px, -3px);
+    }
+
+    40% {
+        transform: translate(-2px, 3px);
+    }
+
+    60% {
+        transform: translate(1px, 2px);
+    }
+
+    80% {
+        transform: translate(-1px, -2px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+.hero__subtitle {
+    font-family: var(--ff-heading);
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-weight: 400;
+    color: var(--c-text-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .hud__corner {
+        width: 30px;
+        height: 30px;
+    }
+
+    .hero__content {
+        gap: var(--sp-md);
+        padding: 0 var(--sp-md);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hud__scanline {
+        animation: none;
+        opacity: 0;
+    }
+}

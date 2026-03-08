@@ -1,0 +1,142 @@
+/* ═══════════════════════════════════════════════════════════
+   team.css — Our Team / Makeathon Crew
+   Zero-G floating profile cards with symbiont hover overlay
+═══════════════════════════════════════════════════════════ */
+
+.section--team {
+    background: var(--c-bg);
+}
+
+.team__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--sp-xl);
+    justify-items: center;
+}
+
+/* Profile card */
+.team-card {
+    position: relative;
+    width: 220px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.team-card.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Zero-G float animation (staggered per card via JS) */
+.team-card.floating {
+    animation: zeroGFloat 6s ease-in-out infinite;
+}
+
+.team-card:nth-child(2n) .floating {
+    animation-delay: -1.5s;
+}
+
+.team-card:nth-child(3n) .floating {
+    animation-delay: -3s;
+}
+
+@keyframes zeroGFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+/* Avatar container */
+.team-card__avatar {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto var(--sp-md);
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--c-border);
+    transition: border-color var(--dur) var(--ease-out),
+        box-shadow var(--dur) var(--ease-out);
+}
+
+.team-card:hover .team-card__avatar {
+    border-color: var(--c-teal);
+    box-shadow: 0 0 24px rgba(0, 240, 212, 0.2);
+}
+
+.team-card__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter var(--dur) var(--ease-out);
+}
+
+.team-card:hover .team-card__avatar img {
+    filter: brightness(0.7) saturate(0.6);
+}
+
+/* Symbiont vein overlay on hover */
+.team-card__symbiont {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity var(--dur) var(--ease-out);
+    background:
+        radial-gradient(circle at 30% 70%, var(--c-teal) 0%, transparent 40%),
+        radial-gradient(circle at 70% 30%, var(--c-gold) 0%, transparent 35%),
+        radial-gradient(circle at 50% 50%, var(--c-crimson) 0%, transparent 30%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+}
+
+.team-card:hover .team-card__symbiont {
+    opacity: 0.7;
+}
+
+.team-card__name {
+    font-family: var(--ff-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--c-text);
+    margin-bottom: var(--sp-xs);
+}
+
+.team-card__role {
+    font-family: var(--ff-display);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--c-teal);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .team__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--sp-lg);
+    }
+
+    .team-card {
+        width: 100%;
+    }
+
+    .team-card__avatar {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .team-card.floating {
+        animation: none;
+    }
+}

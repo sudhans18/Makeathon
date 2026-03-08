@@ -1,0 +1,179 @@
+/* ═══════════════════════════════════════════════════════════
+   about.css — About / Briefing Deck section
+   Mission-log styled cards with parallax orbit visuals
+═══════════════════════════════════════════════════════════ */
+
+.section--about {
+    background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-alt) 50%, var(--c-bg) 100%);
+}
+
+.about__grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--sp-xl);
+    align-items: start;
+}
+
+.about__logs {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-lg);
+}
+
+/* Mission log cards */
+.mission-log {
+    position: relative;
+    padding: var(--sp-lg);
+    background: rgba(10, 10, 31, 0.7);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: border-color var(--dur) var(--ease-out),
+        box-shadow var(--dur) var(--ease-out);
+}
+
+.mission-log.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mission-log:hover {
+    border-color: var(--c-teal-dim);
+    box-shadow: 0 0 20px rgba(0, 240, 212, 0.08);
+}
+
+.mission-log::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--c-teal), var(--c-gold));
+    border-radius: 3px 0 0 3px;
+}
+
+.log__tag {
+    display: inline-block;
+    font-family: var(--ff-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--c-teal);
+    background: rgba(0, 240, 212, 0.08);
+    padding: var(--sp-xs) var(--sp-sm);
+    border-radius: 4px;
+    margin-bottom: var(--sp-sm);
+}
+
+.mission-log h3 {
+    font-family: var(--ff-heading);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--c-text);
+    margin-bottom: var(--sp-sm);
+}
+
+.mission-log p {
+    color: var(--c-text-dim);
+    font-size: 0.95rem;
+    line-height: 1.75;
+}
+
+/* Parallax orbit visuals (placeholder spheres) */
+.about__visuals {
+    position: relative;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.symbiont-orbit {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid var(--c-border);
+    animation: orbitSpin 12s linear infinite;
+}
+
+.symbiont-orbit::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--c-teal);
+    box-shadow: 0 0 12px var(--c-teal), 0 0 30px rgba(0, 240, 212, 0.3);
+    top: -7px;
+    left: 50%;
+    margin-left: -7px;
+}
+
+.symbiont-orbit--1 {
+    width: 160px;
+    height: 160px;
+}
+
+.symbiont-orbit--2 {
+    width: 240px;
+    height: 240px;
+    animation-duration: 18s;
+    animation-direction: reverse;
+}
+
+.symbiont-orbit--2::after {
+    background: var(--c-gold);
+    box-shadow: 0 0 12px var(--c-gold);
+}
+
+.symbiont-orbit--3 {
+    width: 320px;
+    height: 320px;
+    animation-duration: 25s;
+}
+
+.symbiont-orbit--3::after {
+    background: var(--c-crimson);
+    box-shadow: 0 0 12px var(--c-crimson);
+}
+
+@keyframes orbitSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .about__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about__visuals {
+        height: 200px;
+        order: -1;
+    }
+
+    .symbiont-orbit--1 {
+        width: 80px;
+        height: 80px;
+    }
+
+    .symbiont-orbit--2 {
+        width: 130px;
+        height: 130px;
+    }
+
+    .symbiont-orbit--3 {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .symbiont-orbit {
+        animation: none;
+    }
+}

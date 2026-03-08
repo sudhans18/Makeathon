@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Makeathon 7.0 — 72 Hours of Symbiont Creation</title>
+  <meta name="description" content="Makeathon 7.0: An epic 72-hour creation event where participants design and build innovative Symbiont solutions — bio-inspired, AI-nanite hybrid concepts pushing boundaries in real-world domains." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/about.css" />
+  <link rel="stylesheet" href="css/timeline.css" />
+  <link rel="stylesheet" href="css/gallery.css" />
+  <link rel="stylesheet" href="css/problems.css" />
+  <link rel="stylesheet" href="css/team.css" />
+  <link rel="stylesheet" href="css/faq.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+
+  <!-- CDN Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.168.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 1 — HERO / LANDING
+       Full-viewport orbital view with Three.js globe
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="hero" class="section section--hero" aria-label="Hero">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero__hud" aria-hidden="true">
+      <div class="hud__scanline"></div>
+      <div class="hud__corner hud__corner--tl"></div>
+      <div class="hud__corner hud__corner--tr"></div>
+      <div class="hud__corner hud__corner--bl"></div>
+      <div class="hud__corner hud__corner--br"></div>
+    </div>
+    <div class="hero__content">
+      <h1 class="hero__title glitch-text" data-text="MAKEATHON 7.0">MAKEATHON 7.0</h1>
+      <p class="hero__subtitle">72 Hours of Symbiont Creation — Build the Future</p>
+      <button id="cta-launch" class="btn btn--cta" type="button">
+        <span class="btn__text">Enter the Creation Zone</span>
+        <span class="btn__glow" aria-hidden="true"></span>
+      </button>
+    </div>
+    <div id="iris-overlay" class="iris-overlay" aria-hidden="true"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 2 — ABOUT / BRIEFING DECK
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="about" class="section section--about" aria-label="About Makeathon">
+    <div class="container">
+      <h2 class="section__heading hud-bracket">Mission Briefing</h2>
+      <div class="about__grid">
+        <div class="about__logs">
+          <article class="mission-log" data-log="01">
+            <span class="log__tag">LOG ENTRY 01</span>
+            <h3>What is Makeathon 7.0?</h3>
+            <p>Makeathon 7.0 is an epic 72-hour creation marathon that brings together the brightest minds in technology, design, and science. Teams compete to design and prototype innovative <strong>Symbiont</strong> solutions — bio-inspired, AI-nanite hybrid concepts that push boundaries across real-world domains.</p>
+          </article>
+          <article class="mission-log" data-log="02">
+            <span class="log__tag">LOG ENTRY 02</span>
+            <h3>The Symbiont Concept</h3>
+            <p>Symbionts are living-tech hybrids — imagine neural networks grown from organic substrates, nanite swarms that self-organize to solve complex problems, or bio-engineered drones that adapt to their environment. Your creations will blur the line between biology and technology.</p>
+          </article>
+          <article class="mission-log" data-log="03">
+            <span class="log__tag">LOG ENTRY 03</span>
+            <h3>Why Participate?</h3>
+            <p>Push the boundaries of innovation across 8+ specialized biome categories. Win prizes, gain mentorship from industry leaders, and join a community of creators building the living future. No idea is too ambitious — this is where impossible becomes prototype.</p>
+          </article>
+          <article class="mission-log" data-log="04">
+            <span class="log__tag">LOG ENTRY 04</span>
+            <h3>Categories & Themes</h3>
+            <p>From AI neural jungles to blockchain crystal caves, green-tech wind forests to medtech bio-domes — each biome represents a challenge domain. Choose your terrain, assemble your crew, and build something the world has never seen.</p>
+          </article>
+        </div>
+        <div class="about__visuals" aria-hidden="true">
+          <div class="symbiont-orbit symbiont-orbit--1"></div>
+          <div class="symbiont-orbit symbiont-orbit--2"></div>
+          <div class="symbiont-orbit symbiont-orbit--3"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 3 — TIMELINE / DESCENT SEQUENCE
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="timeline" class="section section--timeline" aria-label="Event Timeline">
+    <div class="container">
+      <h2 class="section__heading hud-bracket">Descent Sequence</h2>
+      <div class="timeline__track">
+        <div class="timeline__line" aria-hidden="true"></div>
+        <div class="timeline__milestone" data-time="00:00">
+          <div class="milestone__pod">
+            <span class="milestone__time">T+00:00</span>
+            <h3 class="milestone__title">Launch</h3>
+            <p class="milestone__desc">Doors open. Teams form. The 72-hour countdown begins. Briefing decks are deployed and creation zones go live.</p>
+          </div>
+        </div>
+        <div class="timeline__milestone" data-time="12:00">
+          <div class="milestone__pod">
+            <span class="milestone__time">T+12:00</span>
+            <h3 class="milestone__title">Orbit Achieved</h3>
+            <p class="milestone__desc">First prototypes take shape. Mentor check-ins begin. Resource drops unlocked for all teams.</p>
+          </div>
+        </div>
+        <div class="timeline__milestone" data-time="24:00">
+          <div class="milestone__pod">
+            <span class="milestone__time">T+24:00</span>
+            <h3 class="milestone__title">Check-in & Ideation Review</h3>
+            <p class="milestone__desc">Mandatory progress sync. Teams present initial concepts. Pivot window opens for strategy adjustments.</p>
+          </div>
+        </div>
+        <div class="timeline__milestone" data-time="36:00">
+          <div class="milestone__pod">
+            <span class="milestone__time">T+36:00</span>
+            <h3 class="milestone__title">Deep Build Phase</h3>
+            <p class="milestone__desc">The creation vortex intensifies. Advanced toolkits unlocked. Collaboration zones merge across biomes.</p>
+          </div>
+        </div>
+        <div class="timeline__milestone" data-time="48:00">
+          <div class="milestone__pod">
+            <span class="milestone__time">T+48:00</span>
+            <h3 class="milestone__title">Mid-Build Review</h3>
+            <p class="milestone__desc">Symbiont prototypes reviewed by expert panel. Feedback loops activate. Final sprint prep begins.</p>
+          </div>
+        </div>
+        <div class="timeline__milestone" data-time="60:00">
+          <div class="milestone__pod">
+            <span class="milestone__time">T+60:00</span>
+            <h3 class="milestone__title">Final Approach</h3>
+            <p class="milestone__desc">Last wave of mentorship. Teams polish demos and documentation. Presentation decks locked in.</p>
+          </div>
+        </div>
+        <div class="timeline__milestone" data-time="72:00">
+          <div class="milestone__pod">
+            <span class="milestone__time">T+72:00</span>
+            <h3 class="milestone__title">Submission & Judging</h3>
+            <p class="milestone__desc">All Symbiont prototypes submitted. Live demos to the judging council. Winners ascend. Legends are forged.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 4 — GALLERY / PREVIOUS EDITIONS
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="gallery" class="section section--gallery" aria-label="Previous Editions Gallery">
+    <div class="container">
+      <h2 class="section__heading hud-bracket">Previous Symbiont Prototypes</h2>
+      <p class="section__sub">Successful creations from past Makeathon editions, reimagined as deployed Symbionts.</p>
+      <div class="gallery__grid" id="gallery-grid">
+        <!-- Cards injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 5 — PROBLEM STATEMENTS / BIOME LABS
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="problems" class="section section--problems" aria-label="Problem Statements">
+    <div class="container">
+      <h2 class="section__heading hud-bracket">Biome Labs</h2>
+      <p class="section__sub">Select a biome to explore its Symbiont challenges.</p>
+      <div class="biome-selector" id="biome-selector" role="tablist" aria-label="Biome Categories">
+        <!-- Biome tabs injected by JS -->
+      </div>
+      <div class="biome-panel" id="biome-panel">
+        <!-- Problem cards injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 6 — OUR TEAM / MAKEATHON CREW
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="team" class="section section--team" aria-label="Our Team">
+    <div class="container">
+      <h2 class="section__heading hud-bracket">Makeathon Crew</h2>
+      <div class="team__grid" id="team-grid">
+        <!-- Team cards injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 7 — FAQs / SYMBIONT ORACLE
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="faq" class="section section--faq" aria-label="Frequently Asked Questions">
+    <div class="container">
+      <h2 class="section__heading hud-bracket">Symbiont Oracle</h2>
+      <p class="section__sub">Click a crystal to reveal the answer within.</p>
+      <div class="oracle" id="oracle">
+        <div class="oracle__orb" aria-hidden="true"></div>
+        <div class="oracle__crystals" id="faq-crystals">
+          <!-- FAQ crystals injected by JS -->
+        </div>
+      </div>
+      <div class="oracle__answer" id="oracle-answer" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 8 — FOOTER
+  ═══════════════════════════════════════════════════════════ -->
+  <footer id="footer" class="section section--footer" aria-label="Footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">MAKEATHON 7.0</span>
+        <p class="footer__tagline">Forging Tomorrow's Symbionts Today</p>
+      </div>
+      <nav class="footer__links" aria-label="Social Links">
+        <a href="#" class="footer__link" aria-label="Twitter / X">𝕏</a>
+        <a href="#" class="footer__link" aria-label="Instagram">IG</a>
+        <a href="#" class="footer__link" aria-label="LinkedIn">IN</a>
+        <a href="#" class="footer__link" aria-label="Discord">DC</a>
+        <a href="#" class="footer__link" aria-label="GitHub">GH</a>
+      </nav>
+      <div class="footer__contact">
+        <p>Contact: <a href="mailto:hello@makeathon7.io">hello@makeathon7.io</a></p>
+      </div>
+      <p class="footer__copy">&copy; 2026 Makeathon 7.0 — All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Entry Point -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

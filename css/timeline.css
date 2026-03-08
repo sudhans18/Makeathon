@@ -1,0 +1,146 @@
+/* ═══════════════════════════════════════════════════════════
+   timeline.css — Timeline / Descent Sequence
+   Vertical glowing descent path with milestones
+═══════════════════════════════════════════════════════════ */
+
+.section--timeline {
+    background: linear-gradient(180deg,
+            var(--c-bg) 0%,
+            #0a0818 20%,
+            #1a0a10 50%,
+            #0a1818 80%,
+            var(--c-bg) 100%);
+    padding-bottom: var(--sp-2xl);
+}
+
+.timeline__track {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: var(--sp-xl) 0;
+}
+
+/* Central glowing descent line */
+.timeline__line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg,
+            transparent 0%,
+            var(--c-teal) 10%,
+            var(--c-gold) 50%,
+            var(--c-crimson) 90%,
+            transparent 100%);
+    box-shadow: 0 0 12px var(--c-teal-dim);
+}
+
+/* Individual milestone */
+.timeline__milestone {
+    position: relative;
+    display: flex;
+    margin-bottom: var(--sp-xl);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.timeline__milestone.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Alternate left/right layout */
+.timeline__milestone:nth-child(odd) {
+    justify-content: flex-start;
+    padding-right: calc(50% + 30px);
+    text-align: right;
+}
+
+.timeline__milestone:nth-child(even) {
+    justify-content: flex-end;
+    padding-left: calc(50% + 30px);
+    text-align: left;
+}
+
+/* Pod marker on the line */
+.timeline__milestone::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--c-teal);
+    box-shadow: 0 0 16px var(--c-teal), 0 0 40px rgba(0, 240, 212, 0.2);
+    z-index: 2;
+    transition: transform var(--dur) var(--ease-out),
+        box-shadow var(--dur) var(--ease-out);
+}
+
+.timeline__milestone:hover::before {
+    transform: translate(-50%, -50%) scale(1.4);
+    box-shadow: 0 0 24px var(--c-teal), 0 0 60px rgba(0, 240, 212, 0.3);
+}
+
+/* Pod content */
+.milestone__pod {
+    padding: var(--sp-lg);
+    background: rgba(10, 10, 31, 0.6);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    backdrop-filter: blur(8px);
+    transition: border-color var(--dur) var(--ease-out),
+        box-shadow var(--dur) var(--ease-out);
+}
+
+.timeline__milestone:hover .milestone__pod {
+    border-color: var(--c-teal-dim);
+    box-shadow: 0 0 20px rgba(0, 240, 212, 0.06);
+}
+
+.milestone__time {
+    font-family: var(--ff-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--c-teal);
+    display: block;
+    margin-bottom: var(--sp-xs);
+}
+
+.milestone__title {
+    font-family: var(--ff-heading);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--c-text);
+    margin-bottom: var(--sp-xs);
+}
+
+.milestone__desc {
+    font-size: 0.88rem;
+    color: var(--c-text-dim);
+    line-height: 1.65;
+}
+
+/* Mobile: stack vertically on one side */
+@media (max-width: 768px) {
+    .timeline__line {
+        left: 20px;
+        transform: none;
+    }
+
+    .timeline__milestone:nth-child(odd),
+    .timeline__milestone:nth-child(even) {
+        padding-left: 50px;
+        padding-right: 0;
+        text-align: left;
+        justify-content: flex-start;
+    }
+
+    .timeline__milestone::before {
+        left: 20px;
+    }
+}

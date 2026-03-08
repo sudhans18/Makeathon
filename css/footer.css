@@ -1,0 +1,77 @@
+/* ═══════════════════════════════════════════════════════════
+   footer.css — Footer
+   Credits, social links, contact
+═══════════════════════════════════════════════════════════ */
+
+.section--footer {
+    padding: var(--sp-xl) 0 var(--sp-lg);
+    background: var(--c-bg);
+    border-top: 1px solid var(--c-border);
+}
+
+.footer__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-lg);
+    text-align: center;
+}
+
+.footer__logo {
+    font-family: var(--ff-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    background: linear-gradient(135deg, var(--c-teal), var(--c-gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.footer__tagline {
+    font-family: var(--ff-heading);
+    font-size: 0.9rem;
+    color: var(--c-text-dim);
+    margin-top: var(--sp-xs);
+}
+
+.footer__links {
+    display: flex;
+    gap: var(--sp-md);
+}
+
+.footer__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--c-border);
+    color: var(--c-text-dim);
+    font-family: var(--ff-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    transition: all var(--dur) var(--ease-out);
+}
+
+.footer__link:hover {
+    border-color: var(--c-teal);
+    color: var(--c-teal);
+    box-shadow: 0 0 16px rgba(0, 240, 212, 0.15);
+    transform: translateY(-2px);
+}
+
+.footer__contact a {
+    color: var(--c-teal);
+}
+
+.footer__contact a:hover {
+    color: var(--c-gold);
+}
+
+.footer__copy {
+    font-size: 0.75rem;
+    color: var(--c-text-dim);
+    opacity: 0.6;
+}

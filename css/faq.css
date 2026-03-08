@@ -1,0 +1,219 @@
+/* ═══════════════════════════════════════════════════════════
+   faq.css — FAQs / Symbiont Oracle
+   Central orb with floating question crystals
+═══════════════════════════════════════════════════════════ */
+
+.section--faq {
+    background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-alt) 50%, var(--c-bg) 100%);
+}
+
+/* --- Oracle Container --- */
+.oracle {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    height: 400px;
+    margin: 0 auto var(--sp-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Central orb */
+.oracle__orb {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, var(--c-teal), #003a30);
+    box-shadow:
+        0 0 30px var(--c-teal),
+        0 0 60px rgba(0, 240, 212, 0.3),
+        0 0 120px rgba(0, 240, 212, 0.1);
+    animation: orbPulse 3s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes orbPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 30px var(--c-teal), 0 0 60px rgba(0, 240, 212, 0.3);
+    }
+
+    50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 40px var(--c-teal), 0 0 80px rgba(0, 240, 212, 0.4);
+    }
+}
+
+/* Floating question crystals */
+.oracle__crystals {
+    position: absolute;
+    inset: 0;
+}
+
+.faq-crystal {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    min-width: 50px;
+    height: 50px;
+    padding: 0 var(--sp-md);
+    border-radius: 25px;
+    background: rgba(10, 10, 31, 0.8);
+    border: 1px solid var(--c-border);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    font-family: var(--ff-display);
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--c-text-dim);
+    transition: all var(--dur) var(--ease-out);
+    animation: crystalFloat 5s ease-in-out infinite;
+    white-space: nowrap;
+}
+
+.faq-crystal:hover {
+    border-color: var(--c-teal);
+    color: var(--c-teal);
+    box-shadow: 0 0 16px rgba(0, 240, 212, 0.15);
+    transform: scale(1.1);
+}
+
+.faq-crystal.active {
+    background: rgba(0, 240, 212, 0.12);
+    border-color: var(--c-teal);
+    color: var(--c-teal);
+    box-shadow: 0 0 24px rgba(0, 240, 212, 0.2);
+}
+
+/* Stagger crystal float animation via nth-child */
+.faq-crystal:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.faq-crystal:nth-child(2) {
+    animation-delay: -0.7s;
+}
+
+.faq-crystal:nth-child(3) {
+    animation-delay: -1.4s;
+}
+
+.faq-crystal:nth-child(4) {
+    animation-delay: -2.1s;
+}
+
+.faq-crystal:nth-child(5) {
+    animation-delay: -2.8s;
+}
+
+.faq-crystal:nth-child(6) {
+    animation-delay: -3.5s;
+}
+
+.faq-crystal:nth-child(7) {
+    animation-delay: -4.2s;
+}
+
+.faq-crystal:nth-child(8) {
+    animation-delay: -0.5s;
+}
+
+@keyframes crystalFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* --- Oracle Answer Display --- */
+.oracle__answer {
+    max-width: 700px;
+    margin: 0 auto;
+    min-height: 80px;
+    text-align: center;
+}
+
+.oracle__answer-inner {
+    padding: var(--sp-lg);
+    background: rgba(10, 10, 31, 0.6);
+    border: 1px solid var(--c-teal-dim);
+    border-radius: var(--radius);
+    backdrop-filter: blur(10px);
+    animation: answerReveal 0.5s var(--ease-out) forwards;
+}
+
+.oracle__answer-inner h4 {
+    font-family: var(--ff-heading);
+    font-size: 1.15rem;
+    color: var(--c-teal);
+    margin-bottom: var(--sp-sm);
+}
+
+.oracle__answer-inner p {
+    font-size: 0.95rem;
+    color: var(--c-text-dim);
+    line-height: 1.75;
+}
+
+@keyframes answerReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Circuit glow accent on answer */
+.oracle__answer-inner::before {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--c-teal), var(--c-gold));
+    margin: 0 auto var(--sp-md);
+    border-radius: 1px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .oracle {
+        height: 300px;
+    }
+
+    .oracle__orb {
+        width: 70px;
+        height: 70px;
+    }
+
+    .faq-crystal {
+        font-size: 0.5rem;
+        min-width: 40px;
+        height: 40px;
+        padding: 0 var(--sp-sm);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .oracle__orb {
+        animation: none;
+    }
+
+    .faq-crystal {
+        animation: none;
+    }
+}

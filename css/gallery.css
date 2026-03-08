@@ -1,0 +1,127 @@
+/* ═══════════════════════════════════════════════════════════
+   gallery.css — Gallery / Previous Editions
+   Masonry grid with parallax depth & hover overlays
+═══════════════════════════════════════════════════════════ */
+
+.section--gallery {
+    background: var(--c-bg-alt);
+}
+
+.gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--sp-lg);
+}
+
+/* Individual gallery card */
+.gallery__card {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    cursor: pointer;
+    transform: translateY(0);
+    transition: transform var(--dur) var(--ease-out);
+}
+
+.gallery__card:hover {
+    transform: translateY(-6px);
+}
+
+.gallery__card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--dur-slow) var(--ease-out),
+        filter var(--dur-slow) var(--ease-out);
+}
+
+.gallery__card:hover img {
+    transform: scale(1.08);
+    filter: brightness(0.6);
+}
+
+/* Activation overlay: circuit veins */
+.gallery__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--sp-lg);
+    background: linear-gradient(180deg, transparent 40%, rgba(0, 240, 212, 0.12) 100%);
+    opacity: 0;
+    transition: opacity var(--dur) var(--ease-out);
+}
+
+.gallery__card:hover .gallery__overlay {
+    opacity: 1;
+}
+
+/* Circuit vein lines on hover */
+.gallery__overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 80%, var(--c-teal) 0%, transparent 30%),
+        radial-gradient(circle at 80% 20%, var(--c-gold) 0%, transparent 25%);
+    opacity: 0.3;
+    mix-blend-mode: screen;
+}
+
+.gallery__card-title {
+    font-family: var(--ff-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+.gallery__card-sub {
+    font-size: 0.8rem;
+    color: var(--c-teal);
+    font-family: var(--ff-display);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+    margin-top: var(--sp-xs);
+}
+
+/* Stagger depth per card for parallax */
+.gallery__card:nth-child(2n) {
+    transform: translateY(20px);
+}
+
+.gallery__card:nth-child(3n) {
+    transform: translateY(10px);
+}
+
+.gallery__card:nth-child(2n):hover {
+    transform: translateY(14px);
+}
+
+.gallery__card:nth-child(3n):hover {
+    transform: translateY(4px);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .gallery__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--sp-md);
+    }
+
+    .gallery__card:nth-child(2n),
+    .gallery__card:nth-child(3n) {
+        transform: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery__grid {
+        grid-template-columns: 1fr;
+    }
+}
