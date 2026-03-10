@@ -1,8 +1,9 @@
 /* ═══════════════════════════════════════════════════════════
    timeline.css — Timeline / Descent Sequence
-   Vertical glowing descent path with milestones
+   Modern vertical alternating layout with scroll-reveal
 ═══════════════════════════════════════════════════════════ */
 
+/* ---------- Section ---------- */
 .section--timeline {
     background: linear-gradient(180deg,
             var(--c-bg) 0%,
@@ -13,37 +14,53 @@
     padding-bottom: var(--sp-2xl);
 }
 
+/* ---------- Track container ---------- */
 .timeline__track {
     position: relative;
-    max-width: 700px;
+    max-width: 900px;
     margin: 0 auto;
     padding: var(--sp-xl) 0;
 }
 
-/* Central glowing descent line */
-.timeline__line {
+/* ---------- Center line (background track) ---------- */
+.timeline__center-line {
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 2px;
     height: 100%;
-    background: linear-gradient(180deg,
-            transparent 0%,
-            var(--c-teal) 10%,
-            var(--c-gold) 50%,
-            var(--c-crimson) 90%,
-            transparent 100%);
-    box-shadow: 0 0 12px var(--c-teal-dim);
+    background: rgba(0, 240, 212, 0.08);
+    z-index: 0;
 }
 
-/* Individual milestone */
+/* Growing fill — driven by JS via --line-progress */
+.timeline__line-fill {
+    width: 100%;
+    height: 100%;
+    transform-origin: top center;
+    transform: scaleY(var(--line-progress, 0));
+    background: linear-gradient(180deg,
+            var(--c-teal) 0%,
+            var(--c-gold) 50%,
+            var(--c-crimson) 100%);
+    box-shadow: 0 0 14px var(--c-teal-dim),
+        0 0 40px rgba(0, 240, 212, 0.08);
+    transition: transform 0.1s linear;
+}
+
+/* ---------- Milestone item ---------- */
 .timeline__milestone {
     position: relative;
     display: flex;
+    align-items: flex-start;
     margin-bottom: var(--sp-xl);
+
+    /* Initial hidden state — animated via .in-view */
     opacity: 0;
     transform: translateY(30px);
+    transition: opacity 0.5s var(--ease-out),
+        transform 0.5s var(--ease-out);
 }
 
 .timeline__milestone.in-view {
@@ -51,57 +68,104 @@
     transform: translateY(0);
 }
 
-/* Alternate left/right layout */
+/* ---------- Alternating layout ---------- */
+/* Odd milestones (1st, 3rd, 5th, 7th) → Left side */
 .timeline__milestone:nth-child(odd) {
     justify-content: flex-start;
-    padding-right: calc(50% + 30px);
+    padding-right: calc(50% + 40px);
     text-align: right;
 }
 
+/* Even milestones (2nd, 4th, 6th) → Right side */
 .timeline__milestone:nth-child(even) {
     justify-content: flex-end;
-    padding-left: calc(50% + 30px);
+    padding-left: calc(50% + 40px);
     text-align: left;
 }
 
-/* Pod marker on the line */
-.timeline__milestone::before {
-    content: '';
+/* ---------- Node dot on center line ---------- */
+.milestone__node {
     position: absolute;
-    top: 20px;
+    top: 24px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0.7);
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: var(--c-teal);
-    box-shadow: 0 0 16px var(--c-teal), 0 0 40px rgba(0, 240, 212, 0.2);
+    background: var(--c-surface);
+    border: 2px solid var(--c-teal-dim);
+    box-shadow: 0 0 8px rgba(0, 240, 212, 0.1);
     z-index: 2;
-    transition: transform var(--dur) var(--ease-out),
-        box-shadow var(--dur) var(--ease-out);
+    transition: transform 0.4s var(--ease-out),
+        background 0.4s var(--ease-out),
+        border-color 0.4s var(--ease-out),
+        box-shadow 0.4s var(--ease-out);
 }
 
-.timeline__milestone:hover::before {
-    transform: translate(-50%, -50%) scale(1.4);
-    box-shadow: 0 0 24px var(--c-teal), 0 0 60px rgba(0, 240, 212, 0.3);
+/* Highlighted state when card is in view */
+.timeline__milestone.in-view .milestone__node {
+    transform: translate(-50%, -50%) scale(1);
+    background: var(--c-teal);
+    border-color: var(--c-teal);
+    box-shadow: 0 0 18px var(--c-teal),
+        0 0 48px rgba(0, 240, 212, 0.25);
 }
 
-/* Pod content */
+.timeline__milestone:hover .milestone__node {
+    transform: translate(-50%, -50%) scale(1.3);
+    box-shadow: 0 0 24px var(--c-teal),
+        0 0 60px rgba(0, 240, 212, 0.3);
+}
+
+/* ---------- Connector arm (card → node) ---------- */
+.timeline__milestone::before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    width: 40px;
+    height: 1px;
+    background: var(--c-border);
+    z-index: 1;
+    transition: background 0.4s var(--ease-out);
+}
+
+.timeline__milestone:nth-child(odd)::before {
+    right: calc(50% - 40px);
+    left: auto;
+}
+
+.timeline__milestone:nth-child(even)::before {
+    left: calc(50% - 40px);
+    right: auto;
+}
+
+.timeline__milestone.in-view::before {
+    background: var(--c-teal-dim);
+}
+
+/* ---------- Card / Pod ---------- */
 .milestone__pod {
     padding: var(--sp-lg);
-    background: rgba(10, 10, 31, 0.6);
+    background: rgba(10, 10, 31, 0.65);
     border: 1px solid var(--c-border);
-    border-radius: var(--radius);
-    backdrop-filter: blur(8px);
-    transition: border-color var(--dur) var(--ease-out),
-        box-shadow var(--dur) var(--ease-out);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(0, 240, 212, 0.04);
+    transition: border-color 0.4s var(--ease-out),
+        box-shadow 0.4s var(--ease-out),
+        transform 0.3s var(--ease-out);
 }
 
 .timeline__milestone:hover .milestone__pod {
     border-color: var(--c-teal-dim);
-    box-shadow: 0 0 20px rgba(0, 240, 212, 0.06);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+        0 0 24px rgba(0, 240, 212, 0.08);
+    transform: translateY(-2px);
 }
 
+/* ---------- Typography ---------- */
 .milestone__time {
     font-family: var(--ff-display);
     font-size: 0.7rem;
@@ -113,7 +177,7 @@
 
 .milestone__title {
     font-family: var(--ff-heading);
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 600;
     color: var(--c-text);
     margin-bottom: var(--sp-xs);
@@ -122,25 +186,37 @@
 .milestone__desc {
     font-size: 0.88rem;
     color: var(--c-text-dim);
-    line-height: 1.65;
+    line-height: 1.7;
 }
 
-/* Mobile: stack vertically on one side */
+/* ---------- Mobile: single column, line on left ---------- */
 @media (max-width: 768px) {
-    .timeline__line {
+    .timeline__track {
+        max-width: 100%;
+    }
+
+    .timeline__center-line {
         left: 20px;
         transform: none;
     }
 
     .timeline__milestone:nth-child(odd),
     .timeline__milestone:nth-child(even) {
-        padding-left: 50px;
+        padding-left: 55px;
         padding-right: 0;
         text-align: left;
         justify-content: flex-start;
     }
 
-    .timeline__milestone::before {
+    .milestone__node {
         left: 20px;
+    }
+
+    .timeline__milestone::before {
+        display: none; /* hide connector arms on mobile */
+    }
+
+    .milestone__pod {
+        padding: var(--sp-md);
     }
 }
