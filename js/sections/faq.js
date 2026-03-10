@@ -1,120 +1,107 @@
 /* ═══════════════════════════════════════════════════════════
    js/sections/faq.js
-   FAQs / Symbiont Oracle
-   
-   Central glowing orb with floating question crystals
-   Click crystal → holographic answer reveal
-   
-   How to extend: add to FAQ_DATA array
+   SPIDER-VERSE FAQ
+   Web of Destiny SVG drawing + node clicks
 ═══════════════════════════════════════════════════════════ */
 
-/** FAQ data */
 const FAQ_DATA = [
-    {
-        q: 'What is a Symbiont?',
-        a: 'A Symbiont is a bio-inspired, AI-nanite hybrid concept — a living-tech fusion that bridges biology and technology. In Makeathon 7.0, your team designs and prototypes one across any of the 8 biome categories.',
-    },
-    {
-        q: 'Who can participate?',
-        a: 'Anyone with a passion for innovation! Students, professionals, hobbyists, and researchers of all skill levels are welcome. Teams of 2–5 members can register. Solo participants will be matched with a team on launch day.',
-    },
-    {
-        q: 'How long is the event?',
-        a: 'Makeathon 7.0 runs for exactly 72 continuous hours. Teams will have checkpoints at T+24:00 and T+48:00 for reviews and mentor feedback before the final submission at T+72:00.',
-    },
-    {
-        q: 'Do I need hardware?',
-        a: 'Not necessarily! Many challenges are software-based. However, some biomes (Robotics, Agriculture, MedTech) may benefit from hardware prototyping. We provide basic kits and access to a maker lab on site.',
-    },
-    {
-        q: 'What are the prizes?',
-        a: 'Grand prizes include ₹5,00,000+ in cash, internship opportunities, mentorship from industry leaders, cloud credits, and exclusive Symbiont NFT badges. Each biome also has category-specific awards.',
-    },
-    {
-        q: 'Is it free to enter?',
-        a: 'Yes! Makeathon 7.0 is completely free. We provide meals, snacks, workspace, Wi-Fi, and all the creative energy you can absorb. Just bring your skills and your team.',
-    },
-    {
-        q: 'Can I use pre-built code?',
-        a: 'You may use open-source libraries and frameworks, but the core Symbiont concept and implementation must be created during the 72-hour window. Pre-existing full projects are not permitted.',
-    },
-    {
-        q: 'Where is it held?',
-        a: 'Makeathon 7.0 takes place at the Creation Campus — a purpose-built innovation hub. Exact venue details will be shared upon registration confirmation. Remote participation tracks are also available.',
-    },
+    { q: 'Is this canon?', a: 'Makeathon 7.0 is an official event sanctioned by the Spider-Society (and your local organizers). Whatever you build here becomes part of your canon event.' },
+    { q: 'Who can enter?', a: 'Anyone can wear the mask. Whether you are a student, a seasoned hacker, or an anomaly from another dimension, you are welcome here.' },
+    { q: 'What is the team size?', a: 'Teams of 2 to 5 Spiders. Solo travelers will be matched up with a crew during the dimension-sync networking session on Day 1.' },
+    { q: 'Is it free?', a: 'Absolutely. We provide the workspace, food, caffeine, and multiversal web-fluid. You just bring your skills and laptop.' },
+    { q: 'Do I need a finished product?', a: 'A working prototype or a highly polished concept demo is expected. It doesn\'t have to be perfect, but it needs to show the potential to change the multiverse.' },
+    { q: 'What if I glitch out?', a: 'Mentors (our version of Peter B. Parker) are available 24/7 to help you squash bugs and stabilize your reality. Don\'t hesitate to ask for help.' }
 ];
 
-/**
- * Initialize the FAQ / Oracle section
- */
 export function initFAQ() {
-    renderCrystals();
+    drawWeb();
     setupInteraction();
 }
 
 /**
- * Render floating question crystals around the orb
- * Positions are distributed in an elliptical pattern
+ * Procedurally generate SVG web lines and place HTML nodes over them
  */
-function renderCrystals() {
-    const container = document.getElementById('faq-crystals');
-    if (!container) return;
+function drawWeb() {
+    const webSvg = document.getElementById('web-lines');
+    const nodesContainer = document.getElementById('faq-nodes');
+    if (!webSvg || !nodesContainer) return;
 
-    const centerX = 50; // % from left
-    const centerY = 50; // % from top
-    const radiusX = 38; // Horizontal spread %
-    const radiusY = 35; // Vertical spread %
+    // Clear
+    webSvg.innerHTML = '';
+    nodesContainer.innerHTML = '';
 
-    container.innerHTML = FAQ_DATA.map((item, i) => {
-        const angle = (i / FAQ_DATA.length) * Math.PI * 2 - Math.PI / 2;
-        const x = centerX + Math.cos(angle) * radiusX;
-        const y = centerY + Math.sin(angle) * radiusY;
+    const numNodes = FAQ_DATA.length;
+    const centerX = 400; // viewbox is 800x500
+    const centerY = 250;
 
-        return `
-      <button
-        class="faq-crystal"
-        data-faq="${i}"
-        style="left: ${x}%; top: ${y}%; transform: translate(-50%, -50%)"
-        aria-label="Question: ${item.q}"
-      >
-        ${item.q.length > 20 ? item.q.slice(0, 18) + '…' : item.q}
-      </button>
-    `;
-    }).join('');
+    // SVG lines markup
+    let svgContent = '';
+
+    // Center point lines (spokes)
+    for (let i = 0; i < numNodes; i++) {
+        const angle = (Math.PI * 2 * i) / numNodes - Math.PI / 2;
+        const radius = 150 + Math.random() * 80; // Distance from center
+        const x = centerX + Math.cos(angle) * radius;
+        const y = centerY + Math.sin(angle) * radius;
+
+        // Convert to % for absolute positioning of HTML nodes
+        const pctX = (x / 800) * 100;
+        const pctY = (y / 500) * 100;
+
+        // Spoke from center
+        svgContent += `<line x1="${centerX}" y1="${centerY}" x2="${x}" y2="${y}" stroke="#00f0ff" stroke-width="2" opacity="0.6"/>`;
+
+        // Connect to next node (web ring)
+        const nextI = (i + 1) % numNodes;
+        const nextAngle = (Math.PI * 2 * nextI) / numNodes - Math.PI / 2;
+        const nextRadius = 150 + Math.random() * 80;
+        const nX = centerX + Math.cos(nextAngle) * nextRadius;
+        const nY = centerY + Math.sin(nextAngle) * nextRadius;
+
+        svgContent += `<line x1="${x}" y1="${y}" x2="${nX}" y2="${nY}" stroke="#ff0040" stroke-width="3" opacity="0.8"/>`;
+
+        // Create HTML button node
+        nodesContainer.innerHTML += `
+          <button 
+            class="faq-node" 
+            data-faq="${i}" 
+            style="left: ${pctX}%; top: ${pctY}%;"
+            aria-label="Question: ${FAQ_DATA[i].q}"
+          ></button>
+        `;
+    }
+
+    webSvg.innerHTML = svgContent;
 }
 
-/**
- * Handle crystal clicks: reveal answer with animation
- */
 function setupInteraction() {
-    const container = document.getElementById('faq-crystals');
-    const answerBox = document.getElementById('oracle-answer');
-    if (!container || !answerBox) return;
+    const container = document.getElementById('faq-nodes');
+    const bubbleContent = document.getElementById('faq-answer-content');
+    if (!container || !bubbleContent) return;
 
     container.addEventListener('click', (e) => {
-        const crystal = e.target.closest('.faq-crystal');
-        if (!crystal) return;
+        const node = e.target.closest('.faq-node');
+        if (!node) return;
 
-        const idx = parseInt(crystal.dataset.faq, 10);
+        const idx = parseInt(node.dataset.faq, 10);
         const item = FAQ_DATA[idx];
         if (!item) return;
 
-        // Toggle active state
-        document.querySelectorAll('.faq-crystal').forEach((c) => c.classList.remove('active'));
-        crystal.classList.add('active');
+        // Active state
+        document.querySelectorAll('.faq-node').forEach((n) => n.classList.remove('active'));
+        node.classList.add('active');
 
-        // Render answer with animation
-        answerBox.innerHTML = `
-      <div class="oracle__answer-inner">
+        // Update comic bubble content
+        bubbleContent.classList.remove('refreshing');
+
+        // Force un-cache animation via reflow
+        void bubbleContent.offsetWidth;
+
+        bubbleContent.innerHTML = `
         <h4>${item.q}</h4>
         <p>${item.a}</p>
-      </div>
-    `;
+      `;
 
-        // GSAP entrance animation
-        gsap.fromTo('.oracle__answer-inner',
-            { opacity: 0, y: 15, scale: 0.97 },
-            { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: 'power2.out' }
-        );
+        bubbleContent.classList.add('refreshing');
     });
 }

@@ -1,88 +1,74 @@
 /* ═══════════════════════════════════════════════════════════
    js/sections/gallery.js
-   Gallery / Previous Editions
-   
-   Injects placeholder cards from past "Symbiont Prototypes"
-   Key scroll triggers:
-   - Stagger reveal on scroll
-   - Depth parallax per card
-   - Hover overlays with circuit/vine visuals
+   SPIDER-VERSE Gallery
+   Random polaroid scatter logic
 ═══════════════════════════════════════════════════════════ */
 
 import { createScrollReveal } from '../core/gsap-init.js';
 
-/** Placeholder gallery items */
+/** Placeholder polaroids */
 const GALLERY_ITEMS = [
-    { title: 'Project Chrysalis', sub: 'Makeathon 6.0 · AI Biome', seed: 'chrysalis' },
-    { title: 'Vein Runner', sub: 'Makeathon 6.0 · MedTech Biome', seed: 'veinrunner' },
-    { title: 'Coral Sync', sub: 'Makeathon 5.0 · Green Tech', seed: 'coralsync' },
-    { title: 'Nano Forge', sub: 'Makeathon 5.0 · Robotics', seed: 'nanoforge' },
-    { title: 'Spore Network', sub: 'Makeathon 4.0 · Agriculture', seed: 'sporenet' },
-    { title: 'Crystal Ledger', sub: 'Makeathon 4.0 · Blockchain', seed: 'crystalled' },
-    { title: 'Mind Lattice', sub: 'Makeathon 3.0 · Education', seed: 'mindlat' },
-    { title: 'Wind Weaver', sub: 'Makeathon 3.0 · Smart City', seed: 'windweave' },
-    { title: 'Pulse Dome', sub: 'Makeathon 2.0 · MedTech', seed: 'pulsedome' },
-    { title: 'Hive Architect', sub: 'Makeathon 2.0 · AI Biome', seed: 'hivearch' },
-    { title: 'Root Protocol', sub: 'Makeathon 1.0 · Agriculture', seed: 'rootproto' },
-    { title: 'Ember Sentinel', sub: 'Makeathon 1.0 · Robotics', seed: 'embersent' },
+  { title: 'Dimensions Hack', sub: 'Earth-1610', seed: 'dimhack' },
+  { title: 'Web Shooter v2', sub: 'Alchemax Labs', seed: 'webshoot' },
+  { title: 'Gwen\'s Drums', sub: 'Earth-65', seed: 'gwendrums' },
+  { title: 'Prowler Tech', sub: 'Earth-42', seed: 'prowler' },
+  { title: 'Miguel\'s Watch', sub: 'Earth-928', seed: 'miguelwatch' },
+  { title: 'Glitch Protocol', sub: 'Earth-1610', seed: 'glitchpro' },
+  { title: 'Spider-Bot', sub: 'Earth-1048', seed: 'spiderbot' },
+  { title: 'Noir Case File', sub: 'Earth-90214', seed: 'noircase' },
 ];
 
-/**
- * Initialize Gallery section
- */
 export function initGallery() {
-    injectCards();
-    createScrollReveal('.gallery__card', {
-        y: 30,
-        stagger: 0.08,
-        duration: 0.6,
-        start: 'top 88%',
-    });
-    setupParallax();
+  injectCards();
+
+  // Custom reveal for polaroids — drop in from slightly above with rotation
+  const polaroids = document.querySelectorAll('.polaroid-card');
+  polaroids.forEach((card, i) => {
+    // Read the inline rotation we set during injection
+    const targetRot = parseFloat(card.dataset.rot || '0');
+
+    gsap.fromTo(card,
+      { opacity: 0, y: -50, rotation: targetRot + 15, scale: 1.2 },
+      {
+        opacity: 1, y: 0, rotation: targetRot, scale: 1,
+        duration: 0.8,
+        ease: 'bounce.out',
+        delay: (i % 4) * 0.1,
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 90%',
+        }
+      }
+    );
+  });
 }
 
-/**
- * Inject gallery cards into the DOM
- */
 function injectCards() {
-    const grid = document.getElementById('gallery-grid');
-    if (!grid) return;
+  const grid = document.getElementById('gallery-scatter');
+  if (!grid) return;
 
-    grid.innerHTML = GALLERY_ITEMS.map((item, idx) => `
-    <article class="gallery__card" data-depth="${idx % 3}">
-      <img
-        src="https://picsum.photos/seed/${item.seed}/600/450"
-        alt="${item.title} — ${item.sub}"
-        loading="lazy"
-        width="600"
-        height="450"
-      />
-      <div class="gallery__overlay">
-        <span class="gallery__card-sub">${item.sub}</span>
-        <h3 class="gallery__card-title">${item.title}</h3>
-      </div>
-    </article>
-  `).join('');
-}
+  grid.innerHTML = GALLERY_ITEMS.map((item, idx) => {
+    // Generate a random rotation between -12 and 12 degrees
+    const rot = (Math.random() * 24) - 12;
+    // Generate a random Y offset for scattered look
+    const yOffset = (Math.random() * 40) - 20;
 
-/**
- * Subtle parallax depth shift per card based on data-depth
- */
-function setupParallax() {
-    const cards = document.querySelectorAll('.gallery__card');
-    cards.forEach((card) => {
-        const depth = parseInt(card.dataset.depth || '0', 10);
-        const yShift = 20 + depth * 15;
-
-        gsap.to(card, {
-            y: -yShift,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: card,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: 1,
-            },
-        });
-    });
+    return `
+      <article class="polaroid-card" data-rot="${rot}" style="transform: rotate(${rot}deg) translateY(${yOffset}px)">
+        <div class="polaroid-img-wrapper">
+          <img
+            src="https://picsum.photos/seed/${item.seed}/400/400"
+            alt="${item.title}"
+            loading="lazy"
+            width="400"
+            height="400"
+          />
+        </div>
+        <div class="polaroid-caption">
+          <h3 class="polaroid-title">${item.title}</h3>
+          <span class="polaroid-sub text-cyan">${item.sub}</span>
+        </div>
+      </article>
+    `;
+  }).join('');
 }

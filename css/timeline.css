@@ -1,222 +1,166 @@
 /* ═══════════════════════════════════════════════════════════
-   timeline.css — Timeline / Descent Sequence
-   Modern vertical alternating layout with scroll-reveal
+   timeline.css — SPIDER-VERSE
+   Multiversal Web Timeline (Neon threads)
 ═══════════════════════════════════════════════════════════ */
 
-/* ---------- Section ---------- */
 .section--timeline {
-    background: linear-gradient(180deg,
-            var(--c-bg) 0%,
-            #0a0818 20%,
-            #1a0a10 50%,
-            #0a1818 80%,
-            var(--c-bg) 100%);
+    background: var(--c-bg);
     padding-bottom: var(--sp-2xl);
+    position: relative;
+    /* Diagonal stripe background pattern */
+    background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 20px, transparent 20px, transparent 40px);
 }
 
-/* ---------- Track container ---------- */
 .timeline__track {
     position: relative;
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
     padding: var(--sp-xl) 0;
 }
 
-/* ---------- Center line (background track) ---------- */
-.timeline__center-line {
+/* The Web Strand */
+.timeline__web-line {
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 2px;
+    width: 6px;
     height: 100%;
-    background: rgba(0, 240, 212, 0.08);
-    z-index: 0;
-}
-
-/* Growing fill — driven by JS via --line-progress */
-.timeline__line-fill {
-    width: 100%;
-    height: 100%;
+    background: var(--c-cyan);
+    /* Make it look slightly jagged/webby */
+    clip-path: polygon(20% 0, 100% 20%, 80% 40%, 100% 60%, 20% 80%, 100% 100%, 0% 100%, 0% 80%, 30% 60%, 0% 40%, 40% 20%, 0 0);
+    box-shadow: 0 0 20px var(--c-cyan);
+    z-index: 1;
     transform-origin: top center;
-    transform: scaleY(var(--line-progress, 0));
-    background: linear-gradient(180deg,
-            var(--c-teal) 0%,
-            var(--c-gold) 50%,
-            var(--c-crimson) 100%);
-    box-shadow: 0 0 14px var(--c-teal-dim),
-        0 0 40px rgba(0, 240, 212, 0.08);
-    transition: transform 0.1s linear;
 }
 
-/* ---------- Milestone item ---------- */
-.timeline__milestone {
+/* Timeline Event */
+.timeline__event {
     position: relative;
     display: flex;
-    align-items: flex-start;
     margin-bottom: var(--sp-xl);
-
-    /* Initial hidden state — animated via .in-view */
+    z-index: 2;
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.5s var(--ease-out),
-        transform 0.5s var(--ease-out);
+    transform: translateY(40px) skewY(2deg);
 }
 
-.timeline__milestone.in-view {
+.timeline__event.in-view {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) skewY(0);
+    transition: transform 0.6s var(--ease-pop), opacity 0.6s;
 }
 
-/* ---------- Alternating layout ---------- */
-/* Odd milestones (1st, 3rd, 5th, 7th) → Left side */
-.timeline__milestone:nth-child(odd) {
+.timeline__event:nth-child(odd) {
     justify-content: flex-start;
     padding-right: calc(50% + 40px);
-    text-align: right;
 }
 
-/* Even milestones (2nd, 4th, 6th) → Right side */
-.timeline__milestone:nth-child(even) {
+.timeline__event:nth-child(even) {
     justify-content: flex-end;
     padding-left: calc(50% + 40px);
-    text-align: left;
 }
 
-/* ---------- Node dot on center line ---------- */
-.milestone__node {
-    position: absolute;
-    top: 24px;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.7);
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: var(--c-surface);
-    border: 2px solid var(--c-teal-dim);
-    box-shadow: 0 0 8px rgba(0, 240, 212, 0.1);
-    z-index: 2;
-    transition: transform 0.4s var(--ease-out),
-        background 0.4s var(--ease-out),
-        border-color 0.4s var(--ease-out),
-        box-shadow 0.4s var(--ease-out);
-}
-
-/* Highlighted state when card is in view */
-.timeline__milestone.in-view .milestone__node {
-    transform: translate(-50%, -50%) scale(1);
-    background: var(--c-teal);
-    border-color: var(--c-teal);
-    box-shadow: 0 0 18px var(--c-teal),
-        0 0 48px rgba(0, 240, 212, 0.25);
-}
-
-.timeline__milestone:hover .milestone__node {
-    transform: translate(-50%, -50%) scale(1.3);
-    box-shadow: 0 0 24px var(--c-teal),
-        0 0 60px rgba(0, 240, 212, 0.3);
-}
-
-/* ---------- Connector arm (card → node) ---------- */
-.timeline__milestone::before {
+/* Node markers (Spidey badges) */
+.timeline__event::before {
     content: '';
     position: absolute;
-    top: 24px;
-    width: 40px;
-    height: 1px;
-    background: var(--c-border);
-    z-index: 1;
-    transition: background 0.4s var(--ease-out);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 24px;
+    height: 24px;
+    background: var(--c-red);
+    border: 3px solid var(--c-border-dark);
+    z-index: 3;
+    transition: transform 0.3s var(--ease-pop);
 }
 
-.timeline__milestone:nth-child(odd)::before {
-    right: calc(50% - 40px);
-    left: auto;
+.timeline__event:hover::before {
+    transform: translate(-50%, -50%) rotate(90deg) scale(1.3);
+    background: var(--c-yellow);
 }
 
-.timeline__milestone:nth-child(even)::before {
-    left: calc(50% - 40px);
-    right: auto;
+/* Event Content Box (Comic style) */
+.event__box {
+    padding: var(--sp-md);
+    background: #fff;
+    border: 4px solid var(--c-border-dark);
+    box-shadow: 6px 6px 0 var(--c-magenta);
+    position: relative;
 }
 
-.timeline__milestone.in-view::before {
-    background: var(--c-teal-dim);
+.timeline__event:nth-child(even) .event__box {
+    box-shadow: -6px 6px 0 var(--c-yellow);
 }
 
-/* ---------- Card / Pod ---------- */
-.milestone__pod {
-    padding: var(--sp-lg);
-    background: rgba(10, 10, 31, 0.65);
-    border: 1px solid var(--c-border);
-    border-radius: var(--radius-lg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3),
-        0 0 0 1px rgba(0, 240, 212, 0.04);
-    transition: border-color 0.4s var(--ease-out),
-        box-shadow 0.4s var(--ease-out),
-        transform 0.3s var(--ease-out);
+/* Pointer triangle */
+.event__box::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 10px;
+    border-style: solid;
 }
 
-.timeline__milestone:hover .milestone__pod {
-    border-color: var(--c-teal-dim);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
-        0 0 24px rgba(0, 240, 212, 0.08);
-    transform: translateY(-2px);
+.timeline__event:nth-child(odd) .event__box::after {
+    right: -24px;
+    border-color: transparent transparent transparent var(--c-border-dark);
 }
 
-/* ---------- Typography ---------- */
-.milestone__time {
+.timeline__event:nth-child(even) .event__box::after {
+    left: -24px;
+    border-color: transparent var(--c-border-dark) transparent transparent;
+}
+
+.event__time {
     font-family: var(--ff-display);
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    color: var(--c-teal);
+    font-size: 1.5rem;
     display: block;
+    margin-bottom: -5px;
+}
+
+.event__title {
+    font-family: var(--ff-display);
+    font-size: 2rem;
+    color: var(--c-bg);
+    /* Dark text on white box */
+    text-transform: uppercase;
+    line-height: 1.1;
     margin-bottom: var(--sp-xs);
 }
 
-.milestone__title {
-    font-family: var(--ff-heading);
-    font-size: 1.25rem;
+.event__desc {
+    font-family: var(--ff-body);
+    font-size: 1rem;
     font-weight: 600;
-    color: var(--c-text);
-    margin-bottom: var(--sp-xs);
+    color: #333;
+    /* Dark text on white box */
 }
 
-.milestone__desc {
-    font-size: 0.88rem;
-    color: var(--c-text-dim);
-    line-height: 1.7;
-}
-
-/* ---------- Mobile: single column, line on left ---------- */
 @media (max-width: 768px) {
-    .timeline__track {
-        max-width: 100%;
-    }
-
-    .timeline__center-line {
-        left: 20px;
+    .timeline__web-line {
+        left: 30px;
         transform: none;
+        clip-path: none;
+        width: 4px;
     }
 
-    .timeline__milestone:nth-child(odd),
-    .timeline__milestone:nth-child(even) {
-        padding-left: 55px;
+    .timeline__event:nth-child(odd),
+    .timeline__event:nth-child(even) {
+        padding-left: 70px;
         padding-right: 0;
-        text-align: left;
         justify-content: flex-start;
     }
 
-    .milestone__node {
-        left: 20px;
+    .timeline__event::before {
+        left: 30px;
     }
 
-    .timeline__milestone::before {
-        display: none; /* hide connector arms on mobile */
-    }
-
-    .milestone__pod {
-        padding: var(--sp-md);
+    .timeline__event:nth-child(odd) .event__box::after,
+    .timeline__event:nth-child(even) .event__box::after {
+        left: -24px;
+        right: auto;
+        border-color: transparent var(--c-border-dark) transparent transparent;
     }
 }

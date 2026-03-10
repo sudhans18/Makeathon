@@ -1,52 +1,48 @@
 /* ═══════════════════════════════════════════════════════════
    js/sections/about.js
-   About / Briefing Deck section animations
-   
-   Key scroll triggers:
-   - Mission log cards stagger-reveal on scroll
-   - Parallax orbit visuals shift at different rates
+   SPIDER-VERSE About
+   Staggered comic panels popping in.
 ═══════════════════════════════════════════════════════════ */
 
 import { createScrollReveal } from '../core/gsap-init.js';
 
-/**
- * Initialize the About section animations
- */
 export function initAbout() {
-    revealMissionLogs();
-    parallaxOrbits();
+    revealComicPanels();
+    setupGraphicPanel();
 }
 
 /**
- * Stagger-reveal mission log cards as they enter viewport
+ * Comic panels reveal with bouncy pop scaling
  */
-function revealMissionLogs() {
-    createScrollReveal('.mission-log', {
-        y: 50,
-        stagger: 0.15,
-        duration: 0.9,
-        start: 'top 80%',
+function revealComicPanels() {
+    // Uses the global bounce ease registered in gsap-init
+    createScrollReveal('.comic-panel', {
+        y: 60,
+        stagger: 0.2, // Slightly slower stagger for deliberate comic reading pace
+        duration: 0.8,
+        start: 'top 85%',
     });
 }
 
 /**
- * Parallax effect on the floating symbiont orbit visuals
+ * Animate the BAM! POW! graphic sound effect panel
  */
-function parallaxOrbits() {
-    const orbits = document.querySelectorAll('.symbiont-orbit');
-    if (!orbits.length) return;
+function setupGraphicPanel() {
+    const popTexts = document.querySelectorAll('.pop-text');
+    if (!popTexts.length) return;
 
-    orbits.forEach((orbit, i) => {
-        const speed = 50 + i * 30;
-        gsap.to(orbit, {
-            y: -speed,
-            ease: 'none',
+    gsap.fromTo(popTexts,
+        { scale: 0, opacity: 0 },
+        {
+            scale: 1,
+            opacity: 1,
+            duration: 0.5,
+            stagger: 0.3,
+            ease: 'elastic.out(1, 0.4)',
             scrollTrigger: {
-                trigger: '#about',
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: 1,
-            },
-        });
-    });
+                trigger: '.panel-4',
+                start: 'top 75%',
+            }
+        }
+    );
 }

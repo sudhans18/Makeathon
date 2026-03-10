@@ -1,179 +1,160 @@
 /* ═══════════════════════════════════════════════════════════
-   about.css — About / Briefing Deck section
-   Mission-log styled cards with parallax orbit visuals
+   about.css — SPIDER-VERSE
+   Comic book panel layout for the mission briefing
 ═══════════════════════════════════════════════════════════ */
 
 .section--about {
-    background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-alt) 50%, var(--c-bg) 100%);
+    background: var(--c-red);
+    /* Pop-art dot background */
+    background-image: radial-gradient(var(--c-border-dark) 2px, transparent 2px);
+    background-size: 15px 15px;
+    padding-bottom: var(--sp-2xl);
 }
 
+.section--about .comic-heading {
+    color: var(--c-yellow);
+    text-shadow: 4px 4px 0 var(--c-bg), 8px 8px 0 var(--c-border-dark);
+    margin-bottom: var(--sp-xl);
+}
+
+/* Comic grid layout */
 .about__grid {
     display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: var(--sp-xl);
-    align-items: start;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: var(--sp-md);
 }
 
-.about__logs {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-lg);
-}
-
-/* Mission log cards */
-.mission-log {
+/* Individual panels */
+.comic-panel {
+    background: var(--c-bg-panel);
+    border: 6px solid var(--c-border-dark);
+    box-shadow: 8px 8px 0 var(--c-border-dark);
     position: relative;
-    padding: var(--sp-lg);
-    background: rgba(10, 10, 31, 0.7);
-    border: 1px solid var(--c-border);
-    border-radius: var(--radius);
-    backdrop-filter: blur(10px);
+    overflow: hidden;
+    /* GSAP will animate these */
     opacity: 0;
-    transform: translateY(40px);
-    transition: border-color var(--dur) var(--ease-out),
-        box-shadow var(--dur) var(--ease-out);
+    transform: scale(0.9) translateY(40px);
 }
 
-.mission-log.in-view {
+.comic-panel.in-view {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1) translateY(0);
+    transition: transform 0.6s var(--ease-pop), opacity 0.6s;
 }
 
-.mission-log:hover {
-    border-color: var(--c-teal-dim);
-    box-shadow: 0 0 20px rgba(0, 240, 212, 0.08);
-}
-
-.mission-log::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 3px;
+.panel__content {
+    padding: var(--sp-lg);
+    position: relative;
+    z-index: 2;
     height: 100%;
-    background: linear-gradient(180deg, var(--c-teal), var(--c-gold));
-    border-radius: 3px 0 0 3px;
 }
 
-.log__tag {
+/* Dimension Tag */
+.panel__tag {
     display: inline-block;
     font-family: var(--ff-display);
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--c-teal);
-    background: rgba(0, 240, 212, 0.08);
-    padding: var(--sp-xs) var(--sp-sm);
-    border-radius: 4px;
-    margin-bottom: var(--sp-sm);
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    color: var(--c-bg);
+    background: var(--c-cyan);
+    padding: 2px 8px;
+    border: 2px solid var(--c-border-dark);
+    transform: rotate(-2deg);
+    margin-bottom: var(--sp-md);
 }
 
-.mission-log h3 {
-    font-family: var(--ff-heading);
-    font-size: 1.4rem;
+.comic-panel h3 {
+    font-family: var(--ff-display);
+    font-size: 2rem;
+    color: var(--c-text);
+    margin-bottom: var(--sp-xs);
+    text-transform: uppercase;
+}
+
+.comic-panel p {
+    font-family: var(--ff-body);
+    font-size: 1.05rem;
     font-weight: 600;
     color: var(--c-text);
-    margin-bottom: var(--sp-sm);
 }
 
-.mission-log p {
-    color: var(--c-text-dim);
-    font-size: 0.95rem;
-    line-height: 1.75;
+/* Layout spans */
+.panel-1 {
+    grid-column: span 2;
 }
 
-/* Parallax orbit visuals (placeholder spheres) */
-.about__visuals {
-    position: relative;
-    height: 400px;
+.panel-2 {
+    grid-column: span 2;
+    background: var(--c-yellow);
+    border-color: var(--c-border-dark);
+}
+
+.panel-2 h3,
+.panel-2 p {
+    color: var(--c-bg);
+}
+
+.panel-2 .panel__tag {
+    background: var(--c-magenta);
+    color: #fff;
+}
+
+.panel-3 {
+    grid-column: span 3;
+}
+
+/* Graphic Sound Effect Panel */
+.panel-4 {
+    grid-column: span 1;
+    background: var(--c-cyan);
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
-.symbiont-orbit {
-    position: absolute;
-    border-radius: 50%;
-    border: 1px solid var(--c-border);
-    animation: orbitSpin 12s linear infinite;
+.graphic-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
 }
 
-.symbiont-orbit::after {
-    content: '';
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: var(--c-teal);
-    box-shadow: 0 0 12px var(--c-teal), 0 0 30px rgba(0, 240, 212, 0.3);
-    top: -7px;
-    left: 50%;
-    margin-left: -7px;
+.pop-text {
+    font-family: var(--ff-display);
+    font-size: clamp(2.5rem, 5vw, 4rem) !important;
+    text-shadow: 4px 4px 0 var(--c-border-dark);
+    margin: 0 !important;
 }
 
-.symbiont-orbit--1 {
-    width: 160px;
-    height: 160px;
+.tilt-left {
+    transform: rotate(-15deg);
+    color: var(--c-red);
 }
 
-.symbiont-orbit--2 {
-    width: 240px;
-    height: 240px;
-    animation-duration: 18s;
-    animation-direction: reverse;
+.tilt-right {
+    transform: rotate(10deg);
+    color: var(--c-bg);
 }
 
-.symbiont-orbit--2::after {
-    background: var(--c-gold);
-    box-shadow: 0 0 12px var(--c-gold);
+.center {
+    transform: scale(1.2);
 }
 
-.symbiont-orbit--3 {
-    width: 320px;
-    height: 320px;
-    animation-duration: 25s;
-}
-
-.symbiont-orbit--3::after {
-    background: var(--c-crimson);
-    box-shadow: 0 0 12px var(--c-crimson);
-}
-
-@keyframes orbitSpin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .about__grid {
         grid-template-columns: 1fr;
     }
 
-    .about__visuals {
-        height: 200px;
-        order: -1;
+    .panel-1,
+    .panel-2,
+    .panel-3,
+    .panel-4 {
+        grid-column: span 1;
     }
 
-    .symbiont-orbit--1 {
-        width: 80px;
-        height: 80px;
-    }
-
-    .symbiont-orbit--2 {
-        width: 130px;
-        height: 130px;
-    }
-
-    .symbiont-orbit--3 {
-        width: 180px;
-        height: 180px;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .symbiont-orbit {
-        animation: none;
+    .panel-4 {
+        min-height: 250px;
     }
 }

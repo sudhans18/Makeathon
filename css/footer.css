@@ -1,77 +1,108 @@
 /* ═══════════════════════════════════════════════════════════
-   footer.css — Footer
-   Credits, social links, contact
+   footer.css — SPIDER-VERSE
+   Ending comic strip panel
 ═══════════════════════════════════════════════════════════ */
 
 .section--footer {
     padding: var(--sp-xl) 0 var(--sp-lg);
-    background: var(--c-bg);
-    border-top: 1px solid var(--c-border);
+    background: var(--c-red);
+    /* Pop-art dots */
+    background-image: radial-gradient(var(--c-border-dark) 2px, transparent 2px);
+    background-size: 15px 15px;
+    border-top: 8px solid var(--c-border-dark);
+    display: flex;
+    justify-content: center;
 }
 
-.footer__inner {
+.footer__comic-box {
+    background: #fff;
+    border: 6px solid var(--c-border-dark);
+    box-shadow: 12px 12px 0 var(--c-yellow);
+    padding: var(--sp-xl) var(--sp-lg);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--sp-lg);
+    gap: var(--sp-md);
     text-align: center;
+    max-width: 800px;
+    transform: rotate(-1deg);
 }
 
 .footer__logo {
     font-family: var(--ff-display);
-    font-size: 1.4rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    background: linear-gradient(135deg, var(--c-teal), var(--c-gold));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: var(--c-cyan);
+    text-shadow: 4px 4px 0 var(--c-magenta), 8px 8px 0 var(--c-border-dark);
+    margin: 0;
 }
 
 .footer__tagline {
-    font-family: var(--ff-heading);
-    font-size: 0.9rem;
-    color: var(--c-text-dim);
-    margin-top: var(--sp-xs);
+    font-family: var(--ff-body);
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #111;
+    background: var(--c-yellow);
+    padding: 4px 12px;
+    border: 3px solid var(--c-border-dark);
+    transform: rotate(2deg);
 }
 
-.footer__links {
+.footer__socials {
     display: flex;
     gap: var(--sp-md);
+    margin: var(--sp-md) 0;
 }
 
-.footer__link {
+.social-badge {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 1px solid var(--c-border);
-    color: var(--c-text-dim);
+    width: 60px;
+    height: 60px;
+    background: var(--c-cyan);
+    border: 4px solid var(--c-border-dark);
+    border-radius: 5px;
+    /* Square comic stamps */
+    color: var(--c-bg);
     font-family: var(--ff-display);
-    font-size: 0.65rem;
-    letter-spacing: 0.05em;
-    transition: all var(--dur) var(--ease-out);
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+    box-shadow: 4px 4px 0 var(--c-border-dark);
 }
 
-.footer__link:hover {
-    border-color: var(--c-teal);
-    color: var(--c-teal);
-    box-shadow: 0 0 16px rgba(0, 240, 212, 0.15);
-    transform: translateY(-2px);
+.social-badge:nth-child(even) {
+    background: var(--c-magenta);
+    color: #fff;
+    transform: rotate(5deg);
 }
 
-.footer__contact a {
-    color: var(--c-teal);
+.social-badge:nth-child(odd) {
+    transform: rotate(-5deg);
 }
 
-.footer__contact a:hover {
-    color: var(--c-gold);
+.social-badge:hover {
+    transform: translateY(-8px) scale(1.1) !important;
+    background: var(--c-yellow);
+    color: var(--c-bg);
+    box-shadow: 6px 6px 0 var(--c-red);
 }
 
-.footer__copy {
-    font-size: 0.75rem;
-    color: var(--c-text-dim);
-    opacity: 0.6;
+.contact-text {
+    font-family: var(--ff-body);
+    font-weight: 800;
+    color: #333;
+    background: var(--c-border-dark);
+    padding: 4px 8px;
+}
+
+.contact-text a {
+    color: var(--c-yellow);
+}
+
+.copyright {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #666;
+    margin-top: var(--sp-md);
 }

@@ -1,127 +1,112 @@
 /* ═══════════════════════════════════════════════════════════
-   gallery.css — Gallery / Previous Editions
-   Masonry grid with parallax depth & hover overlays
+   gallery.css — SPIDER-VERSE
+   Polaroid snapshots scattered randomly, tilt on hover.
 ═══════════════════════════════════════════════════════════ */
 
 .section--gallery {
-    background: var(--c-bg-alt);
-}
-
-.gallery__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--sp-lg);
-}
-
-/* Individual gallery card */
-.gallery__card {
-    position: relative;
-    border-radius: var(--radius-lg);
+    background: var(--c-magenta);
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(0, 240, 255, 0.2) 0%, transparent 40%);
     overflow: hidden;
-    aspect-ratio: 4 / 3;
+}
+
+.gallery__scatter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--sp-lg);
+    padding: var(--sp-xl) 0;
+}
+
+/* Polaroid Card */
+.polaroid-card {
+    position: relative;
+    background: #fff;
+    padding: 12px 12px 60px 12px;
+    border: 2px solid var(--c-border-dark);
+    box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.4);
+    width: 280px;
     cursor: pointer;
-    transform: translateY(0);
-    transition: transform var(--dur) var(--ease-out);
+    /* Default rotations applied via inline style in JS, this is base transition */
+    transition: transform 0.4s var(--ease-pop), box-shadow 0.4s, z-index 0s;
+    z-index: 1;
 }
 
-.gallery__card:hover {
-    transform: translateY(-6px);
+.polaroid-card:hover {
+    transform: scale(1.15) rotate(0deg) !important;
+    box-shadow: 20px 20px 0 var(--c-yellow), -5px -5px 0 var(--c-cyan);
+    z-index: 10;
 }
 
-.gallery__card img {
+.polaroid-img-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border: 2px solid var(--c-border-dark);
+    position: relative;
+}
+
+.polaroid-img-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--dur-slow) var(--ease-out),
-        filter var(--dur-slow) var(--ease-out);
+    filter: grayscale(0.5) contrast(1.2);
+    transition: filter 0.4s;
 }
 
-.gallery__card:hover img {
-    transform: scale(1.08);
-    filter: brightness(0.6);
+.polaroid-card:hover .polaroid-img-wrapper img {
+    filter: grayscale(0) contrast(1.1);
 }
 
-/* Activation overlay: circuit veins */
-.gallery__overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: var(--sp-lg);
-    background: linear-gradient(180deg, transparent 40%, rgba(0, 240, 212, 0.12) 100%);
-    opacity: 0;
-    transition: opacity var(--dur) var(--ease-out);
-}
-
-.gallery__card:hover .gallery__overlay {
-    opacity: 1;
-}
-
-/* Circuit vein lines on hover */
-.gallery__overlay::before {
+/* Glitch hover effect on image */
+.polaroid-img-wrapper::after {
     content: '';
     position: absolute;
     inset: 0;
-    background:
-        radial-gradient(circle at 20% 80%, var(--c-teal) 0%, transparent 30%),
-        radial-gradient(circle at 80% 20%, var(--c-gold) 0%, transparent 25%);
-    opacity: 0.3;
-    mix-blend-mode: screen;
+    background: var(--c-red);
+    mix-blend-mode: color;
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
-.gallery__card-title {
-    font-family: var(--ff-heading);
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: #fff;
-    position: relative;
-    z-index: 1;
+.polaroid-card:hover .polaroid-img-wrapper::after {
+    opacity: 0.2;
 }
 
-.gallery__card-sub {
-    font-size: 0.8rem;
-    color: var(--c-teal);
+/* Marker Text on Polaroid */
+.polaroid-caption {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    text-align: center;
+}
+
+.polaroid-title {
+    font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+    /* True handmade feel */
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #111;
+    transform: rotate(-2deg);
+}
+
+.polaroid-sub {
     font-family: var(--ff-display);
-    letter-spacing: 0.1em;
+    font-size: 0.8rem;
+    color: var(--c-magenta);
     text-transform: uppercase;
-    position: relative;
-    z-index: 1;
-    margin-top: var(--sp-xs);
 }
 
-/* Stagger depth per card for parallax */
-.gallery__card:nth-child(2n) {
-    transform: translateY(20px);
-}
-
-.gallery__card:nth-child(3n) {
-    transform: translateY(10px);
-}
-
-.gallery__card:nth-child(2n):hover {
-    transform: translateY(14px);
-}
-
-.gallery__card:nth-child(3n):hover {
-    transform: translateY(4px);
-}
-
-/* Mobile */
 @media (max-width: 768px) {
-    .gallery__grid {
-        grid-template-columns: 1fr 1fr;
-        gap: var(--sp-md);
-    }
-
-    .gallery__card:nth-child(2n),
-    .gallery__card:nth-child(3n) {
-        transform: none;
+    .polaroid-card {
+        width: 45%;
     }
 }
 
 @media (max-width: 480px) {
-    .gallery__grid {
-        grid-template-columns: 1fr;
+    .polaroid-card {
+        width: 90%;
     }
 }

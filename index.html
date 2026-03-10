@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Makeathon 7.0</title>
-  <meta name="description" content="Makeathon 7.0: An epic 72-hour creation event where participants design and build innovative Symbiont solutions — bio-inspired, AI-nanite hybrid concepts pushing boundaries in real-world domains." />
+  <meta name="description" content="Makeathon 7.0: A 24-hour creation event. Build the future." />
 
-  <!-- Fonts -->
+  <!-- Fonts: Anton for display pop-art, Montserrat for readability -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,600;0,800;1,400;1,800&display=swap"
+    rel="stylesheet" />
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/nav.css" />
   <link rel="stylesheet" href="css/hero.css" />
   <link rel="stylesheet" href="css/about.css" />
   <link rel="stylesheet" href="css/timeline.css" />
@@ -22,237 +26,171 @@
   <link rel="stylesheet" href="css/faq.css" />
   <link rel="stylesheet" href="css/footer.css" />
 
-  <!-- Countdown Styles -->
-  <style>
-    .countdown {
-      display: flex;
-      justify-content: center;
-      gap: 1.2rem;
-      margin: 2rem 0;
-      flex-wrap: wrap;
-    }
-    .countdown__unit {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-width: 90px;
-      padding: 1rem 1.2rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(0,255,255,0.15);
-      border-radius: 12px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      box-shadow: 0 0 18px rgba(0,255,255,0.08), inset 0 0 20px rgba(0,255,255,0.03);
-      transition: border-color .3s, box-shadow .3s;
-    }
-    .countdown__unit:hover {
-      border-color: rgba(0,255,255,0.45);
-      box-shadow: 0 0 28px rgba(0,255,255,0.18), inset 0 0 30px rgba(0,255,255,0.06);
-    }
-    .countdown__value {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2.6rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #00ffff, #00e5ff, #f0e130);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.1;
-      animation: countPulse 2s ease-in-out infinite;
-    }
-    .countdown__label {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(0,255,255,0.55);
-      margin-top: 0.4rem;
-    }
-    .countdown__separator {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: rgba(0,255,255,0.3);
-      align-self: center;
-      padding-bottom: 1.2rem;
-      animation: blink 1s step-end infinite;
-    }
-    @keyframes countPulse {
-      0%, 100% { filter: drop-shadow(0 0 4px rgba(0,255,255,0.3)); }
-      50%      { filter: drop-shadow(0 0 12px rgba(0,255,255,0.6)); }
-    }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50%      { opacity: 0.2; }
-    }
-    .countdown__expired {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 600;
-      text-align: center;
-      padding: 1.5rem;
-      background: linear-gradient(135deg, #00ffff, #f0e130, #ff6a00);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: countPulse 1.5s ease-in-out infinite;
-    }
-    @media (max-width: 600px) {
-      .countdown { gap: 0.6rem; }
-      .countdown__unit { min-width: 64px; padding: 0.7rem 0.8rem; }
-      .countdown__value { font-size: 1.8rem; }
-      .countdown__separator { font-size: 1.5rem; padding-bottom: 0.8rem; }
-    }
-  </style>
-
   <!-- CDN Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.168.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 </head>
+
 <body>
+
+  <!-- Full-page halftone overlay -->
+  <div class="halftone-overlay" aria-hidden="true"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="comic-nav">
+    <div class="nav__container">
+      <a href="#hero" class="nav__logo text-cyan">M7.0</a>
+      <ul class="nav__links">
+        <li><a href="#about" class="nav__link">Briefing</a></li>
+        <li><a href="#timeline" class="nav__link">Timeline</a></li>
+        <li><a href="#problems" class="nav__link">Challenges</a></li>
+        <li><a href="#team" class="nav__link">The Crew</a></li>
+        <li><a href="#faq" class="nav__link">FAQ</a></li>
+      </ul>
+      <a href="#hero" class="btn btn--nav text-yellow">REGISTER</a>
+    </div>
+  </nav>
 
   <!-- ═══════════════════════════════════════════════════════════
        SECTION 1 — HERO / LANDING
-       Full-viewport orbital view with Three.js globe
   ═══════════════════════════════════════════════════════════ -->
   <section id="hero" class="section section--hero" aria-label="Hero">
     <canvas id="hero-canvas" aria-hidden="true"></canvas>
-    <div class="hero__hud" aria-hidden="true">
-      <div class="hud__scanline"></div>
-      <div class="hud__corner hud__corner--tl"></div>
-      <div class="hud__corner hud__corner--tr"></div>
-      <div class="hud__corner hud__corner--bl"></div>
-      <div class="hud__corner hud__corner--br"></div>
-    </div>
-    <div class="hero__content">
-      <h1 class="hero__title glitch-text" data-text="MAKEATHON 7.0">MAKEATHON 7.0</h1>
-      <p class="hero__subtitle">72 Hours of Symbiont Creation — Build the Future</p>
 
-      <!-- Countdown Clock -->
-      <div class="countdown" id="countdown" aria-label="Countdown to Makeathon">
-        <div class="countdown__unit"><span class="countdown__value" id="cd-days">--</span><span class="countdown__label">Days</span></div>
-        <span class="countdown__separator">:</span>
-        <div class="countdown__unit"><span class="countdown__value" id="cd-hours">--</span><span class="countdown__label">Hours</span></div>
-        <span class="countdown__separator">:</span>
-        <div class="countdown__unit"><span class="countdown__value" id="cd-mins">--</span><span class="countdown__label">Minutes</span></div>
-        <span class="countdown__separator">:</span>
-        <div class="countdown__unit"><span class="countdown__value" id="cd-secs">--</span><span class="countdown__label">Seconds</span></div>
+    <!-- Comic Book Borders -->
+    <div class="comic-frame top-left"></div>
+    <div class="comic-frame top-right"></div>
+    <div class="comic-frame bottom-left"></div>
+    <div class="comic-frame bottom-right"></div>
+
+    <div class="hero__content">
+      <div class="title-wrapper">
+        <h1 class="hero__title glitch" data-text="MAKEATHON">MAKEATHON</h1>
+        <h2 class="hero__title-sub glitch-cyan" data-text="7.0">7.0</h2>
       </div>
-      <button id="cta-launch" class="btn btn--cta" type="button">
-        <span class="btn__text">Enter the Creation Zone</span>
-        <span class="btn__glow" aria-hidden="true"></span>
+
+      <div class="hero__badge">
+        <p>BUILD THE FUTURE</p>
+      </div>
+
+      <p class="hero__subtitle"><span class="highlight-yellow">24 HOURS.</span> INFINITE POSSIBILITIES. CREATE BEYOND
+        LIMITS.</p>
+
+      <!-- Countdown Timer (Target: April 15) -->
+      <div class="hero__timer" id="hero-countdown" aria-label="Countdown to Makeathon">
+        <div class="timer__box"><span class="timer__val" id="t-days">00</span><span class="timer__lbl">DAYS</span></div>
+        <div class="timer__box"><span class="timer__val" id="t-hours">00</span><span class="timer__lbl">HRS</span></div>
+        <div class="timer__box"><span class="timer__val" id="t-mins">00</span><span class="timer__lbl">MIN</span></div>
+        <div class="timer__box"><span class="timer__val" id="t-secs">00</span><span class="timer__lbl">SEC</span></div>
+      </div>
+
+      <button id="cta-launch" class="btn btn--comic" type="button">
+        <span class="btn__text">INITIATE SEQUENCE</span>
+        <span class="btn__shadow" aria-hidden="true"></span>
       </button>
     </div>
-    <div id="iris-overlay" class="iris-overlay" aria-hidden="true"></div>
+    <div id="portal-flash" class="portal-flash" aria-hidden="true"></div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       SECTION 2 — ABOUT / BRIEFING DECK
+       SECTION 2 — ABOUT / BRIEFING
   ═══════════════════════════════════════════════════════════ -->
   <section id="about" class="section section--about" aria-label="About Makeathon">
-    <div class="container">
-      <h2 class="section__heading hud-bracket">Mission Briefing</h2>
+    <div class="container relative z-10">
+      <h2 class="section__heading comic-heading">ANYONE CAN WEAR THE MASK</h2>
       <div class="about__grid">
-        <div class="about__logs">
-          <article class="mission-log" data-log="01">
-            <span class="log__tag">LOG ENTRY 01</span>
+
+        <!-- Comic panels style layout -->
+        <article class="comic-panel panel-1" data-speed="1">
+          <div class="panel__content">
+            <span class="panel__tag">MISSION DIRECTIVE</span>
             <h3>What is Makeathon 7.0?</h3>
-            <p>Makeathon 7.0 is an epic 72-hour creation marathon that brings together the brightest minds in technology, design, and science. Teams compete to design and prototype innovative <strong>Symbiont</strong> solutions — bio-inspired, AI-nanite hybrid concepts that push boundaries across real-world domains.</p>
-          </article>
-          <article class="mission-log" data-log="02">
-            <span class="log__tag">LOG ENTRY 02</span>
-            <h3>The Symbiont Concept</h3>
-            <p>Symbionts are living-tech hybrids — imagine neural networks grown from organic substrates, nanite swarms that self-organize to solve complex problems, or bio-engineered drones that adapt to their environment. Your creations will blur the line between biology and technology.</p>
-          </article>
-          <article class="mission-log" data-log="03">
-            <span class="log__tag">LOG ENTRY 03</span>
+            <p>Makeathon 7.0 is a premier 24-hour hardware and software creation sprint. We gather the brightest
+              minds—from novices taking a leap of faith to seasoned veterans—to push the boundaries of technology. Here,
+              innovation knows no dimensions.</p>
+          </div>
+        </article>
+
+        <article class="comic-panel panel-2" data-speed="1.2">
+          <div class="panel__content">
+            <span class="panel__tag">THE TEAM EFFORT</span>
             <h3>Why Participate?</h3>
-            <p>Push the boundaries of innovation across 8+ specialized biome categories. Win prizes, gain mentorship from industry leaders, and join a community of creators building the living future. No idea is too ambitious — this is where impossible becomes prototype.</p>
-          </article>
-          <article class="mission-log" data-log="04">
-            <span class="log__tag">LOG ENTRY 04</span>
-            <h3>Categories & Themes</h3>
-            <p>From AI neural jungles to blockchain crystal caves, green-tech wind forests to medtech bio-domes — each biome represents a challenge domain. Choose your terrain, assemble your crew, and build something the world has never seen.</p>
-          </article>
-        </div>
-        <div class="about__visuals" aria-hidden="true">
-          <div class="symbiont-orbit symbiont-orbit--1"></div>
-          <div class="symbiont-orbit symbiont-orbit--2"></div>
-          <div class="symbiont-orbit symbiont-orbit--3"></div>
-        </div>
+            <p>Assemble your crew, pick your challenge, and collaborate. You will gain access to cutting-edge tools,
+              elite mentorship, and a community of creators. "That person who helps others simply because it should or
+              must be done... is undoubtedly a real superhero."</p>
+          </div>
+        </article>
+
+        <article class="comic-panel panel-3" data-speed="0.8">
+          <div class="panel__content">
+            <span class="panel__tag">THE THEME</span>
+            <h3>The Tracks</h3>
+            <p>Tackle real-world problems spanning multiple domains. Whether your focus is AI, IoT, sustainability, or
+              core software, there's a specialized track designed to test your limits and spark your creativity.</p>
+          </div>
+        </article>
+
+        <article class="comic-panel panel-4" data-speed="1.1">
+          <div class="panel__content graphic-panel">
+            <h3 class="pop-text tilt-left">BAM!</h3>
+            <h3 class="pop-text tilt-right text-cyan">POW!</h3>
+            <h3 class="pop-text center text-yellow">CODE!</h3>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       SECTION 3 — TIMELINE / DESCENT SEQUENCE
+       SECTION 3 — TIMELINE
   ═══════════════════════════════════════════════════════════ -->
   <section id="timeline" class="section section--timeline" aria-label="Event Timeline">
-    <div class="container">
-      <h2 class="section__heading hud-bracket">Descent Sequence</h2>
+    <div class="container min-h-screen">
+      <h2 class="section__heading comic-heading">EVENT TIMELINE</h2>
       <div class="timeline__track">
-        <!-- Center line with scroll-driven fill -->
-        <div class="timeline__center-line" aria-hidden="true">
-          <div class="timeline__line-fill"></div>
+        <!-- Web-strand line -->
+        <div class="timeline__web-line" aria-hidden="true"></div>
+
+        <div class="timeline__event" data-time="March 10">
+          <div class="event__box">
+            <span class="event__time text-cyan">March 10</span>
+            <h3 class="event__title">Registration Opens</h3>
+            <p class="event__desc">Call for anomalies. Secure your spot in the roster and lock in your team.</p>
+          </div>
         </div>
 
-        <div class="timeline__milestone" data-time="00:00">
-          <div class="milestone__node" aria-hidden="true"></div>
-          <div class="milestone__pod">
-            <span class="milestone__time">T+00:00</span>
-            <h3 class="milestone__title">Launch</h3>
-            <p class="milestone__desc">Doors open. Teams form. The 72-hour countdown begins. Briefing decks are deployed and creation zones go live.</p>
+        <div class="timeline__event" data-time="April 10">
+          <div class="event__box">
+            <span class="event__time text-red">April 10</span>
+            <h3 class="event__title">Registration Closes</h3>
+            <p class="event__desc">The portal shuts. Final submissions for team registration are processed.</p>
           </div>
         </div>
-        <div class="timeline__milestone" data-time="12:00">
-          <div class="milestone__node" aria-hidden="true"></div>
-          <div class="milestone__pod">
-            <span class="milestone__time">T+12:00</span>
-            <h3 class="milestone__title">Orbit Achieved</h3>
-            <p class="milestone__desc">First prototypes take shape. Mentor check-ins begin. Resource drops unlocked for all teams.</p>
+
+        <div class="timeline__event" data-time="April 15, 09:00 AM">
+          <div class="event__box">
+            <span class="event__time text-yellow">April 15, 09:00 AM</span>
+            <h3 class="event__title">Inauguration & Hacking Begins</h3>
+            <p class="event__desc">The collider activates. 24 hours of non-stop building commences.</p>
           </div>
         </div>
-        <div class="timeline__milestone" data-time="24:00">
-          <div class="milestone__node" aria-hidden="true"></div>
-          <div class="milestone__pod">
-            <span class="milestone__time">T+24:00</span>
-            <h3 class="milestone__title">Check-in & Ideation Review</h3>
-            <p class="milestone__desc">Mandatory progress sync. Teams present initial concepts. Pivot window opens for strategy adjustments.</p>
+
+        <div class="timeline__event" data-time="April 15, 04:00 PM">
+          <div class="event__box">
+            <span class="event__time text-magenta">April 15, 04:00 PM</span>
+            <h3 class="event__title">First Evaluation</h3>
+            <p class="event__desc">Idea pitching and initial progress check with industry experts.</p>
           </div>
         </div>
-        <div class="timeline__milestone" data-time="36:00">
-          <div class="milestone__node" aria-hidden="true"></div>
-          <div class="milestone__pod">
-            <span class="milestone__time">T+36:00</span>
-            <h3 class="milestone__title">Deep Build Phase</h3>
-            <p class="milestone__desc">The creation vortex intensifies. Advanced toolkits unlocked. Collaboration zones merge across biomes.</p>
-          </div>
-        </div>
-        <div class="timeline__milestone" data-time="48:00">
-          <div class="milestone__node" aria-hidden="true"></div>
-          <div class="milestone__pod">
-            <span class="milestone__time">T+48:00</span>
-            <h3 class="milestone__title">Mid-Build Review</h3>
-            <p class="milestone__desc">Symbiont prototypes reviewed by expert panel. Feedback loops activate. Final sprint prep begins.</p>
-          </div>
-        </div>
-        <div class="timeline__milestone" data-time="60:00">
-          <div class="milestone__node" aria-hidden="true"></div>
-          <div class="milestone__pod">
-            <span class="milestone__time">T+60:00</span>
-            <h3 class="milestone__title">Final Approach</h3>
-            <p class="milestone__desc">Last wave of mentorship. Teams polish demos and documentation. Presentation decks locked in.</p>
-          </div>
-        </div>
-        <div class="timeline__milestone" data-time="72:00">
-          <div class="milestone__node" aria-hidden="true"></div>
-          <div class="milestone__pod">
-            <span class="milestone__time">T+72:00</span>
-            <h3 class="milestone__title">Submission & Judging</h3>
-            <p class="milestone__desc">All Symbiont prototypes submitted. Live demos to the judging council. Winners ascend. Legends are forged.</p>
+
+        <div class="timeline__event" data-time="April 16, 09:00 AM">
+          <div class="event__box">
+            <span class="event__time text-cyan">April 16, 09:00 AM</span>
+            <h3 class="event__title">Hacking Ends & Final Pitch</h3>
+            <p class="event__desc">Tools down! Present your final engineered solutions to the core panel.</p>
           </div>
         </div>
       </div>
@@ -260,60 +198,77 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       SECTION 4 — GALLERY / PREVIOUS EDITIONS
+       SECTION 4 — GALLERY
   ═══════════════════════════════════════════════════════════ -->
-  <section id="gallery" class="section section--gallery" aria-label="Previous Editions Gallery">
+  <section id="gallery" class="section section--gallery" aria-label="Previous Dimensions">
     <div class="container">
-      <h2 class="section__heading hud-bracket">Previous Symbiont Prototypes</h2>
-      <p class="section__sub">Successful creations from past Makeathon editions, reimagined as deployed Symbionts.</p>
-      <div class="gallery__grid" id="gallery-grid">
-        <!-- Cards injected by JS -->
+      <h2 class="section__heading comic-heading text-yellow">PAST ANOMALIES</h2>
+      <p class="section__sub">Snapshots from previous Makeathon editions.</p>
+      <div class="gallery__scatter" id="gallery-scatter">
+        <!-- Polaroids injected by JS -->
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       SECTION 5 — PROBLEM STATEMENTS / BIOME LABS
+       SECTION 5 — PROBLEM STATEMENTS
   ═══════════════════════════════════════════════════════════ -->
-  <section id="problems" class="section section--problems" aria-label="Problem Statements">
+  <section id="problems" class="section section--problems" aria-label="Dimensions">
     <div class="container">
-      <h2 class="section__heading hud-bracket">Biome Labs</h2>
-      <p class="section__sub">Select a biome to explore its Symbiont challenges.</p>
-      <div class="biome-selector" id="biome-selector" role="tablist" aria-label="Biome Categories">
-        <!-- Biome tabs injected by JS -->
+      <h2 class="section__heading comic-heading text-cyan">CHOOSE YOUR TRACK</h2>
+      <p class="section__sub">Select a domain cluster to view specific challenges.</p>
+
+      <div class="dimension-selector" id="dimension-selector" role="tablist">
+        <!-- Tabs injected by JS -->
       </div>
-      <div class="biome-panel" id="biome-panel">
+
+      <div class="dimension-panel relative" id="dimension-panel">
         <!-- Problem cards injected by JS -->
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       SECTION 6 — OUR TEAM / MAKEATHON CREW
+       SECTION 6 — OUR TEAM
   ═══════════════════════════════════════════════════════════ -->
-  <section id="team" class="section section--team" aria-label="Our Team">
+  <section id="team" class="section section--team" aria-label="The Crew">
     <div class="container">
-      <h2 class="section__heading hud-bracket">Makeathon Crew</h2>
-      <div class="team__grid" id="team-grid">
-        <!-- Team cards injected by JS -->
-      </div>
+      <h2 class="section__heading comic-heading text-magenta">THE CREW</h2>
+      <p class="section__sub text-bg">The powerhouses coordinating this dimension's Makeathon.</p>
+
+      <!-- ECEA Club -->
+      <h3 class="team-club-title">ECEA</h3>
+      <div class="team__grid" id="team-grid-ecea"></div>
+
+      <!-- IETE-SF Club -->
+      <h3 class="team-club-title">IETE-SF</h3>
+      <div class="team__grid" id="team-grid-iete"></div>
+
+      <!-- RACE Club -->
+      <h3 class="team-club-title">RACE</h3>
+      <div class="team__grid" id="team-grid-race"></div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       SECTION 7 — FAQs / SYMBIONT ORACLE
+       SECTION 7 — FAQs
   ═══════════════════════════════════════════════════════════ -->
-  <section id="faq" class="section section--faq" aria-label="Frequently Asked Questions">
+  <section id="faq" class="section section--faq" aria-label="FAQ">
     <div class="container">
-      <h2 class="section__heading hud-bracket">Symbiont Oracle</h2>
-      <p class="section__sub">Click a crystal to reveal the answer within.</p>
-      <div class="oracle" id="oracle">
-        <div class="oracle__orb" aria-hidden="true"></div>
-        <div class="oracle__crystals" id="faq-crystals">
-          <!-- FAQ crystals injected by JS -->
-        </div>
+      <h2 class="section__heading comic-heading">WEB OF DESTINY</h2>
+      <p class="section__sub">Untangle the mysteries. Click a web node.</p>
+
+      <div class="web-destiny" id="web-destiny">
+        <svg id="web-lines" class="web-lines" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice"></svg>
+        <div id="faq-nodes" class="faq-nodes"></div>
       </div>
-      <div class="oracle__answer" id="oracle-answer" aria-live="polite"></div>
+
+      <div class="thought-bubble" id="faq-answer-bubble" aria-live="polite">
+        <div class="bubble-content" id="faq-answer-content">
+          <p class="placeholder-text">Select a node on the web...</p>
+        </div>
+        <div class="bubble-tail" aria-hidden="true"></div>
+      </div>
     </div>
   </section>
 
@@ -321,51 +276,22 @@
        SECTION 8 — FOOTER
   ═══════════════════════════════════════════════════════════ -->
   <footer id="footer" class="section section--footer" aria-label="Footer">
-    <div class="container footer__inner">
-      <div class="footer__brand">
-        <span class="footer__logo">MAKEATHON 7.0</span>
-        <p class="footer__tagline">Forging Tomorrow's Symbionts Today</p>
+    <div class="container footer__comic-box">
+      <h2 class="footer__logo glitch" data-text="MAKEATHON">MAKEATHON 7.0</h2>
+      <p class="footer__tagline">"With great power comes great code."</p>
+
+      <div class="footer__socials">
+        <a href="#" class="social-badge"><span>IG</span></a>
+        <a href="#" class="social-badge"><span>LI</span></a>
+        <a href="#" class="social-badge"><span>GH</span></a>
       </div>
-      <nav class="footer__links" aria-label="Social Links">
-        <a href="#" class="footer__link" aria-label="Twitter / X">𝕏</a>
-        <a href="#" class="footer__link" aria-label="Instagram">IG</a>
-        <a href="#" class="footer__link" aria-label="LinkedIn">IN</a>
-        <a href="#" class="footer__link" aria-label="Discord">DC</a>
-        <a href="#" class="footer__link" aria-label="GitHub">GH</a>
-      </nav>
-      <div class="footer__contact">
-        <p>Contact: <a href="mailto:hello@makeathon7.io">hello@makeathon7.io</a></p>
-      </div>
-      <p class="footer__copy">&copy; 2026 Makeathon 7.0 — All rights reserved.</p>
+
+      <p class="contact-text text-yellow">Transmission: <a href="mailto:admin@makeathon.in">admin@makeathon.in</a></p>
+      <p class="copyright">&copy; 2026 Makeathon. All realities reserved.</p>
     </div>
   </footer>
 
-  <!-- Countdown Script -->
-  <script>
-    (function() {
-      const target = new Date('2026-04-15T00:00:00').getTime();
-      const $ = id => document.getElementById(id);
-      function tick() {
-        const gap = target - Date.now();
-        if (gap <= 0) {
-          $('countdown').innerHTML = '<span class="countdown__expired">🚀 MAKEATHON HAS LAUNCHED!</span>';
-          return;
-        }
-        const d = Math.floor(gap / 86400000);
-        const h = Math.floor((gap % 86400000) / 3600000);
-        const m = Math.floor((gap % 3600000) / 60000);
-        const s = Math.floor((gap % 60000) / 1000);
-        $('cd-days').textContent  = String(d).padStart(2, '0');
-        $('cd-hours').textContent = String(h).padStart(2, '0');
-        $('cd-mins').textContent  = String(m).padStart(2, '0');
-        $('cd-secs').textContent  = String(s).padStart(2, '0');
-        requestAnimationFrame(tick);
-      }
-      tick();
-    })();
-  </script>
-
-  <!-- Entry Point -->
   <script type="module" src="js/main.js"></script>
 </body>
+
 </html>

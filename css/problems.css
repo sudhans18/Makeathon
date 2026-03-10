@@ -1,122 +1,85 @@
 /* ═══════════════════════════════════════════════════════════
-   problems.css — Problem Statements / Biome Labs
-   Biome selector tabs + problem statement cards
+   problems.css — SPIDER-VERSE
+   Dimension selector tabs + problem cards with comic style
 ═══════════════════════════════════════════════════════════ */
 
 .section--problems {
-    background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-alt) 50%, var(--c-bg) 100%);
+    background: var(--c-bg);
     padding-bottom: calc(var(--sp-2xl) * 1.5);
+    position: relative;
+    /* Halftone dots */
+    background-image: radial-gradient(#333 1px, transparent 1px);
+    background-size: 10px 10px;
 }
 
-/* --- Biome Selector Tabs --- */
-.biome-selector {
+/* --- Dimension Selector Tabs --- */
+.dimension-selector {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: var(--sp-sm);
+    gap: var(--sp-md);
     margin-bottom: var(--sp-xl);
 }
 
-.biome-tab {
+.dimension-tab {
     font-family: var(--ff-display);
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    padding: 0.6rem 1.4rem;
-    border: 1px solid var(--c-border);
-    border-radius: 40px;
-    color: var(--c-text-dim);
-    background: rgba(10, 10, 31, 0.5);
-    backdrop-filter: blur(6px);
+    padding: 0.5rem 1.5rem;
+    border: 3px solid var(--c-border-dark);
+    color: var(--c-border-dark);
+    background: #fff;
     cursor: pointer;
-    transition: all var(--dur) var(--ease-out);
-    white-space: nowrap;
+    transition: all 0.2s var(--ease-pop);
+    box-shadow: 4px 4px 0 var(--c-border-dark);
+    transform: skew(-5deg);
 }
 
-.biome-tab:hover {
-    border-color: var(--c-teal-dim);
-    color: var(--c-text);
+.dimension-tab:hover {
+    transform: skew(-5deg) translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--c-magenta);
 }
 
-.biome-tab[aria-selected="true"],
-.biome-tab.active {
-    background: rgba(0, 240, 212, 0.1);
-    border-color: var(--c-teal);
-    color: var(--c-teal);
-    box-shadow: 0 0 16px rgba(0, 240, 212, 0.12);
+.dimension-tab[aria-selected="true"],
+.dimension-tab.active {
+    background: var(--c-red);
+    color: #fff;
+    box-shadow: 6px 6px 0 var(--c-yellow);
+    transform: skew(-5deg) scale(1.05);
 }
 
-/* Biome accent colors on active tab */
-.biome-tab[data-biome="ai"].active {
-    border-color: var(--c-purple);
-    color: var(--c-purple);
-    background: rgba(155, 89, 255, 0.1);
+/* --- Dimension Panel --- */
+.dimension-panel {
+    min-height: 400px;
 }
 
-.biome-tab[data-biome="blockchain"].active {
-    border-color: var(--c-gold);
-    color: var(--c-gold);
-    background: rgba(240, 200, 80, 0.08);
-}
-
-.biome-tab[data-biome="smartcity"].active {
-    border-color: var(--c-cyan);
-    color: var(--c-cyan);
-    background: rgba(0, 212, 255, 0.08);
-}
-
-.biome-tab[data-biome="agriculture"].active {
-    border-color: var(--c-emerald);
-    color: var(--c-emerald);
-    background: rgba(46, 204, 113, 0.08);
-}
-
-.biome-tab[data-biome="medtech"].active {
-    border-color: var(--c-red);
-    color: var(--c-red);
-    background: rgba(239, 68, 68, 0.08);
-}
-
-.biome-tab[data-biome="robotics"].active {
-    border-color: var(--c-orange);
-    color: var(--c-orange);
-    background: rgba(255, 140, 66, 0.08);
-}
-
-.biome-tab[data-biome="greentech"].active {
-    border-color: var(--c-teal);
-    color: var(--c-teal);
-    background: rgba(0, 240, 212, 0.08);
-}
-
-.biome-tab[data-biome="education"].active {
-    border-color: var(--c-indigo);
-    color: var(--c-indigo);
-    background: rgba(99, 102, 241, 0.08);
-}
-
-/* --- Biome Panel --- */
-.biome-panel {
-    min-height: 300px;
-}
-
-.biome-panel__header {
+.dimension-panel__header {
     text-align: center;
     margin-bottom: var(--sp-xl);
+    background: var(--c-cyan);
+    padding: var(--sp-md);
+    border: 4px solid var(--c-border-dark);
+    box-shadow: 8px 8px 0 var(--c-magenta);
+    transform: rotate(1deg);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.biome-panel__title {
-    font-family: var(--ff-heading);
-    font-size: clamp(1.3rem, 3vw, 2rem);
-    font-weight: 700;
-    margin-bottom: var(--sp-sm);
+.dimension-panel__title {
+    font-family: var(--ff-display);
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: var(--c-border-dark);
+    text-transform: uppercase;
+    margin-bottom: 0;
 }
 
-.biome-panel__desc {
-    font-size: 0.95rem;
-    color: var(--c-text-dim);
-    max-width: 600px;
-    margin: 0 auto;
+.dimension-panel__desc {
+    font-family: var(--ff-body);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--c-bg);
 }
 
 /* --- Problem Cards Grid --- */
@@ -126,115 +89,85 @@
     gap: var(--sp-lg);
 }
 
+/* Comic Book Card */
 .problem-card {
     position: relative;
     padding: var(--sp-lg);
-    background: rgba(10, 10, 31, 0.6);
-    border: 1px solid var(--c-border);
-    border-radius: var(--radius);
-    backdrop-filter: blur(8px);
-    transition: border-color var(--dur) var(--ease-out),
-        transform var(--dur) var(--ease-out),
-        box-shadow var(--dur) var(--ease-out);
+    background: #fff;
+    border: 4px solid var(--c-border-dark);
+    box-shadow: 8px 8px 0 var(--c-border-dark);
+    transition: transform var(--dur) var(--ease-pop), box-shadow var(--dur);
+    overflow: hidden;
 }
 
 .problem-card:hover {
-    border-color: var(--c-teal-dim);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    transform: translate(-4px, -4px);
+}
+
+/* Alternate hover shadows */
+.problem-card:nth-child(3n+1):hover {
+    box-shadow: 12px 12px 0 var(--c-red);
+}
+
+.problem-card:nth-child(3n+2):hover {
+    box-shadow: 12px 12px 0 var(--c-cyan);
+}
+
+.problem-card:nth-child(3n):hover {
+    box-shadow: 12px 12px 0 var(--c-yellow);
+}
+
+/* Ben-Day dots on card background */
+.problem-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(#ccc 1px, transparent 1px);
+    background-size: 8px 8px;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.problem-card>* {
+    position: relative;
+    z-index: 1;
 }
 
 .problem-card__tag {
     display: inline-block;
     font-family: var(--ff-display);
-    font-size: 0.55rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 20px;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
     margin-bottom: var(--sp-sm);
-}
-
-.problem-card__tag--strain {
-    background: rgba(0, 240, 212, 0.1);
-    color: var(--c-teal);
-    border: 1px solid rgba(0, 240, 212, 0.2);
-}
-
-.problem-card__tag--build {
-    background: rgba(240, 200, 80, 0.1);
-    color: var(--c-gold);
-    border: 1px solid rgba(240, 200, 80, 0.2);
+    text-transform: uppercase;
+    border: 2px solid var(--c-border-dark);
+    background: var(--c-yellow);
+    color: var(--c-bg);
+    transform: rotate(-2deg);
 }
 
 .problem-card__title {
-    font-family: var(--ff-heading);
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--c-text);
+    font-family: var(--ff-display);
+    font-size: 1.5rem;
+    color: var(--c-border-dark);
     margin-bottom: var(--sp-sm);
+    line-height: 1.1;
+    text-transform: uppercase;
 }
 
 .problem-card__desc {
-    font-size: 0.85rem;
-    color: var(--c-text-dim);
-    line-height: 1.65;
+    font-family: var(--ff-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #444;
 }
 
-/* Biome accent stripe on card */
-.problem-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    border-radius: var(--radius) var(--radius) 0 0;
-    background: var(--c-teal);
-}
-
-/* Per-biome accent colors on card stripe */
-[data-active-biome="ai"] .problem-card::before {
-    background: var(--c-purple);
-}
-
-[data-active-biome="blockchain"] .problem-card::before {
-    background: var(--c-gold);
-}
-
-[data-active-biome="smartcity"] .problem-card::before {
-    background: var(--c-cyan);
-}
-
-[data-active-biome="agriculture"] .problem-card::before {
-    background: var(--c-emerald);
-}
-
-[data-active-biome="medtech"] .problem-card::before {
-    background: var(--c-red);
-}
-
-[data-active-biome="robotics"] .problem-card::before {
-    background: var(--c-orange);
-}
-
-[data-active-biome="greentech"] .problem-card::before {
-    background: var(--c-teal);
-}
-
-[data-active-biome="education"] .problem-card::before {
-    background: var(--c-indigo);
-}
-
-/* Mobile */
 @media (max-width: 768px) {
-    .biome-selector {
-        gap: var(--sp-xs);
-    }
-
-    .biome-tab {
-        font-size: 0.55rem;
-        padding: 0.5rem 1rem;
+    .dimension-tab {
+        font-size: 0.8rem;
+        padding: 0.4rem 1rem;
     }
 
     .problem-grid {
