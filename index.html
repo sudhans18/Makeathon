@@ -22,6 +22,90 @@
   <link rel="stylesheet" href="css/faq.css" />
   <link rel="stylesheet" href="css/footer.css" />
 
+  <!-- Countdown Styles -->
+  <style>
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+    .countdown__unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 90px;
+      padding: 1rem 1.2rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(0,255,255,0.15);
+      border-radius: 12px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 0 18px rgba(0,255,255,0.08), inset 0 0 20px rgba(0,255,255,0.03);
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .countdown__unit:hover {
+      border-color: rgba(0,255,255,0.45);
+      box-shadow: 0 0 28px rgba(0,255,255,0.18), inset 0 0 30px rgba(0,255,255,0.06);
+    }
+    .countdown__value {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #00ffff, #00e5ff, #f0e130);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      animation: countPulse 2s ease-in-out infinite;
+    }
+    .countdown__label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(0,255,255,0.55);
+      margin-top: 0.4rem;
+    }
+    .countdown__separator {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: rgba(0,255,255,0.3);
+      align-self: center;
+      padding-bottom: 1.2rem;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes countPulse {
+      0%, 100% { filter: drop-shadow(0 0 4px rgba(0,255,255,0.3)); }
+      50%      { filter: drop-shadow(0 0 12px rgba(0,255,255,0.6)); }
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0.2; }
+    }
+    .countdown__expired {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #00ffff, #f0e130, #ff6a00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: countPulse 1.5s ease-in-out infinite;
+    }
+    @media (max-width: 600px) {
+      .countdown { gap: 0.6rem; }
+      .countdown__unit { min-width: 64px; padding: 0.7rem 0.8rem; }
+      .countdown__value { font-size: 1.8rem; }
+      .countdown__separator { font-size: 1.5rem; padding-bottom: 0.8rem; }
+    }
+  </style>
+
   <!-- CDN Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.168.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
@@ -46,6 +130,17 @@
     <div class="hero__content">
       <h1 class="hero__title glitch-text" data-text="MAKEATHON 7.0">MAKEATHON 7.0</h1>
       <p class="hero__subtitle">72 Hours of Symbiont Creation — Build the Future</p>
+
+      <!-- Countdown Clock -->
+      <div class="countdown" id="countdown" aria-label="Countdown to Makeathon">
+        <div class="countdown__unit"><span class="countdown__value" id="cd-days">--</span><span class="countdown__label">Days</span></div>
+        <span class="countdown__separator">:</span>
+        <div class="countdown__unit"><span class="countdown__value" id="cd-hours">--</span><span class="countdown__label">Hours</span></div>
+        <span class="countdown__separator">:</span>
+        <div class="countdown__unit"><span class="countdown__value" id="cd-mins">--</span><span class="countdown__label">Minutes</span></div>
+        <span class="countdown__separator">:</span>
+        <div class="countdown__unit"><span class="countdown__value" id="cd-secs">--</span><span class="countdown__label">Seconds</span></div>
+      </div>
       <button id="cta-launch" class="btn btn--cta" type="button">
         <span class="btn__text">Enter the Creation Zone</span>
         <span class="btn__glow" aria-hidden="true"></span>
@@ -244,6 +339,31 @@
       <p class="footer__copy">&copy; 2026 Makeathon 7.0 — All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- Countdown Script -->
+  <script>
+    (function() {
+      const target = new Date('2026-04-15T00:00:00').getTime();
+      const $ = id => document.getElementById(id);
+      function tick() {
+        const gap = target - Date.now();
+        if (gap <= 0) {
+          $('countdown').innerHTML = '<span class="countdown__expired">🚀 MAKEATHON HAS LAUNCHED!</span>';
+          return;
+        }
+        const d = Math.floor(gap / 86400000);
+        const h = Math.floor((gap % 86400000) / 3600000);
+        const m = Math.floor((gap % 3600000) / 60000);
+        const s = Math.floor((gap % 60000) / 1000);
+        $('cd-days').textContent  = String(d).padStart(2, '0');
+        $('cd-hours').textContent = String(h).padStart(2, '0');
+        $('cd-mins').textContent  = String(m).padStart(2, '0');
+        $('cd-secs').textContent  = String(s).padStart(2, '0');
+        requestAnimationFrame(tick);
+      }
+      tick();
+    })();
+  </script>
 
   <!-- Entry Point -->
   <script type="module" src="js/main.js"></script>
