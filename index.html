@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Makeathon 7.0</title>
+  <title>Makeathon 7.00</title>
   <meta name="description" content="Makeathon 7.0: A 24-hour creation event. Build the future." />
 
   <!-- Fonts: Anton for display pop-art, Montserrat for readability -->
@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="css/gallery.css" />
   <link rel="stylesheet" href="css/problems.css" />
   <link rel="stylesheet" href="css/team.css" />
+  <link rel="stylesheet" href="css/sponsorship.css" />
   <link rel="stylesheet" href="css/faq.css" />
   <link rel="stylesheet" href="css/footer.css" />
 
@@ -46,6 +47,7 @@
         <li><a href="#about" class="nav__link">Briefing</a></li>
         <li><a href="#timeline" class="nav__link">Timeline</a></li>
         <li><a href="#problems" class="nav__link">Challenges</a></li>
+        <li><a href="#sponsorship" class="nav__link">Sponsors</a></li>
         <li><a href="#team" class="nav__link">The Crew</a></li>
         <li><a href="#faq" class="nav__link">FAQ</a></li>
       </ul>
@@ -67,16 +69,15 @@
 
     <div class="hero__content">
       <div class="title-wrapper">
-        <h1 class="hero__title glitch" data-text="MAKEATHON">MAKEATHON</h1>
+        <h1 class="hero__title glitch" data-text="MAKE-A-THON">MAKE-A-THON</h1>
         <h2 class="hero__title-sub glitch-cyan" data-text="7.0">7.0</h2>
       </div>
 
       <div class="hero__badge">
-        <p>BUILD THE FUTURE</p>
+        <p>NATIONAL LEVEL HACKATHON</p>
       </div>
 
-      <p class="hero__subtitle"><span class="highlight-yellow">24 HOURS.</span> INFINITE POSSIBILITIES. CREATE BEYOND
-        LIMITS.</p>
+      <p class="hero__subtitle"><span class="highlight-yellow">24 HOURS.</span> INFINITE POSSIBILITIES. CREATE BEYOND LIMITS.</p>
 
       <!-- Countdown Timer (Target: April 15) -->
       <div class="hero__timer" id="hero-countdown" aria-label="Countdown to Makeathon">
@@ -86,10 +87,16 @@
         <div class="timer__box"><span class="timer__val" id="t-secs">00</span><span class="timer__lbl">SEC</span></div>
       </div>
 
-      <button id="cta-launch" class="btn btn--comic" type="button">
-        <span class="btn__text">INITIATE SEQUENCE</span>
-        <span class="btn__shadow" aria-hidden="true"></span>
-      </button>
+      <div class="hero__buttons">
+        <button id="cta-launch" class="btn btn--comic" type="button">
+          <span class="btn__text">REGISTER</span>
+          <span class="btn__shadow" aria-hidden="true"></span>
+        </button>
+        <button id="cta-problems" class="btn btn--comic btn--comic-cyan" type="button" onclick="document.getElementById('problems').scrollIntoView({behavior: 'smooth'})">
+          <span class="btn__text">PROBLEM STATEMENTS</span>
+          <span class="btn__shadow" aria-hidden="true"></span>
+        </button>
+      </div>
     </div>
     <div id="portal-flash" class="portal-flash" aria-hidden="true"></div>
   </section>
@@ -145,54 +152,208 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       SECTION 3 — TIMELINE
+       SECTION 3 — TIMELINE (Spider-Verse Inspired)
+       ─── HOW TO CUSTOMIZE ───
+       • To add/remove events: copy/paste a .timeline__event block
+       • Change the data-time attribute and .event__time text
+       • Swap the .event__icon emoji for any decorative icon
+       • Color classes: text-cyan, text-red, text-yellow, text-magenta
   ═══════════════════════════════════════════════════════════ -->
   <section id="timeline" class="section section--timeline" aria-label="Event Timeline">
     <div class="container min-h-screen">
       <h2 class="section__heading comic-heading">EVENT TIMELINE</h2>
       <div class="timeline__track">
-        <!-- Web-strand line -->
+
+        <!-- Ambient glow behind the web strand -->
+        <div class="timeline__web-glow" aria-hidden="true"></div>
+        <!-- Realistic web-strand line -->
         <div class="timeline__web-line" aria-hidden="true"></div>
 
-        <div class="timeline__event" data-time="March 10">
-          <div class="event__box">
-            <span class="event__time text-cyan">March 10</span>
-            <h3 class="event__title">Registration Opens</h3>
-            <p class="event__desc">Call for anomalies. Secure your spot in the roster and lock in your team.</p>
+        <!-- Crawling spider (scroll-synced via JS) -->
+        <div class="timeline__spider" aria-hidden="true">
+          <div class="timeline__spider-legs"></div>
+        </div>
+
+        <!-- ═══════════════════════════════════
+             DAY 1 — 15 April 2026
+        ═══════════════════════════════════ -->
+        <div class="timeline__event" data-time="Day 1">
+          <div class="event__content" style="border-left: 3px solid var(--c-cyan); text-align: center;">
+            <h3 class="event__title" style="margin-bottom: 0;">📅 Day 1 — 15 April 2026</h3>
           </div>
         </div>
 
-        <div class="timeline__event" data-time="April 10">
-          <div class="event__box">
-            <span class="event__time text-red">April 10</span>
-            <h3 class="event__title">Registration Closes</h3>
-            <p class="event__desc">The portal shuts. Final submissions for team registration are processed.</p>
+        <div class="timeline__event" data-time="08:30 AM">
+          <div class="event__content">
+            <span class="event__icon" aria-hidden="true">📝</span>
+            <span class="event__time text-cyan">08:30 AM – 09:00 AM</span>
+            <h3 class="event__title">Registration of Participants</h3>
+            <p class="event__desc">Check-in, collect your badges, and get settled in.</p>
           </div>
         </div>
 
-        <div class="timeline__event" data-time="April 15, 09:00 AM">
-          <div class="event__box">
-            <span class="event__time text-yellow">April 15, 09:00 AM</span>
-            <h3 class="event__title">Inauguration & Hacking Begins</h3>
-            <p class="event__desc">The collider activates. 24 hours of non-stop building commences.</p>
+        <div class="timeline__event" data-time="09:00 AM">
+          <div class="event__content">
+            <span class="event__icon" aria-hidden="true">🙏</span>
+            <span class="event__time text-magenta">09:00 AM – 09:10 AM</span>
+            <h3 class="event__title">Invocation / Prayer</h3>
+            <p class="event__desc">A moment of reflection to set the tone for the event.</p>
           </div>
         </div>
 
-        <div class="timeline__event" data-time="April 15, 04:00 PM">
-          <div class="event__box">
-            <span class="event__time text-magenta">April 15, 04:00 PM</span>
-            <h3 class="event__title">First Evaluation</h3>
-            <p class="event__desc">Idea pitching and initial progress check with industry experts.</p>
+        <div class="timeline__event" data-time="09:10 AM">
+          <div class="event__content">
+            <span class="event__icon" aria-hidden="true">🎤</span>
+            <span class="event__time text-cyan">09:10 AM – 09:20 AM</span>
+            <h3 class="event__title">Welcome Address</h3>
+            <p class="event__desc">Opening remarks and warm welcome to all participants.</p>
           </div>
         </div>
 
-        <div class="timeline__event" data-time="April 16, 09:00 AM">
-          <div class="event__box">
-            <span class="event__time text-cyan">April 16, 09:00 AM</span>
-            <h3 class="event__title">Hacking Ends & Final Pitch</h3>
-            <p class="event__desc">Tools down! Present your final engineered solutions to the core panel.</p>
+        <div class="timeline__event" data-time="09:20 AM">
+          <div class="event__content">
+            <span class="event__icon" aria-hidden="true">👥</span>
+            <span class="event__time text-yellow">09:20 AM – 09:30 AM</span>
+            <h3 class="event__title">Introduction of Chief Guests & Dignitaries</h3>
+            <p class="event__desc">Meet the distinguished guests and industry leaders gracing the event.</p>
           </div>
         </div>
+
+        <div class="timeline__event" data-time="09:30 AM">
+          <div class="event__content">
+            <span class="event__icon" aria-hidden="true">🎓</span>
+            <span class="event__time text-magenta">09:30 AM – 09:40 AM</span>
+            <h3 class="event__title">Address by HoD – ECE</h3>
+            <p class="event__desc">Inspiring words from the Head of Department, ECE.</p>
+          </div>
+        </div>
+
+        <div class="timeline__event" data-time="09:40 AM">
+          <div class="event__content">
+            <span class="event__icon" aria-hidden="true">🌟</span>
+            <span class="event__time text-cyan">09:40 AM – 10:00 AM</span>
+            <h3 class="event__title">Keynote Address by Chief Guests</h3>
+            <p class="event__desc">Insights and motivation from the chief guests to kick off the marathon.</p>
+          </div>
+        </div>
+
+        <div class="timeline__event" data-time="10:00 AM">
+          <div class="event__content">
+            <span class="event__icon" aria-hidden="true">🚀</span>
+            <span class="event__time text-red">10:00 AM onwards</span>
+            <h3 class="event__title">Official Launch & Commencement</h3>
+            <p class="event__desc">Make-A-Thon 7.0 is live! 24 hours of non-stop building begins now.</p>
+          </div>
+        </div>
+
+        <div class="timeline__event" data-time="01:00 PM">
+          <div class="event__content">
+            <span class="event__icon" aria-hidden="true">🍽️</span>
+            <span class="event__time text-yellow">01:00 PM – 02:00 PM</span>
+            <h3 class="event__title">Lunch Break</h3>
+            <p class="event__desc">Refuel and recharge. Grab a meal before diving back in.</p>
+          </div>
+        </div>
+
+        <div class="timeline__event" data-time="03:00 PM">
+          <div class="event__content">
+            <span class="event__icon" aria-hidden="true">🔬</span>
+            <span class="event__time text-magenta">03:00 PM – 06:00 PM</span>
+            <h3 class="event__title">Progress Review – Round 1</h3>
+            <p class="event__desc">First check-in with mentors. Showcase your progress and get feedback.</p>
+          </div>
+        </div>
+
+        <div class="timeline__event" data-time="08:00 PM">
+          <div class="event__content">
+            <span class="event__icon" aria-hidden="true">🌙</span>
+            <span class="event__time text-cyan">08:00 PM – 09:00 PM</span>
+            <h3 class="event__title">Dinner Break</h3>
+            <p class="event__desc">Evening meal. Take a breather before the night coding session.</p>
+          </div>
+        </div>
+
+        <div class="timeline__event" data-time="10:30 PM">
+          <div class="event__content">
+            <span class="event__icon" aria-hidden="true">🔍</span>
+            <span class="event__time text-red">10:30 PM – 12:30 AM</span>
+            <h3 class="event__title">Progress Review – Round 2</h3>
+            <p class="event__desc">Late-night evaluation. Show how far you've come since Round 1.</p>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════
+             DAY 2 — 16 April 2026
+        ═══════════════════════════════════ -->
+        <div class="timeline__event" data-time="Day 2">
+          <div class="event__content" style="border-left: 3px solid var(--c-magenta); text-align: center;">
+            <h3 class="event__title" style="margin-bottom: 0;">📅 Day 2 — 16 April 2026</h3>
+          </div>
+        </div>
+
+        <div class="timeline__event" data-time="01:00 AM">
+          <div class="event__content">
+            <span class="event__icon" aria-hidden="true">🎮</span>
+            <span class="event__time text-yellow">01:00 AM – 02:00 AM</span>
+            <h3 class="event__title">Trivia Quiz & Surprise Challenges</h3>
+            <p class="event__desc">Fun games and surprise challenges to keep the energy high at midnight!</p>
+          </div>
+        </div>
+
+        <div class="timeline__event" data-time="02:00 AM">
+          <div class="event__content">
+            <span class="event__icon" aria-hidden="true">💻</span>
+            <span class="event__time text-cyan">02:00 AM – 07:00 AM</span>
+            <h3 class="event__title">Continuous Development Session</h3>
+            <p class="event__desc">The deep work hours. Code through the night and polish your project.</p>
+          </div>
+        </div>
+
+        <div class="timeline__event" data-time="07:00 AM">
+          <div class="event__content">
+            <span class="event__icon" aria-hidden="true">☕</span>
+            <span class="event__time text-magenta">07:00 AM – 08:00 AM</span>
+            <h3 class="event__title">Breakfast</h3>
+            <p class="event__desc">Morning fuel. Recharge for the final stretch.</p>
+          </div>
+        </div>
+
+        <div class="timeline__event" data-time="10:00 AM">
+          <div class="event__content">
+            <span class="event__icon" aria-hidden="true">🏁</span>
+            <span class="event__time text-red">10:00 AM</span>
+            <h3 class="event__title">Completion of Hackathon</h3>
+            <p class="event__desc">Tools down! All coding and development must stop now.</p>
+          </div>
+        </div>
+
+        <div class="timeline__event" data-time="10:30 AM">
+          <div class="event__content">
+            <span class="event__icon" aria-hidden="true">⚖️</span>
+            <span class="event__time text-cyan">10:30 AM – 12:00 PM</span>
+            <h3 class="event__title">Final Evaluation by Jury Panel</h3>
+            <p class="event__desc">Present your solutions to the jury. Demonstrate your innovation.</p>
+          </div>
+        </div>
+
+        <div class="timeline__event" data-time="12:30 PM">
+          <div class="event__content">
+            <span class="event__icon" aria-hidden="true">🏆</span>
+            <span class="event__time text-yellow">12:30 PM onwards</span>
+            <h3 class="event__title">Lunch, Prize Distribution & Valedictory</h3>
+            <p class="event__desc">Celebrate! Enjoy lunch, cheer the winners, and close the ceremony.</p>
+          </div>
+        </div>
+
+        <div class="timeline__event" data-time="03:00 PM">
+          <div class="event__content">
+            <span class="event__icon" aria-hidden="true">🚌</span>
+            <span class="event__time text-magenta">By 3:00 PM</span>
+            <h3 class="event__title">Disperse to Bus Bay</h3>
+            <p class="event__desc">Safe travels home! See you at Make-A-Thon 8.0.</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -215,11 +376,13 @@
   ═══════════════════════════════════════════════════════════ -->
   <section id="problems" class="section section--problems" aria-label="Dimensions">
     <div class="container">
-      <h2 class="section__heading comic-heading text-cyan">CHOOSE YOUR TRACK</h2>
-      <p class="section__sub">Select a domain cluster to view specific challenges.</p>
-
-      <div class="dimension-selector" id="dimension-selector" role="tablist">
-        <!-- Tabs injected by JS -->
+      <div class="track-selector" id="track-selector" aria-label="Track selector">
+        <canvas id="track-selector-canvas" aria-hidden="true"></canvas>
+        <div class="track-selector__copy">
+          <h2 class="section__heading comic-heading track-selector__heading">CHOOSE YOUR TRACK</h2>
+          <p class="section__sub track-selector__sub">Select a domain cluster to view specific challenges.</p>
+        </div>
+        <div class="track-selector__ui" id="track-selector-ui" aria-hidden="false"></div>
       </div>
 
       <div class="dimension-panel relative" id="dimension-panel">
@@ -264,7 +427,56 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       SECTION 7 — FAQs
+       SECTION 7 — SPONSORSHIP
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="sponsorship" class="section section--sponsorship" aria-label="Sponsorship">
+    <div class="container">
+      <h2 class="section__heading comic-heading text-cyan">POWERED BY INDUSTRY LEADERS</h2>
+
+      <div class="sponsor__headline">
+        <span class="sponsor__eyebrow">Want to partner with us?</span>
+        <h3>Be Part of the Innovation</h3>
+      </div>
+
+      <div class="sponsor__description">
+        <p>Be part of the transformation and make a lasting impact by partnering with <strong>Makeathon 7.0</strong>, a premier 24-hour Hardware & Software Hackathon at SVCE that brings together talented individuals to innovate and create groundbreaking solutions.</p>
+        <p>As a partner, you'll gain valuable visibility among a highly engaged audience, connect with top tech talent, and position your brand as a leader in the industry. Join us in empowering the next generation of innovators and driving technological advancements.</p>
+      </div>
+
+      <div class="sponsor__cards">
+        <div class="sponsor__card">
+          <span class="sponsor__card-icon">🎯</span>
+          <h4>Brand Visibility</h4>
+          <p>Showcase your brand to 500+ innovators, mentors, and industry experts.</p>
+        </div>
+        <div class="sponsor__card">
+          <span class="sponsor__card-icon">🤝</span>
+          <h4>Talent Pipeline</h4>
+          <p>Connect directly with top engineering talent building real-world solutions.</p>
+        </div>
+        <div class="sponsor__card">
+          <span class="sponsor__card-icon">🚀</span>
+          <h4>Innovation Showcase</h4>
+          <p>Position your brand at the forefront of cutting-edge technology development.</p>
+        </div>
+        <div class="sponsor__card">
+          <span class="sponsor__card-icon">🏆</span>
+          <h4>Community Impact</h4>
+          <p>Empower the next generation of innovators and drive meaningful change.</p>
+        </div>
+      </div>
+
+      <div class="sponsor__cta-wrapper">
+        <a href="sponsorship_tiers.html" id="btn-view-tiers" class="btn--comic" style="text-decoration:none;">
+          <span class="btn__text">VIEW SPONSORSHIP TIERS</span>
+          <span class="btn__shadow" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 8 — FAQs
   ═══════════════════════════════════════════════════════════ -->
   <section id="faq" class="section section--faq" aria-label="FAQ">
     <div class="container">
@@ -289,18 +501,165 @@
        SECTION 8 — FOOTER
   ═══════════════════════════════════════════════════════════ -->
   <footer id="footer" class="section section--footer" aria-label="Footer">
-    <div class="container footer__comic-box">
-      <h2 class="footer__logo glitch" data-text="MAKEATHON">MAKEATHON 7.0</h2>
-      <p class="footer__tagline">"With great power comes great code."</p>
+    <div class="container footer__inner">
 
-      <div class="footer__socials">
-        <a href="#" class="social-badge"><span>IG</span></a>
-        <a href="#" class="social-badge"><span>LI</span></a>
-        <a href="#" class="social-badge"><span>GH</span></a>
+      <!-- ── Top Row: 3-Column Layout ── -->
+      <div class="footer__grid">
+
+        <!-- LEFT — Event Info -->
+        <div class="footer__col">
+          <h3 class="footer__heading">MAKEATHON <span class="text-cyan">7.0</span></h3>
+          <p class="footer__text">A 24-hour hardware & software creation sprint organized by the Department of ECE.</p>
+          <p class="footer__text"><strong class="text-yellow">📅 15–16 April 2026</strong></p>
+          <p class="footer__text">Sri Sairam Engineering College, Chennai</p>
+        </div>
+
+        <!-- CENTER — Quick Links / Events -->
+        <div class="footer__col footer__col--center">
+          <h4 class="footer__subheading">QUICK LINKS</h4>
+          <ul class="footer__links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#problems">Tracks</a></li>
+            <li><a href="#team">The Crew</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- RIGHT — Contact Details -->
+        <div class="footer__col footer__col--right">
+          <h4 class="footer__subheading">CONTACT</h4>
+          <p class="footer__text">
+            📧 <a href="mailto:admin@makeathon.in">admin@makeathon.in</a>
+          </p>
+          <p class="footer__text">
+            📧 <a href="mailto:ecea@svce.ac.in">ecea@svce.ac.in</a>
+          </p>
+          <p class="footer__text">
+            📞 <a href="tel:+919876543210">+91 98765 43210</a>
+          </p>
+        </div>
       </div>
 
-      <p class="contact-text text-yellow">Transmission: <a href="mailto:admin@makeathon.in">admin@makeathon.in</a></p>
-      <p class="copyright">&copy; 2026 Makeathon. All realities reserved.</p>
+      <!-- ── Divider ── -->
+      <hr class="footer__divider" />
+
+      <!-- ── Social Sections — ECEA / IETE-SF / RACE ── -->
+      <div class="footer__socials-grid">
+
+        <!-- ECEA -->
+        <div class="footer__social-block">
+          <h4 class="footer__club-name">ECEA</h4>
+          <div class="footer__social-icons">
+            <a href="https://www.instagram.com/eceasvce/" target="_blank" rel="noopener noreferrer"
+              class="social-icon social-icon--ig" aria-label="ECEA Instagram">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.97.24 2.43.403a4.08 4.08 0 011.523.99 4.08 4.08 0 01.99 1.524c.163.46.35 1.26.403 2.43.058 1.265.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.24 1.97-.403 2.43a4.08 4.08 0 01-.99 1.523 4.08 4.08 0 01-1.524.99c-.46.163-1.26.35-2.43.403-1.265.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.97-.24-2.43-.403a4.08 4.08 0 01-1.523-.99 4.08 4.08 0 01-.99-1.524c-.163-.46-.35-1.26-.403-2.43C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.054-1.17.24-1.97.403-2.43a4.08 4.08 0 01.99-1.523A4.08 4.08 0 015.15 2.636c.46-.163 1.26-.35 2.43-.403C8.845 2.175 9.225 2.163 12 2.163zM12 0C8.741 0 8.333.014 7.053.072 5.775.13 4.903.333 4.14.63a6.21 6.21 0 00-2.245 1.462A6.21 6.21 0 00.433 4.337C.136 5.1-.067 5.972.01 7.25.068 8.53.082 8.938.082 12.197c0 3.259.014 3.668.072 4.948.058 1.277.261 2.15.558 2.912a6.21 6.21 0 001.462 2.245 6.21 6.21 0 002.245 1.462c.763.297 1.636.5 2.913.558C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c1.277-.058 2.15-.261 2.912-.558a6.21 6.21 0 002.245-1.462 6.21 6.21 0 001.462-2.245c.297-.763.5-1.636.558-2.913.058-1.28.072-1.688.072-4.948s-.014-3.668-.072-4.948c-.058-1.277-.261-2.15-.558-2.912a6.21 6.21 0 00-1.462-2.245A6.21 6.21 0 0019.86.435C19.1.138 18.227-.065 16.95.007 15.668.065 15.259.079 12 .079zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z" />
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/ecea-svce-2b49062b7/" target="_blank" rel="noopener noreferrer"
+              class="social-icon social-icon--li" aria-label="ECEA LinkedIn">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+            <a href="mailto:ecea@svce.ac.in" class="social-icon social-icon--mail" aria-label="ECEA Email">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path
+                  d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- IETE-SF -->
+        <div class="footer__social-block">
+          <h4 class="footer__club-name">IETE-SF</h4>
+          <div class="footer__social-icons">
+            <a href="https://www.instagram.com/ietesf_svce/" target="_blank" rel="noopener noreferrer"
+              class="social-icon social-icon--ig" aria-label="IETE-SF Instagram">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.97.24 2.43.403a4.08 4.08 0 011.523.99 4.08 4.08 0 01.99 1.524c.163.46.35 1.26.403 2.43.058 1.265.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.24 1.97-.403 2.43a4.08 4.08 0 01-.99 1.523 4.08 4.08 0 01-1.524.99c-.46.163-1.26.35-2.43.403-1.265.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.97-.24-2.43-.403a4.08 4.08 0 01-1.523-.99 4.08 4.08 0 01-.99-1.524c-.163-.46-.35-1.26-.403-2.43C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.054-1.17.24-1.97.403-2.43a4.08 4.08 0 01.99-1.523A4.08 4.08 0 015.15 2.636c.46-.163 1.26-.35 2.43-.403C8.845 2.175 9.225 2.163 12 2.163zM12 0C8.741 0 8.333.014 7.053.072 5.775.13 4.903.333 4.14.63a6.21 6.21 0 00-2.245 1.462A6.21 6.21 0 00.433 4.337C.136 5.1-.067 5.972.01 7.25.068 8.53.082 8.938.082 12.197c0 3.259.014 3.668.072 4.948.058 1.277.261 2.15.558 2.912a6.21 6.21 0 001.462 2.245 6.21 6.21 0 002.245 1.462c.763.297 1.636.5 2.913.558C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c1.277-.058 2.15-.261 2.912-.558a6.21 6.21 0 002.245-1.462 6.21 6.21 0 001.462-2.245c.297-.763.5-1.636.558-2.913.058-1.28.072-1.688.072-4.948s-.014-3.668-.072-4.948c-.058-1.277-.261-2.15-.558-2.912a6.21 6.21 0 00-1.462-2.245A6.21 6.21 0 0019.86.435C19.1.138 18.227-.065 16.95.007 15.668.065 15.259.079 12 .079zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z" />
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/iete-sf-svce-3199351b7/" target="_blank" rel="noopener noreferrer"
+              class="social-icon social-icon--li" aria-label="IETE-SF LinkedIn">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+            <a href="mailto:ietesf@svce.ac.in" class="social-icon social-icon--mail" aria-label="IETE-SF Email">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path
+                  d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- RACE -->
+        <div class="footer__social-block">
+          <h4 class="footer__club-name">RACE</h4>
+          <div class="footer__social-icons">
+            <a href="https://www.instagram.com/race_svce/" target="_blank" rel="noopener noreferrer"
+              class="social-icon social-icon--ig" aria-label="RACE Instagram">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.97.24 2.43.403a4.08 4.08 0 011.523.99 4.08 4.08 0 01.99 1.524c.163.46.35 1.26.403 2.43.058 1.265.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.24 1.97-.403 2.43a4.08 4.08 0 01-.99 1.523 4.08 4.08 0 01-1.524.99c-.46.163-1.26.35-2.43.403-1.265.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.97-.24-2.43-.403a4.08 4.08 0 01-1.523-.99 4.08 4.08 0 01-.99-1.524c-.163-.46-.35-1.26-.403-2.43C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.054-1.17.24-1.97.403-2.43a4.08 4.08 0 01.99-1.523A4.08 4.08 0 015.15 2.636c.46-.163 1.26-.35 2.43-.403C8.845 2.175 9.225 2.163 12 2.163zM12 0C8.741 0 8.333.014 7.053.072 5.775.13 4.903.333 4.14.63a6.21 6.21 0 00-2.245 1.462A6.21 6.21 0 00.433 4.337C.136 5.1-.067 5.972.01 7.25.068 8.53.082 8.938.082 12.197c0 3.259.014 3.668.072 4.948.058 1.277.261 2.15.558 2.912a6.21 6.21 0 001.462 2.245 6.21 6.21 0 002.245 1.462c.763.297 1.636.5 2.913.558C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c1.277-.058 2.15-.261 2.912-.558a6.21 6.21 0 002.245-1.462 6.21 6.21 0 001.462-2.245c.297-.763.5-1.636.558-2.913.058-1.28.072-1.688.072-4.948s-.014-3.668-.072-4.948c-.058-1.277-.261-2.15-.558-2.912a6.21 6.21 0 00-1.462-2.245A6.21 6.21 0 0019.86.435C19.1.138 18.227-.065 16.95.007 15.668.065 15.259.079 12 .079zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z" />
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/raic-svce/" target="_blank" rel="noopener noreferrer"
+              class="social-icon social-icon--li" aria-label="RACE LinkedIn">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+            <a href="mailto:race@svce.ac.in" class="social-icon social-icon--mail" aria-label="RACE Email">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path
+                  d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Divider ── -->
+      <hr class="footer__divider" />
+
+      <!-- ── Student Coordinators ── -->
+      <div class="footer__coordinators">
+        <h4 class="footer__subheading">STUDENT COORDINATORS</h4>
+        <div class="footer__coord-grid">
+          <div class="footer__coord-card">
+            <p class="coord__name">Coordinator Name</p>
+            <p class="coord__role text-cyan">ECEA Lead</p>
+            <p class="coord__phone">📞 +91 98765 43210</p>
+          </div>
+          <div class="footer__coord-card">
+            <p class="coord__name">Coordinator Name</p>
+            <p class="coord__role text-magenta">IETE-SF Lead</p>
+            <p class="coord__phone">📞 +91 98765 43211</p>
+          </div>
+          <div class="footer__coord-card">
+            <p class="coord__name">Coordinator Name</p>
+            <p class="coord__role text-red">RACE Lead</p>
+            <p class="coord__phone">📞 +91 98765 43212</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Bottom Bar ── -->
+      <div class="footer__bottom">
+        <p class="footer__tagline">"With great power comes great code."</p>
+        <p class="copyright">&copy; 2026 Makeathon 7.0 — All realities reserved.</p>
+      </div>
+
     </div>
   </footer>
 
