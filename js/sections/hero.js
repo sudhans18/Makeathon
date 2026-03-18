@@ -39,14 +39,8 @@ function setupCountdownTimer() {
 
     if (!domDays || !domHours || !domMins || !domSecs) return;
 
-    const currentYear = new Date().getFullYear();
-    // Target: April 15 of the current year. (Month is 0-indexed, so 3 is April)
-    let targetDate = new Date(currentYear, 3, 15, 9, 0, 0).getTime();
-
-    // If April 15 has already passed this year, point to next year.
-    if (new Date().getTime() > targetDate) {
-        targetDate = new Date(currentYear + 1, 3, 15, 9, 0, 0).getTime();
-    }
+    // Use explicitly defined Date constructor (Year, Month[0-indexed], Day, Hour, Min, Sec)
+    let targetDate = new Date(2026, 3, 15, 9, 0, 0).getTime();
 
     function updateTimer() {
         const now = new Date().getTime();

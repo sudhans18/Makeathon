@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Makeathon 7.0</title>
+  <title>Makeathon 7.00</title>
   <meta name="description" content="Makeathon 7.0: A 24-hour creation event. Build the future." />
 
   <!-- Fonts: Anton for display pop-art, Montserrat for readability -->
@@ -67,16 +67,15 @@
 
     <div class="hero__content">
       <div class="title-wrapper">
-        <h1 class="hero__title glitch" data-text="MAKEATHON">MAKEATHON</h1>
+        <h1 class="hero__title glitch" data-text="MAKE-A-THON">MAKE-A-THON</h1>
         <h2 class="hero__title-sub glitch-cyan" data-text="7.0">7.0</h2>
       </div>
 
       <div class="hero__badge">
-        <p>BUILD THE FUTURE</p>
+        <p>NATIONAL LEVEL HACKATHON</p>
       </div>
 
-      <p class="hero__subtitle"><span class="highlight-yellow">24 HOURS.</span> INFINITE POSSIBILITIES. CREATE BEYOND
-        LIMITS.</p>
+      <p class="hero__subtitle"><span class="highlight-yellow">24 HOURS.</span> INFINITE POSSIBILITIES. CREATE BEYOND LIMITS.</p>
 
       <!-- Countdown Timer (Target: April 15) -->
       <div class="hero__timer" id="hero-countdown" aria-label="Countdown to Makeathon">
@@ -86,10 +85,16 @@
         <div class="timer__box"><span class="timer__val" id="t-secs">00</span><span class="timer__lbl">SEC</span></div>
       </div>
 
-      <button id="cta-launch" class="btn btn--comic" type="button">
-        <span class="btn__text">INITIATE SEQUENCE</span>
-        <span class="btn__shadow" aria-hidden="true"></span>
-      </button>
+      <div class="hero__buttons">
+        <button id="cta-launch" class="btn btn--comic" type="button">
+          <span class="btn__text">REGISTER</span>
+          <span class="btn__shadow" aria-hidden="true"></span>
+        </button>
+        <button id="cta-problems" class="btn btn--comic btn--comic-cyan" type="button" onclick="document.getElementById('problems').scrollIntoView({behavior: 'smooth'})">
+          <span class="btn__text">PROBLEM STATEMENTS</span>
+          <span class="btn__shadow" aria-hidden="true"></span>
+        </button>
+      </div>
     </div>
     <div id="portal-flash" class="portal-flash" aria-hidden="true"></div>
   </section>
