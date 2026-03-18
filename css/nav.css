@@ -8,12 +8,11 @@
     top: 0;
     left: 0;
     width: 100%;
-    background: var(--c-bg);
-    border-bottom: 4px solid var(--c-border-dark);
+    background: rgba(15, 17, 24, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 3px solid var(--c-border-dark);
     z-index: 9999;
-    /* Add a subtle halftone to the nav */
-    background-image: radial-gradient(var(--c-border) 1px, transparent 1px);
-    background-size: 8px 8px;
     box-shadow: 0 4px 0 var(--c-magenta);
     transition: transform 0.3s var(--ease-pop);
 }

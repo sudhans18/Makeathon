@@ -342,6 +342,19 @@ ol {
   background: var(--c-cyan);
 }
 
+/* Secondary cyan comic button */
+.btn--comic-cyan {
+  background: var(--c-cyan);
+}
+
+.btn--comic-cyan::after {
+  background: var(--c-magenta);
+}
+
+.btn--comic-cyan:hover::after {
+  background: var(--c-yellow);
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;

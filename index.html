@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Makeathon 7.0</title>
+  <title>Makeathon 7.00</title>
   <meta name="description" content="Makeathon 7.0: A 24-hour creation event. Build the future." />
 
   <!-- Fonts: Anton for display pop-art, Montserrat for readability -->
@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="css/gallery.css" />
   <link rel="stylesheet" href="css/problems.css" />
   <link rel="stylesheet" href="css/team.css" />
+  <link rel="stylesheet" href="css/sponsorship.css" />
   <link rel="stylesheet" href="css/faq.css" />
   <link rel="stylesheet" href="css/footer.css" />
 
@@ -46,6 +47,7 @@
         <li><a href="#about" class="nav__link">Briefing</a></li>
         <li><a href="#timeline" class="nav__link">Timeline</a></li>
         <li><a href="#problems" class="nav__link">Challenges</a></li>
+        <li><a href="#sponsorship" class="nav__link">Sponsors</a></li>
         <li><a href="#team" class="nav__link">The Crew</a></li>
         <li><a href="#faq" class="nav__link">FAQ</a></li>
       </ul>
@@ -67,16 +69,15 @@
 
     <div class="hero__content">
       <div class="title-wrapper">
-        <h1 class="hero__title glitch" data-text="MAKEATHON">MAKEATHON</h1>
+        <h1 class="hero__title glitch" data-text="MAKE-A-THON">MAKE-A-THON</h1>
         <h2 class="hero__title-sub glitch-cyan" data-text="7.0">7.0</h2>
       </div>
 
       <div class="hero__badge">
-        <p>BUILD THE FUTURE</p>
+        <p>NATIONAL LEVEL HACKATHON</p>
       </div>
 
-      <p class="hero__subtitle"><span class="highlight-yellow">24 HOURS.</span> INFINITE POSSIBILITIES. CREATE BEYOND
-        LIMITS.</p>
+      <p class="hero__subtitle"><span class="highlight-yellow">24 HOURS.</span> INFINITE POSSIBILITIES. CREATE BEYOND LIMITS.</p>
 
       <!-- Countdown Timer (Target: April 15) -->
       <div class="hero__timer" id="hero-countdown" aria-label="Countdown to Makeathon">
@@ -86,10 +87,16 @@
         <div class="timer__box"><span class="timer__val" id="t-secs">00</span><span class="timer__lbl">SEC</span></div>
       </div>
 
-      <button id="cta-launch" class="btn btn--comic" type="button">
-        <span class="btn__text">INITIATE SEQUENCE</span>
-        <span class="btn__shadow" aria-hidden="true"></span>
-      </button>
+      <div class="hero__buttons">
+        <button id="cta-launch" class="btn btn--comic" type="button">
+          <span class="btn__text">REGISTER</span>
+          <span class="btn__shadow" aria-hidden="true"></span>
+        </button>
+        <button id="cta-problems" class="btn btn--comic btn--comic-cyan" type="button" onclick="document.getElementById('problems').scrollIntoView({behavior: 'smooth'})">
+          <span class="btn__text">PROBLEM STATEMENTS</span>
+          <span class="btn__shadow" aria-hidden="true"></span>
+        </button>
+      </div>
     </div>
     <div id="portal-flash" class="portal-flash" aria-hidden="true"></div>
   </section>
@@ -369,11 +376,13 @@
   ═══════════════════════════════════════════════════════════ -->
   <section id="problems" class="section section--problems" aria-label="Dimensions">
     <div class="container">
-      <h2 class="section__heading comic-heading text-cyan">CHOOSE YOUR TRACK</h2>
-      <p class="section__sub">Select a domain cluster to view specific challenges.</p>
-
-      <div class="dimension-selector" id="dimension-selector" role="tablist">
-        <!-- Tabs injected by JS -->
+      <div class="track-selector" id="track-selector" aria-label="Track selector">
+        <canvas id="track-selector-canvas" aria-hidden="true"></canvas>
+        <div class="track-selector__copy">
+          <h2 class="section__heading comic-heading track-selector__heading">CHOOSE YOUR TRACK</h2>
+          <p class="section__sub track-selector__sub">Select a domain cluster to view specific challenges.</p>
+        </div>
+        <div class="track-selector__ui" id="track-selector-ui" aria-hidden="false"></div>
       </div>
 
       <div class="dimension-panel relative" id="dimension-panel">
@@ -405,7 +414,56 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       SECTION 7 — FAQs
+       SECTION 7 — SPONSORSHIP
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="sponsorship" class="section section--sponsorship" aria-label="Sponsorship">
+    <div class="container">
+      <h2 class="section__heading comic-heading text-cyan">POWERED BY INDUSTRY LEADERS</h2>
+
+      <div class="sponsor__headline">
+        <span class="sponsor__eyebrow">Want to partner with us?</span>
+        <h3>Be Part of the Innovation</h3>
+      </div>
+
+      <div class="sponsor__description">
+        <p>Be part of the transformation and make a lasting impact by partnering with <strong>Makeathon 7.0</strong>, a premier 24-hour Hardware & Software Hackathon at SVCE that brings together talented individuals to innovate and create groundbreaking solutions.</p>
+        <p>As a partner, you'll gain valuable visibility among a highly engaged audience, connect with top tech talent, and position your brand as a leader in the industry. Join us in empowering the next generation of innovators and driving technological advancements.</p>
+      </div>
+
+      <div class="sponsor__cards">
+        <div class="sponsor__card">
+          <span class="sponsor__card-icon">🎯</span>
+          <h4>Brand Visibility</h4>
+          <p>Showcase your brand to 500+ innovators, mentors, and industry experts.</p>
+        </div>
+        <div class="sponsor__card">
+          <span class="sponsor__card-icon">🤝</span>
+          <h4>Talent Pipeline</h4>
+          <p>Connect directly with top engineering talent building real-world solutions.</p>
+        </div>
+        <div class="sponsor__card">
+          <span class="sponsor__card-icon">🚀</span>
+          <h4>Innovation Showcase</h4>
+          <p>Position your brand at the forefront of cutting-edge technology development.</p>
+        </div>
+        <div class="sponsor__card">
+          <span class="sponsor__card-icon">🏆</span>
+          <h4>Community Impact</h4>
+          <p>Empower the next generation of innovators and drive meaningful change.</p>
+        </div>
+      </div>
+
+      <div class="sponsor__cta-wrapper">
+        <a href="sponsorship_tiers.html" id="btn-view-tiers" class="btn--comic" style="text-decoration:none;">
+          <span class="btn__text">VIEW SPONSORSHIP TIERS</span>
+          <span class="btn__shadow" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 8 — FAQs
   ═══════════════════════════════════════════════════════════ -->
   <section id="faq" class="section section--faq" aria-label="FAQ">
     <div class="container">

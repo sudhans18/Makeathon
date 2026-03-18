@@ -26,6 +26,7 @@ import { initTimeline } from './sections/timeline.js';
 import { initGallery } from './sections/gallery.js';
 import { initProblems } from './sections/problems.js';
 import { initTeam } from './sections/team.js';
+import { initSponsorship } from './sections/sponsorship.js';
 import { initFAQ } from './sections/faq.js';
 
 /**
@@ -48,6 +49,7 @@ function boot() {
     initGallery();
     initProblems();
     initTeam();
+    initSponsorship();
     initFAQ();
 
     console.log('[Makeathon 7.0] All systems online. Welcome to the Creation Zone.');
