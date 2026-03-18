@@ -262,7 +262,7 @@
 /* ═══════════════════════════════════════════
    EVENT CARD — Dark glassmorphic panel
 ═══════════════════════════════════════════ */
-.event__box {
+.event__content {
     padding: var(--sp-md) calc(var(--sp-md) + 4px);
     background: rgba(15, 17, 24, 0.85);
     backdrop-filter: blur(12px);
@@ -278,7 +278,7 @@
 }
 
 /* Neon accent stripe on the left edge */
-.event__box::before {
+.event__content::before {
     content: '';
     position: absolute;
     top: 0;
@@ -290,7 +290,7 @@
 }
 
 /* Hover glow effect */
-.event__box:hover {
+.event__content:hover {
     border-color: rgba(0, 240, 255, 0.35);
     box-shadow:
         0 0 15px rgba(0, 240, 255, 0.1),
@@ -299,11 +299,11 @@
 }
 
 /* Alternating accent colors for even cards */
-.timeline__event:nth-child(even) .event__box::before {
+.timeline__event:nth-child(even) .event__content::before {
     background: linear-gradient(180deg, var(--c-magenta), var(--c-red));
 }
 
-.timeline__event:nth-child(even) .event__box:hover {
+.timeline__event:nth-child(even) .event__content:hover {
     border-color: rgba(217, 0, 255, 0.35);
     box-shadow:
         0 0 15px rgba(217, 0, 255, 0.1),
@@ -311,7 +311,7 @@
 }
 
 /* ── Pointer Triangles — connecting cards to web line ── */
-.event__box::after {
+.event__content::after {
     content: '';
     position: absolute;
     top: 50%;
