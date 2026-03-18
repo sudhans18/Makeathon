@@ -232,21 +232,34 @@
        SECTION 6 — OUR TEAM
   ═══════════════════════════════════════════════════════════ -->
   <section id="team" class="section section--team" aria-label="The Crew">
+    <!-- Faint web-pattern background -->
+    <div class="team__web-bg" aria-hidden="true"></div>
+
     <div class="container">
-      <h2 class="section__heading comic-heading text-magenta">THE CREW</h2>
-      <p class="section__sub text-bg">The powerhouses coordinating this dimension's Makeathon.</p>
+      <h2 class="section__heading comic-heading">THE CREW</h2>
+      <p class="section__sub">The powerhouses coordinating this dimension's Makeathon.</p>
 
-      <!-- ECEA Club -->
-      <h3 class="team-club-title">ECEA</h3>
-      <div class="team__grid" id="team-grid-ecea"></div>
+      <!-- Team Tabs -->
+      <div class="team__tabs" role="tablist">
+        <button class="team__tab active" data-team="ecea" role="tab" aria-selected="true">ECEA</button>
+        <button class="team__tab" data-team="iete" role="tab" aria-selected="false">IETE-SF</button>
+        <button class="team__tab" data-team="race" role="tab" aria-selected="false">RACE</button>
+      </div>
 
-      <!-- IETE-SF Club -->
-      <h3 class="team-club-title">IETE-SF</h3>
-      <div class="team__grid" id="team-grid-iete"></div>
+      <!-- ECEA Panel -->
+      <div class="team__panel active" data-team="ecea" role="tabpanel">
+        <div class="team__grid" id="team-grid-ecea"></div>
+      </div>
 
-      <!-- RACE Club -->
-      <h3 class="team-club-title">RACE</h3>
-      <div class="team__grid" id="team-grid-race"></div>
+      <!-- IETE-SF Panel -->
+      <div class="team__panel" data-team="iete" role="tabpanel">
+        <div class="team__grid" id="team-grid-iete"></div>
+      </div>
+
+      <!-- RACE Panel -->
+      <div class="team__panel" data-team="race" role="tabpanel">
+        <div class="team__grid" id="team-grid-race"></div>
+      </div>
     </div>
   </section>
 

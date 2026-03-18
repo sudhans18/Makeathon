@@ -33,22 +33,22 @@ import { initFAQ } from './sections/faq.js';
  */
 function boot() {
     // 1. Register GSAP plugins
-    registerGSAP();
+    try { registerGSAP(); } catch (e) { console.warn('[boot] GSAP init failed:', e); }
 
     // 2. Initialize Three.js scene on hero canvas
-    initThree('hero-canvas');
+    try { initThree('hero-canvas'); } catch (e) { console.warn('[boot] Three.js init failed:', e); }
 
     // 3. Start Lenis smooth scrolling
-    initLenis();
+    try { initLenis(); } catch (e) { console.warn('[boot] Lenis init failed:', e); }
 
     // 4. Initialize sections in DOM order
-    initHero();
-    initAbout();
-    initTimeline();
-    initGallery();
-    initProblems();
-    initTeam();
-    initFAQ();
+    try { initHero(); } catch (e) { console.warn('[boot] Hero init failed:', e); }
+    try { initAbout(); } catch (e) { console.warn('[boot] About init failed:', e); }
+    try { initTimeline(); } catch (e) { console.warn('[boot] Timeline init failed:', e); }
+    try { initGallery(); } catch (e) { console.warn('[boot] Gallery init failed:', e); }
+    try { initProblems(); } catch (e) { console.warn('[boot] Problems init failed:', e); }
+    try { initTeam(); } catch (e) { console.warn('[boot] Team init failed:', e); }
+    try { initFAQ(); } catch (e) { console.warn('[boot] FAQ init failed:', e); }
 
     console.log('[Makeathon 7.0] All systems online. Welcome to the Creation Zone.');
 }

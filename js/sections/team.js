@@ -1,12 +1,10 @@
 /* ═══════════════════════════════════════════════════════════
    js/sections/team.js
-   SPIDER-VERSE Team
-   Populate ECEA, IETE, and RACE members from assets
+   Spider-Verse Team — Clean & Modern
+   Tab switching + IntersectionObserver scroll reveal
 ═══════════════════════════════════════════════════════════ */
 
-import { createScrollReveal } from '../core/gsap-init.js';
-
-// Derived from local directory listings
+// Member file lists (from asset directories)
 const ECEA_MEMBERS = [
   "ABHIMANYU SINGH BHATI ECE.jpg", "ANUSHRI V ECE.jpg", "BALAJI S ECE.jpg",
   "HARINEE V T ECE.jpg", "LAVANYA P ECE.jpg", "MOHAMMED RAEEF ECE.jpeg",
@@ -30,60 +28,140 @@ const RACE_MEMBERS = [
   "VINAYAGAMURTHI E ECE.jpg", "vikash Krishnakumar.jpg"
 ];
 
+/**
+ * Extract a clean display name from a filename.
+ */
+function formatName(filename) {
+  let name = filename.replace(/\.[^/.]+$/, '');   // strip extension
+  name = name.replace(/\s*ECE$/i, '');             // strip " ECE" suffix
+  return name.trim();
+}
+
+/**
+ * Build card HTML for a single member.
+ */
+function cardHTML(filename, folder) {
+  const name = formatName(filename);
+  return `
+    <article class="team-card">
+      <div class="team-card__avatar">
+        <div class="team-card__avatar-inner">
+          <img
+            src="assets/${folder}/${filename}"
+            alt="${name}"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      <div class="team-card__info">
+        <h3 class="team-card__name">${name}</h3>
+        <p class="team-card__role">Core Member</p>
+      </div>
+    </article>`;
+}
+
+/**
+ * Inject cards into a grid container.
+ */
+function injectCards(containerId, members, folder) {
+  const grid = document.getElementById(containerId);
+  if (!grid) return;
+  grid.innerHTML = members.map(f => cardHTML(f, folder)).join('');
+}
+
+/**
+ * Animate cards within a panel into view with stagger.
+ */
+function revealCards(panel) {
+  const cards = panel.querySelectorAll('.team-card');
+  // Reset all cards first
+  cards.forEach(card => {
+    card.classList.remove('in-view');
+    card.style.transitionDelay = '0ms';
+  });
+
+  // Force reflow so the reset takes effect
+  void panel.offsetHeight;
+
+  // Stagger entry
+  cards.forEach((card, i) => {
+    card.style.transitionDelay = `${i * 80}ms`;
+    // Small rAF delay so the browser processes the reset
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        card.classList.add('in-view');
+      });
+    });
+  });
+}
+
+/**
+ * Set up tab switching.
+ */
+function initTabs() {
+  const tabs = document.querySelectorAll('.team__tab');
+  const panels = document.querySelectorAll('.team__panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.team;
+
+      // Update active tab
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      // Show target panel, hide others
+      panels.forEach(p => {
+        if (p.dataset.team === target) {
+          p.classList.add('active');
+          revealCards(p);
+        } else {
+          p.classList.remove('active');
+        }
+      });
+    });
+  });
+}
+
+/**
+ * IntersectionObserver: reveal cards when section scrolls into view.
+ */
+function initScrollReveal() {
+  const section = document.getElementById('team');
+  if (!section) return;
+
+  let hasRevealed = false;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !hasRevealed) {
+        hasRevealed = true;
+        const activePanel = section.querySelector('.team__panel.active');
+        if (activePanel) {
+          revealCards(activePanel);
+        }
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15
+  });
+
+  observer.observe(section);
+}
+
+/**
+ * Main init — called from main.js.
+ */
 export function initTeam() {
+  // 1. Inject cards into each grid
   injectCards('team-grid-ecea', ECEA_MEMBERS, 'ECEA-MEMBERS');
   injectCards('team-grid-iete', IETE_MEMBERS, 'IETE-MEMBERS');
   injectCards('team-grid-race', RACE_MEMBERS, 'RACE-MEMBERS');
 
-  // Custom reveal for team cards — spin in
-  const cards = document.querySelectorAll('.team-card');
-  if (!cards.length) return;
+  // 2. Set up tab switching
+  initTabs();
 
-  cards.forEach((card, i) => {
-    const rot = (Math.random() * 8) - 4;
-    card.style.transform = `rotate(${rot}deg)`;
-
-    gsap.fromTo(card,
-      { opacity: 0, scale: 0.5, rotation: rot - 45 },
-      {
-        opacity: 1, scale: 1, rotation: rot,
-        duration: 0.6,
-        ease: 'back.out(2)',
-        delay: (i % 4) * 0.1,
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 85%',
-        }
-      }
-    );
-  });
-}
-
-function formatName(filename) {
-  // Remove extension and common suffix ' ECE'
-  let name = filename.replace(/\.[^/.]+$/, "");
-  name = name.replace(/ ECE$/i, "");
-  return name.trim();
-}
-
-function injectCards(containerId, memberFiles, folderName) {
-  const grid = document.getElementById(containerId);
-  if (!grid) return;
-
-  grid.innerHTML = memberFiles.map((filename) => `
-    <article class="team-card">
-      <div class="team-card__avatar">
-        <img
-          src="assets/${folderName}/${filename}"
-          alt="${formatName(filename)}"
-          loading="lazy"
-        />
-        <div class="spider-sense" aria-hidden="true"></div>
-      </div>
-      <div class="team-card__info">
-        <h3 class="team-card__name">${formatName(filename)}</h3>
-        <p class="team-card__role">Core Member</p>
-      </div>
-    </article>
-  `).join('');
+  // 3. Set up scroll reveal
+  initScrollReveal();
 }
