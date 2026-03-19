@@ -19,11 +19,8 @@ export function initTimeline() {
     revealEvents();
     vibrateWebOnReveal();
 
-    if (!prefersReducedMotion()) {
-        animateWebStrand();
-        if (!isMobile()) {
-            animateSpider();
-        }
+    if (!prefersReducedMotion() && !isMobile()) {
+        animateSpiderAndWeb();
     }
 }
 
@@ -90,85 +87,71 @@ function vibrateWebOnReveal() {
     events.forEach((el) => observer.observe(el));
 }
 
-/* ─── Web Strand Draw ─────────────────────── */
+/* ─── Spider & Web Connection Animation ─────────────── */
 /**
- * Draw the web strand downward as the user scrolls
- * through the timeline section (scaleY 0 → 1).
+ * Synchronizes the spider's movement and the web thread's growth
+ * to simulate the spider dropping and pulling the thread.
  */
-function animateWebStrand() {
-    const line = document.querySelector('.timeline__web-line');
-    const glow = document.querySelector('.timeline__web-glow');
-    if (!line) return;
-
-    // Strand grows downward
-    gsap.fromTo(line,
-        { scaleY: 0, opacity: 0.5 },
-        {
-            scaleY: 1,
-            opacity: 1,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '#timeline',
-                start: 'top 60%',
-                end: 'bottom 40%',
-                scrub: 1,
-            },
-        }
-    );
-
-    // Glow layer follows the strand
-    if (glow) {
-        gsap.fromTo(glow,
-            { scaleY: 0, opacity: 0 },
-            {
-                scaleY: 1,
-                opacity: 1,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '#timeline',
-                    start: 'top 60%',
-                    end: 'bottom 40%',
-                    scrub: 1,
-                },
-            }
-        );
-    }
-}
-
-/* ─── Spider Scroll Animation ─────────────── */
-/**
- * Move the spider element from top to bottom of the
- * timeline track, synced to scroll progress.
- * Uses GSAP ScrollTrigger scrub for smooth tracking.
- */
-function animateSpider() {
+function animateSpiderAndWeb() {
     const spider = document.querySelector('.timeline__spider');
     const track = document.querySelector('.timeline__track');
-    if (!spider || !track) return;
+    const line = document.querySelector('.timeline__web-line');
+    const glow = document.querySelector('.timeline__web-glow');
+    if (!spider || !track || !line) return;
 
-    // Calculate the total distance the spider needs to travel
-    // (height of the track minus spider offset)
-    gsap.fromTo(spider,
-        { top: '20px' },
-        {
-            top: () => `${track.offsetHeight - 40}px`,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '#timeline',
-                start: 'top 50%',
-                end: 'bottom 50%',
-                scrub: 0.8,   // Smooth lag behind scroll
-                invalidateOnRefresh: true, // Recalc on resize
-            },
+    // The maximum travel distance for the spider
+    const maxTravel = track.offsetHeight - 40;
+
+    // Create a master GSAP Timeline perfectly locked to scroll progress
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: '#timeline',
+            start: 'top 50%',
+            end: 'bottom 50%',
+            scrub: 1.2, // Smooth interpolation (lerp-like) across frames
+            invalidateOnRefresh: true, // Recalculate if window resizes
         }
+    });
+
+    // 1. Spider moves down
+    tl.fromTo(spider,
+        { top: 0 },
+        {
+            top: () => `${maxTravel}px`,
+            ease: 'power1.inOut' // Natural movement easing
+        },
+        0 // Insert at absolute start (0) of timeline
     );
 
-    // Subtle rotation wiggle as spider crawls
+    // 2. Web thread perfectly matches spider's location by scaling downwards
+    tl.fromTo(line,
+        { scaleY: 0 },
+        {
+            scaleY: () => maxTravel / track.offsetHeight,
+            ease: 'power1.inOut' // Exact same easing as spider keeps them locked
+        },
+        0 // Sync directly with spider movement
+    );
+
+    // 3. Web glow perfectly matches spider's location
+    if (glow) {
+        tl.fromTo(glow,
+            { scaleY: 0 },
+            { 
+                scaleY: () => maxTravel / track.offsetHeight,
+                ease: 'power1.inOut'
+            },
+            0
+        );
+    }
+
+    // 4. Subtle, continuous tension sway for visual realism
     gsap.to(spider, {
-        rotation: 3,
-        duration: 0.8,
+        x: '+=3',           // Micro horizontal oscillation
+        rotation: 4,        // Micro rotation
+        duration: 1.8,      // Slow swaying
         ease: 'sine.inOut',
-        yoyo: true,
-        repeat: -1,
+        yoyo: true,         // Reverses smoothly
+        repeat: -1          // Infinite loop
     });
 }
