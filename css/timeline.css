@@ -35,7 +35,8 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 2px; /* Realistic thin silk under tension */
+    width: 2px;
+    /* Realistic thin silk under tension */
     height: 100%;
     z-index: 1;
     transform-origin: top center;
@@ -86,96 +87,180 @@
     /* JS drives this via GSAP scroll */
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 22px;
-    height: 26px;
-    z-index: 10;
+    width: 40px;
+    height: 52px;
+    z-index: 20;
     pointer-events: none;
-    transition: top 0.05s linear;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Spider body — oval abdomen + smaller head */
-.timeline__spider::before {
+/* Clean up any old pseudo-elements if present */
+.timeline__spider::before, .timeline__spider::after,
+.timeline__spider-legs::before, .timeline__spider-legs::after {
+    display: none !important;
+}
+
+/* Core Container (Body + Head) */
+.spider__core {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Oscillation micro-movement */
+    animation: spiderBreathing 2s infinite alternate ease-in-out;
+}
+
+@keyframes spiderBreathing {
+    0% { transform: scale(1) translateY(0); }
+    100% { transform: scale(1.02) translateY(1px); }
+}
+
+/* Abdomen (Dark Teal with Red Stripes) */
+.spider__body {
+    width: 26px;
+    height: 34px;
+    /* Base dark teal/blue with bright red vertical stripes */
+    background: linear-gradient(to right,
+        #061a24 0%, #061a24 25%,
+        #ff2e63 25%, #ff2e63 35%,
+        #041016 35%, #041016 65%,
+        #ff2e63 65%, #ff2e63 75%,
+        #061a24 75%, #061a24 100%
+    );
+    border: 1px solid #1a2240;
+    border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+    /* Stronger contrast and core shadow visibility */
+    box-shadow: inset 0 -4px 8px rgba(0, 0, 0, 0.9), 0 0 12px rgba(0, 240, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.spider__42 {
+    color: #00f0ff;
+    font-family: inherit;
+    font-weight: 900;
+    font-size: 11px;
+    letter-spacing: -0.5px;
+    text-shadow: 0 0 6px #00f0ff, 0 0 10px rgba(0, 240, 255, 0.8);
+    transform: translateY(-2px);
+    opacity: 1;
+}
+
+/* Thorax / Head */
+.spider__head {
+    width: 18px;
+    height: 14px;
+    /* Increased brightness/opacity so it stands out strongly */
+    background: #16264c;
+    border: 1px solid #2a3a6a;
+    border-radius: 40% 40% 50% 50%;
+    margin-top: -6px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), inset 0 2px 4px rgba(0, 240, 255, 0.3);
+}
+
+/* Glowing Spider Eyes */
+.spider__head::before {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: 3px;
     left: 50%;
     transform: translateX(-50%);
-    width: 14px;
-    height: 18px;
-    background: radial-gradient(ellipse at 50% 40%, var(--c-red), #8b0020);
-    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-    box-shadow:
-        0 0 8px var(--c-red),
-        0 0 16px rgba(255, 0, 64, 0.4);
+    width: 12px;
+    height: 3px;
+    background:
+        radial-gradient(circle, #00f0ff 60%, transparent 70%) 0px 0px / 2px 2px no-repeat,
+        radial-gradient(circle, #00f0ff 60%, transparent 70%) 3px 1px / 2px 2px no-repeat,
+        radial-gradient(circle, #00f0ff 60%, transparent 70%) 7px 1px / 2px 2px no-repeat,
+        radial-gradient(circle, #00f0ff 60%, transparent 70%) 10px 0px / 2px 2px no-repeat;
+    filter: drop-shadow(0 0 3px #00f0ff);
+    z-index: 5;
 }
 
-/* Spider head */
-.timeline__spider::after {
-    content: '';
+/* Fangs with Cyan Glow */
+.spider__fang {
     position: absolute;
-    top: 0;
+    bottom: -4px;
+    width: 3px;
+    height: 7px;
+    background: #00f0ff;
+    border-radius: 2px;
+    box-shadow: 0 0 6px #00f0ff, 0 0 12px rgba(0, 240, 255, 0.6);
+}
+
+.spider__fang.left { left: 3px; transform: rotate(15deg); }
+.spider__fang.right { right: 3px; transform: rotate(-15deg); }
+
+/* Legs Container */
+.spider__legs {
+    position: absolute;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    width: 10px;
-    height: 10px;
-    background: radial-gradient(circle at 50% 50%, var(--c-magenta), #6b0090);
-    border-radius: 50%;
-    box-shadow:
-        0 0 6px var(--c-magenta),
-        0 0 12px rgba(217, 0, 255, 0.4);
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
 
-/* Spider legs — drawn via outline + shadow on a helper element */
-.timeline__spider-legs {
+/* Base Proximal Leg Segment (Femur - Red/Pink bases) */
+.s-leg {
     position: absolute;
-    top: 8px;
+    top: 26px; /* Anchor closer to the smaller head/thorax */
     left: 50%;
-    transform: translateX(-50%);
-    width: 22px;
-    height: 14px;
-    pointer-events: none;
+    margin-left: -1px;
+    width: 2px;
+    height: 16px;
+    background: linear-gradient(to bottom, #ff2e63 0%, #aa2315 100%);
+    border-radius: 2px;
+    transform-origin: top center;
+    box-shadow: inset 0 0 2px rgba(0,0,0,0.5);
 }
 
-/* Left legs */
-.timeline__spider-legs::before {
-    content: '';
+/* Distal Leg Segment (Tibia/Tarsus - Dark to Cyan tip bent outwards) */
+.s-leg-inner {
     position: absolute;
-    top: 0;
-    left: -6px;
-    width: 10px;
-    height: 14px;
-    border-top: 2px solid var(--c-magenta);
-    border-bottom: 2px solid var(--c-magenta);
-    border-left: 2px solid var(--c-magenta);
-    border-right: none;
-    border-radius: 6px 0 0 6px;
-    box-shadow:
-        -4px -4px 0 0 transparent,
-        0 -6px 0 0 var(--c-magenta),
-        0 6px 0 0 var(--c-magenta),
-        -5px 0px 0 0 var(--c-magenta);
-    filter: drop-shadow(0 0 3px rgba(217, 0, 255, 0.5));
+    top: 100%; /* Append exactly to the end of proximal segment */
+    left: 0;
+    width: 2px;
+    height: 24px;
+    background: linear-gradient(to bottom, #080d1a 0%, #151b2b 75%, #00f0ff 85%, #00f0ff 100%);
+    border-radius: 2px;
+    transform-origin: top center;
+    box-shadow: 0 6px 6px -2px rgba(0, 240, 255, 0.5);
 }
 
-/* Right legs */
-.timeline__spider-legs::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -6px;
-    width: 10px;
-    height: 14px;
-    border-top: 2px solid var(--c-magenta);
-    border-bottom: 2px solid var(--c-magenta);
-    border-right: 2px solid var(--c-magenta);
-    border-left: none;
-    border-radius: 0 6px 6px 0;
-    box-shadow:
-        0 -6px 0 0 var(--c-magenta),
-        0 6px 0 0 var(--c-magenta),
-        5px 0px 0 0 var(--c-magenta);
-    filter: drop-shadow(0 0 3px rgba(217, 0, 255, 0.5));
-}
+/* -- LEFT LEGS -- */
+.l1 { transform: rotate(calc(60deg + var(--leg-stretch, 0) * 15deg)); }
+.l1 .s-leg-inner { transform: rotate(calc(-45deg + var(--leg-stretch, 0) * 15deg)); }
+
+.l2 { transform: rotate(calc(90deg + var(--leg-stretch, 0) * 20deg)); }
+.l2 .s-leg-inner { height: 34px; transform: rotate(calc(-55deg + var(--leg-stretch, 0) * 15deg)); }
+
+.l3 { transform: rotate(calc(125deg - var(--leg-stretch, 0) * 15deg)); }
+.l3 .s-leg-inner { transform: rotate(calc(-40deg + var(--leg-stretch, 0) * 15deg)); }
+
+.l4 { transform: rotate(calc(160deg - var(--leg-stretch, 0) * 10deg)); }
+.l4 .s-leg-inner { height: 36px; transform: rotate(calc(-30deg + var(--leg-stretch, 0) * 10deg)); }
+
+/* -- RIGHT LEGS -- */
+.r1 { transform: rotate(calc(-60deg - var(--leg-stretch, 0) * 15deg)); }
+.r1 .s-leg-inner { transform: rotate(calc(45deg - var(--leg-stretch, 0) * 15deg)); }
+
+.r2 { transform: rotate(calc(-90deg - var(--leg-stretch, 0) * 20deg)); }
+.r2 .s-leg-inner { height: 34px; transform: rotate(calc(55deg - var(--leg-stretch, 0) * 15deg)); }
+
+.r3 { transform: rotate(calc(-125deg + var(--leg-stretch, 0) * 15deg)); }
+.r3 .s-leg-inner { transform: rotate(calc(40deg - var(--leg-stretch, 0) * 15deg)); }
+
+.r4 { transform: rotate(calc(-160deg + var(--leg-stretch, 0) * 10deg)); }
+.r4 .s-leg-inner { height: 36px; transform: rotate(calc(30deg - var(--leg-stretch, 0) * 10deg)); }
 
 /* ═══════════════════════════════════════════
    TIMELINE EVENT — Alternating layout

@@ -99,51 +99,86 @@ function animateSpiderAndWeb() {
     const glow = document.querySelector('.timeline__web-glow');
     if (!spider || !track || !line) return;
 
-    // The maximum travel distance for the spider
-    const maxTravel = track.offsetHeight - 40;
+    // Inject the new Earth-42 spider HTML structure
+    spider.innerHTML = `
+        <div class="spider__core">
+            <div class="spider__body">
+                <span class="spider__42">42</span>
+            </div>
+            <div class="spider__head">
+                <div class="spider__fang left"></div>
+                <div class="spider__fang right"></div>
+            </div>
+        </div>
+        <div class="spider__legs">
+            <div class="s-leg l1"><div class="s-leg-inner"></div></div>
+            <div class="s-leg l2"><div class="s-leg-inner"></div></div>
+            <div class="s-leg l3"><div class="s-leg-inner"></div></div>
+            <div class="s-leg l4"><div class="s-leg-inner"></div></div>
+            <div class="s-leg r1"><div class="s-leg-inner"></div></div>
+            <div class="s-leg r2"><div class="s-leg-inner"></div></div>
+            <div class="s-leg r3"><div class="s-leg-inner"></div></div>
+            <div class="s-leg r4"><div class="s-leg-inner"></div></div>
+        </div>
+    `;
 
-    // Create a master GSAP Timeline perfectly locked to scroll progress
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: '#timeline',
-            start: 'top 50%',
-            end: 'bottom 50%',
-            scrub: 1.2, // Smooth interpolation (lerp-like) across frames
-            invalidateOnRefresh: true, // Recalculate if window resizes
+    const timelineSection = document.getElementById('timeline');
+    let targetPos = 0;
+    let currentPos = 0;
+
+    // Leg animation tracking variables
+    let lastCurrentPos = 0;
+    let currentStretch = 0;
+
+    const updatePosition = () => {
+        const sectionRect = timelineSection.getBoundingClientRect();
+        const windowHalf = window.innerHeight / 2;
+
+        // Calculate progress exactly like GSAP start: 'top 50%', end: 'bottom 50%'
+        let progress = (windowHalf - sectionRect.top) / sectionRect.height;
+
+        // Clamp progress between 0 and 1 so the web doesn't overshoot
+        progress = Math.max(0, Math.min(1, progress));
+
+        const maxTravel = track.offsetHeight - 40;
+        targetPos = progress * maxTravel;
+    };
+
+    const lerp = (start, end, factor) => start + (end - start) * factor;
+
+    const render = () => {
+        // Smoothly interpolate current position towards target to prevent jerkiness
+        currentPos = lerp(currentPos, targetPos, 0.1);
+
+        // Calculate smooth velocity for leg animation (positive = down, negative = up)
+        const velocity = currentPos - lastCurrentPos;
+        lastCurrentPos = currentPos;
+
+        // Target stretch bounds between -1 and 1 based on velocity magnitude
+        const targetStretch = Math.max(-1, Math.min(1, velocity / 3));
+        currentStretch = lerp(currentStretch, targetStretch, 0.15);
+
+        // Apply synchronized position to spider and thread
+        spider.style.top = `${currentPos}px`;
+
+        // Drive leg stretch and contract animation simply by updating the CSS variable
+        spider.style.setProperty('--leg-stretch', currentStretch.toFixed(3));
+
+        line.style.height = `${currentPos}px`;
+
+        if (glow) {
+            glow.style.height = `${currentPos}px`;
         }
-    });
 
-    // 1. Spider moves down
-    tl.fromTo(spider,
-        { top: 0 },
-        {
-            top: () => `${maxTravel}px`,
-            ease: 'power1.inOut' // Natural movement easing
-        },
-        0 // Insert at absolute start (0) of timeline
-    );
+        requestAnimationFrame(render);
+    };
 
-    // 2. Web thread perfectly matches spider's location by scaling downwards
-    tl.fromTo(line,
-        { scaleY: 0 },
-        {
-            scaleY: () => maxTravel / track.offsetHeight,
-            ease: 'power1.inOut' // Exact same easing as spider keeps them locked
-        },
-        0 // Sync directly with spider movement
-    );
+    window.addEventListener('scroll', updatePosition, { passive: true });
+    window.addEventListener('resize', updatePosition, { passive: true });
 
-    // 3. Web glow perfectly matches spider's location
-    if (glow) {
-        tl.fromTo(glow,
-            { scaleY: 0 },
-            { 
-                scaleY: () => maxTravel / track.offsetHeight,
-                ease: 'power1.inOut'
-            },
-            0
-        );
-    }
+    // Initialize values immediately
+    updatePosition();
+    render();
 
     // 4. Subtle, continuous tension sway for visual realism
     gsap.to(spider, {
