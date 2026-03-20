@@ -13,15 +13,6 @@
     background: #000;
 }
 
-/* Three.js canvas (The Collider) */
-#hero-canvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
-
 /* Background Video */
 .hero__video-bg {
     position: absolute;
@@ -29,7 +20,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1;
+    z-index: 0;
 }
 
 /* Comic Book Corner Borders */
@@ -232,5 +223,9 @@
 
     .hero__content {
         padding: var(--sp-md);
+    }
+
+    .hero__video-bg {
+        object-position: right center;
     }
 }
