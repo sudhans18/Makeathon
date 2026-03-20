@@ -4,7 +4,7 @@
    Three.js Multiversal Collider Ring (Portal) + Glitch text
 ═══════════════════════════════════════════════════════════ */
 
-import { scene, camera, onFrame } from '../core/three-setup.js';
+import { scene, camera, onFrame, THREE } from '../core/three-setup.js';
 import { createParticleSystem } from '../effects/particles.js';
 import { prefersReducedMotion, isMobile, lerp, throttle } from '../core/utils.js';
 
@@ -13,6 +13,8 @@ let mouseX = 0, mouseY = 0;
 let particleSys;
 
 export function initHero() {
+    setupCountdownTimer(); // Move this outside Three.js dependency
+    
     if (!scene) return;
     scene.background = new THREE.Color(0x0f1118);
 
@@ -25,7 +27,6 @@ export function initHero() {
 
     setupCTA();
     setupScrollFade();
-    setupCountdownTimer();
 }
 
 /**

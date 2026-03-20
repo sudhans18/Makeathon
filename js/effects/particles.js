@@ -6,6 +6,7 @@
 ═══════════════════════════════════════════════════════════ */
 
 import { randomRange, prefersReducedMotion } from '../core/utils.js';
+import { THREE } from '../core/three-setup.js';
 
 const PRESETS = {
     anomaly: {

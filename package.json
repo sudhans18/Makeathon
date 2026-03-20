@@ -1,0 +1,22 @@
+{
+  "name": "makeathon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx live-server --port=3000 --open=/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sudhans18/Makeathon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/sudhans18/Makeathon/issues"
+  },
+  "homepage": "https://github.com/sudhans18/Makeathon#readme"
+}

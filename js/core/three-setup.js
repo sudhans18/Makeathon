@@ -7,6 +7,10 @@
    Extend: call onFrame(callback) to add per-frame logic
 ═══════════════════════════════════════════════════════════ */
 
+// Three.js is loaded via importmap (see index.html) — must be imported, NOT a global
+import * as THREE from 'three';
+export { THREE };
+
 /** @type {THREE.Scene} */
 export let scene;
 /** @type {THREE.PerspectiveCamera} */
