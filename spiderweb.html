@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Spiderweb Network</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000008;
+            font-family: sans-serif;
+        }
+
+        #canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        #ui-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .btn-wrap {
+            position: absolute;
+            width: 0;
+            height: 0;
+            pointer-events: auto;
+        }
+
+        .btn-wrap.behind {
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .web-btn {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .ring {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 2px solid;
+            top: 0;
+            left: 0;
+            animation: pulse 2.5s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+            pointer-events: none;
+        }
+
+        .ring.r1 {
+            animation-delay: 0s;
+        }
+
+        .ring.r2 {
+            animation-delay: 0.8s;
+        }
+
+        .ring.r3 {
+            animation-delay: 1.6s;
+        }
+
+        @keyframes pulse {
+            0% {
+                width: 56px;
+                height: 56px;
+                opacity: 1;
+            }
+
+            50% {
+                width: 96px;
+                height: 96px;
+                opacity: 0.5;
+            }
+
+            100% {
+                width: 128px;
+                height: 128px;
+                opacity: 0;
+            }
+        }
+
+        /* Hardware theme */
+        .hardware .web-btn {
+            background: radial-gradient(circle at 36% 32%, #ffffff 0%, #d0d0d0 45%, #707070 100%);
+            box-shadow: 0 0 20px 8px rgba(255, 255, 255, 0.45), 0 0 5px 2px rgba(200, 200, 200, 0.3);
+            color: #1a1a1a;
+        }
+
+        .hardware .ring {
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+
+        /* Software theme */
+        .software .web-btn {
+            background: radial-gradient(circle at 36% 32%, #ff8c00 0%, #cc2200 55%, #5a0000 100%);
+            box-shadow: 0 0 20px 8px rgba(255, 70, 0, 0.6), 0 0 5px 2px rgba(255, 140, 0, 0.4);
+            color: #ffe8cc;
+        }
+
+        .software .ring {
+            border-color: rgba(255, 80, 0, 0.4);
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+
+<body>
+    <div id="canvas-container"></div>
+    <div id="ui-layer"></div>
+
+    <script>
+        const canvasContainer = document.getElementById('canvas-container');
+        const uiLayer = document.getElementById('ui-layer');
+
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x000008);
+        scene.fog = new THREE.FogExp2(0x000008, 0.007);
+
+        const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 800);
+        camera.position.set(0, 0, 100);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        canvasContainer.appendChild(renderer.domElement);
+
+        const webData = [
+            { pos: [-52, 10, -15], tilt: [0.3, 0.4, 0.1], spokes: 12, rings: 11, radius: 30 },
+            { pos: [55, -8, 18], tilt: [-0.2, -0.3, 0.05], spokes: 10, rings: 9, radius: 24 },
+            { pos: [8, 42, -35], tilt: [0.6, 0.1, -0.25], spokes: 13, rings: 12, radius: 34 },
+            { pos: [-18, -42, 22], tilt: [-0.35, 0.45, 0.2], spokes: 11, rings: 10, radius: 22 },
+            { pos: [12, 6, 60], tilt: [0.1, -0.15, 0], spokes: 12, rings: 11, radius: 26 },
+            { pos: [-30, -15, -50], tilt: [0.25, -0.2, 0.3], spokes: 10, rings: 8, radius: 20 },
+            { pos: [40, 30, 30], tilt: [-0.1, 0.35, -0.1], spokes: 14, rings: 13, radius: 36 },
+            { pos: [-10, 55, 10], tilt: [0.4, -0.05, 0.15], spokes: 11, rings: 10, radius: 28 },
+            { pos: [28, -35, -20], tilt: [-0.2, 0.1, 0.4], spokes: 12, rings: 11, radius: 25 },
+            { pos: [-45, 20, 40], tilt: [0.15, 0.5, -0.05], spokes: 10, rings: 9, radius: 22 },
+            { pos: [18, -10, -5], tilt: [0.05, -0.1, 0.2], spokes: 13, rings: 12, radius: 32 },
+            { pos: [-5, -8, -8], tilt: [-0.1, 0.2, -0.15], spokes: 14, rings: 13, radius: 38 }
+        ];
+
+        const hardwareLabels = ['MCU', 'FPGA', 'PCB', 'RF', 'Power', 'Sensors'];
+        const softwareLabels = ['AI/ML', 'Embedded', 'Backend', 'Cloud', 'Security', 'DSP'];
+
+        function createLineSegments(points, colorHex, opacity, linewidth) {
+            const geo = new THREE.BufferGeometry().setFromPoints(points);
+            const mat = new THREE.LineBasicMaterial({
+                color: colorHex,
+                transparent: true,
+                opacity: opacity,
+                linewidth: linewidth,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false
+            });
+            return new THREE.LineSegments(geo, mat);
+        }
+
+        const webs = [];
+        const btnWraps = [];
+
+        webData.forEach((w, idx) => {
+            const group = new THREE.Group();
+            group.position.set(...w.pos);
+            group.rotation.set(...w.tilt);
+
+            const spokePoints = [];
+            const ringSpInner = [];
+            const ringSpMid = [];
+            const ringSpOuter = [];
+
+            const ringSpacing = w.radius / w.rings;
+
+            function getPoint(s, r) {
+                const angle = (s / w.spokes) * Math.PI * 2;
+                const distance = r * ringSpacing;
+                return new THREE.Vector3(Math.cos(angle) * distance, Math.sin(angle) * distance, 0);
+            }
+
+            // Generate spokes
+            for (let s = 0; s < w.spokes; s++) {
+                spokePoints.push(new THREE.Vector3(0, 0, 0));
+                spokePoints.push(getPoint(s, w.rings));
+            }
+
+            // Generate rings
+            for (let r = 1; r <= w.rings; r++) {
+                const pullFactor = (r >= w.rings - 2) ? 0.90 : 0.94;
+                for (let s = 0; s < w.spokes; s++) {
+                    const p1 = getPoint(s, r);
+                    const p2 = getPoint(s + 1, r);
+                    const mid = new THREE.Vector3().lerpVectors(p1, p2, 0.5).multiplyScalar(pullFactor);
+
+                    const curve = new THREE.QuadraticBezierCurve3(p1, mid, p2);
+                    const pts = curve.getPoints(4);
+
+                    for (let i = 0; i < pts.length - 1; i++) {
+                        if (r < 4) {
+                            ringSpInner.push(pts[i], pts[i + 1]);
+                        } else if (r < 9) {
+                            ringSpMid.push(pts[i], pts[i + 1]);
+                        } else {
+                            ringSpOuter.push(pts[i], pts[i + 1]);
+                        }
+                    }
+                }
+            }
+
+            const addPasses = (pts, color, coreOpac) => {
+                if (pts.length === 0) return;
+                group.add(createLineSegments(pts, 0xff6600, 0.04, 8));
+                group.add(createLineSegments(pts, 0xff5500, 0.18, 3));
+                group.add(createLineSegments(pts, color, coreOpac, 1));
+            };
+
+            addPasses(spokePoints, 0xff5500, 1.0);
+
+            const colorInner = new THREE.Color().setHSL(20 / 360, 1.0, 0.68);
+            const colorMid = new THREE.Color().setHSL(15 / 360, 1.0, 0.55);
+            const colorOuter = new THREE.Color().setHSL(10 / 360, 1.0, 0.40);
+
+            addPasses(ringSpInner, colorInner, 0.92);
+            addPasses(ringSpMid, colorMid, 0.92);
+            addPasses(ringSpOuter, colorOuter, 0.92);
+
+            scene.add(group);
+            webs.push({ group, offset: Math.random() * Math.PI * 2, worldPos: new THREE.Vector3(...w.pos), baseRotZ: w.tilt[2] });
+
+            const isHard = idx < 6;
+            const themeClass = isHard ? 'hardware' : 'software';
+            const label = isHard ? hardwareLabels[idx] : softwareLabels[idx - 6];
+
+            const wrap = document.createElement('div');
+            wrap.className = `btn-wrap ${themeClass}`;
+            wrap.id = `btn-${idx}`;
+            wrap.innerHTML = `
+                <div class="ring r1"></div>
+                <div class="ring r2"></div>
+                <div class="ring r3"></div>
+                <button class="web-btn">
+                    <span class="label">${label}</span>
+                </button>
+            `;
+            uiLayer.appendChild(wrap);
+            btnWraps.push(wrap);
+
+            const dotGeo = new THREE.SphereGeometry(0.18, 4, 4);
+            const dotMat = new THREE.MeshBasicMaterial({ color: 0xff8800 });
+            for (let r = 1; r <= w.rings; r++) {
+                for (let s = 0; s < w.spokes; s++) {
+                    const mesh = new THREE.Mesh(dotGeo, dotMat);
+                    mesh.position.copy(getPoint(s, r));
+                    group.add(mesh);
+                }
+            }
+        });
+
+        // Frame Cables (connect web centers)
+        const cablesPts = [];
+        for (let i = 0; i < webs.length; i++) {
+            for (let j = i + 1; j < webs.length; j++) {
+                const dist = webs[i].worldPos.distanceTo(webs[j].worldPos);
+                if (dist < 80) {
+                    cablesPts.push(webs[i].worldPos.clone(), webs[j].worldPos.clone());
+                }
+            }
+        }
+        const cableGrp = new THREE.Group();
+        cableGrp.add(createLineSegments(cablesPts, 0xff6600, 0.04, 8));
+        cableGrp.add(createLineSegments(cablesPts, 0xff5500, 0.18, 3));
+        cableGrp.add(createLineSegments(cablesPts, 0xff6600, 0.55, 1));
+        scene.add(cableGrp);
+
+        // Lights
+        const pointFixed = new THREE.PointLight(0xff6600, 4, 200);
+        pointFixed.position.set(0, 0, 0);
+        scene.add(pointFixed);
+
+        const pointOrbit = new THREE.PointLight(0xff4400, 3, 160);
+        scene.add(pointOrbit);
+
+        const ambient = new THREE.AmbientLight(0xff3300, 0.5);
+        scene.add(ambient);
+
+        // Particles
+        function addSparks(count, size, color, opacity) {
+            const geo = new THREE.BufferGeometry();
+            const pos = [];
+            for (let i = 0; i < count; i++) {
+                pos.push((Math.random() - 0.5) * 200, (Math.random() - 0.5) * 200, (Math.random() - 0.5) * 200);
+            }
+            geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+            const mat = new THREE.PointsMaterial({ color, size, transparent: true, opacity, blending: THREE.AdditiveBlending, depthWrite: false });
+            scene.add(new THREE.Points(geo, mat));
+        }
+        addSparks(300, 0.3, 0xff7700, 0.35);
+        addSparks(100, 0.8, 0xffaa55, 0.1);
+
+        // Camera Orbit Controls
+        let isDragging = false;
+        let pMouse = { x: 0, y: 0 };
+        let sph = new THREE.Spherical(100, Math.PI / 2, 0);
+
+        window.addEventListener('mousedown', e => {
+            if (e.target.closest('.web-btn')) return;
+            isDragging = true; pMouse.x = e.clientX; pMouse.y = e.clientY;
+        });
+        window.addEventListener('mousemove', e => {
+            if (!isDragging) return;
+            sph.theta -= (e.clientX - pMouse.x) * 0.005;
+            sph.phi -= (e.clientY - pMouse.y) * 0.005;
+            sph.phi = Math.max(0.01, Math.min(Math.PI - 0.01, sph.phi));
+            pMouse.x = e.clientX; pMouse.y = e.clientY;
+        });
+        window.addEventListener('mouseup', () => isDragging = false);
+        window.addEventListener('wheel', e => {
+            sph.radius += e.deltaY * 0.05;
+            sph.radius = Math.max(22, Math.min(240, sph.radius));
+        });
+
+        window.addEventListener('touchstart', e => {
+            if (e.target.closest('.web-btn')) return;
+            isDragging = true; pMouse.x = e.touches[0].clientX; pMouse.y = e.touches[0].clientY;
+        }, { passive: false });
+        window.addEventListener('touchmove', e => {
+            if (!isDragging || e.touches.length === 0) return;
+            sph.theta -= (e.touches[0].clientX - pMouse.x) * 0.005;
+            sph.phi -= (e.touches[0].clientY - pMouse.y) * 0.005;
+            sph.phi = Math.max(0.01, Math.min(Math.PI - 0.01, sph.phi));
+            pMouse.x = e.touches[0].clientX; pMouse.y = e.touches[0].clientY;
+        }, { passive: false });
+        window.addEventListener('touchend', () => isDragging = false);
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const t = performance.now() * 0.001;
+
+            if (!isDragging) sph.theta += 0.0004;
+
+            camera.position.setFromSpherical(sph);
+            camera.lookAt(0, 0, 0);
+
+            pointOrbit.position.set(Math.sin(t) * 40, Math.cos(t * 0.8) * 30, Math.sin(t * 1.2) * 50);
+            pointOrbit.intensity = 3 + Math.sin(t * 1.3) * 1.5;
+
+            webs.forEach((w, i) => {
+                w.group.rotation.z = w.baseRotZ + Math.sin(t * 0.6 + w.offset) * 0.02;
+
+                const sc = w.worldPos.clone().project(camera);
+                btnWraps[i].classList.toggle('behind', sc.z > 1);
+
+                const x = (sc.x * 0.5 + 0.5) * window.innerWidth;
+                const y = (sc.y * -0.5 + 0.5) * window.innerHeight;
+                btnWraps[i].style.left = x + 'px';
+                btnWraps[i].style.top = y + 'px';
+            });
+
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+</body>
+
+</html>
