@@ -1,0 +1,192 @@
+/* ═══════════════════════════════════════════════════════════
+   faq.css — SPIDER-VERSE
+   Web of Destiny — SVG Web with interactive nodes
+═══════════════════════════════════════════════════════════ */
+
+.section--faq {
+    background: var(--c-bg);
+    /* Very subtle grid */
+    background-image:
+        linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    padding-bottom: var(--sp-2xl);
+}
+
+.section--faq .comic-heading {
+    color: var(--c-magenta);
+    text-shadow: 4px 4px 0 var(--c-cyan), 8px 8px 0 var(--c-border-dark);
+}
+
+/* --- Web of Destiny Container --- */
+.web-destiny {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 450px;
+    margin: 0 auto var(--sp-xl);
+    /* background: rgba(0,0,0,0.5); */
+}
+
+.web-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* Web strands glow */
+    filter: drop-shadow(0 0 4px var(--c-magenta));
+}
+
+.faq-nodes {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+/* Web Nodes (Buttons) */
+.faq-node {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--c-yellow);
+    border: 4px solid var(--c-border-dark);
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s var(--ease-pop), background 0.2s;
+    box-shadow: 4px 4px 0 var(--c-red);
+}
+
+.faq-node:hover {
+    transform: translate(-50%, -50%) scale(1.4);
+    background: var(--c-cyan);
+    box-shadow: 0 0 15px var(--c-cyan), 4px 4px 0 var(--c-magenta);
+}
+
+.faq-node.active {
+    background: var(--c-red);
+    box-shadow: 0 0 20px var(--c-red), 4px 4px 0 var(--c-yellow);
+    transform: translate(-50%, -50%) scale(1.5);
+    /* Glitch pulse */
+    animation: glitchPulse 1s infinite alternate;
+}
+
+@keyframes glitchPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1.5) translate(1px, 1px);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.55) translate(-1px, -1px);
+    }
+}
+
+/* --- Pop-art Thought Bubble Answer --- */
+.thought-bubble {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.bubble-content {
+    background: #fff;
+    border: 6px solid var(--c-border-dark);
+    border-radius: 30px;
+    /* Highly rounded for thought bubble */
+    padding: var(--sp-lg);
+    box-shadow: 10px 10px 0 var(--c-cyan);
+    /* Dot pattern inside bubble */
+    background-image: radial-gradient(#eee 2px, transparent 2px);
+    background-size: 12px 12px;
+}
+
+.bubble-tail {
+    position: absolute;
+    bottom: -25px;
+    right: 30%;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    border: 6px solid var(--c-border-dark);
+    border-radius: 50%;
+    box-shadow: 5px 5px 0 var(--c-cyan);
+}
+
+.bubble-tail::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: -15px;
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border: 6px solid var(--c-border-dark);
+    border-radius: 50%;
+    box-shadow: 3px 3px 0 var(--c-cyan);
+}
+
+.bubble-content h4 {
+    font-family: var(--ff-display);
+    font-size: 1.8rem;
+    color: var(--c-red);
+    text-transform: uppercase;
+    margin-bottom: var(--sp-sm);
+    line-height: 1;
+    text-shadow: 2px 2px 0 var(--c-border-dark);
+}
+
+.bubble-content p {
+    font-family: var(--ff-body);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #222;
+}
+
+/* Animation for content change */
+.bubble-content.refreshing {
+    animation: popIn 0.4s var(--ease-pop) forwards;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.placeholder-text {
+    color: #888;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .web-destiny {
+        height: 300px;
+    }
+
+    .faq-node {
+        width: 24px;
+        height: 24px;
+        border-width: 3px;
+    }
+
+    .bubble-content {
+        border-radius: 15px;
+        border-width: 4px;
+        padding: var(--sp-md);
+    }
+
+    .bubble-tail {
+        right: 20%;
+        width: 20px;
+        height: 20px;
+        border-width: 4px;
+    }
+}
