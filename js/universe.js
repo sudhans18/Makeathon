@@ -1,4 +1,4 @@
-﻿import { getUniverseById } from './data/universes.js';
+import { getUniverseById } from './data/universes.js';
 
 const params = new URLSearchParams(window.location.search);
 const universe = getUniverseById(params.get('u'));
@@ -9,6 +9,13 @@ if (root) {
     document.title = `${universe.code} · ${universe.title} | Makeathon 7.0`;
     document.documentElement.style.setProperty('--universe-accent', accent);
     document.documentElement.style.setProperty('--universe-glow', universe.family === 'hardware' ? 'rgba(255,45,45,.45)' : 'rgba(255,91,46,.45)');
+
+    if (universe.background) {
+        document.body.style.backgroundImage = `url('${universe.background}')`;
+        document.body.style.backgroundSize = 'cover';
+        document.body.style.backgroundPosition = 'center';
+        document.body.style.backgroundAttachment = 'fixed';
+    }
 
     root.innerHTML = `
         <section class="universe-hero section">

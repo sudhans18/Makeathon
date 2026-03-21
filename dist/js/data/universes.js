@@ -7,7 +7,8 @@ export const UNIVERSES = [
         track: 'Hardware',
         title: 'Adaptive Build Systems',
         subtitle: 'Responsive fabrication and sensor-heavy prototypes.',
-        image: 'assets/Spideys/1.jpeg',
+        image: 'assets/variants/friendly_neighbourhood_spiderman.jpg',
+        background: 'assets/background/friendly_neighbourhood_spiderman_bg.jpeg',
         href: 'universe.html?u=1',
         problems: [
             {
@@ -40,7 +41,8 @@ export const UNIVERSES = [
         track: 'Hardware',
         title: 'Mobility Interfaces',
         subtitle: 'Assistive motion, control feedback, and compact power.',
-        image: 'assets/Spideys/2.jpeg',
+        image: 'assets/variants/ironspider.jpg',
+        background: 'assets/background/ironspider_bg.webp',
         href: 'universe.html?u=2',
         problems: [
             {
@@ -73,7 +75,8 @@ export const UNIVERSES = [
         track: 'Hardware',
         title: 'Atmospheric Monitoring',
         subtitle: 'Air, heat, and anomaly sensing in dense spaces.',
-        image: 'assets/Spideys/3.jpeg',
+        image: 'assets/variants/mcu_spiderman.webp',
+        background: 'assets/background/mcu_spiderman_bg.webp',
         href: 'universe.html?u=3',
         problems: [
             {
@@ -106,7 +109,8 @@ export const UNIVERSES = [
         track: 'Hardware',
         title: 'Energy Capture',
         subtitle: 'Harvesting and storing small bursts efficiently.',
-        image: 'assets/Spideys/4.jpeg',
+        image: 'assets/variants/miles_morales.jpg',
+        background: 'assets/background/miles_morales_bg.jpeg',
         href: 'universe.html?u=4',
         problems: [
             {
@@ -139,7 +143,8 @@ export const UNIVERSES = [
         track: 'Hardware',
         title: 'Human-Environment Layers',
         subtitle: 'Interfaces between people, space, and infrastructure.',
-        image: 'assets/Spideys/5.jpeg',
+        image: 'assets/variants/scarlett_spider.webp',
+        background: 'assets/background/scarlett_spider_bg.jpeg',
         href: 'universe.html?u=5',
         problems: [
             {
@@ -172,7 +177,8 @@ export const UNIVERSES = [
         track: 'Hardware',
         title: 'Core Fabrication',
         subtitle: 'Mechanisms, joints, and modular systems.',
-        image: 'assets/Spideys/6.jpeg',
+        image: 'assets/variants/spider_gwen.jpg',
+        background: 'assets/background/spider_gwen_bg.jpeg',
         href: 'universe.html?u=6',
         problems: [
             {
@@ -205,7 +211,8 @@ export const UNIVERSES = [
         track: 'Software',
         title: 'Decision Systems',
         subtitle: 'Real-time software for fast, uncertain environments.',
-        image: 'assets/Spideys/7.jpeg',
+        image: 'assets/variants/spider_noir.png',
+        background: 'assets/background/spider_noir_bg.jpeg',
         href: 'universe.html?u=7',
         problems: [
             {
@@ -238,7 +245,8 @@ export const UNIVERSES = [
         track: 'Software',
         title: 'Spatial Platforms',
         subtitle: 'Software that interprets motion, map state, and proximity.',
-        image: 'assets/Spideys/8.jpeg',
+        image: 'assets/variants/spiderman_2099.jpg',
+        background: 'assets/background/spiderman_2099_bg.jpeg',
         href: 'universe.html?u=8',
         problems: [
             {
@@ -271,7 +279,8 @@ export const UNIVERSES = [
         track: 'Software',
         title: 'Security Logic',
         subtitle: 'Resilient systems, auditability, and trust boundaries.',
-        image: 'assets/Spideys/9.jpeg',
+        image: 'assets/variants/spiderman_india.jpg',
+        background: 'assets/background/spiderman_india_bg.jpeg',
         href: 'universe.html?u=9',
         problems: [
             {
@@ -304,7 +313,8 @@ export const UNIVERSES = [
         track: 'Software',
         title: 'Data Narratives',
         subtitle: 'Turn volatile telemetry into clear operator stories.',
-        image: 'assets/Spideys/10.jpeg',
+        image: 'assets/variants/superior_spiderman.jpg',
+        background: 'assets/background/superior_spiderman_bg.jpg',
         href: 'universe.html?u=10',
         problems: [
             {
@@ -337,7 +347,8 @@ export const UNIVERSES = [
         track: 'Software',
         title: 'Automation Threads',
         subtitle: 'Workflow engines, orchestration, and recovery logic.',
-        image: 'assets/Spideys/11.jpeg',
+        image: 'assets/variants/symbiote_spiderman.jpg',
+        background: 'assets/background/symbiote_spiderman_bg.jpeg',
         href: 'universe.html?u=11',
         problems: [
             {
@@ -370,7 +381,8 @@ export const UNIVERSES = [
         track: 'Software',
         title: 'Core Intelligence',
         subtitle: 'Model-assisted systems with strong human oversight.',
-        image: 'assets/Spideys/12.jpeg',
+        image: 'assets/variants/tasm.jpg',
+        background: 'assets/background/tasm_bg.webp',
         href: 'universe.html?u=12',
         problems: [
             {
