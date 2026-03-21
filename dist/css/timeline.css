@@ -1,0 +1,561 @@
+/* ═══════════════════════════════════════════════════════════
+   timeline.css — SPIDER-VERSE INSPIRED
+   Dark glassmorphic cards, realistic web strand, neon glows,
+   scroll-synced spider, alternating zig-zag layout.
+═══════════════════════════════════════════════════════════ */
+
+/* ── Section Background ── */
+.section--timeline {
+    background: var(--c-bg);
+    padding-bottom: var(--sp-2xl);
+    position: relative;
+    /* Diagonal stripe pattern for texture */
+    background-image:
+        repeating-linear-gradient(45deg,
+            rgba(255, 255, 255, 0.015) 0px,
+            rgba(255, 255, 255, 0.015) 20px,
+            transparent 20px,
+            transparent 40px);
+}
+
+/* ── Track Container ── */
+.timeline__track {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: var(--sp-xl) 0;
+}
+
+/* ═══════════════════════════════════════════
+   WEB STRAND — Realistic silk line
+   Multiple layered glows + zig-zag clip-path
+═══════════════════════════════════════════ */
+.timeline__web-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    /* Realistic thin silk under tension */
+    height: 100%;
+    z-index: 1;
+    transform-origin: top center;
+
+    /* Core strand: solid white-ish silk */
+    background: rgba(255, 255, 255, 0.85);
+
+    /* Subtle tension glow/light scatter */
+    box-shadow:
+        0 0 5px rgba(255, 255, 255, 0.6),
+        0 0 12px rgba(255, 255, 255, 0.3);
+}
+
+/* Ambient glow layer behind the web line */
+.timeline__web-glow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 100%;
+    z-index: 0;
+    background: rgba(255, 255, 255, 0.08);
+    /* Faint white light */
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+@keyframes webPulse {
+    0% {
+        opacity: 0.7;
+        filter: brightness(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        filter: brightness(1.2);
+    }
+}
+
+/* ═══════════════════════════════════════════
+   SPIDER — CSS-only stylized arachnid
+   Body + 8 legs via pseudo-elements
+═══════════════════════════════════════════ */
+.timeline__spider {
+    position: absolute;
+    top: 0;
+    /* JS drives this via GSAP scroll */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 52px;
+    z-index: 20;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Clean up any old pseudo-elements if present */
+.timeline__spider::before, .timeline__spider::after,
+.timeline__spider-legs::before, .timeline__spider-legs::after {
+    display: none !important;
+}
+
+/* Core Container (Body + Head) */
+.spider__core {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Oscillation micro-movement */
+    animation: spiderBreathing 2s infinite alternate ease-in-out;
+}
+
+@keyframes spiderBreathing {
+    0% { transform: scale(1) translateY(0); }
+    100% { transform: scale(1.02) translateY(1px); }
+}
+
+/* Abdomen (Dark Teal with Red Stripes) */
+.spider__body {
+    width: 26px;
+    height: 34px;
+    /* Base dark teal/blue with bright red vertical stripes */
+    background: linear-gradient(to right,
+        #061a24 0%, #061a24 25%,
+        #ff2e63 25%, #ff2e63 35%,
+        #041016 35%, #041016 65%,
+        #ff2e63 65%, #ff2e63 75%,
+        #061a24 75%, #061a24 100%
+    );
+    border: 1px solid #1a2240;
+    border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+    /* Stronger contrast and core shadow visibility */
+    box-shadow: inset 0 -4px 8px rgba(0, 0, 0, 0.9), 0 0 12px rgba(0, 240, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.spider__42 {
+    color: #00f0ff;
+    font-family: inherit;
+    font-weight: 900;
+    font-size: 11px;
+    letter-spacing: -0.5px;
+    text-shadow: 0 0 6px #00f0ff, 0 0 10px rgba(0, 240, 255, 0.8);
+    transform: translateY(-2px);
+    opacity: 1;
+}
+
+/* Thorax / Head */
+.spider__head {
+    width: 18px;
+    height: 14px;
+    /* Increased brightness/opacity so it stands out strongly */
+    background: #16264c;
+    border: 1px solid #2a3a6a;
+    border-radius: 40% 40% 50% 50%;
+    margin-top: -6px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), inset 0 2px 4px rgba(0, 240, 255, 0.3);
+}
+
+/* Glowing Spider Eyes */
+.spider__head::before {
+    content: '';
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 3px;
+    background:
+        radial-gradient(circle, #00f0ff 60%, transparent 70%) 0px 0px / 2px 2px no-repeat,
+        radial-gradient(circle, #00f0ff 60%, transparent 70%) 3px 1px / 2px 2px no-repeat,
+        radial-gradient(circle, #00f0ff 60%, transparent 70%) 7px 1px / 2px 2px no-repeat,
+        radial-gradient(circle, #00f0ff 60%, transparent 70%) 10px 0px / 2px 2px no-repeat;
+    filter: drop-shadow(0 0 3px #00f0ff);
+    z-index: 5;
+}
+
+/* Fangs with Cyan Glow */
+.spider__fang {
+    position: absolute;
+    bottom: -4px;
+    width: 3px;
+    height: 7px;
+    background: #00f0ff;
+    border-radius: 2px;
+    box-shadow: 0 0 6px #00f0ff, 0 0 12px rgba(0, 240, 255, 0.6);
+}
+
+.spider__fang.left { left: 3px; transform: rotate(15deg); }
+.spider__fang.right { right: 3px; transform: rotate(-15deg); }
+
+/* Legs Container */
+.spider__legs {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Base Proximal Leg Segment (Femur - Red/Pink bases) */
+.s-leg {
+    position: absolute;
+    top: 26px; /* Anchor closer to the smaller head/thorax */
+    left: 50%;
+    margin-left: -1px;
+    width: 2px;
+    height: 16px;
+    background: linear-gradient(to bottom, #ff2e63 0%, #aa2315 100%);
+    border-radius: 2px;
+    transform-origin: top center;
+    box-shadow: inset 0 0 2px rgba(0,0,0,0.5);
+}
+
+/* Distal Leg Segment (Tibia/Tarsus - Dark to Cyan tip bent outwards) */
+.s-leg-inner {
+    position: absolute;
+    top: 100%; /* Append exactly to the end of proximal segment */
+    left: 0;
+    width: 2px;
+    height: 24px;
+    background: linear-gradient(to bottom, #080d1a 0%, #151b2b 75%, #00f0ff 85%, #00f0ff 100%);
+    border-radius: 2px;
+    transform-origin: top center;
+    box-shadow: 0 6px 6px -2px rgba(0, 240, 255, 0.5);
+}
+
+/* -- LEFT LEGS -- */
+.l1 { transform: rotate(calc(60deg + var(--leg-stretch, 0) * 15deg)); }
+.l1 .s-leg-inner { transform: rotate(calc(-45deg + var(--leg-stretch, 0) * 15deg)); }
+
+.l2 { transform: rotate(calc(90deg + var(--leg-stretch, 0) * 20deg)); }
+.l2 .s-leg-inner { height: 34px; transform: rotate(calc(-55deg + var(--leg-stretch, 0) * 15deg)); }
+
+.l3 { transform: rotate(calc(125deg - var(--leg-stretch, 0) * 15deg)); }
+.l3 .s-leg-inner { transform: rotate(calc(-40deg + var(--leg-stretch, 0) * 15deg)); }
+
+.l4 { transform: rotate(calc(160deg - var(--leg-stretch, 0) * 10deg)); }
+.l4 .s-leg-inner { height: 36px; transform: rotate(calc(-30deg + var(--leg-stretch, 0) * 10deg)); }
+
+/* -- RIGHT LEGS -- */
+.r1 { transform: rotate(calc(-60deg - var(--leg-stretch, 0) * 15deg)); }
+.r1 .s-leg-inner { transform: rotate(calc(45deg - var(--leg-stretch, 0) * 15deg)); }
+
+.r2 { transform: rotate(calc(-90deg - var(--leg-stretch, 0) * 20deg)); }
+.r2 .s-leg-inner { height: 34px; transform: rotate(calc(55deg - var(--leg-stretch, 0) * 15deg)); }
+
+.r3 { transform: rotate(calc(-125deg + var(--leg-stretch, 0) * 15deg)); }
+.r3 .s-leg-inner { transform: rotate(calc(40deg - var(--leg-stretch, 0) * 15deg)); }
+
+.r4 { transform: rotate(calc(-160deg + var(--leg-stretch, 0) * 10deg)); }
+.r4 .s-leg-inner { height: 36px; transform: rotate(calc(30deg - var(--leg-stretch, 0) * 10deg)); }
+
+/* ═══════════════════════════════════════════
+   TIMELINE EVENT — Alternating layout
+═══════════════════════════════════════════ */
+.timeline__event {
+    position: relative;
+    display: flex;
+    margin-bottom: var(--sp-lg);
+    z-index: 2;
+
+    /* Start hidden — GSAP animates in */
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+/* Odd events → left side */
+.timeline__event:nth-child(odd) {
+    justify-content: flex-start;
+    padding-right: calc(50% + 50px);
+}
+
+/* Even events → right side */
+.timeline__event:nth-child(even) {
+    justify-content: flex-end;
+    padding-left: calc(50% + 50px);
+}
+
+/* ── Node Markers — Glowing web knots ── */
+.timeline__event::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--c-cyan) 30%, transparent 70%);
+    border: 2px solid var(--c-cyan);
+    z-index: 5;
+    box-shadow:
+        0 0 8px var(--c-cyan),
+        0 0 20px rgba(0, 240, 255, 0.4);
+    transition: all 0.3s var(--ease-pop);
+}
+
+.timeline__event:hover::before {
+    transform: translate(-50%, -50%) scale(1.5);
+    background: radial-gradient(circle, var(--c-magenta) 30%, transparent 70%);
+    border-color: var(--c-magenta);
+    box-shadow:
+        0 0 12px var(--c-magenta),
+        0 0 30px rgba(217, 0, 255, 0.5);
+}
+
+/* ═══════════════════════════════════════════
+   EVENT CARD — Dark glassmorphic panel
+═══════════════════════════════════════════ */
+.event__content {
+    padding: var(--sp-md) calc(var(--sp-md) + 4px);
+    background: rgba(15, 17, 24, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 240, 255, 0.15);
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+    transition:
+        border-color 0.4s ease,
+        box-shadow 0.4s ease,
+        transform 0.3s var(--ease-pop);
+}
+
+/* Neon accent stripe on the left edge */
+.event__content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--c-cyan), var(--c-magenta));
+    border-radius: 3px 0 0 3px;
+}
+
+/* Hover glow effect */
+.event__content:hover {
+    border-color: rgba(0, 240, 255, 0.35);
+    box-shadow:
+        0 0 15px rgba(0, 240, 255, 0.1),
+        0 4px 30px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+}
+
+/* Alternating accent colors for even cards */
+.timeline__event:nth-child(even) .event__content::before {
+    background: linear-gradient(180deg, var(--c-magenta), var(--c-red));
+}
+
+.timeline__event:nth-child(even) .event__content:hover {
+    border-color: rgba(217, 0, 255, 0.35);
+    box-shadow:
+        0 0 15px rgba(217, 0, 255, 0.1),
+        0 4px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Pointer Triangles — connecting cards to web line ── */
+.event__content::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-width: 8px;
+    border-style: solid;
+}
+
+/* Odd cards: pointer on the right → pointing toward center line */
+.timeline__event:nth-child(odd) .event__content::after {
+    right: -16px;
+    border-color: transparent transparent transparent rgba(0, 240, 255, 0.3);
+}
+
+/* Even cards: pointer on the left → pointing toward center line */
+.timeline__event:nth-child(even) .event__content::after {
+    left: -16px;
+    border-color: transparent rgba(217, 0, 255, 0.3) transparent transparent;
+}
+
+/* ── Event Typography ── */
+.event__time {
+    font-family: var(--ff-body);
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.event__title {
+    font-family: var(--ff-body);
+    font-weight: 800;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--c-text);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.45;
+    margin-bottom: var(--sp-xs);
+    /* Subtle neon text shadow */
+    text-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+}
+
+.event__desc {
+    font-family: var(--ff-body);
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--c-text-dim);
+    line-height: 1.5;
+}
+
+/* ── Event icon (decorative) ── */
+.event__icon {
+    display: block;
+    font-size: 1.4rem;
+    margin-bottom: var(--sp-xs);
+    filter: drop-shadow(0 0 6px currentColor);
+}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS — Card flash on reveal
+═══════════════════════════════════════════ */
+.timeline__event.in-view .event__box {
+    animation: cardFlash 0.6s ease-out;
+}
+
+@keyframes cardFlash {
+    0% {
+        border-color: rgba(0, 240, 255, 0.6);
+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+    }
+
+    100% {
+        border-color: rgba(0, 240, 255, 0.15);
+        box-shadow: none;
+    }
+}
+
+.timeline__event:nth-child(even).in-view .event__box {
+    animation: cardFlashAlt 0.6s ease-out;
+}
+
+@keyframes cardFlashAlt {
+    0% {
+        border-color: rgba(217, 0, 255, 0.6);
+        box-shadow: 0 0 25px rgba(217, 0, 255, 0.3);
+    }
+
+    100% {
+        border-color: rgba(217, 0, 255, 0.15);
+        box-shadow: none;
+    }
+}
+
+/* Web vibration when cards enter view */
+.timeline__web-line.vibrate {
+    animation: webVibrate 0.4s ease-out;
+}
+
+@keyframes webVibrate {
+    0% {
+        transform: translateX(-50%) scaleX(1);
+    }
+
+    25% {
+        transform: translateX(calc(-50% + 2px)) scaleX(1.3);
+    }
+
+    50% {
+        transform: translateX(calc(-50% - 1px)) scaleX(1.1);
+    }
+
+    75% {
+        transform: translateX(calc(-50% + 1px)) scaleX(1.15);
+    }
+
+    100% {
+        transform: translateX(-50%) scaleX(1);
+    }
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — Mobile single-column
+═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+    .timeline__web-line {
+        left: 24px;
+        transform: none;
+        clip-path: none;
+        width: 3px;
+    }
+
+    .timeline__web-glow {
+        left: 24px;
+        transform: none;
+        width: 20px;
+    }
+
+    /* Hide spider on mobile for cleaner layout */
+    .timeline__spider,
+    .timeline__spider-legs {
+        display: none;
+    }
+
+    .timeline__event:nth-child(odd),
+    .timeline__event:nth-child(even) {
+        padding-left: 60px;
+        padding-right: 0;
+        justify-content: flex-start;
+    }
+
+    .timeline__event::before {
+        left: 24px;
+    }
+
+    .timeline__event:nth-child(odd) .event__content::after,
+    .timeline__event:nth-child(even) .event__content::after {
+        left: -16px;
+        right: auto;
+        border-color: transparent rgba(0, 240, 255, 0.3) transparent transparent;
+    }
+
+    .event__title {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline__web-line {
+        left: 16px;
+    }
+
+    .timeline__web-glow {
+        left: 16px;
+    }
+
+    .timeline__event::before {
+        left: 16px;
+        width: 14px;
+        height: 14px;
+    }
+
+    .timeline__event:nth-child(odd),
+    .timeline__event:nth-child(even) {
+        padding-left: 46px;
+    }
+}

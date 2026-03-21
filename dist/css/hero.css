@@ -1,0 +1,231 @@
+/* ═══════════════════════════════════════════════════════════
+   hero.css — SPIDER-VERSE
+   Multiversal collider background + Glitching Hero text
+═══════════════════════════════════════════════════════════ */
+
+.section--hero {
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: #000;
+}
+
+/* Background Video */
+.hero__video-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* Comic Book Corner Borders */
+.comic-frame {
+    position: absolute;
+    width: 8vw;
+    height: 8vw;
+    border-color: var(--c-border);
+    border-style: solid;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.comic-frame.top-left {
+    top: 3vw;
+    left: 3vw;
+    border-width: 8px 0 0 8px;
+}
+
+.comic-frame.top-right {
+    top: 3vw;
+    right: 3vw;
+    border-width: 8px 8px 0 0;
+}
+
+.comic-frame.bottom-left {
+    bottom: 3vw;
+    left: 3vw;
+    border-width: 0 0 8px 8px;
+}
+
+.comic-frame.bottom-right {
+    bottom: 3vw;
+    right: 3vw;
+    border-width: 0 8px 8px 0;
+}
+
+/* Content Overlay */
+.hero__content {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 1rem;
+    background: radial-gradient(circle at center, rgba(15, 17, 24, 0.6) 0%, transparent 60%);
+    padding: var(--sp-md);
+    padding-top: 80px; /* offset for nav header */
+    width: 100%;
+}
+
+/* Title Lockup */
+.title-wrapper {
+    display: flex;
+    flex-direction: column;
+    line-height: 0.9;
+}
+
+.hero__title {
+    font-family: var(--ff-display);
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    color: var(--c-text);
+    text-transform: uppercase;
+    text-shadow:
+        8px 8px 0 var(--c-red),
+        -8px -8px 0 var(--c-cyan),
+        16px 16px 0 var(--c-border-dark);
+    margin: 0;
+}
+
+.hero__title-sub {
+    font-family: var(--ff-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: var(--c-yellow);
+    text-transform: uppercase;
+    text-shadow:
+        6px 6px 0 var(--c-magenta),
+        -6px -6px 0 var(--c-border-dark);
+    align-self: flex-end;
+    transform: translateY(-15px) rotate(-3deg);
+}
+
+/* Badge Label */
+.hero__badge {
+    background: var(--c-red);
+    color: #fff;
+    font-family: var(--ff-display);
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    padding: 0.4rem 1.2rem;
+    border: 3px solid var(--c-border-dark);
+    transform: translateY(-20px) rotate(2deg);
+    box-shadow: 4px 4px 0 var(--c-yellow);
+}
+
+.hero__subtitle {
+    font-family: var(--ff-body);
+    font-weight: 800;
+    font-style: italic;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--c-text);
+    letter-spacing: 0.05em;
+    max-width: 700px;
+    margin-bottom: 0.5rem;
+}
+
+/* Countdown Timer */
+.hero__timer {
+    display: flex;
+    gap: var(--sp-sm);
+    margin-bottom: 0.5rem;
+    z-index: 10;
+}
+
+.timer__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--c-bg-panel);
+    border: 3px solid var(--c-border-dark);
+    box-shadow: 4px 4px 0 var(--c-cyan);
+    min-width: 80px;
+    padding: var(--sp-sm);
+    transform: rotate(1deg);
+}
+
+.timer__box:nth-child(even) {
+    box-shadow: 4px 4px 0 var(--c-magenta);
+    transform: rotate(-1deg);
+}
+
+.timer__val {
+    font-family: var(--ff-display);
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    color: var(--c-text);
+    line-height: 1;
+    text-shadow: 2px 2px 0 var(--c-red);
+}
+
+.timer__lbl {
+    font-family: var(--ff-body);
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--c-yellow);
+    text-transform: uppercase;
+    margin-top: 4px;
+    letter-spacing: 0.1em;
+}
+
+.hero__buttons {
+    display: flex;
+    gap: var(--sp-md);
+    flex-wrap: wrap;
+    justify-content: center;
+    z-index: 10;
+}
+
+/* Portal Flash (CTA transition) */
+.portal-flash {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, var(--c-bg) 0%, var(--c-magenta) 100%);
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    mix-blend-mode: screen;
+}
+
+.portal-flash.active {
+    animation: portalBoom 0.8s var(--ease-pop) forwards;
+}
+
+@keyframes portalBoom {
+    0% {
+        opacity: 1;
+        transform: scale(0.1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.5);
+        background: radial-gradient(circle at center, #fff, var(--c-cyan));
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(3);
+    }
+}
+
+@media (max-width: 768px) {
+    .comic-frame {
+        width: 12vw;
+        height: 12vw;
+    }
+
+    .hero__content {
+        padding: var(--sp-md);
+    }
+
+    .hero__video-bg {
+        object-position: center;
+    }
+}
