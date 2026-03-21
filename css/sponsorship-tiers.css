@@ -70,16 +70,28 @@
   flex-direction: column;
 }
 
-.tier-card:nth-child(1) { animation-delay: 0.1s; }
-.tier-card:nth-child(2) { animation-delay: 0.25s; }
-.tier-card:nth-child(3) { animation-delay: 0.4s; }
-.tier-card:nth-child(4) { animation-delay: 0.55s; }
+.tier-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.tier-card:nth-child(2) {
+  animation-delay: 0.25s;
+}
+
+.tier-card:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.tier-card:nth-child(4) {
+  animation-delay: 0.55s;
+}
 
 @keyframes cardFadeUp {
   from {
     opacity: 0;
     transform: translateY(40px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -114,21 +126,40 @@
   border-color: rgba(0, 240, 255, 0.25);
   box-shadow: 0 0 30px rgba(0, 240, 255, 0.06);
 }
+
 .tier-card--platinum:hover {
   box-shadow: 0 8px 40px rgba(0, 240, 255, 0.15);
 }
+
 .tier-card--platinum .tier-card__glow {
   background: radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.08), transparent 60%);
 }
-.tier-card--platinum .tier-card__icon { color: var(--c-cyan); }
-.tier-card--platinum .tier-card__name { color: var(--c-cyan); }
-.tier-card--platinum .tier-card__price { color: var(--c-cyan); }
-.tier-card--platinum .tier-card__divider { background: linear-gradient(90deg, transparent, var(--c-cyan), transparent); }
-.tier-card--platinum .perk-check { color: var(--c-cyan); }
+
+.tier-card--platinum .tier-card__icon {
+  color: var(--c-cyan);
+}
+
+.tier-card--platinum .tier-card__name {
+  color: var(--c-cyan);
+}
+
+.tier-card--platinum .tier-card__price {
+  color: var(--c-cyan);
+}
+
+.tier-card--platinum .tier-card__divider {
+  background: linear-gradient(90deg, transparent, var(--c-cyan), transparent);
+}
+
+.tier-card--platinum .perk-check {
+  color: var(--c-cyan);
+}
+
 .tier-card--platinum .tier-card__btn {
   background: var(--c-cyan);
   color: var(--c-bg);
 }
+
 .tier-card--platinum .tier-card__btn:hover {
   background: #33f5ff;
   box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
@@ -139,21 +170,40 @@
   border-color: rgba(252, 238, 10, 0.25);
   box-shadow: 0 0 30px rgba(252, 238, 10, 0.06);
 }
+
 .tier-card--gold:hover {
   box-shadow: 0 8px 40px rgba(252, 238, 10, 0.15);
 }
+
 .tier-card--gold .tier-card__glow {
   background: radial-gradient(circle at 50% 0%, rgba(252, 238, 10, 0.08), transparent 60%);
 }
-.tier-card--gold .tier-card__icon { color: var(--c-yellow); }
-.tier-card--gold .tier-card__name { color: var(--c-yellow); }
-.tier-card--gold .tier-card__price { color: var(--c-yellow); }
-.tier-card--gold .tier-card__divider { background: linear-gradient(90deg, transparent, var(--c-yellow), transparent); }
-.tier-card--gold .perk-check { color: var(--c-yellow); }
+
+.tier-card--gold .tier-card__icon {
+  color: var(--c-yellow);
+}
+
+.tier-card--gold .tier-card__name {
+  color: var(--c-yellow);
+}
+
+.tier-card--gold .tier-card__price {
+  color: var(--c-yellow);
+}
+
+.tier-card--gold .tier-card__divider {
+  background: linear-gradient(90deg, transparent, var(--c-yellow), transparent);
+}
+
+.tier-card--gold .perk-check {
+  color: var(--c-yellow);
+}
+
 .tier-card--gold .tier-card__btn {
   background: var(--c-yellow);
   color: var(--c-bg);
 }
+
 .tier-card--gold .tier-card__btn:hover {
   background: #fdf444;
   box-shadow: 0 0 20px rgba(252, 238, 10, 0.4);
@@ -164,21 +214,40 @@
   border-color: rgba(0, 255, 115, 0.25);
   box-shadow: 0 0 30px rgba(0, 255, 115, 0.06);
 }
+
 .tier-card--silver:hover {
   box-shadow: 0 8px 40px rgba(0, 255, 115, 0.15);
 }
+
 .tier-card--silver .tier-card__glow {
   background: radial-gradient(circle at 50% 0%, rgba(0, 255, 115, 0.08), transparent 60%);
 }
-.tier-card--silver .tier-card__icon { color: var(--c-green); }
-.tier-card--silver .tier-card__name { color: var(--c-green); }
-.tier-card--silver .tier-card__price { color: var(--c-green); }
-.tier-card--silver .tier-card__divider { background: linear-gradient(90deg, transparent, var(--c-green), transparent); }
-.tier-card--silver .perk-check { color: var(--c-green); }
+
+.tier-card--silver .tier-card__icon {
+  color: var(--c-green);
+}
+
+.tier-card--silver .tier-card__name {
+  color: var(--c-green);
+}
+
+.tier-card--silver .tier-card__price {
+  color: var(--c-green);
+}
+
+.tier-card--silver .tier-card__divider {
+  background: linear-gradient(90deg, transparent, var(--c-green), transparent);
+}
+
+.tier-card--silver .perk-check {
+  color: var(--c-green);
+}
+
 .tier-card--silver .tier-card__btn {
   background: var(--c-green);
   color: var(--c-bg);
 }
+
 .tier-card--silver .tier-card__btn:hover {
   background: #33ff8f;
   box-shadow: 0 0 20px rgba(0, 255, 115, 0.4);
@@ -189,21 +258,40 @@
   border-color: rgba(217, 0, 255, 0.25);
   box-shadow: 0 0 30px rgba(217, 0, 255, 0.06);
 }
+
 .tier-card--bronze:hover {
   box-shadow: 0 8px 40px rgba(217, 0, 255, 0.15);
 }
+
 .tier-card--bronze .tier-card__glow {
   background: radial-gradient(circle at 50% 0%, rgba(217, 0, 255, 0.08), transparent 60%);
 }
-.tier-card--bronze .tier-card__icon { color: var(--c-magenta); }
-.tier-card--bronze .tier-card__name { color: var(--c-magenta); }
-.tier-card--bronze .tier-card__price { color: var(--c-magenta); }
-.tier-card--bronze .tier-card__divider { background: linear-gradient(90deg, transparent, var(--c-magenta), transparent); }
-.tier-card--bronze .perk-check { color: var(--c-magenta); }
+
+.tier-card--bronze .tier-card__icon {
+  color: var(--c-magenta);
+}
+
+.tier-card--bronze .tier-card__name {
+  color: var(--c-magenta);
+}
+
+.tier-card--bronze .tier-card__price {
+  color: var(--c-magenta);
+}
+
+.tier-card--bronze .tier-card__divider {
+  background: linear-gradient(90deg, transparent, var(--c-magenta), transparent);
+}
+
+.tier-card--bronze .perk-check {
+  color: var(--c-magenta);
+}
+
 .tier-card--bronze .tier-card__btn {
   background: var(--c-magenta);
   color: var(--c-text);
 }
+
 .tier-card--bronze .tier-card__btn:hover {
   background: #e233ff;
   box-shadow: 0 0 20px rgba(217, 0, 255, 0.4);
@@ -298,8 +386,12 @@
 
 /* ── Back link ── */
 .tiers-back {
+  min-width: 240px;
   text-align: center;
-  margin-top: var(--sp-2xl);
+  margin-top: 1cm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .tiers-back__btn {
@@ -350,4 +442,42 @@
     radial-gradient(circle at 10% 20%, rgba(0, 240, 255, 0.03) 0%, transparent 40%),
     radial-gradient(circle at 85% 60%, rgba(252, 238, 10, 0.03) 0%, transparent 40%),
     radial-gradient(circle at 50% 90%, rgba(217, 0, 255, 0.03) 0%, transparent 40%);
+}
+
+/* ── Recommended Badge ── */
+.tier-card__badge {
+  position: absolute;
+  top: 20px;
+  right: -12px;
+  background: linear-gradient(45deg, #ff0055, #ff4d88);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 6px 14px;
+  border-radius: 4px;
+  transform: rotate(15deg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  z-index: 3;
+}
+
+/* ── Download Brochure Button ── */
+.tiers-download__btn {
+  display: inline-block;
+  margin-bottom: 1cm;
+  margin-top: 1.5rem;
+  text-decoration: none;
+  background: linear-gradient(90deg, #00c2ff, #33f5ff);
+  color: var(--c-bg);
+  font-family: var(--ff-display);
+  letter-spacing: 0.12em;
+  padding: 0.8rem 1.6rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.tiers-download__btn:hover {
+  background: linear-gradient(90deg, #009ed1, #00c2ff);
+  box-shadow: 0 0 18px rgba(0, 194, 255, 0.4);
+  transform: translateY(-2px);
 }
