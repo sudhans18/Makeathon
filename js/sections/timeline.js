@@ -19,7 +19,7 @@ export function initTimeline() {
     revealEvents();
     vibrateWebOnReveal();
 
-    if (!prefersReducedMotion() && !isMobile()) {
+    if (!prefersReducedMotion()) {
         animateSpiderAndWeb();
     }
 }

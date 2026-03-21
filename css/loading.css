@@ -1,0 +1,165 @@
+/* ═══════════════════════════════════════════════════════════
+   loading.css — Full-Screen Loading Overlay
+   Spider-Verse themed loader with frame animation,
+   progress bar, and informational text.
+═══════════════════════════════════════════════════════════ */
+
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--c-bg);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.loading-screen.fade-out {
+  opacity: 0;
+  transform: scale(1.05);
+  pointer-events: none;
+}
+
+/* ── "INITIALIZING..." Title ── */
+.loading__title {
+  font-family: var(--ff-display);
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  text-transform: uppercase;
+  color: var(--c-text);
+  letter-spacing: 0.12em;
+  text-shadow:
+    3px 3px 0 var(--c-red),
+    -2px -1px 0 var(--c-cyan);
+  margin-bottom: var(--sp-md);
+  animation: loading-glitch 2s infinite linear alternate;
+}
+
+@keyframes loading-glitch {
+  0%, 80%, 100% {
+    text-shadow:
+      3px 3px 0 var(--c-red),
+      -2px -1px 0 var(--c-cyan);
+  }
+  82% {
+    text-shadow:
+      -3px 2px 0 var(--c-magenta),
+      3px -1px 0 var(--c-cyan);
+  }
+  84% {
+    text-shadow:
+      3px -3px 0 var(--c-red),
+      -2px 2px 0 var(--c-yellow);
+  }
+  86% {
+    text-shadow:
+      3px 3px 0 var(--c-red),
+      -2px -1px 0 var(--c-cyan);
+  }
+}
+
+/* Blinking dots animation for the ellipsis */
+.loading__dots {
+  display: inline-block;
+  min-width: 1.5em;
+  text-align: left;
+}
+
+/* ── Frame Animation ── */
+.loading__frame-wrapper {
+  position: relative;
+  width: 90vw;
+  max-width: 700px;
+  max-height: 55vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--sp-lg);
+  border: 3px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-comic);
+  overflow: hidden;
+  box-shadow:
+    0 0 30px rgba(0, 240, 255, 0.1),
+    0 0 60px rgba(217, 0, 255, 0.05);
+}
+
+.loading__frame {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* ── Bottom Section (tip, quote, progress) ── */
+.loading__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-sm);
+  width: 90vw;
+  max-width: 700px;
+}
+
+.loading__tip {
+  font-family: var(--ff-body);
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  font-weight: 600;
+  color: var(--c-cyan);
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+}
+
+.loading__quote {
+  font-family: var(--ff-body);
+  font-style: italic;
+  font-size: clamp(0.75rem, 1.4vw, 0.95rem);
+  color: var(--c-text-dim);
+  text-align: center;
+  opacity: 0.85;
+  max-width: 500px;
+  line-height: 1.5;
+  min-height: 2.5em;
+  transition: opacity 0.4s ease;
+}
+
+/* ── Progress Bar ── */
+.loading__progress-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: var(--sp-xs);
+}
+
+.loading__progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--c-cyan), var(--c-magenta), var(--c-red));
+  border-radius: 2px;
+  transition: width 0.15s ease-out;
+  box-shadow:
+    0 0 8px var(--c-cyan),
+    0 0 20px rgba(217, 0, 255, 0.4);
+}
+
+.loading__percent {
+  font-family: var(--ff-display);
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  color: var(--c-text);
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .loading__frame-wrapper {
+    max-height: 40vh;
+  }
+
+  .loading__title {
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
+  }
+}

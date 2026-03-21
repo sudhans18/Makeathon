@@ -18,6 +18,9 @@
 import { registerGSAP } from './core/gsap-init.js';
 import { initLenis } from './core/lenis-init.js';
 
+// Loading Screen
+import { initLoading } from './sections/loading.js';
+
 // Sections
 import { initHero } from './sections/hero.js';
 import { initAbout } from './sections/about.js';
@@ -29,16 +32,20 @@ import { initSponsorship } from './sections/sponsorship.js';
 import { initFAQ } from './sections/faq.js';
 
 /**
- * Boot sequence — runs when DOM is ready
+ * Boot sequence — runs when DOM is ready.
+ * Waits for the loading screen to finish before initializing sections.
  */
-function boot() {
+async function boot() {
+    // 0. Run loading screen (preloads frames, shows progress)
+    await initLoading();
+
     // 1. Register GSAP plugins
     try { registerGSAP(); } catch (e) { console.warn('[boot] GSAP init failed:', e); }
 
     // 2. Start Lenis smooth scrolling
     try { initLenis(); } catch (e) { console.warn('[boot] Lenis init failed:', e); }
 
-    // 4. Initialize sections in DOM order
+    // 3. Initialize sections in DOM order
     initHero();
     initAbout();
     initTimeline();

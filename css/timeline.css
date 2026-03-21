@@ -114,8 +114,8 @@
 }
 
 @keyframes spiderBreathing {
-    0% { transform: scale(1) translateY(0); }
-    100% { transform: scale(1.02) translateY(1px); }
+    0% { transform: scale(var(--spider-scale, 1)) translateY(0); }
+    100% { transform: scale(calc(var(--spider-scale, 1) * 1.02)) translateY(1px); }
 }
 
 /* Abdomen (Dark Teal with Red Stripes) */
@@ -203,7 +203,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(var(--spider-scale, 1));
     width: 100%;
     height: 100%;
     z-index: 1;
@@ -510,10 +510,10 @@
         width: 20px;
     }
 
-    /* Hide spider on mobile for cleaner layout */
-    .timeline__spider,
-    .timeline__spider-legs {
-        display: none;
+    /* Show spider on mobile and follow the web line */
+    .timeline__spider {
+        --spider-scale: 0.6;
+        left: 24px;
     }
 
     .timeline__event:nth-child(odd),
@@ -557,5 +557,9 @@
     .timeline__event:nth-child(odd),
     .timeline__event:nth-child(even) {
         padding-left: 46px;
+    }
+
+    .timeline__spider {
+        left: 16px;
     }
 }

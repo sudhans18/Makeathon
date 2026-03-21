@@ -84,11 +84,7 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 9000;
-  opacity: 0.12;
-  /* Keep it subtle */
-  background-image: radial-gradient(var(--c-border) 1px, transparent 1px);
-  background-size: 6px 6px;
-  /* Dot size */
+  display: none;
 }
 
 a {
