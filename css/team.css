@@ -116,7 +116,7 @@
 .team__panel {
   display: none;
   position: relative;
-  z-index: 2;
+  z-index: 9001;
 }
 
 .team__panel.active {
@@ -134,9 +134,10 @@
 /* ── Team Card ──────────────────────────────────────────── */
 .team-card {
   position: relative;
+  isolation: isolate;
   width: 100%;
   max-width: 280px;
-  background: rgba(255, 255, 255, 0.035);
+  background: #14161f;
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 16px;
   padding: 24px 20px 20px;
@@ -184,7 +185,7 @@
     0 12px 32px rgba(0, 0, 0, 0.35),
     0 0 0 1px rgba(200, 40, 60, 0.15);
   border-color: rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.05);
+  background: #191c28;
 }
 
 .team-card:hover::before {
@@ -263,6 +264,58 @@
   color: rgba(255, 255, 255, 0.35);
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+/* ── Social Icons ──────────────────────────────────────── */
+.team-card__socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.team-card__social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.team-card__social svg {
+  display: block;
+}
+
+.team-card__social:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.team-card__social--linkedin:hover {
+  background: rgba(0, 119, 181, 0.2);
+  border-color: rgba(0, 119, 181, 0.4);
+  color: #0077b5;
+}
+
+.team-card__social--github:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.team-card__social--email:hover {
+  background: rgba(200, 40, 60, 0.2);
+  border-color: rgba(200, 40, 60, 0.4);
+  color: #c8283c;
 }
 
 /* ── Responsive ─────────────────────────────────────────── */
