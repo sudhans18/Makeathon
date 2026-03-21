@@ -16,7 +16,6 @@
 
 // Core
 import { registerGSAP } from './core/gsap-init.js';
-import { initThree } from './core/three-setup.js';
 import { initLenis } from './core/lenis-init.js';
 
 // Sections
@@ -36,10 +35,7 @@ function boot() {
     // 1. Register GSAP plugins
     try { registerGSAP(); } catch (e) { console.warn('[boot] GSAP init failed:', e); }
 
-    // 2. Initialize Three.js scene on hero canvas
-    try { initThree('hero-canvas'); } catch (e) { console.warn('[boot] Three.js init failed:', e); }
-
-    // 3. Start Lenis smooth scrolling
+    // 2. Start Lenis smooth scrolling
     try { initLenis(); } catch (e) { console.warn('[boot] Lenis init failed:', e); }
 
     // 4. Initialize sections in DOM order

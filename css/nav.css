@@ -15,6 +15,7 @@
     z-index: 9999;
     box-shadow: 0 4px 0 var(--c-magenta);
     transition: transform 0.3s var(--ease-pop);
+    overflow: visible; /* allow logo to overflow the bar */
 }
 
 .comic-nav.hidden {
@@ -24,19 +25,29 @@
 .nav__container {
     max-width: var(--container);
     margin: 0 auto;
-    padding: 0.5rem var(--sp-lg);
+    padding: 0 var(--sp-lg);
+    height: 64px;           /* fixed bar height — logo can overflow */
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .nav__logo {
-    font-family: var(--ff-display);
-    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    text-shadow: 2px 2px 0 var(--c-border-dark);
-    letter-spacing: 0.05em;
-    transform: rotate(-2deg);
+    flex-shrink: 0;
+}
+
+.nav__logo-img {
+    height: 120px;
+    width: auto;
+    display: block;
+    transition: opacity 0.2s;
+}
+
+.nav__logo:hover .nav__logo-img {
+    opacity: 0.8;
 }
 
 .nav__links {

@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Makeathon 7.00</title>
+  <title>Makeathon 7.0</title>
+  <link rel="icon" href="./favicon.ico" type="image/x-icon" />
   <meta name="description" content="Makeathon 7.0: A 24-hour creation event. Build the future." />
 
   <!-- Fonts: Anton for display pop-art, Montserrat for readability -->
@@ -28,7 +29,6 @@
   <link rel="stylesheet" href="css/footer.css" />
 
   <!-- CDN Libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.168.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
@@ -42,11 +42,13 @@
   <!-- Navigation Bar -->
   <nav class="comic-nav">
     <div class="nav__container">
-      <a href="#hero" class="nav__logo text-cyan">M7.0</a>
+      <a href="#hero" class="nav__logo" aria-label="Makeathon 7.0 Home">
+        <img src="assets/Logo/logo.svg" alt="Makeathon 7.0" class="nav__logo-img" />
+      </a>
       <ul class="nav__links">
-        <li><a href="#about" class="nav__link">Briefing</a></li>
+        <li><a href="#about" class="nav__link">About Us</a></li>
         <li><a href="#timeline" class="nav__link">Timeline</a></li>
-        <li><a href="#problems" class="nav__link">Challenges</a></li>
+        <li><a href="#problems" class="nav__link">Problem Statements</a></li>
         <li><a href="#sponsorship" class="nav__link">Sponsors</a></li>
         <li><a href="#team" class="nav__link">The Crew</a></li>
         <li><a href="#faq" class="nav__link">FAQ</a></li>
@@ -59,7 +61,10 @@
        SECTION 1 — HERO / LANDING
   ═══════════════════════════════════════════════════════════ -->
   <section id="hero" class="section section--hero" aria-label="Hero">
-    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline class="hero__video-bg" aria-hidden="true">
+      <source src="assets/home_page_vid.mp4" type="video/mp4">
+    </video>
 
     <!-- Comic Book Borders -->
     <div class="comic-frame top-left"></div>
@@ -107,45 +112,118 @@
        SECTION 2 — ABOUT / BRIEFING
   ═══════════════════════════════════════════════════════════ -->
   <section id="about" class="section section--about" aria-label="About Makeathon">
+
+    <!-- Subtle spider-web corner decoration -->
+    <div class="about__web-corner about__web-corner--tl" aria-hidden="true"></div>
+    <div class="about__web-corner about__web-corner--br" aria-hidden="true"></div>
+
     <div class="container relative z-10">
       <h2 class="section__heading comic-heading">ANYONE CAN WEAR THE MASK</h2>
+
       <div class="about__grid">
 
-        <!-- Comic panels style layout -->
-        <article class="comic-panel panel-1" data-speed="1">
-          <div class="panel__content">
-            <span class="panel__tag">MISSION DIRECTIVE</span>
-            <h3>What is Makeathon 7.0?</h3>
-            <p>Makeathon 7.0 is a premier 24-hour hardware and software creation sprint. We gather the brightest
-              minds—from novices taking a leap of faith to seasoned veterans—to push the boundaries of technology. Here,
-              innovation knows no dimensions.</p>
+        <!-- PANEL 1 — Flagship intro (wide left) -->
+        <article class="about-panel about-panel--lead" aria-label="What is Make-A-Thon">
+          <div class="about-panel__accent-line" aria-hidden="true"></div>
+          <span class="about-panel__tag">MISSION DIRECTIVE</span>
+          <h3 class="about-panel__title">The Flagship<br>Innovation Event</h3>
+          <p class="about-panel__body">
+            <em class="about-em">Make-A-Thon</em> is the flagship innovation-driven hackathon of the Department of Electronics and Communication Engineering, Sri Venkateswara College of Engineering — a platform where ideas evolve into impactful solutions.
+          </p>
+          <div class="about-metrics">
+            <div class="about-metric about-metric--cyan">
+              <span class="about-metric__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </span>
+              <div class="about-metric__body">
+                <span class="about-metric__value" data-count="500" data-suffix="+">500+</span>
+                <span class="about-metric__lbl">Participants</span>
+              </div>
+            </div>
+            <div class="about-metric about-metric--magenta">
+              <span class="about-metric__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </span>
+              <div class="about-metric__body">
+                <span class="about-metric__value" data-count="120">120</span>
+                <span class="about-metric__lbl">Projects</span>
+              </div>
+            </div>
+            <div class="about-metric about-metric--cyan">
+              <span class="about-metric__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+              </span>
+              <div class="about-metric__body">
+                <span class="about-metric__value" data-count="35" data-prefix="₹" data-suffix="K">₹35K</span>
+                <span class="about-metric__lbl">Prize Pool</span>
+              </div>
+            </div>
+            <div class="about-metric about-metric--magenta">
+              <span class="about-metric__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              </span>
+              <div class="about-metric__body">
+                <span class="about-metric__value" data-count="10" data-suffix="+">10+</span>
+                <span class="about-metric__lbl">Internships</span>
+              </div>
+            </div>
           </div>
         </article>
 
-        <article class="comic-panel panel-2" data-speed="1.2">
-          <div class="panel__content">
-            <span class="panel__tag">THE TEAM EFFORT</span>
-            <h3>Why Participate?</h3>
-            <p>Assemble your crew, pick your challenge, and collaborate. You will gain access to cutting-edge tools,
-              elite mentorship, and a community of creators. "That person who helps others simply because it should or
-              must be done... is undoubtedly a real superhero."</p>
-          </div>
+        <!-- PANEL 2 — Organisers (right tall) -->
+        <article class="about-panel about-panel--orgs" aria-label="Organising bodies">
+          <div class="about-panel__accent-line" aria-hidden="true"></div>
+          <span class="about-panel__tag">ORGANISED BY</span>
+          <h3 class="about-panel__title">The Alliance</h3>
+          <p class="about-panel__body">With six successful editions, Make-A-Thon 7.0 brings together student innovators from across institutions, powered by three associations united for innovation.</p>
+          <ul class="about-orgs">
+            <li class="about-org">
+              <img src="assets/Logo/race.png" alt="RACE logo" class="about-org__logo about-org__logo--invert" />
+              <div class="about-org__text">
+                <span class="about-org__name text-cyan">RACE</span>
+                <span class="about-org__full">Research Association for Innovative Design in Communication and Electronics</span>
+              </div>
+            </li>
+            <li class="about-org">
+              <img src="assets/Logo/iete.png" alt="IETE-SF logo" class="about-org__logo" />
+              <div class="about-org__text">
+                <span class="about-org__name text-magenta">IETE-SF</span>
+                <span class="about-org__full">Institution of Electronics and Telecommunication Engineers – Students' Forum</span>
+              </div>
+            </li>
+            <li class="about-org">
+              <img src="assets/Logo/ecea.png" alt="ECEA logo" class="about-org__logo about-org__logo--invert" />
+              <div class="about-org__text">
+                <span class="about-org__name text-yellow">ECEA</span>
+                <span class="about-org__full">Electronics and Communication Engineers Association</span>
+              </div>
+            </li>
+          </ul>
         </article>
 
-        <article class="comic-panel panel-3" data-speed="0.8">
-          <div class="panel__content">
-            <span class="panel__tag">THE THEME</span>
-            <h3>The Tracks</h3>
-            <p>Tackle real-world problems spanning multiple domains. Whether your focus is AI, IoT, sustainability, or
-              core software, there's a specialized track designed to test your limits and spark your creativity.</p>
+        <!-- PANEL 3 — Mission (full-width bottom) -->
+        <article class="about-panel about-panel--mission" aria-label="Event mission">
+          <div class="about-panel__accent-line" aria-hidden="true"></div>
+          <span class="about-panel__tag">THE MISSION</span>
+          <div class="about-panel--mission__inner">
+            <h3 class="about-panel__title">Build. Compete. Innovate.</h3>
+            <p class="about-panel__body">
+              Participants take on <em class="about-em">real-world, industry-oriented problem statements</em>, explore emerging technologies, and build functional prototypes in a fast-paced environment — fostering innovation, collaboration, and hands-on learning.
+            </p>
           </div>
-        </article>
-
-        <article class="comic-panel panel-4" data-speed="1.1">
-          <div class="panel__content graphic-panel">
-            <h3 class="pop-text tilt-left">BAM!</h3>
-            <h3 class="pop-text tilt-right text-cyan">POW!</h3>
-            <h3 class="pop-text center text-yellow">CODE!</h3>
+          <div class="about-pillars">
+            <div class="about-pillar">
+              <span class="about-pillar__icon">⚡</span>
+              <span class="about-pillar__label">Innovation</span>
+            </div>
+            <div class="about-pillar">
+              <span class="about-pillar__icon">🤝</span>
+              <span class="about-pillar__label">Collaboration</span>
+            </div>
+            <div class="about-pillar">
+              <span class="about-pillar__icon">🛠</span>
+              <span class="about-pillar__label">Hands-on Learning</span>
+            </div>
           </div>
         </article>
 
