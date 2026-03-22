@@ -1,5 +1,20 @@
 import { UNIVERSES } from '../data/universes.js';
 
+const TRACK_SUBDOMAINS = {
+    1: 'IoT & Embedded Systems',
+    2: 'Healthcare & Wearable Technology',
+    3: 'Agriculture & Food Technology',
+    4: 'Disaster Management',
+    5: 'Robotics & Industrial Automation',
+    6: 'Energy & Sustainable Solutions',
+    7: 'Artificial Intelligence & Machine Learning',
+    8: 'Smart Cities & Infrastructure',
+    9: 'Governance, Education & Rural Innovation',
+    10: 'Blockchain & Cyber-Security',
+    11: 'Augmented Reality / Virtual Reality',
+    12: 'FinTech & Digital Economy',
+};
+
 function generateWeb(w, h, originX, originY) {
     const cx = originX === 0 ? 0 : w;
     const cy = originY === 0 ? 0 : h;
@@ -37,6 +52,13 @@ function generateWeb(w, h, originX, originY) {
 
 function injectStyles() {
     if (document.getElementById('problems-injected-styles')) return;
+
+    // Inject Rajdhani font from Google Fonts
+    const fontLink = document.createElement('link');
+    fontLink.rel = 'stylesheet';
+    fontLink.href = 'https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap';
+    document.head.appendChild(fontLink);
+
     const style = document.createElement('style');
     style.id = 'problems-injected-styles';
     style.textContent = `
@@ -64,6 +86,26 @@ function injectStyles() {
             to   { opacity: 0.9; filter: drop-shadow(0 0 14px rgba(123,47,190,1)); }
         }
 
+        /* ── Section font override ── */
+        #track-selector,
+        #track-selector * {
+            font-family: 'Rajdhani', sans-serif !important;
+        }
+
+        /* ── Heading style ── */
+        .track-selector__heading {
+            font-family: 'Rajdhani', sans-serif !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.12em !important;
+        }
+
+        /* ── Labels (HARDWARE / SOFTWARE) ── */
+        .track-selector__label {
+            font-family: 'Rajdhani', sans-serif !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.15em !important;
+        }
+
         /* ── Board transparent ── */
         .track-selector__board {
             background: transparent !important;
@@ -71,19 +113,20 @@ function injectStyles() {
             z-index: 1;
         }
 
-        /* ── Button hover glow — reddish pink ── */
+        /* ── Spider link base ── */
         .track-selector__spider-link {
             transition: transform 0.25s cubic-bezier(0.22,1,0.36,1),
-                        box-shadow 0.25s ease,
                         filter 0.25s ease;
-            border-radius: 50%;
             display: inline-flex;
             flex-direction: column;
             align-items: center;
+            text-decoration: none;
+            border-radius: 0 !important;
+            gap: 10px;
         }
 
         .track-selector__spider-link:hover {
-            transform: scale(1.15) translateY(-4px);
+            transform: scale(1.12) translateY(-4px);
             filter: drop-shadow(0 0 10px #E8115B)
                     drop-shadow(0 0 24px rgba(232,17,91,0.7))
                     drop-shadow(0 0 40px rgba(232,17,91,0.35));
@@ -112,14 +155,41 @@ function injectStyles() {
             display: block;
         }
 
+        /* ── Hide universe label completely ── */
         .track-selector__spider-name {
-            transition: color 0.25s ease,
-                        text-shadow 0.25s ease;
+            display: none !important;
         }
 
-        .track-selector__spider-link:hover .track-selector__spider-name {
+        /* ── Subdomain label ── */
+        .track-selector__spider-subdomain {
+            display: block;
+            font-family: 'Rajdhani', sans-serif !important;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-align: center;
+            color: #ffffff;
+            line-height: 1.3;
+            max-width: 130px;
+            text-transform: uppercase;
+            text-shadow:
+                0 0 10px rgba(0, 0, 0, 1),
+                0 0 6px rgba(0, 0, 0, 0.9),
+                0 2px 4px rgba(0, 0, 0, 0.8);
+            transition: color 0.25s ease, text-shadow 0.25s ease;
+        }
+
+        .track-selector__spider-link:hover .track-selector__spider-subdomain {
             color: #E8115B;
-            text-shadow: 0 0 10px rgba(232,17,91,0.8);
+            text-shadow:
+                0 0 12px rgba(232,17,91,0.9),
+                0 0 24px rgba(232,17,91,0.5),
+                0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        /* ── Grid row spacing ── */
+        .track-selector__grid {
+            row-gap: 2.6rem !important;
         }
     `;
     document.head.appendChild(style);
@@ -131,7 +201,6 @@ export function initProblems() {
 
     if (!container || !ui) return;
 
-    // Strip background from every ancestor up to body
     let el = container;
     while (el && el !== document.body) {
         el.style.background = 'transparent';
@@ -139,7 +208,6 @@ export function initProblems() {
         el = el.parentElement;
     }
 
-    // Style the section with background image
     const section = container.closest('section') || container.parentElement;
     if (section) {
         section.style.cssText = `
@@ -152,14 +220,12 @@ export function initProblems() {
         `;
     }
 
-    // Container transparent
     container.style.cssText = `
         background: transparent !important;
         position: relative;
         z-index: 1;
     `;
 
-    // Inject cobweb SVG corners
     if (section && !section.querySelector('.cobweb-overlay')) {
         const cobweb = document.createElement('div');
         cobweb.className = 'cobweb-overlay';
@@ -181,7 +247,6 @@ export function initProblems() {
         section.insertBefore(cobweb, section.firstChild);
     }
 
-    // Inject all styles
     injectStyles();
 
     const hardware = UNIVERSES.filter((universe) => universe.family === 'hardware');
@@ -236,21 +301,23 @@ export function initProblems() {
 
 function renderUniverseButton(universe) {
     const spiderLogo = `assets/spiderlogos/s${universe.id}.png`;
+    const subdomain = TRACK_SUBDOMAINS[universe.id] || '';
 
     return `
         <a class="track-selector__spider-link track-selector__spider-link--${universe.family}"
            href="${universe.href}"
-           aria-label="${universe.label} ${universe.title}">
+           aria-label="${subdomain}">
             <span class="track-selector__spider-tile">
                 <img
                     class="track-selector__spider-img"
                     src="${spiderLogo}"
-                    alt="${universe.label}"
+                    alt="${subdomain}"
                     loading="lazy"
                     onerror="this.style.display='none'"
                 />
             </span>
             <span class="track-selector__spider-name">${universe.label}</span>
+            <span class="track-selector__spider-subdomain">${subdomain}</span>
         </a>
     `;
 }
