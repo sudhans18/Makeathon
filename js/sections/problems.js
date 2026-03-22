@@ -1,19 +1,5 @@
 import { UNIVERSES } from '../data/universes.js';
 
-const TRACK_SUBDOMAINS = {
-    1: 'IoT & Embedded Systems',
-    2: 'Healthcare & Wearable Technology',
-    3: 'Agriculture & Food Technology',
-    4: 'Disaster Management',
-    5: 'Robotics & Industrial Automation',
-    6: 'Energy & Sustainable Solutions',
-    7: 'Artificial Intelligence & Machine Learning',
-    8: 'Smart Cities & Infrastructure',
-    9: 'Governance, Education & Rural Innovation',
-    10: 'Blockchain & Cyber-Security',
-    11: 'Augmented Reality / Virtual Reality',
-    12: 'FinTech & Digital Economy',
-};
 
 function generateWeb(w, h, originX, originY) {
     const cx = originX === 0 ? 0 : w;
@@ -301,7 +287,7 @@ export function initProblems() {
 
 function renderUniverseButton(universe) {
     const spiderLogo = `assets/spiderlogos/s${universe.id}.png`;
-    const subdomain = TRACK_SUBDOMAINS[universe.id] || '';
+    const subdomain = universe.title || '';
 
     return `
         <a class="track-selector__spider-link track-selector__spider-link--${universe.family}"

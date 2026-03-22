@@ -47,7 +47,7 @@ export const UNIVERSES = [
         variantName: 'Iron Spider',
         whyContent: 'I’m into building advanced tech and systems that can automate, optimize, and do things faster than humans ever could.',
         subtitle: 'Assistive motion, control feedback, and compact power.',
-        image: 'assets/variants/ironspider.jpg',
+        image: 'assets/variants/ironspider.jpeg',
         background: 'assets/background/ironspider_bg.webp',
         href: 'universe.html?u=2',
         problems: [
@@ -84,7 +84,7 @@ export const UNIVERSES = [
         variantName: 'MCU Spider-Man',
         whyContent: 'I love connected tech, smart devices, and systems that talk to each other to make life easier.',
         subtitle: 'Air, heat, and anomaly sensing in dense spaces.',
-        image: 'assets/variants/mcu_spiderman.webp',
+        image: 'assets/variants/mcu_spiderman.jpg',
         background: 'assets/background/mcu_spiderman_bg.webp',
         href: 'universe.html?u=3',
         problems: [
