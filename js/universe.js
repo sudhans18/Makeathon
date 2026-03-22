@@ -19,70 +19,40 @@ if (root) {
 
     root.innerHTML = `
         <section class="universe-hero section">
-            <div class="container">
-                <header class="universe-hero__header">
-                    <span class="universe-hero__eyebrow">${universe.family}</span>
+            <div class="container universe-hero__grid">
+                <div class="universe-hero__copy">
+                    <span class="universe-hero__eyebrow">${universe.code} / ${universe.family}</span>
                     <h1 class="universe-hero__title comic-heading">${universe.title}</h1>
-                    <p class="universe-hero__tagline">${universe.tagline}</p>
-                </header>
-
-                <div class="universe-hero__grid">
-                    <div class="universe-hero__content">
-                        <div class="universe-section-head" style="text-align: left; margin: 0 0 1.5rem;">
-                            <span class="universe-section-head__chip">Problem Statements</span>
-                        </div>
-                        <div class="universe-grid" style="grid-template-columns: 1fr; gap: 1rem;">
-                            ${universe.problems.map((problem, index) => `
-                                <article class="universe-card problem-card" data-index="${index}">
-                                    <div class="problem-card__header">
-                                        <h3 class="universe-card__title">${problem.title}</h3>
-                                        <button class="problem-card__toggle" aria-label="Toggle details">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                                        </button>
-                                    </div>
-                                    <div class="problem-card__content">
-                                        <span class="universe-card__tag">${problem.tag}</span>
-                                        <p class="universe-card__desc">${problem.desc}</p>
-                                    </div>
-                                </article>
-                            `).join('')}
-                        </div>
-                    </div>
-
-                    <div class="universe-hero__art">
-                        <div class="universe-hero__frame">
-                            <img src="${universe.image}" alt="${universe.label}" class="universe-hero__img" />
-                            <div style="margin-top: 1.5rem; text-align: center;">
-                                <strong class="universe-hero__variant">${universe.variantName}</strong>
-                                <p class="universe-hero__label" style="margin-top: 0.5rem; font-size: 0.9rem; color: rgba(255,255,255,0.6);">${universe.label}</p>
-                            </div>
-                        </div>
+                    <p class="universe-hero__subtitle">${universe.subtitle}</p>
+                    <p class="universe-hero__body">${universe.family === 'hardware' ? 'Hardware universes focus on build systems, sensing, motion, and physical resilience.' : 'Software universes focus on orchestration, intelligence, interfaces, and trustworthy automation.'}</p>
+                    <a class="btn btn-primary universe-hero__back" href="index.html#problems">Return to universe grid</a>
+                </div>
+                <div class="universe-hero__art">
+                    <div class="universe-hero__frame">
+                        <img src="${universe.image}" alt="${universe.label}" class="universe-hero__img" />
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="universe-hero__quote-section">
-                    <p class="universe-hero__why">${universe.whyContent}</p>
+        <section class="universe-problems section">
+            <div class="container">
+                <div class="universe-section-head">
+                    <span class="universe-section-head__chip">Problem Statements</span>
+                    <h2 class="universe-section-head__title">${universe.label}</h2>
+                    <p class="universe-section-head__sub">Choose one of the challenge threads below and build a solution that fits this universe.</p>
+                </div>
+                <div class="universe-grid">
+                    ${universe.problems.map((problem, index) => `
+                        <article class="universe-card">
+                            <span class="universe-card__index">0${index + 1}</span>
+                            <span class="universe-card__tag">${problem.tag}</span>
+                            <h3 class="universe-card__title">${problem.title}</h3>
+                            <p class="universe-card__desc">${problem.desc}</p>
+                        </article>
+                    `).join('')}
                 </div>
             </div>
         </section>
     `;
-
-    // Add interactivity for problem cards
-    const cards = root.querySelectorAll('.problem-card');
-    cards.forEach(card => {
-        card.addEventListener('click', (e) => {
-            const isExpanded = card.classList.contains('is-expanded');
-            
-            // If they click the card, toggle it. 
-            // The user mentioned other boxes expanding, which might be a misunderstanding of how grid heights work.
-            // I'll ensure we only toggle the current one.
-            if (!isExpanded) {
-                // Optional: Close others for a clean accordion look
-                cards.forEach(c => c.classList.remove('is-expanded'));
-                card.classList.add('is-expanded');
-            } else {
-                card.classList.remove('is-expanded');
-            }
-        });
-    });
 }
