@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,600;0,800;1,400;1,800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Montserrat:ital,wght@0,400;0,600;0,800;1,400;1,800&display=swap"
     rel="stylesheet" />
 
   <!-- Stylesheets -->
@@ -30,12 +30,30 @@
   <link rel="stylesheet" href="css/loading.css" />
 
   <!-- CDN Libraries -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 
 <body>
+
+  <!-- ── Skip loading screen instantly on back-navigation ──────────────────
+       ES modules are deferred, so any check in loading.js runs AFTER the
+       browser already paints the loading screen. This inline script is
+       synchronous and runs BEFORE the loading-screen div is rendered.
+  ──────────────────────────────────────────────────────────────────────── -->
+  <script>
+    (function(){
+      if(new URLSearchParams(location.search).get('nl')==='1'){
+        // Stamp that we are skipping, so loading.js also short-circuits
+        document.documentElement.dataset.skipLoading = '1';
+        // Rewrite the URL cleanly (no reload)
+        history.replaceState(null,'',location.pathname+location.hash);
+      }
+    })();
+  </script>
 
   <!-- ═══════════════════════════════════════════════════════════
        LOADING SCREEN — Spider-Man frame animation synced to load %
@@ -389,28 +407,38 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
+       SHARED CINEMATIC BACKGROUND (GALLERY + PROBLEMS)
+  ═══════════════════════════════════════════════════════════ -->
+  <div id="shared-cinematic-wrapper" style="position: relative; overflow: hidden;">
+    <!-- Shared Cinematic Frame Canvas -->
+    <canvas id="shared-cinematic-canvas" aria-hidden="true"
+      style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas>
+
+    <!-- ═══════════════════════════════════════════════════════════
        SECTION 4 — GALLERY
   ═══════════════════════════════════════════════════════════ -->
-  <section id="gallery" class="section section--gallery" aria-label="Previous Dimensions">
-    <div class="container">
-      <h2 class="section__heading comic-heading text-yellow">PAST ANOMALIES</h2>
-      <p class="section__sub">Snapshots from previous Makeathon editions.</p>
-      <div class="gallery__scatter" id="gallery-scatter">
-        <!-- Polaroids injected by JS -->
+    <section id="gallery" class="section section--gallery" aria-label="Previous Dimensions">
+      <div class="container">
+        <h2 class="section__heading comic-heading text-yellow">PAST ANOMALIES</h2>
+        <p class="section__sub">Snapshots from previous Makeathon editions.</p>
+        <div class="gallery__scatter" id="gallery-scatter">
+          <!-- Polaroids injected by JS -->
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══════════════════════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════════════════
        SECTION 5 — PROBLEM STATEMENTS
   ═══════════════════════════════════════════════════════════ -->
-  <section id="problems" class="section section--problems" aria-label="Dimensions">
-    <div class="container">
-      <div class="track-selector" id="track-selector" aria-label="Track selector">
-        <div class="track-selector__ui" id="track-selector-ui" aria-hidden="false"></div>
+    <section id="problems" class="section section--problems" aria-label="Dimensions">
+      <div class="container">
+        <div class="track-selector" id="track-selector" aria-label="Track selector">
+          <div class="track-selector__ui" id="track-selector-ui" aria-hidden="false"></div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+  </div> <!-- /shared-cinematic-wrapper -->
 
   <!-- ═══════════════════════════════════════════════════════════
        SECTION 6 — OUR TEAM
@@ -476,7 +504,9 @@
       </div>
 
       <h2 class="section__heading comic-heading text-cyan" style="margin-top: var(--sp-xl);">PARTNERS</h2>
-      <p class="section__sub" style="text-align:center; font-family: var(--ff-display); font-size: clamp(1.1rem, 2.5vw, 1.6rem); letter-spacing: 0.15em; color: var(--c-text-dim); margin-top: var(--sp-sm);">COMING SOON...</p>
+      <p class="section__sub"
+        style="text-align:center; font-family: var(--ff-display); font-size: clamp(1.1rem, 2.5vw, 1.6rem); letter-spacing: 0.15em; color: var(--c-text-dim); margin-top: var(--sp-sm);">
+        COMING SOON...</p>
     </div>
   </section>
 
@@ -524,7 +554,7 @@
             Engineering.</p>
           <div style="width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m2!1s0x3a52c2cae4f9b8c9%3A0xc3f6afce6a5369bb!2sSri%20Venkateswara%20College%20of%20Engineering%20(SVCE)!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              src="https://maps.google.com/maps?q=Sri+Venkateswara+College+of+Engineering+Sriperumbudur&t=&z=15&ie=UTF8&iwloc=&output=embed"
               width="100%" height="160"
               style="border:0; display: block; opacity: 0.6; filter: grayscale(1) invert(1) contrast(1.2);"
               allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>

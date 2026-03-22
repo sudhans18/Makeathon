@@ -72,24 +72,42 @@ function injectStyles() {
             to   { opacity: 0.9; filter: drop-shadow(0 0 14px rgba(123,47,190,1)); }
         }
 
-        /* ── Section font override ── */
-        #track-selector,
-        #track-selector * {
-            font-family: 'Rajdhani', sans-serif !important;
-        }
+        /* ── Hide bridge wire lines ── */
+        .track-selector__bridge { display: none !important; }
 
-        /* ── Heading style ── */
+        /* ══ CHOOSE YOUR TRACK heading — white comic style ══ */
         .track-selector__heading {
-            font-family: 'Rajdhani', sans-serif !important;
-            font-weight: 700 !important;
-            letter-spacing: 0.12em !important;
+            font-family: 'Anton', sans-serif !important;
+            font-size: clamp(2.5rem, 6vw, 4.5rem) !important;
+            font-weight: 400 !important;
+            letter-spacing: 0.05em !important;
+            text-transform: uppercase !important;
+            color: #ffffff !important;
+            text-shadow: 4px 4px 0 #ff0040, 8px 8px 0 #000000 !important;
+            /* Reset pill styles */
+            background: transparent !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            border: none !important;
         }
 
-        /* ── Labels (HARDWARE / SOFTWARE) ── */
+        /* ══ HARDWARE / SOFTWARE labels — white comic style ══ */
         .track-selector__label {
-            font-family: 'Rajdhani', sans-serif !important;
-            font-weight: 700 !important;
-            letter-spacing: 0.15em !important;
+            font-family: 'Anton', sans-serif !important;
+            font-size: clamp(1.6rem, 3.5vw, 2.6rem) !important;
+            font-weight: 400 !important;
+            letter-spacing: 0.05em !important;
+            text-transform: uppercase !important;
+            color: #ffffff !important;
+            text-shadow: 3px 3px 0 #ff0040, 6px 6px 0 #000000 !important;
+            /* Reset pill styles */
+            background: transparent !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            border: none !important;
+            min-width: unset !important;
         }
 
         /* ── Board transparent ── */
@@ -149,9 +167,9 @@ function injectStyles() {
         /* ── Subdomain label ── */
         .track-selector__spider-subdomain {
             display: block;
-            font-family: 'Rajdhani', sans-serif !important;
-            font-size: 0.95rem;
-            font-weight: 700;
+            font-family: 'Anton', sans-serif !important;
+            font-size: 0.85rem;
+            font-weight: 400;
             letter-spacing: 0.04em;
             text-align: center;
             color: #ffffff;
@@ -176,6 +194,11 @@ function injectStyles() {
         /* ── Grid row spacing ── */
         .track-selector__grid {
             row-gap: 2.6rem !important;
+        }
+
+        /* ── Labels row layout — no bridge, just space-evenly ── */
+        .track-selector__labels {
+            margin-top: clamp(1.5rem, 3vw, 2.5rem) !important;
         }
     `;
     document.head.appendChild(style);
