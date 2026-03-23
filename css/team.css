@@ -30,7 +30,7 @@
 }
 
 .section--team .section__sub {
-  color: rgba(255,255,255,0.6);
+  color: rgba(255, 255, 255, 0.6);
   position: relative;
   z-index: 2;
 }
@@ -103,13 +103,15 @@
 .team-card {
   position: relative;
   isolation: isolate;
-  width: 140px; /* Reduced width */
+  width: 140px;
+  /* Reduced width */
   height: auto;
   min-height: auto;
   background: #14161f;
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 10px;
-  padding: 8px 6px 8px; /* Reduced padding */
+  padding: 8px 6px 8px;
+  /* Reduced padding */
   text-align: center;
   cursor: grab;
   transition:
@@ -139,7 +141,8 @@
   position: absolute;
   top: -5px;
   left: -5px;
-  width: 120px; /* Increased size to be visible */
+  width: 120px;
+  /* Increased size to be visible */
   height: 120px;
   z-index: 10;
   pointer-events: none;
@@ -147,9 +150,11 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.55; /* Vastly increased opacity for visibility */
+  opacity: 0.55;
+  /* Vastly increased opacity for visibility */
   transform-origin: center;
-  transform: scaleX(-1) scaleY(-1); /* Vertically inverted into top-left */
+  transform: scaleX(-1) scaleY(-1);
+  /* Vertically inverted into top-left */
 }
 
 .team-card.swiper-slide-active::after {
@@ -165,9 +170,11 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.55; /* Vastly increased opacity for visibility */
+  opacity: 0.55;
+  /* Vastly increased opacity for visibility */
   transform-origin: center;
-  transform: none; /* Points to bottom-right out of the box */
+  transform: none;
+  /* Points to bottom-right out of the box */
 }
 
 /* ── Avatar ─────────────────────────────────────────────── */
@@ -203,7 +210,8 @@
 .team-card__name {
   font-family: 'Bangers', var(--ff-display, 'Anton'), sans-serif;
   font-weight: 400;
-  font-size: 0.95rem; /* Shrunk font size */
+  font-size: 0.95rem;
+  /* Shrunk font size */
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -215,7 +223,8 @@
 .team-card__role {
   font-family: var(--ff-body);
   font-weight: 500;
-  font-size: 0.55rem; /* Shrunk font size */
+  font-size: 0.55rem;
+  /* Shrunk font size */
   color: rgba(255, 255, 255, 0.35);
   text-transform: uppercase;
   letter-spacing: 0.08em;

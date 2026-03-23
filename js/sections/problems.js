@@ -200,6 +200,84 @@ function injectStyles() {
         .track-selector__labels {
             margin-top: clamp(1.5rem, 3vw, 2.5rem) !important;
         }
+
+        /* ══ 2-Track choice buttons ══ */
+        .track-choose-btns {
+            display: flex;
+            flex-direction: row;
+            gap: 28px;
+            justify-content: center;
+            align-items: stretch;
+            flex-wrap: wrap;
+            margin-top: 36px;
+            padding-bottom: 12px;
+        }
+
+        .track-choose-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+            width: 300px;
+            max-width: 100%;
+            padding: 28px 30px;
+            text-decoration: none;
+            position: relative;
+            /* Comic-button border gimmick */
+            border: 3px solid #000;
+            background: rgba(255,255,255,0.04);
+            transition: transform 0.25s, box-shadow 0.25s;
+            cursor: pointer;
+        }
+
+        .track-choose-btn--hw {
+            box-shadow: 6px 6px 0 #ff0040;
+        }
+        .track-choose-btn--sw {
+            box-shadow: 6px 6px 0 #00f0ff;
+        }
+
+        .track-choose-btn:hover {
+            transform: translate(-3px, -3px);
+        }
+        .track-choose-btn--hw:hover {
+            box-shadow: 9px 9px 0 #ff0040;
+        }
+        .track-choose-btn--sw:hover {
+            box-shadow: 9px 9px 0 #00f0ff;
+        }
+
+        .track-choose-btn__icon {
+            font-size: 2rem;
+            line-height: 1;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .track-choose-btn__label {
+            font-family: 'Anton', sans-serif !important;
+            font-size: clamp(1.4rem, 3vw, 2rem) !important;
+            font-weight: 400 !important;
+            letter-spacing: 0.08em !important;
+            text-transform: uppercase !important;
+            color: #ffffff !important;
+        }
+
+        .track-choose-btn--hw .track-choose-btn__label {
+            text-shadow: 3px 3px 0 #ff0040 !important;
+        }
+        .track-choose-btn--sw .track-choose-btn__label {
+            text-shadow: 3px 3px 0 #00f0ff !important;
+        }
+
+        .track-choose-btn__sub {
+            font-family: var(--ff-body, sans-serif) !important;
+            font-size: 0.72rem !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.08em !important;
+            text-transform: uppercase !important;
+            color: rgba(255,255,255,0.38) !important;
+            line-height: 1.5 !important;
+        }
     `;
     document.head.appendChild(style);
 }
@@ -267,46 +345,22 @@ export function initProblems() {
                 <h2 class="track-selector__heading">CHOOSE YOUR TRACK</h2>
             </div>
 
-            <div class="track-selector__bridge track-selector__bridge--left" aria-hidden="true"></div>
-            <div class="track-selector__bridge track-selector__bridge--right" aria-hidden="true"></div>
-
-            <div class="track-selector__labels">
-                <span class="track-selector__label track-selector__label--hardware">HARDWARE</span>
-                <span class="track-selector__label track-selector__label--software">SOFTWARE</span>
-            </div>
-
-            <div class="track-selector__columns">
-                <div class="track-selector__column">
-                    <div class="track-selector__grid track-selector__grid--hardware">
-                        ${hardware.map((universe) => renderUniverseButton(universe)).join('')}
-                    </div>
-                </div>
-
-                <div class="track-selector__column">
-                    <div class="track-selector__grid track-selector__grid--software">
-                        ${software.map((universe) => renderUniverseButton(universe)).join('')}
-                    </div>
-                </div>
+            <div class="track-choose-btns">
+                <a href="track.html?t=hardware" class="track-choose-btn track-choose-btn--hw">
+                    <span class="track-choose-btn__icon">⚙</span>
+                    <span class="track-choose-btn__label">HARDWARE</span>
+                    <span class="track-choose-btn__sub">IoT · Robotics · Energy · Healthcare · Agriculture · Disaster</span>
+                </a>
+                <a href="track.html?t=software" class="track-choose-btn track-choose-btn--sw">
+                    <span class="track-choose-btn__icon">◈</span>
+                    <span class="track-choose-btn__label">SOFTWARE</span>
+                    <span class="track-choose-btn__sub">AI · Smart Cities · Blockchain · AR/VR · FinTech · Governance</span>
+                </a>
             </div>
         </div>
     `;
-
-    const buttons = container.querySelectorAll('.track-selector__spider-link');
-    if (typeof gsap !== 'undefined') {
-        gsap.fromTo(
-            buttons,
-            { opacity: 0, y: 20, scale: 0.92 },
-            {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                duration: 0.7,
-                stagger: 0.05,
-                ease: 'power3.out',
-            }
-        );
-    }
 }
+
 
 function renderUniverseButton(universe) {
     const spiderLogo = `assets/spiderlogos/s${universe.id}.png`;
