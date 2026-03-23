@@ -1,75 +1,103 @@
 /* ═══════════════════════════════════════════════════════════
    js/sections/gallery.js
-   SPIDER-VERSE Gallery — PAST ANOMALIES
-   Scattered polaroid snapshots using real event photos.
+   SPIDER-VERSE Gallery — Glitching Monitors
 ═══════════════════════════════════════════════════════════ */
 
 import { createScrollReveal } from '../core/gsap-init.js';
 
-/** Real past Makeathon event photos */
-const GALLERY_ITEMS = [
-  { title: 'Opening Ceremony',  sub: 'Makeathon 6.0', img: 'assets/Spideys/1.jpeg'  },
-  { title: 'Team Hack Time',    sub: 'Makeathon 6.0', img: 'assets/Spideys/2.jpeg'  },
-  { title: 'The Build Phase',   sub: 'Makeathon 5.0', img: 'assets/Spideys/3.jpeg'  },
-  { title: 'Wire It Up',        sub: 'Makeathon 5.0', img: 'assets/Spideys/4.jpeg'  },
-  { title: 'Demo Day',          sub: 'Makeathon 4.0', img: 'assets/Spideys/5.jpeg'  },
-  { title: 'Late Night Grind',  sub: 'Makeathon 4.0', img: 'assets/Spideys/6.jpeg'  },
-  { title: 'Judging Round',     sub: 'Makeathon 3.0', img: 'assets/Spideys/7.jpeg'  },
-  { title: 'The Reveal',        sub: 'Makeathon 3.0', img: 'assets/Spideys/8.jpeg'  },
-  { title: 'Award Ceremony',    sub: 'Makeathon 2.0', img: 'assets/Spideys/9.jpeg'  },
-  { title: 'Team Collabs',      sub: 'Makeathon 2.0', img: 'assets/Spideys/10.jpeg' },
-  { title: 'The First Spark',   sub: 'Makeathon 1.0', img: 'assets/Spideys/11.jpeg' },
-  { title: 'Where It Began',    sub: 'Makeathon 1.0', img: 'assets/Spideys/12.jpeg' },
+const GALLERY_IMAGES = [
+  'assets/Gallery images/IMG-20260323-WA0019.jpg',
+  'assets/Gallery images/IMG-20260323-WA0020.jpg',
+  'assets/Gallery images/IMG-20260323-WA0021.jpg',
+  'assets/Gallery images/IMG-20260323-WA0022.jpg',
+  'assets/Gallery images/IMG-20260323-WA0023.jpg',
+  'assets/Gallery images/IMG-20260323-WA0024.jpg',
+  'assets/Gallery images/IMG-20260323-WA0025.jpg',
+  'assets/Gallery images/IMG-20260323-WA0026.jpg',
+  'assets/Gallery images/IMG-20260323-WA0027.jpg',
+  'assets/Gallery images/IMG-20260323-WA0028.jpg',
+  'assets/Gallery images/IMG-20260323-WA0029.jpg',
+  'assets/Gallery images/IMG-20260323-WA0030.jpg',
+  'assets/Gallery images/IMG-20260323-WA0031.jpg',
+  'assets/Gallery images/IMG-20260323-WA0032.jpg',
+  'assets/Gallery images/IMG-20260323-WA0033.jpg',
+  'assets/Gallery images/IMG-20260323-WA0034.jpg',
+  'assets/Gallery images/IMG-20260323-WA0035.jpg',
+  'assets/Gallery images/IMG-20260323-WA0036.jpg',
+  'assets/Gallery images/IMG-20260323-WA0037.jpg',
+  'assets/Gallery images/IMG-20260323-WA0038.jpg',
+  'assets/Gallery images/IMG-20260323-WA0039.jpg',
+  'assets/Gallery images/IMG-20260323-WA0040.jpg',
+  'assets/Gallery images/IMG-20260323-WA0042.jpg',
+  'assets/Gallery images/IMG-20260323-WA0043.jpg',
+  'assets/Gallery images/IMG-20260323-WA0044.jpg',
+  'assets/Gallery images/IMG-20260323-WA0045.jpg',
+  'assets/Gallery images/IMG-20260323-WA0046.jpg',
+  'assets/Gallery images/IMG-20260323-WA0047.jpg',
+  'assets/Gallery images/IMG-20260323-WA0048.jpg',
+  'assets/Gallery images/IMG-20260323-WA0049.jpg',
+  'assets/Gallery images/IMG-20260323-WA0050.jpg',
+  'assets/Gallery images/IMG-20260323-WA0051.jpg',
+  'assets/Gallery images/IMG-20260323-WA0052.jpg',
+  'assets/Gallery images/IMG-20260323-WA0053.jpg',
+  'assets/Gallery images/IMG-20260323-WA0054.jpg',
 ];
 
 export function initGallery() {
-  injectCards();
+  const displays = document.querySelectorAll('.gallery-display');
+  if (!displays || displays.length === 0) return;
+  
+  let currentIndex = 0;
 
-  // Custom reveal — drop in from above with rotation bounce
-  const polaroids = document.querySelectorAll('.polaroid-card');
-  polaroids.forEach((card, i) => {
-    const targetRot = parseFloat(card.dataset.rot || '0');
-
-    gsap.fromTo(card,
-      { opacity: 0, y: -50, rotation: targetRot + 15, scale: 1.2 },
-      {
-        opacity: 1, y: 0, rotation: targetRot, scale: 1,
-        duration: 0.8,
-        ease: 'bounce.out',
-        delay: (i % 4) * 0.1,
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 90%',
-        }
-      }
-    );
+  // Initialize first 5 images
+  displays.forEach((display, i) => {
+    const imgElement = display.querySelector('.gallery-img');
+    if (imgElement && GALLERY_IMAGES[i]) {
+      imgElement.src = GALLERY_IMAGES[i];
+    }
   });
-}
 
-function injectCards() {
-  const grid = document.getElementById('gallery-scatter');
-  if (!grid) return;
+  // Cycle images every 4 seconds
+  setInterval(() => {
+    // 1. Trigger glitch animation
+    displays.forEach(display => display.classList.add('is-glitching'));
 
-  grid.innerHTML = GALLERY_ITEMS.map((item) => {
-    const rot     = (Math.random() * 20) - 10;
-    const yOffset = (Math.random() * 30) - 15;
+    // 2. Wait halfway through animation to swap image
+    setTimeout(() => {
+      currentIndex = (currentIndex + 5) % GALLERY_IMAGES.length;
+      
+      displays.forEach((display, i) => {
+        const imgElement = display.querySelector('.gallery-img');
+        const imgIndex = (currentIndex + i) % GALLERY_IMAGES.length;
+        if (imgElement && GALLERY_IMAGES[imgIndex]) {
+          imgElement.src = GALLERY_IMAGES[imgIndex];
+        }
+      });
+    }, 400); // Wait 400ms before changing image to hide the swap within the glitch
 
-    return `
-      <article class="polaroid-card" data-rot="${rot.toFixed(2)}" style="transform: rotate(${rot.toFixed(2)}deg) translateY(${yOffset.toFixed(1)}px)">
-        <div class="polaroid-img-wrapper">
-          <img
-            src="${item.img}"
-            alt="${item.title}"
-            loading="lazy"
-            width="400"
-            height="400"
-          />
-        </div>
-        <div class="polaroid-caption">
-          <h3 class="polaroid-title">${item.title}</h3>
-          <span class="polaroid-sub text-cyan">${item.sub}</span>
-        </div>
-      </article>
-    `;
-  }).join('');
+    // 3. Remove glitch class
+    setTimeout(() => {
+      displays.forEach(display => display.classList.remove('is-glitching'));
+    }, 800);
+
+  }, 4000);
+
+  // Intro animation using GSAP ScrollTrigger
+  if (typeof gsap !== 'undefined') {
+      displays.forEach((display, i) => {
+        gsap.fromTo(display,
+          { opacity: 0, scale: 0.5, rotationY: 90 },
+          {
+            opacity: 1, scale: 1, rotationY: i % 2 !== 0 ? 5 : -5,
+            duration: 1,
+            ease: 'elastic.out(1, 0.5)',
+            delay: i * 0.15,
+            scrollTrigger: {
+              trigger: '#gallery',
+              start: 'top 70%',
+            }
+          }
+        );
+      });
+  }
 }

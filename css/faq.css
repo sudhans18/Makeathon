@@ -22,33 +22,25 @@
     z-index: 1;
 }
 
-.faq-container,
-.section__heading,
-.section__sub {
+.section--faq .section__heading,
+.section--faq .section__sub {
     position: relative;
     z-index: 2;
 }
 
-.faq-container .section__heading {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+.section--faq .section__heading {
     position: relative;
     z-index: 3;
-    text-align: left;
-    left: 5%;
-    transform: none;
-    margin: 0;
+    /* --- TWEAK THIS: Change margin-top to move the headings UP (more negative) or DOWN (less negative/positive) --- */
+    margin-top: -60px;
     margin-bottom: var(--sp-sm);
     /* Keep spacing consistent */
 }
 
-.faq-container .section__sub {
+.section--faq .section__sub {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
     position: relative;
     z-index: 3;
-    text-align: left;
-    left: 5%;
-    transform: none;
-    margin: 0;
     margin-bottom: var(--sp-xl);
     /* Keep consistent spacing below subtext */
 }
@@ -78,7 +70,8 @@
 /* Left Side: Peter Parker */
 /* The user said "Peter Parker on the LEFT side" and "Speech bubble ABOVE Peter's head" */
 .speech-bubble--peter {
-    top: 180px;
+    /* --- TWEAK THIS: Change top value to move Peter's bubble UP (smaller px) or DOWN (larger px) --- */
+    top: 0%;
     /* Adjusted to sit ABOVE Peter's head visually */
     left: 5%;
     width: 40%;
@@ -90,7 +83,10 @@
 /* Right Side: Miles Morales */
 /* The user said "Miles Morales on the RIGHT side" and "Speech bubble ABOVE Miles’ head" */
 .speech-bubble--miles {
-    top: 150px;
+    /* --- TWEAK THIS: Change bottom value to move Miles's bubble UP (larger px) or DOWN (smaller px). 
+           Using 'bottom' instead of 'top' ensures the box expands UPWARDS when text wraps! --- */
+    bottom: 470px;
+    top: auto;
     /* Adjusted to sit ABOVE Miles' head visually */
     right: 5%;
     width: 42%;
@@ -160,14 +156,18 @@
     line-height: 1.5;
 }
 
-/* Custom Select Dropdown - Clean styling */
-.faq-dropdown {
+/* --- Custom Select Dropdown --- */
+.faq-custom-select {
+    position: relative;
     width: 100%;
-    padding: 10px;
     margin-top: 8px;
     font-family: var(--ff-body);
     font-weight: 700;
     font-size: 0.95rem;
+}
+
+.faq-custom-select-trigger {
+    padding: 10px;
     border: 2px solid var(--c-border-dark);
     border-radius: 6px;
     background-color: var(--c-yellow);
@@ -176,8 +176,6 @@
     box-shadow: 2px 2px 0 var(--c-red);
     outline: none;
     transition: all 0.2s ease;
-    appearance: none;
-    -webkit-appearance: none;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 10px center;
@@ -185,14 +183,64 @@
     padding-right: 32px;
 }
 
-.faq-dropdown:focus {
+.faq-custom-select-trigger:focus,
+.faq-custom-select.open .faq-custom-select-trigger {
     box-shadow: 0 0 0 2px var(--c-cyan);
 }
 
-.faq-dropdown option {
+.faq-custom-select-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
     background-color: #fff;
+    border: 2px solid var(--c-border-dark);
+    border-radius: 6px;
+    margin-top: 4px;
+    box-shadow: 4px 4px 0 var(--c-cyan);
+    z-index: 100;
+    max-height: calc(6 * 44px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    display: none;
+}
+
+.faq-custom-select.open .faq-custom-select-options {
+    display: block;
+}
+
+/* Thicker Scrollbar styling */
+.faq-custom-select-options::-webkit-scrollbar {
+    width: 14px;
+}
+
+.faq-custom-select-options::-webkit-scrollbar-track {
+    background: #e0e0e0;
+    border-radius: 0 4px 4px 0;
+    border-left: 1px solid #ccc;
+}
+
+.faq-custom-select-options::-webkit-scrollbar-thumb {
+    background-color: var(--c-red);
+    border: 2px solid var(--c-border-dark);
+    border-radius: 6px;
+}
+
+.faq-custom-option {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
     color: #000;
     font-weight: 600;
+    text-align: left;
+}
+
+.faq-custom-option:hover {
+    background-color: var(--c-yellow);
+}
+
+.faq-custom-option:last-child {
+    border-bottom: none;
 }
 
 /* Smooth Typing Animation */
@@ -219,6 +267,10 @@
         height: auto;
     }
 
+    .section--faq .section__heading {
+        margin-top: 2rem;
+    }
+
     .faq-comic-container {
         height: auto;
         display: flex;
@@ -234,6 +286,7 @@
         max-width: 90%;
         margin: 0 auto;
         top: auto !important;
+        bottom: auto !important;
         left: auto !important;
         right: auto !important;
         transform: rotate(0) !important;

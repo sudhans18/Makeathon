@@ -298,7 +298,7 @@ export function initProblems() {
     const section = container.closest('section') || container.parentElement;
     if (section) {
         section.style.cssText = `
-            background-image: url('assets/problembg.jpeg') !important;
+            background-image: url('assets/problembg.jpg') !important;
             background-size: cover !important;
             background-position: center !important;
             background-repeat: no-repeat !important;

@@ -28,44 +28,46 @@ const FAQ_DATA = [
 ];
 
 export function initFAQ() {
-    setupDropdown();
-    setupInteraction();
+    setupCustomDropdown();
 }
 
-function setupDropdown() {
-    const dropdown = document.getElementById('faq-dropdown');
-    if (!dropdown) return;
-
-    FAQ_DATA.forEach((item, index) => {
-        const option = document.createElement('option');
-        option.value = index;
-        option.textContent = `${index + 1}. ${item.q}`;
-        dropdown.appendChild(option);
-    });
-}
-
-function setupInteraction() {
-    const dropdown = document.getElementById('faq-dropdown');
+function setupCustomDropdown() {
+    const customSelect = document.getElementById('faq-custom-select');
+    const trigger = document.getElementById('faq-custom-select-trigger');
+    const optionsContainer = document.getElementById('faq-custom-select-options');
     const milesDefaultText = document.getElementById('miles-default-text');
     const peterAnswer = document.getElementById('peter-answer-text');
 
-    if (!dropdown || !milesDefaultText || !peterAnswer) return;
+    if (!trigger || !optionsContainer || !milesDefaultText || !peterAnswer) return;
 
-    dropdown.addEventListener('change', (e) => {
-        const idx = e.target.value;
-        if (idx === "") return;
+    FAQ_DATA.forEach((item, index) => {
+        const optionDiv = document.createElement('div');
+        optionDiv.className = 'faq-custom-option';
+        optionDiv.textContent = `${index + 1}. ${item.q}`;
+        
+        optionDiv.addEventListener('click', () => {
+            trigger.textContent = `${index + 1}. ${item.q}`;
+            milesDefaultText.innerHTML = `<strong>${item.q}</strong>`;
+            
+            peterAnswer.classList.remove('typing');
+            void peterAnswer.offsetWidth;
+            peterAnswer.innerHTML = item.a;
+            peterAnswer.classList.add('typing');
+            
+            customSelect.classList.remove('open');
+        });
+        
+        optionsContainer.appendChild(optionDiv);
+    });
 
-        const item = FAQ_DATA[idx];
+    trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        customSelect.classList.toggle('open');
+    });
 
-        // Update Miles' default text to display the chosen question
-        milesDefaultText.innerHTML = `<strong>${item.q}</strong>`;
-
-        // Animate Peter's answer
-        peterAnswer.classList.remove('typing');
-        // Force reflow to restart animation
-        void peterAnswer.offsetWidth;
-
-        peterAnswer.innerHTML = item.a;
-        peterAnswer.classList.add('typing');
+    document.addEventListener('click', (e) => {
+        if (customSelect && !customSelect.contains(e.target)) {
+            customSelect.classList.remove('open');
+        }
     });
 }
