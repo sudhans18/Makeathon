@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Choose Your Track — Makeathon 7.0</title>
+  <meta name="description" content="Select a problem domain from Hardware or Software tracks for Makeathon 7.0." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/track.css" />
+</head>
+<body class="track-page-body">
+
+  <!-- Nav -->
+  <nav class="comic-nav universe-nav">
+    <div class="nav__container">
+      <a href="index.html?nl=1#problems" class="nav__logo" aria-label="Back to main">
+        <img src="assets/Logo/logo.svg" alt="Makeathon 7.0" class="nav__logo-img" />
+      </a>
+      <a href="index.html?nl=1#problems" class="btn btn--nav text-yellow">← BACK</a>
+    </div>
+  </nav>
+
+  <!-- Main layout -->
+  <div class="track-layout" id="track-layout">
+
+    <!-- LEFT: thumbnail selector panel -->
+    <aside class="track-left" id="track-left" aria-label="Domain selector">
+      <div class="track-left__header" id="track-left-header">
+        <!-- Track label injected by JS -->
+      </div>
+      <div class="track-left__list" id="track-left-list">
+        <!-- Thumbnail cards injected by JS -->
+      </div>
+    </aside>
+
+    <!-- RIGHT: domain detail panel -->
+    <main class="track-right" id="track-right" aria-label="Domain details">
+      <!-- Content injected by JS -->
+    </main>
+
+  </div>
+
+  <script type="module" src="js/track.js"></script>
+</body>
+</html>
