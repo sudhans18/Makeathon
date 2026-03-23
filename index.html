@@ -39,28 +39,6 @@
 
 <body>
 
-  <!-- ── Skip loading screen instantly on back-navigation ──────────────────
-       ES modules are deferred, so any check in loading.js runs AFTER the
-       browser already paints the loading screen. This inline script is
-       synchronous and runs BEFORE the loading-screen div is rendered.
-  ──────────────────────────────────────────────────────────────────────── -->
-  <script>
-    (function(){
-      const isNl = new URLSearchParams(window.location.search).get('nl') === '1';
-      const hasLoaded = sessionStorage.getItem('makeathon_loaded');
-      
-      // Skip if explicitly told via URL ?nl=1 OR if we've already seen the loading screen this session
-      if(isNl || hasLoaded){
-        document.documentElement.dataset.skipLoading = '1';
-        if(isNl){
-          history.replaceState(null,'',window.location.pathname+window.location.hash);
-        }
-      } else {
-        sessionStorage.setItem('makeathon_loaded', '1');
-      }
-    })();
-  </script>
-
   <!-- ═══════════════════════════════════════════════════════════
        LOADING SCREEN — Spider-Man frame animation synced to load %
   ═══════════════════════════════════════════════════════════ -->
@@ -98,27 +76,8 @@
         <li><a href="#faq" class="nav__link">FAQ</a></li>
       </ul>
       <a href="#hero" class="btn btn--nav text-yellow">REGISTER</a>
-      <!-- Hamburger toggle (mobile only) -->
-      <button class="nav__hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-drawer">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
     </div>
   </nav>
-
-  <!-- Mobile slide-out drawer -->
-  <div class="nav__drawer" id="nav-drawer" role="dialog" aria-label="Navigation menu">
-    <a href="#about" class="nav__drawer-link">About Us</a>
-    <a href="#timeline" class="nav__drawer-link">Timeline</a>
-    <a href="#problems" class="nav__drawer-link">Problem Statements</a>
-    <a href="#sponsorship" class="nav__drawer-link">Sponsors</a>
-    <a href="#team" class="nav__drawer-link">The Crew</a>
-    <a href="#faq" class="nav__drawer-link">FAQ</a>
-    <a href="#hero" class="btn btn--nav text-yellow">REGISTER</a>
-  </div>
-  <!-- Backdrop -->
-  <div class="nav__overlay" id="nav-overlay" aria-hidden="true"></div>
 
   <!-- ═══════════════════════════════════════════════════════════
        SECTION 1 — HERO / LANDING
@@ -432,38 +391,28 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       SHARED CINEMATIC BACKGROUND (GALLERY + PROBLEMS)
-  ═══════════════════════════════════════════════════════════ -->
-  <div id="shared-cinematic-wrapper" style="position: relative; overflow: hidden;">
-    <!-- Shared Cinematic Frame Canvas -->
-    <canvas id="shared-cinematic-canvas" aria-hidden="true"
-      style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas>
-
-    <!-- ═══════════════════════════════════════════════════════════
        SECTION 4 — GALLERY
   ═══════════════════════════════════════════════════════════ -->
-    <section id="gallery" class="section section--gallery" aria-label="Previous Dimensions">
-      <div class="container">
-        <h2 class="section__heading comic-heading text-yellow">PAST ANOMALIES</h2>
-        <p class="section__sub">Snapshots from previous Makeathon editions.</p>
-        <div class="gallery__scatter" id="gallery-scatter">
-          <!-- Polaroids injected by JS -->
-        </div>
+  <section id="gallery" class="section section--gallery" aria-label="Previous Dimensions">
+    <div class="container">
+      <h2 class="section__heading comic-heading text-yellow">PAST ANOMALIES</h2>
+      <p class="section__sub">Snapshots from previous Makeathon editions.</p>
+      <div class="gallery__scatter" id="gallery-scatter">
+        <!-- Polaroids injected by JS -->
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ═══════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════════
        SECTION 5 — PROBLEM STATEMENTS
   ═══════════════════════════════════════════════════════════ -->
-    <section id="problems" class="section section--problems" aria-label="Dimensions">
-      <div class="container">
-        <div class="track-selector" id="track-selector" aria-label="Track selector">
-          <div class="track-selector__ui" id="track-selector-ui" aria-hidden="false"></div>
-        </div>
+  <section id="problems" class="section section--problems" aria-label="Dimensions">
+    <div class="container">
+      <div class="track-selector" id="track-selector" aria-label="Track selector">
+        <div class="track-selector__ui" id="track-selector-ui" aria-hidden="false"></div>
       </div>
-    </section>
-
-  </div> <!-- /shared-cinematic-wrapper -->
+    </div>
+  </section>
 
   <!-- ═══════════════════════════════════════════════════════════
        SECTION 6 — OUR TEAM
@@ -478,14 +427,14 @@
 
       <!-- Team Tabs -->
       <div class="team__tabs" role="tablist">
-        <button class="team__tab active" data-team="ecea" role="tab" aria-selected="true">ECEA</button>
+        <button class="team__tab active" data-team="race" role="tab" aria-selected="true">RACE</button>
         <button class="team__tab" data-team="iete" role="tab" aria-selected="false">IETE-SF</button>
-        <button class="team__tab" data-team="race" role="tab" aria-selected="false">RACE</button>
+        <button class="team__tab" data-team="ecea" role="tab" aria-selected="false">ECEA</button>
       </div>
 
-      <!-- ECEA Panel -->
-      <div class="team__panel active" data-team="ecea" role="tabpanel">
-        <div class="team__grid" id="team-grid-ecea"></div>
+      <!-- RACE Panel -->
+      <div class="team__panel active" data-team="race" role="tabpanel">
+        <div class="team__grid" id="team-grid-race"></div>
       </div>
 
       <!-- IETE-SF Panel -->
@@ -493,9 +442,9 @@
         <div class="team__grid" id="team-grid-iete"></div>
       </div>
 
-      <!-- RACE Panel -->
-      <div class="team__panel" data-team="race" role="tabpanel">
-        <div class="team__grid" id="team-grid-race"></div>
+      <!-- ECEA Panel -->
+      <div class="team__panel" data-team="ecea" role="tabpanel">
+        <div class="team__grid" id="team-grid-ecea"></div>
       </div>
     </div>
   </section>
@@ -536,31 +485,23 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       SECTION 8 — FAQs (SPIDER-VERSE)
+       SECTION 8 — FAQs
   ═══════════════════════════════════════════════════════════ -->
   <section id="faq" class="section section--faq" aria-label="FAQ">
     <div class="container">
-      <h2 class="section__heading comic-heading text-cyan">MULTIVERSAL QUERIES</h2>
-      <p class="section__sub">Ask Miles. Peter has the answers.</p>
+      <h2 class="section__heading comic-heading">WEB OF DESTINY</h2>
+      <p class="section__sub">Untangle the mysteries. Click a web node.</p>
 
-      <div class="faq-comic-container">
-        <!-- Left Side: Peter Parker's Answer Bubble -->
-        <div class="speech-bubble speech-bubble--peter">
-          <div class="speech-bubble__content">
-            <p id="peter-answer-text" class="peter-answer">"Ask me a question"</p>
-          </div>
-        </div>
+      <div class="web-destiny" id="web-destiny">
+        <svg id="web-lines" class="web-lines" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice"></svg>
+        <div id="faq-nodes" class="faq-nodes"></div>
+      </div>
 
-        <!-- Right Side: Miles Morales's Question Bubble -->
-        <div class="speech-bubble speech-bubble--miles">
-          <div class="speech-bubble__content">
-            <p class="speech-bubble__default" id="miles-default-text">"Let me ask you something..."</p>
-            <select id="faq-dropdown" class="faq-dropdown" aria-label="Select a question">
-              <option value="" disabled selected>Select a question...</option>
-              <!-- Options injected via JS -->
-            </select>
-          </div>
+      <div class="thought-bubble" id="faq-answer-bubble" aria-live="polite">
+        <div class="bubble-content" id="faq-answer-content">
+          <p class="placeholder-text">Select a node on the web...</p>
         </div>
+        <div class="bubble-tail" aria-hidden="true"></div>
       </div>
     </div>
   </section>
@@ -587,7 +528,7 @@
             Engineering.</p>
           <div style="width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
             <iframe
-              src="https://maps.google.com/maps?q=Sri+Venkateswara+College+of+Engineering+Sriperumbudur&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m2!1s0x3a52c2cae4f9b8c9%3A0xc3f6afce6a5369bb!2sSri%20Venkateswara%20College%20of%20Engineering%20(SVCE)!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
               width="100%" height="160"
               style="border:0; display: block; opacity: 0.6; filter: grayscale(1) invert(1) contrast(1.2);"
               allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -781,7 +722,6 @@
     </div>
   </footer>
 
-  <script src="js/core/hamburger.js"></script>
   <script type="module" src="js/main.js"></script>
 </body>
 

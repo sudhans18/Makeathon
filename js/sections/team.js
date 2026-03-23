@@ -74,149 +74,112 @@ function socialsHTML(m) {
   return h;
 }
 
-/* ── Carousel Class ──────────────────────────────────────── */
-class CrewCarousel {
-  /**
-   * @param {HTMLElement} wrapper  - the .crew-carousel element
-   * @param {Array}       members  - array of member objects
-   */
-  constructor(wrapper, members) {
-    this.wrapper = wrapper;
-    this.members = members;
-    this.total   = members.length;
-    this.current = 0;
-    this.timer   = null;
-    this.isDragging = false;
-    this.dragStartX = 0;
-
-    this._build();
-    this._attachEvents();
-    this._update();
-    this.start();
-  }
-
-  /* Build slide nodes */
-  _build() {
-    this.slides = this.members.map((m, i) => {
-      const el = document.createElement('div');
-      el.className = 'crew-slide';
-      el.dataset.index = i;
-      el.innerHTML = `
-        <div class="crew-slide__photo-wrap">
-          <img src="${m.path}" alt="${m.name}" loading="lazy" />
+/**
+ * Build card HTML for a single member.
+ */
+function cardHTML(member) {
+  return `
+    <article class="swiper-slide team-card">
+      <div class="team-card__avatar">
+        <div class="team-card__avatar-inner">
+          <img
+            src="${member.path}"
+            alt="${member.name}"
+            loading="lazy"
+          />
         </div>
-        <div class="crew-slide__info">
-          <p class="crew-slide__name">${m.name.toUpperCase()}</p>
-          <p class="crew-slide__role">${m.role}</p>
-          <div class="crew-slide__socials">${socialsHTML(m)}</div>
-        </div>`;
-      this.wrapper.appendChild(el);
-      return el;
-    });
-  }
+      </div>
+      <div class="team-card__info">
+        <h3 class="team-card__name">${member.name}</h3>
+        <p class="team-card__role">${member.role}</p>
+        <div class="team-card__socials">
+          ${socialsHTML(member)}
+        </div>
+      </div>
+    </article>`;
+}
 
-  /* Attach drag + click events */
-  _attachEvents() {
-    const onStart = (x) => { this.isDragging = true; this.dragStartX = x; this.pause(); };
-    const onEnd   = (x) => {
-      if (!this.isDragging) return;
-      this.isDragging = false;
-      const diff = this.dragStartX - x;
-      if (Math.abs(diff) > 40) diff > 0 ? this.next() : this.prev();
-      this.start();
-    };
+/**
+ * Inject cards into a grid container.
+ */
+function injectCards(containerId, members) {
+  const grid = document.getElementById(containerId);
+  if (!grid) return;
+  const cardsHtml = members.map(m => cardHTML(m)).join('');
+  grid.innerHTML = `
+    <div class="swiper team-swiper" id="swiper-${containerId}">
+      <div class="swiper-wrapper">
+        ${cardsHtml}
+      </div>
+    </div>
+  `;
+}
 
-    this.wrapper.addEventListener('mousedown',  e => onStart(e.clientX));
-    this.wrapper.addEventListener('mouseup',    e => onEnd(e.clientX));
-    this.wrapper.addEventListener('mouseleave', e => { if (this.isDragging) onEnd(e.clientX); });
-    this.wrapper.addEventListener('touchstart', e => onStart(e.touches[0].clientX), { passive: true });
-    this.wrapper.addEventListener('touchend',   e => onEnd(e.changedTouches[0].clientX));
+const teamSwipers = {};
 
-    /* Click on a side card to jump to it */
-    this.wrapper.addEventListener('click', e => {
-      const slide = e.target.closest('.crew-slide');
-      if (!slide || slide.classList.contains('is-center')) return;
-      if (e.target.closest('a')) return; // don't intercept social links
-      this.current = parseInt(slide.dataset.index, 10);
-      this._update();
-    });
-  }
-
-  /* Compute offset from current (mod total) */
-  _offset(i) {
-    const half = Math.floor(this.total / 2);
-    let d = ((i - this.current) % this.total + this.total) % this.total;
-    if (d > half) d -= this.total;
-    return d; // negative = left, positive = right
-  }
-
-  /* Update CSS classes on every slide */
-  _update() {
-    this.slides.forEach((slide, i) => {
-      const d = this._offset(i);
-      slide.className = 'crew-slide';
-      if (d === 0) {
-        slide.classList.add('is-center');
-      } else if (d === 1 || d === -1) {
-        slide.classList.add(d === 1 ? 'is-right-1' : 'is-left-1');
-      } else if (Math.abs(d) === 2) {
-        slide.classList.add(d === 2 ? 'is-right-2' : 'is-left-2');
-      } else {
-        slide.classList.add('is-hidden');
+function initTeamSwipers() {
+  const containers = ['team-panel-ecea', 'team-panel-iete', 'team-panel-race'];
+  containers.forEach(id => {
+    const swiperContainerId = `swiper-${id}`;
+    if (!document.getElementById(swiperContainerId)) return;
+    teamSwipers[id] = new Swiper(`#${swiperContainerId}`, {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      loop: true,
+      speed: 250, /* Improved scrolling speed */
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: false, /* Keeps autoplay running after user swipes */
+        pauseOnMouseEnter: true      /* Pauses when the user hovers to read */
+      },
+      slidesPerView: 1.5,
+      observer: true,
+      observeParents: true,
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 95, /* Increased spacing between cards slightly */
+        depth: 140,
+        modifier: 1,
+        slideShadows: false,
+      },
+      breakpoints: {
+        768: { slidesPerView: 2.5 },
+        1100: { slidesPerView: 3 }
       }
-      // z-index via inline style for precision
-      slide.style.zIndex = String(10 - Math.abs(d));
     });
-  }
-
-  next() { this.current = (this.current + 1) % this.total; this._update(); }
-  prev() { this.current = (this.current - 1 + this.total) % this.total; this._update(); }
-
-  start() {
-    this.pause();
-    this.timer = setInterval(() => this.next(), CAROUSEL_AUTO_INTERVAL_MS);
-  }
-  pause() { clearInterval(this.timer); this.timer = null; }
-  destroy() { this.pause(); }
+  });
 }
 
-/* ── Active carousels registry (for tab switching) ── */
-const carousels = {};
+/**
+ * Animate cards within a panel into view with stagger.
+ */
+function revealCards(panel) {
+  const cards = panel.querySelectorAll('.team-card');
+  // Reset all cards first
+  cards.forEach(card => {
+    card.classList.remove('in-view');
+    card.style.transitionDelay = '0ms';
+  });
 
-/* ── Per-panel init ──────────────────────────────────────── */
-function buildCarouselForPanel(panelId, members) {
-  const panel = document.getElementById(panelId);
-  if (!panel) return;
+  // Force reflow so the reset takes effect
+  void panel.offsetHeight;
 
-  // Destroy old carousel if exists
-  if (carousels[panelId]) { carousels[panelId].destroy(); delete carousels[panelId]; }
-
-  // Build wrapper
-  let wrapper = panel.querySelector('.crew-carousel');
-  if (!wrapper) {
-    wrapper = document.createElement('div');
-    wrapper.className = 'crew-carousel';
-    panel.appendChild(wrapper);
-  } else {
-    wrapper.innerHTML = '';
-  }
-
-  carousels[panelId] = new CrewCarousel(wrapper, members);
+  // Stagger entry
+  cards.forEach((card, i) => {
+    card.style.transitionDelay = `${i * 80}ms`;
+    // Small rAF delay so the browser processes the reset
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        card.classList.add('in-view');
+      });
+    });
+  });
 }
-
-/* ── Tab switching ───────────────────────────────────────── */
-const PANEL_MEMBERS = {
-  ecea: eceaMembers,
-  iete: ieteMembers,
-  race: raceMembers,
-};
 
 function initTabs() {
   const tabs   = document.querySelectorAll('.team__tab');
   const panels = document.querySelectorAll('.team__panel');
-
-  // Pause non-active carousels when tab switches
-  const pauseAll = () => Object.values(carousels).forEach(c => c.pause());
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
@@ -227,21 +190,43 @@ function initTabs() {
       panels.forEach(p => {
         if (p.dataset.team === target) {
           p.classList.add('active');
-          // Re-init or resume carousel
-          const panelId = `team-panel-${target}`;
-          if (!carousels[panelId]) {
-            buildCarouselForPanel(panelId, PANEL_MEMBERS[target]);
-          } else {
-            carousels[panelId].start();
+          revealCards(p);
+          // Optional: Resync swiper if needed
+          const swiperId = `team-panel-${target}`;
+          if (teamSwipers[swiperId]) {
+            setTimeout(() => {
+              teamSwipers[swiperId].update();
+            }, 50);
           }
         } else {
           p.classList.remove('active');
-          const panelId = `team-panel-${p.dataset.team}`;
-          if (carousels[panelId]) carousels[panelId].pause();
         }
       });
     });
   });
+}
+
+/**
+ * Scroll reveal for the team section
+ */
+function initScrollReveal() {
+  const section = document.getElementById('team');
+  if (!section) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Find the currently active panel and reveal its cards
+        const activePanel = section.querySelector('.team__panel.active');
+        if (activePanel) {
+          revealCards(activePanel);
+        }
+        observer.unobserve(section);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  observer.observe(section);
 }
 
 /* ── Main export ─────────────────────────────────────────── */
@@ -251,14 +236,17 @@ export function initTeam() {
     if (!p.id) p.id = `team-panel-${p.dataset.team}`;
   });
 
-  // Build all carousels up front (pause non-active ones after)
-  buildCarouselForPanel('team-panel-ecea', eceaMembers);
-  buildCarouselForPanel('team-panel-iete', ieteMembers);
-  buildCarouselForPanel('team-panel-race', raceMembers);
+  // 1. Inject skeleton grids directly into panels
+  injectCards('team-panel-ecea', eceaMembers);
+  injectCards('team-panel-iete', ieteMembers);
+  injectCards('team-panel-race', raceMembers);
 
-  // Pause the non-active ones
-  carousels['team-panel-iete']?.pause();
-  carousels['team-panel-race']?.pause();
+  // 2. Init Swipers
+  initTeamSwipers();
 
+  // 3. Set up tab switching
   initTabs();
+
+  // 4. Set up scroll reveal
+  initScrollReveal();
 }

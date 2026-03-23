@@ -39,7 +39,7 @@
 .team__tabs {
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 12px;
   margin-bottom: 2.5rem;
   position: relative;
   z-index: 2;
@@ -47,32 +47,32 @@
 }
 
 .team__tab {
-  font-family: var(--ff-display);
-  font-size: 1.05rem;
-  letter-spacing: 0.08em;
+  font-family: var(--ff-body, 'Inter');
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  padding: 10px 28px;
-  /* Comic border gimmick on tabs */
-  border: 3px solid #000;
-  box-shadow: 4px 4px 0 var(--c-cyan);
-  background: rgba(255,255,255,0.05);
-  color: rgba(255,255,255,0.6);
+  padding: 10px 24px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
-  transition: all 0.25s var(--ease-pop);
+  transition: all 0.3s ease;
 }
 
 .team__tab:hover {
-  transform: translate(-2px,-2px);
-  box-shadow: 6px 6px 0 var(--c-cyan);
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.1);
   color: #fff;
 }
 
 .team__tab.active {
-  background: var(--c-red);
+  background: rgba(255, 40, 100, 0.15);
   color: #fff;
-  border-color: #000;
-  box-shadow: 4px 4px 0 var(--c-yellow);
-  transform: translate(-2px,-2px);
+  border-color: rgba(255, 40, 100, 0.5);
+  box-shadow: 0 0 15px rgba(255, 40, 100, 0.2);
+  transform: translateY(-2px);
 }
 
 /* ── Team Panels ────────────────────────────────────────── */
@@ -86,274 +86,241 @@
   display: block;
 }
 
-/* ═══════════════════════════════════════
-   CAROUSEL
-   ═══════════════════════════════════════ */
-
-.crew-carousel {
-  position: relative;
+/* ── Card Grid (Overridden by Swiper) ───────────────────── */
+.team__grid {
+  display: block;
+  /* Removed grid to let Swiper manage layout */
   width: 100%;
-  height: 530px;
-  perspective: 1200px;
-  user-select: none;
-  cursor: grab;
-  /* Halftone dots hint across the whole carousel area */
-  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
-  background-size: 18px 18px;
 }
 
-.crew-carousel:active { cursor: grabbing; }
+.team-swiper {
+  width: 100%;
+  padding: 40px 0 60px;
+  overflow: visible;
+}
 
-/* ── Individual slide ───────────────────────────────────── */
-.crew-slide {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 220px;
-  margin-left: -110px;
-  margin-top: -240px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
+/* ── Team Card (Swiper Slide) ───────────────────────────── */
+.team-card {
+  position: relative;
+  isolation: isolate;
+  width: 140px; /* Reduced width */
+  height: auto;
+  min-height: auto;
   background: #14161f;
-  /* Base border — overridden per state below */
-  border: 2px solid rgba(255,255,255,0.08);
-
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  padding: 8px 6px 8px; /* Reduced padding */
+  text-align: center;
+  cursor: grab;
   transition:
-    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    filter    0.5s ease,
-    opacity   0.5s ease,
-    box-shadow 0.5s ease,
-    border-color 0.5s ease;
+    filter 0.5s ease,
+    opacity 0.5s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 
-  pointer-events: auto;
-  cursor: pointer;
+  /* Default inactive state - completely obscure background using opaque color */
+  filter: grayscale(100%) brightness(0.7);
 }
 
-/* ── Photo area ─────────────────────────── */
-.crew-slide__photo-wrap {
+.team-card.swiper-slide-active {
+  filter: grayscale(0%) brightness(1);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.6),
+    -4px -4px 15px rgba(40, 200, 255, 0.4),
+    4px 4px 15px rgba(255, 40, 100, 0.4);
+  background: #1a1d2a;
+}
+
+/* Corner Webs exclusively on active card */
+.team-card.swiper-slide-active::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 120px; /* Increased size to be visible */
+  height: 120px;
+  z-index: 10;
+  pointer-events: none;
+  background-image: url('../assets/spider-web.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.55; /* Vastly increased opacity for visibility */
+  transform-origin: center;
+  transform: scaleX(-1) scaleY(-1); /* Vertically inverted into top-left */
+}
+
+.team-card.swiper-slide-active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  width: 120px;
+  height: 120px;
+  z-index: 10;
+  pointer-events: none;
+  background-image: url('../assets/spider-web.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.55; /* Vastly increased opacity for visibility */
+  transform-origin: center;
+  transform: none; /* Points to bottom-right out of the box */
+}
+
+/* ── Avatar ─────────────────────────────────────────────── */
+.team-card__avatar {
   width: 100%;
-  height: 310px;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  margin: 0 auto 10px;
+  border-radius: 8px;
   overflow: hidden;
-  flex-shrink: 0;
   position: relative;
+  background: #1a1d2a;
 }
 
-.crew-slide__photo-wrap img {
+.team-card__avatar-inner {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
-  pointer-events: none;
 }
 
-/* ── Scanline overlay on photo (quirky CRT feel) ── */
-.crew-slide__photo-wrap::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 3px,
-    rgba(0,0,0,0.15) 3px,
-    rgba(0,0,0,0.15) 4px
-  );
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0.5;
-  transition: opacity 0.4s;
-}
-
-/* Scanlines fade on center card */
-.crew-slide.is-center .crew-slide__photo-wrap::before { opacity: 0; }
-
-/* ── Spider-web corner on photo (top-right) ── */
-.crew-slide__photo-wrap::after {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 56px; height: 56px;
-  pointer-events: none;
-  z-index: 3;
-  opacity: 0.25;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 56'%3E%3Cpath d='M56 0 C44 8,30 14,18 16 C26 10,40 4,56 0Z' fill='rgba(255,255,255,0.15)'/%3E%3Cline x1='56' y1='0' x2='8' y2='8' stroke='rgba(255,255,255,0.5)' stroke-width='0.6'/%3E%3Cline x1='56' y1='0' x2='16' y2='24' stroke='rgba(255,255,255,0.4)' stroke-width='0.6'/%3E%3Cline x1='56' y1='0' x2='0' y2='32' stroke='rgba(255,255,255,0.3)' stroke-width='0.6'/%3E%3Cpath d='M56,14 Q40,10 28,18' fill='none' stroke='rgba(255,255,255,0.35)' stroke-width='0.5'/%3E%3Cpath d='M56,28 Q36,20 18,30' fill='none' stroke='rgba(255,255,255,0.25)' stroke-width='0.5'/%3E%3C/svg%3E");
-  background-size: contain;
-  background-repeat: no-repeat;
-  transition: opacity 0.4s;
-}
-
-.crew-slide.is-center .crew-slide__photo-wrap::after { opacity: 0.65; }
-
-/* ── Info strip ─────────────────────────── */
-.crew-slide__info {
+.team-card__avatar-inner img {
   width: 100%;
-  padding: 0 14px 14px;
-  background: rgba(0,0,0,0.7);
-  text-align: center;
-  flex: 1;
-  position: relative;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background-color: #14161f;
 }
 
-/* Tilted name-tape backing — classic comic caption box */
-.crew-slide__info::before {
-  content: '';
-  position: absolute;
-  left: -6px; right: -6px;
-  top: -8px;
-  height: 44px;
-  background: var(--c-red);
-  border: 3px solid #000;
-  box-shadow: 3px 3px 0 #000;
-  transform: rotate(-1deg);
-  z-index: 0;
+/* ── Card Info ──────────────────────────────────────────── */
+.team-card__info {
+  padding: 0;
 }
 
-/* Center card gets yellow name tape */
-.crew-slide.is-center .crew-slide__info::before {
-  background: var(--c-yellow);
-  transform: rotate(0.5deg);
-}
-
-.crew-slide__name {
-  font-family: var(--ff-display);
-  font-size: 0.82rem;
-  font-weight: 700;
-  /* Name sits ON the tilted tape */
-  color: #000;
-  letter-spacing: 0.06em;
+.team-card__name {
+  font-family: 'Bangers', var(--ff-display, 'Anton'), sans-serif;
+  font-weight: 400;
+  font-size: 0.95rem; /* Shrunk font size */
+  color: #fff;
   text-transform: uppercase;
-  line-height: 1.2;
-  margin-bottom: 0;
-  padding-top: 10px;
-  position: relative;
-  z-index: 1;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  margin-bottom: 2px;
+  text-shadow: 2px 2px 0px rgba(255, 40, 100, 0.8), -1px -1px 0px rgba(40, 200, 255, 0.8);
 }
 
-/* Center card name is white on yellow tape */
-.crew-slide.is-center .crew-slide__name { color: #000; }
-
-.crew-slide__role {
+.team-card__role {
   font-family: var(--ff-body);
-  font-size: 0.65rem;
-  color: rgba(255,255,255,0.5);
+  font-weight: 500;
+  font-size: 0.55rem; /* Shrunk font size */
+  color: rgba(255, 255, 255, 0.35);
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin-top: 28px;
+  letter-spacing: 0.08em;
   margin-bottom: 8px;
-  position: relative;
-  z-index: 1;
 }
 
-.crew-slide.is-center .crew-slide__role { color: rgba(255,255,255,0.7); }
-
-.crew-slide__socials {
+/* ── Social Icons ──────────────────────────────────────── */
+.team-card__socials {
   display: flex;
   justify-content: center;
-  gap: 6px;
-  position: relative;
-  z-index: 1;
+  gap: 8px;
 }
 
 .crew-social {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px; height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.45);
-  text-decoration: none;
-  transition: all 0.25s ease;
-  cursor: pointer;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
 }
 
-.crew-social:hover { color: #fff; transform: translateY(-2px); }
-.crew-social--li:hover { background: rgba(0,119,181,0.25); border-color: #0077b5; color: #0077b5; }
-.crew-social--gh:hover { background: rgba(255,255,255,0.15); color: #fff; }
-.crew-social--em:hover { background: rgba(255,0,64,0.2); border-color: #ff0040; color: #ff0040; }
-
-/* ══════════════════════════════════════════
-   CARD POSITION STATES
-   ══════════════════════════════════════════ */
-
-/* CENTER — full size, colored, comic-button border + halftone overlay hint */
-.crew-slide.is-center {
-  transform: translateX(0) scale(1.18);
-  filter: none;
-  border: 4px solid #000;
-  box-shadow:
-    6px 6px 0 var(--c-cyan),
-    0 20px 50px rgba(0,0,0,0.6);
-  pointer-events: auto;
-  cursor: default;
+.crew-social:hover {
+  transform: translateY(-3px);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
-/* Halftone overlay on center card (comic-print feel) */
-.crew-slide.is-center::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(0,240,255,0.07) 1px, transparent 1px);
-  background-size: 6px 6px;
-  pointer-events: none;
-  z-index: 20;
-  mix-blend-mode: screen;
+.crew-social--li:hover {
+  background: rgba(0, 119, 181, 0.2);
+  border-color: #0077b5;
+  color: #0077b5;
 }
 
-.crew-slide.is-right-1 {
-  transform: translateX(260px) scale(0.82);
-  filter: grayscale(1) brightness(0.65);
-  box-shadow: none;
-  border-color: rgba(255,255,255,0.05);
+.crew-social--gh:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #fff;
+  color: #fff;
 }
 
-.crew-slide.is-left-1 {
-  transform: translateX(-260px) scale(0.82);
-  filter: grayscale(1) brightness(0.65);
-  box-shadow: none;
-  border-color: rgba(255,255,255,0.05);
+.crew-social--em:hover {
+  background: rgba(255, 40, 100, 0.2);
+  border-color: var(--c-red);
+  color: var(--c-red);
 }
 
-.crew-slide.is-right-2 {
-  transform: translateX(440px) scale(0.65);
-  filter: grayscale(1) brightness(0.35);
-  opacity: 0.55;
-  box-shadow: none;
-}
-
-.crew-slide.is-left-2 {
-  transform: translateX(-440px) scale(0.65);
-  filter: grayscale(1) brightness(0.35);
-  opacity: 0.55;
-  box-shadow: none;
-}
-
-.crew-slide.is-hidden {
-  transform: translateX(0) scale(0.5);
+/* Scroll enter animations */
+.team-card {
   opacity: 0;
-  pointer-events: none;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease, filter 0.5s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.team-card.in-view {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ── Responsive ─────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .crew-carousel { height: 480px; }
-  .crew-slide.is-right-1 { transform: translateX(200px) scale(0.78); }
-  .crew-slide.is-left-1  { transform: translateX(-200px) scale(0.78); }
-  .crew-slide.is-right-2 { transform: translateX(340px) scale(0.6); opacity: 0.5; }
-  .crew-slide.is-left-2  { transform: translateX(-340px) scale(0.6); opacity: 0.5; }
+@media (max-width: 1100px) {
+  .team-card {
+    width: 180px;
+    padding: 12px 10px 12px;
+  }
 }
 
-@media (max-width: 600px) {
-  .crew-carousel { height: 450px; }
-  .crew-slide { width: 180px; margin-left: -90px; margin-top: -180px; }
-  .crew-slide__photo-wrap { height: 260px; }
-  .crew-slide.is-right-1 { transform: translateX(155px) scale(0.72); }
-  .crew-slide.is-left-1  { transform: translateX(-155px) scale(0.72); }
-  .crew-slide.is-right-2, .crew-slide.is-left-2 { opacity: 0; pointer-events: none; }
-  .team__tab { font-size: 0.9rem; padding: 8px 18px; }
+@media (max-width: 768px) {
+  .team-card {
+    width: 160px;
+  }
+
+  .team-card__avatar {
+    aspect-ratio: 4 / 5;
+  }
+
+  .team__tab {
+    font-size: 0.9rem;
+    padding: 8px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-card {
+    width: 145px;
+  }
+
+  .team-card__avatar {
+    aspect-ratio: 4 / 5;
+  }
+
+  .team-card__name {
+    font-size: 1rem;
+  }
+
+  .team__tabs {
+    gap: 6px;
+  }
+
+  .team__tab {
+    font-size: 0.82rem;
+    padding: 7px 16px;
+  }
 }
