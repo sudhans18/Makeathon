@@ -536,23 +536,31 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       SECTION 8 — FAQs
+       SECTION 8 — FAQs (SPIDER-VERSE)
   ═══════════════════════════════════════════════════════════ -->
   <section id="faq" class="section section--faq" aria-label="FAQ">
     <div class="container">
-      <h2 class="section__heading comic-heading">WEB OF DESTINY</h2>
-      <p class="section__sub">Untangle the mysteries. Click a web node.</p>
+      <h2 class="section__heading comic-heading text-cyan">MULTIVERSAL QUERIES</h2>
+      <p class="section__sub">Ask Miles. Peter has the answers.</p>
 
-      <div class="web-destiny" id="web-destiny">
-        <svg id="web-lines" class="web-lines" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice"></svg>
-        <div id="faq-nodes" class="faq-nodes"></div>
-      </div>
-
-      <div class="thought-bubble" id="faq-answer-bubble" aria-live="polite">
-        <div class="bubble-content" id="faq-answer-content">
-          <p class="placeholder-text">Select a node on the web...</p>
+      <div class="faq-comic-container">
+        <!-- Left Side: Peter Parker's Answer Bubble -->
+        <div class="speech-bubble speech-bubble--peter">
+          <div class="speech-bubble__content">
+            <p id="peter-answer-text" class="peter-answer">"Ask me a question"</p>
+          </div>
         </div>
-        <div class="bubble-tail" aria-hidden="true"></div>
+
+        <!-- Right Side: Miles Morales's Question Bubble -->
+        <div class="speech-bubble speech-bubble--miles">
+          <div class="speech-bubble__content">
+            <p class="speech-bubble__default" id="miles-default-text">"Let me ask you something..."</p>
+            <select id="faq-dropdown" class="faq-dropdown" aria-label="Select a question">
+              <option value="" disabled selected>Select a question...</option>
+              <!-- Options injected via JS -->
+            </select>
+          </div>
+        </div>
       </div>
     </div>
   </section>
