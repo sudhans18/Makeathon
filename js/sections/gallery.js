@@ -1,30 +1,33 @@
 /* ═══════════════════════════════════════════════════════════
    js/sections/gallery.js
-   SPIDER-VERSE Gallery
-   Random polaroid scatter logic
+   SPIDER-VERSE Gallery — PAST ANOMALIES
+   Scattered polaroid snapshots using real event photos.
 ═══════════════════════════════════════════════════════════ */
 
 import { createScrollReveal } from '../core/gsap-init.js';
 
-/** Placeholder polaroids */
+/** Real past Makeathon event photos */
 const GALLERY_ITEMS = [
-  { title: 'Dimensions Hack', sub: 'Earth-1610', seed: 'dimhack' },
-  { title: 'Web Shooter v2', sub: 'Alchemax Labs', seed: 'webshoot' },
-  { title: 'Gwen\'s Drums', sub: 'Earth-65', seed: 'gwendrums' },
-  { title: 'Prowler Tech', sub: 'Earth-42', seed: 'prowler' },
-  { title: 'Miguel\'s Watch', sub: 'Earth-928', seed: 'miguelwatch' },
-  { title: 'Glitch Protocol', sub: 'Earth-1610', seed: 'glitchpro' },
-  { title: 'Spider-Bot', sub: 'Earth-1048', seed: 'spiderbot' },
-  { title: 'Noir Case File', sub: 'Earth-90214', seed: 'noircase' },
+  { title: 'Opening Ceremony',  sub: 'Makeathon 6.0', img: 'assets/Spideys/1.jpeg'  },
+  { title: 'Team Hack Time',    sub: 'Makeathon 6.0', img: 'assets/Spideys/2.jpeg'  },
+  { title: 'The Build Phase',   sub: 'Makeathon 5.0', img: 'assets/Spideys/3.jpeg'  },
+  { title: 'Wire It Up',        sub: 'Makeathon 5.0', img: 'assets/Spideys/4.jpeg'  },
+  { title: 'Demo Day',          sub: 'Makeathon 4.0', img: 'assets/Spideys/5.jpeg'  },
+  { title: 'Late Night Grind',  sub: 'Makeathon 4.0', img: 'assets/Spideys/6.jpeg'  },
+  { title: 'Judging Round',     sub: 'Makeathon 3.0', img: 'assets/Spideys/7.jpeg'  },
+  { title: 'The Reveal',        sub: 'Makeathon 3.0', img: 'assets/Spideys/8.jpeg'  },
+  { title: 'Award Ceremony',    sub: 'Makeathon 2.0', img: 'assets/Spideys/9.jpeg'  },
+  { title: 'Team Collabs',      sub: 'Makeathon 2.0', img: 'assets/Spideys/10.jpeg' },
+  { title: 'The First Spark',   sub: 'Makeathon 1.0', img: 'assets/Spideys/11.jpeg' },
+  { title: 'Where It Began',    sub: 'Makeathon 1.0', img: 'assets/Spideys/12.jpeg' },
 ];
 
 export function initGallery() {
   injectCards();
 
-  // Custom reveal for polaroids — drop in from slightly above with rotation
+  // Custom reveal — drop in from above with rotation bounce
   const polaroids = document.querySelectorAll('.polaroid-card');
   polaroids.forEach((card, i) => {
-    // Read the inline rotation we set during injection
     const targetRot = parseFloat(card.dataset.rot || '0');
 
     gsap.fromTo(card,
@@ -47,17 +50,15 @@ function injectCards() {
   const grid = document.getElementById('gallery-scatter');
   if (!grid) return;
 
-  grid.innerHTML = GALLERY_ITEMS.map((item, idx) => {
-    // Generate a random rotation between -12 and 12 degrees
-    const rot = (Math.random() * 24) - 12;
-    // Generate a random Y offset for scattered look
-    const yOffset = (Math.random() * 40) - 20;
+  grid.innerHTML = GALLERY_ITEMS.map((item) => {
+    const rot     = (Math.random() * 20) - 10;
+    const yOffset = (Math.random() * 30) - 15;
 
     return `
-      <article class="polaroid-card" data-rot="${rot}" style="transform: rotate(${rot}deg) translateY(${yOffset}px)">
+      <article class="polaroid-card" data-rot="${rot.toFixed(2)}" style="transform: rotate(${rot.toFixed(2)}deg) translateY(${yOffset.toFixed(1)}px)">
         <div class="polaroid-img-wrapper">
           <img
-            src="https://picsum.photos/seed/${item.seed}/400/400"
+            src="${item.img}"
             alt="${item.title}"
             loading="lazy"
             width="400"

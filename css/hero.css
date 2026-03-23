@@ -4,8 +4,9 @@
 ═══════════════════════════════════════════════════════════ */
 
 .section--hero {
-    height: 100vh;
-    min-height: 700px;
+    height: calc(100vh - 64px);
+    min-height: 636px; /* 700px - 64px nav */
+    margin-top: 64px;  /* push content below the fixed nav */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,26 +37,26 @@
 }
 
 .comic-frame.top-left {
-    top: 3vw;
-    left: 3vw;
+    top: 8px;
+    left: 10px;
     border-width: 8px 0 0 8px;
 }
 
 .comic-frame.top-right {
-    top: 3vw;
-    right: 3vw;
+    top: 8px;
+    right: 10px;
     border-width: 8px 8px 0 0;
 }
 
 .comic-frame.bottom-left {
-    bottom: 3vw;
-    left: 3vw;
+    bottom: 0;
+    left: 10px;
     border-width: 0 0 8px 8px;
 }
 
 .comic-frame.bottom-right {
-    bottom: 3vw;
-    right: 3vw;
+    bottom: 0;
+    right: 10px;
     border-width: 0 8px 8px 0;
 }
 
@@ -72,7 +73,6 @@
     gap: 1rem;
     background: radial-gradient(circle at center, rgba(15, 17, 24, 0.6) 0%, transparent 60%);
     padding: var(--sp-md);
-    padding-top: 80px; /* offset for nav header */
     width: 100%;
 }
 

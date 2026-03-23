@@ -4,6 +4,11 @@
    progress bar, and informational text.
 ═══════════════════════════════════════════════════════════ */
 
+/* ── Instant hide when back-navigation detected (inline script sets this) ── */
+[data-skip-loading] .loading-screen {
+  display: none !important;
+}
+
 .loading-screen {
   position: fixed;
   inset: 0;

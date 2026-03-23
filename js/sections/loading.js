@@ -59,6 +59,22 @@ export function initLoading() {
         const screen = document.getElementById('loading-screen');
         if (!screen) { resolve(); return; }
 
+        // ── Skip loading when navigating back from a sub-page ─────────────
+        // The inline <script> in index.html runs synchronously and stamps
+        // data-skip-loading on <html> when ?nl=1 is in the URL. We check
+        // both the attribute (belt) and the URL param (suspenders).
+        const shouldSkip =
+            document.documentElement.dataset.skipLoading === '1' ||
+            new URLSearchParams(window.location.search).get('nl') === '1';
+
+        if (shouldSkip) {
+            history.replaceState(null, '', window.location.pathname + window.location.hash);
+            screen.remove();
+            resolve();
+            return;
+        }
+        // ─────────────────────────────────────────────────────────────────
+
         const frameImg = document.getElementById('loading-frame');
         const barEl = document.getElementById('loading-bar');
         const percentEl = document.getElementById('loading-percent');

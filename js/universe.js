@@ -52,10 +52,10 @@ if (root) {
                     <div class="universe-hero__art">
                         <div class="universe-hero__frame">
                             <img src="${universe.image}" alt="${universe.label}" class="universe-hero__img" />
-                            <div style="margin-top: 1.5rem; text-align: center;">
-                                <strong class="universe-hero__variant">${universe.variantName}</strong>
-                                <p class="universe-hero__label" style="margin-top: 0.5rem; font-size: 0.9rem; color: rgba(255,255,255,0.6);">${universe.label}</p>
-                            </div>
+                        </div>
+                        <div style="margin-top: 1.5rem; text-align: center;">
+                            <strong class="universe-hero__variant">${universe.variantName}</strong>
+                            <p class="universe-hero__label" style="margin-top: 0.5rem; font-size: 0.9rem; color: rgba(255,255,255,0.6);">${universe.label}</p>
                         </div>
                     </div>
                 </div>
