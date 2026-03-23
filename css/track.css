@@ -207,17 +207,15 @@
   inset: 0;
   background-size: cover;
   background-position: center top;
-  filter: brightness(0.35) saturate(0.5);
+  filter: brightness(0.6);
   transition: background-image 0.5s;
 }
 
-/* Red scanline tint overlay */
+/* Base tint overlay without the red gradient */
 .detail-hero__overlay {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(135deg, rgba(255,0,64,0.12) 0%, transparent 60%),
-    linear-gradient(to top, #09090f 0%, transparent 55%);
+  background: linear-gradient(to top, #09090f 0%, transparent 55%);
   z-index: 1;
 }
 
@@ -231,28 +229,15 @@
   pointer-events: none;
 }
 
-/* Spider variant image — large, positioned right */
-.detail-hero__art {
-  position: absolute;
-  right: -20px;
-  bottom: 0;
-  height: 110%;
-  width: auto;
-  object-fit: contain;
-  object-position: bottom right;
-  filter: drop-shadow(-20px 0 40px rgba(0,0,0,0.8));
-  z-index: 2;
-  opacity: 0.6;
-  transition: opacity 0.5s;
-  pointer-events: none;
-}
+/* Old detail-hero__art removed to prevent conflicts with the new flip-card structure */
+
 
 /* Text in hero overlaid on left side */
 .detail-hero__text {
   position: relative;
   z-index: 3;
   padding: 40px 48px 36px;
-  max-width: 55%;
+  max-width: 55%; /* Constrained to help wrap lines */
 }
 
 .detail-hero__code {
@@ -268,31 +253,53 @@
 
 .detail-hero__name {
   font-family: 'Anton', sans-serif;
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-size: clamp(3rem, 6vw, 5rem); /* Increased size to match original 3D effect */
   font-weight: 400;
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.02em;
   line-height: 1.05;
-  text-shadow: 4px 4px 0 #ff0040, 7px 7px 0 rgba(0,0,0,0.6);
+  text-shadow: 4px 4px 0 #ff2d2d, 8px 8px 0 rgba(0,0,0,0.8); /* Re-applied the prominent red shadow */
   margin-bottom: 10px;
+  max-width: 480px; /* Constrained width heavily promotes 3-line breakdown */
 }
 
 .detail-hero__tagline {
   font-family: var(--ff-body);
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.55);
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.6);
   font-style: italic;
   letter-spacing: 0.03em;
+  margin-top: 8px;
+}
+
+.detail-hero__meta {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.detail-hero__variant {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.6rem;
+  color: var(--c-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* ── Body content area ─── */
 .detail-body {
-  padding: 0 48px 64px;
+  padding: 40px 48px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.problem-list {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  max-width: 960px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
 }
 
 /* Stat bars block */
@@ -377,6 +384,7 @@
 /* Problem "skill" cards */
 .detail-problems {
   padding-top: 36px;
+  width: 100%;
 }
 
 .detail-problems__heading {
@@ -425,14 +433,19 @@
 /* problem-skill__text — inherited layout */
 
 .problem-skill__name {
-  font-family: var(--ff-body);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: rgba(255,255,255,0.85);
+  font-family: 'Anton', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #fff;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   margin-bottom: 3px;
   display: block;
+  transition: color 0.3s ease;
+}
+
+.problem-skill:hover .problem-skill__name {
+  color: var(--c-cyan);
 }
 
 .problem-skill__desc {
@@ -557,3 +570,314 @@
 
   .detail-hero__text { max-width: 85%; }
 }
+
+/* ── Modal ── */
+.ps-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.ps-modal[aria-hidden="false"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ps-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.ps-modal__content {
+  position: relative;
+  z-index: 1;
+  width: min(90%, 600px);
+  background: #0c0e16;
+  border: 2px solid var(--c-cyan);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+  padding: 40px;
+  border-radius: 12px;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.ps-modal[aria-hidden="false"] .ps-modal__content {
+  transform: translateY(0);
+}
+
+.ps-modal__close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.ps-modal__close:hover {
+  opacity: 1;
+  color: var(--c-cyan);
+}
+
+.ps-modal__title {
+  font-family: 'Anton', sans-serif;
+  font-size: 2rem;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+  text-shadow: 3px 3px 0 #ff0040;
+}
+
+.ps-modal__tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid var(--c-cyan);
+  color: var(--c-cyan);
+  font-family: var(--ff-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+.ps-modal__desc {
+  font-family: var(--ff-body);
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+}
+
+/* 3D Flip Card */
+.flip-card {
+  perspective: 1500px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: max-content;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-card.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front {
+  position: relative;
+  height: 100%;
+  width: auto;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.flip-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: rotateY(180deg);
+  background: rgba(12,14,22,0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  overflow: hidden;
+}
+
+/* CRT Scanline Effect on Back */
+.flip-card-back::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.detail-hero__art-wrap {
+  position: absolute;
+  right: 48px;
+  bottom: 0;
+  height: 90%;
+  z-index: 2;
+  display: inline-block;
+  min-width: 300px; /* Ensures minimum width for small images so back content won't overflow */
+}
+
+.detail-hero__art {
+  display: block !important;
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  object-position: bottom;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+}
+
+.detail-hero__info-card {
+  background: rgba(12,14,22,0.95);
+  backdrop-filter: blur(15px);
+  border: 2px solid var(--c-cyan);
+  padding: 24px 16px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0,240,255,0.2);
+  width: 85%;
+  position: relative;
+  z-index: 2;
+}
+
+/* Multiversal Floating Particles */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-particles span {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: var(--c-cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--c-cyan), 0 0 20px var(--c-cyan);
+  animation: floatUp infinite linear;
+  opacity: 0;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+/* Easter Egg Web Shooter */
+.easter-web {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 20px 10px rgba(255,255,255,0.8);
+  transform: translate(-50%, -50%);
+  animation: webShoot 2s ease-out forwards;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+@keyframes webShoot {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(100); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(200); opacity: 0; }
+}
+
+/* Tiny roaming spiders */
+.easter-spider {
+  position: fixed;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+  z-index: 9999;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  user-select: none;
+  filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
+}
+
+.detail-hero__info-label {
+  display: block;
+  font-family: var(--ff-body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--c-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 4px;
+}
+
+.detail-hero__info-name {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.05rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  display: block;
+  white-space: pre-wrap;
+  hyphens: none; /* Prevents awkward breaks like SPIDER- MAN */
+}
+
+/* Spider Signal Easter Egg */
+.spider-signal {
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, rgba(232,17,91,0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  margin-top: 20px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.spider-signal::after {
+  content: "🕷";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+}
+
+.spider-signal:hover::after {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.spider-signal:active {
+  background: radial-gradient(circle, rgba(232,17,91,0.6) 0%, transparent 70%);
+  transform: scale(0.9);
+}
+
+/* 2x2 Grid Responsive */
+@media (max-width: 900px) {
+  .problem-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Remove unwanted effects from previous step */
+.glitch-text::before, .glitch-text::after { display: none !important; }
+.detail-hero__name { text-shadow: 2px 2px 0 #ff0040 !important; }

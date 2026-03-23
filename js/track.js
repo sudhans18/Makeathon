@@ -53,7 +53,7 @@ function buildLeft() {
   /* Header */
   leftHeader.innerHTML = `
     <div class="track-left__track-name">
-      <span>${label} Track</span>${label.toUpperCase()}
+      <span>TRACK</span>${label.toUpperCase()}
     </div>
     <div class="track-left__accent-bar" style="background:${accent}"></div>
   `;
@@ -102,72 +102,167 @@ function selectDomain(idx) {
   const d = domains[idx];
   const stats = DOMAIN_STATS[d.id] || { tech: 80, innov: 80, impact: 80, scope: 80 };
 
-  rightPanel.innerHTML = `
+    rightPanel.innerHTML = `
     <!-- ── Hero ── -->
     <div class="detail-hero">
       <div class="detail-hero__bg"
            style="background-image:url('${d.background}')"></div>
       <div class="detail-hero__overlay"></div>
       <div class="detail-hero__dots"></div>
-      <img class="detail-hero__art"
-           src="${d.image}"
-           alt="${d.variantName}"
-           loading="eager"
-           onerror="this.style.display='none'" />
+      <div class="hero-particles"></div>
+      
+      <div class="detail-hero__art-wrap flip-card" id="hero-flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img class="detail-hero__art"
+                 src="${d.image}"
+                 alt="${d.variantName}"
+                 loading="eager"
+                 onerror="this.style.display='none'" />
+          </div>
+          <div class="flip-card-back">
+            <div class="detail-hero__info-card">
+              <span class="detail-hero__info-label">${d.label}</span>
+              <strong class="detail-hero__info-name">${d.variantName}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="detail-hero__text">
-        <span class="detail-hero__code">${d.code} — ${d.track} Track</span>
+        <span class="detail-hero__code">${d.code} — TRACK</span>
         <h1 class="detail-hero__name">${d.title}</h1>
         <p class="detail-hero__tagline">${d.tagline}</p>
+        <div id="spider-signal" class="spider-signal" title="Click for a signal..."></div>
       </div>
     </div>
 
     <!-- ── Body ── -->
     <div class="detail-body">
-
-      <!-- STATS -->
-      <div class="detail-stats">
-        <p class="detail-stats__heading">Domain Features</p>
-        ${STAT_LABELS.map(s => `
-          <div class="stat-row">
-            <div class="stat-row__icon">${s.icon}</div>
-            <span class="stat-row__label">${s.label}</span>
-            <span class="stat-row__val">${stats[s.key]}</span>
-            <div class="stat-row__bar-wrap">
-              <div class="stat-row__bar" style="width:0%"
-                   data-target="${stats[s.key]}"></div>
-            </div>
-          </div>
-        `).join('')}
-      </div>
-
-      <!-- PROBLEM SKILLS -->
+      <!-- PROBLEM STATEMENTS -->
       <div class="detail-problems">
         <p class="detail-problems__heading">Problem Statements</p>
-        ${d.problems.map((p, pi) => `
-          <div class="problem-skill">
-            <div class="problem-skill__icon">P${pi + 1}</div>
-            <div class="problem-skill__text">
-              <span class="problem-skill__name">${p.title}</span>
-              <span class="problem-skill__desc">${p.desc}</span>
+        <div class="problem-list">
+          ${d.problems.map((p, pi) => `
+            <div class="problem-skill" data-problem-index="${pi}">
+              <div class="problem-skill__icon">P${pi + 1}</div>
+              <div class="problem-skill__text">
+                <span class="problem-skill__name">${p.title}</span>
+              </div>
             </div>
-            <span class="problem-skill__tag">${p.tag}</span>
-          </div>
-        `).join('')}
+          `).join('')}
+        </div>
       </div>
-
     </div><!-- /detail-body -->
   `;
 
-  /* Animate stat bars */
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      rightPanel.querySelectorAll('.stat-row__bar').forEach(bar => {
-        bar.style.width = bar.dataset.target + '%';
-      });
+  // Easter Egg: Console
+  console.log(`%c [SYSTEM]: Analyzing ${d.code} - ${d.label} ...`, "color: #00f0ff; font-weight: bold; font-size: 12px;");
+  if (Math.random() > 0.8) console.log("%c [ALERT]: Multiversal anomaly detected!", "color: #ff0040; font-weight: bold;");
+
+  // Modal logic
+  const modal = document.getElementById('ps-modal');
+  const modalBody = document.getElementById('ps-modal-body');
+  const modalClose = document.getElementById('ps-modal-close');
+  const modalOverlay = document.getElementById('ps-modal-overlay');
+
+  const openPSModal = (problem) => {
+    modalBody.innerHTML = `
+      <span class="ps-modal__tag">${problem.tag}</span>
+      <h2 class="ps-modal__title">${problem.title}</h2>
+      <p class="ps-modal__desc">${problem.desc}</p>
+    `;
+    modal.setAttribute('aria-hidden', 'false');
+  };
+
+  const closePSModal = () => {
+    modal.setAttribute('aria-hidden', 'true');
+  };
+
+  modalClose.onclick = closePSModal;
+  modalOverlay.onclick = closePSModal;
+
+  // Particles init
+  const pContainer = rightPanel.querySelector('.hero-particles');
+  if (pContainer) {
+    for (let i = 0; i < 30; i++) {
+        const p = document.createElement('span');
+        p.style.left = Math.random() * 100 + '%';
+        p.style.top = Math.random() * 100 + '%';
+        p.style.animationDelay = Math.random() * 5 + 's';
+        pContainer.appendChild(p);
+    }
+  }
+
+  // Flip Card logic & Tilt
+  const flipCard = document.getElementById('hero-flip-card');
+  if (flipCard) {
+    flipCard.addEventListener('click', () => {
+      flipCard.classList.toggle('is-flipped');
+      const inner = flipCard.querySelector('.flip-card-inner');
+      if (inner) {
+        if (flipCard.classList.contains('is-flipped')) {
+          inner.style.transform = ''; // allow CSS to handle 180deg flip
+        } else {
+          inner.style.transform = ''; // allow CSS to settle back to 0
+        }
+      }
+    });
+
+    flipCard.addEventListener('mousemove', (e) => {
+        const rect = flipCard.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        const inner = flipCard.querySelector('.flip-card-inner');
+        if (inner && !flipCard.classList.contains('is-flipped')) {
+            inner.style.transform = `rotateY(${x * 20}deg) rotateX(${y * -20}deg)`;
+        }
+    });
+
+    flipCard.addEventListener('mouseleave', () => {
+        const inner = flipCard.querySelector('.flip-card-inner');
+        if (inner && !flipCard.classList.contains('is-flipped')) {
+            inner.style.transform = `rotateY(0) rotateX(0)`;
+        }
+    });
+  }
+
+  // Click listeners for problem items
+  rightPanel.querySelectorAll('.problem-skill').forEach(el => {
+    el.addEventListener('click', () => {
+      const pIdx = el.dataset.problemIndex;
+      openPSModal(d.problems[pIdx]);
     });
   });
+
 }
 
 /* ── Init ───────────────────────────────────────────────── */
 buildLeft();
 selectDomain(0);
+
+/* ── Global Easter Eggs ─────────────────────────────────── */
+// Konami Code Web Shooter
+const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+let konamiIndex = 0;
+document.addEventListener('keydown', (e) => {
+  if (e.key === konamiCode[konamiIndex]) {
+    konamiIndex++;
+    if (konamiIndex === konamiCode.length) {
+      shootWeb();
+      konamiIndex = 0;
+    }
+  } else {
+    konamiIndex = 0;
+  }
+});
+
+function shootWeb() {
+  const web = document.createElement('div');
+  web.className = 'easter-web';
+  document.body.appendChild(web);
+  setTimeout(() => web.remove(), 2000);
+}
+
+
+
