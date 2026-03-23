@@ -350,7 +350,7 @@
 
 @media (max-width: 600px) {
   .crew-carousel { height: 450px; }
-  .crew-slide { width: 180px; margin-left: -90px; }
+  .crew-slide { width: 180px; margin-left: -90px; margin-top: -180px; }
   .crew-slide__photo-wrap { height: 260px; }
   .crew-slide.is-right-1 { transform: translateX(155px) scale(0.72); }
   .crew-slide.is-left-1  { transform: translateX(-155px) scale(0.72); }

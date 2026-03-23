@@ -528,5 +528,30 @@
 @media (max-width: 600px) {
     .about-metrics {
         grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+    }
+
+    .about-metric {
+        padding: 0.6rem 0.65rem;
+        gap: 0.5rem;
+    }
+
+    .about-metric__icon {
+        width: 30px;
+        height: 30px;
+        flex-shrink: 0;
+    }
+
+    .about-metric__icon svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .about-metric__value {
+        font-size: 1rem;
+    }
+
+    .about-metric__lbl {
+        font-size: 0.65rem;
     }
 }

@@ -46,11 +46,17 @@
   ──────────────────────────────────────────────────────────────────────── -->
   <script>
     (function(){
-      if(new URLSearchParams(location.search).get('nl')==='1'){
-        // Stamp that we are skipping, so loading.js also short-circuits
+      const isNl = new URLSearchParams(window.location.search).get('nl') === '1';
+      const hasLoaded = sessionStorage.getItem('makeathon_loaded');
+      
+      // Skip if explicitly told via URL ?nl=1 OR if we've already seen the loading screen this session
+      if(isNl || hasLoaded){
         document.documentElement.dataset.skipLoading = '1';
-        // Rewrite the URL cleanly (no reload)
-        history.replaceState(null,'',location.pathname+location.hash);
+        if(isNl){
+          history.replaceState(null,'',window.location.pathname+window.location.hash);
+        }
+      } else {
+        sessionStorage.setItem('makeathon_loaded', '1');
       }
     })();
   </script>
@@ -92,8 +98,27 @@
         <li><a href="#faq" class="nav__link">FAQ</a></li>
       </ul>
       <a href="#hero" class="btn btn--nav text-yellow">REGISTER</a>
+      <!-- Hamburger toggle (mobile only) -->
+      <button class="nav__hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-drawer">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile slide-out drawer -->
+  <div class="nav__drawer" id="nav-drawer" role="dialog" aria-label="Navigation menu">
+    <a href="#about" class="nav__drawer-link">About Us</a>
+    <a href="#timeline" class="nav__drawer-link">Timeline</a>
+    <a href="#problems" class="nav__drawer-link">Problem Statements</a>
+    <a href="#sponsorship" class="nav__drawer-link">Sponsors</a>
+    <a href="#team" class="nav__drawer-link">The Crew</a>
+    <a href="#faq" class="nav__drawer-link">FAQ</a>
+    <a href="#hero" class="btn btn--nav text-yellow">REGISTER</a>
+  </div>
+  <!-- Backdrop -->
+  <div class="nav__overlay" id="nav-overlay" aria-hidden="true"></div>
 
   <!-- ═══════════════════════════════════════════════════════════
        SECTION 1 — HERO / LANDING
@@ -748,6 +773,7 @@
     </div>
   </footer>
 
+  <script src="js/core/hamburger.js"></script>
   <script type="module" src="js/main.js"></script>
 </body>
 

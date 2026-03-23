@@ -65,7 +65,8 @@ export function initLoading() {
         // both the attribute (belt) and the URL param (suspenders).
         const shouldSkip =
             document.documentElement.dataset.skipLoading === '1' ||
-            new URLSearchParams(window.location.search).get('nl') === '1';
+            new URLSearchParams(window.location.search).get('nl') === '1' ||
+            sessionStorage.getItem('makeathon_loaded');
 
         if (shouldSkip) {
             history.replaceState(null, '', window.location.pathname + window.location.hash);
