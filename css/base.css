@@ -381,3 +381,15 @@ ol {
     padding: 0 var(--sp-md);
   }
 }
+
+/* --- Accessibility --- */
+:focus-visible {
+  outline: 3px solid var(--c-cyan);
+  outline-offset: 4px;
+}
+
+.btn--comic:focus-visible,
+.btn--comic-cyan:focus-visible {
+  outline: 3px solid var(--c-yellow);
+  outline-offset: 4px;
+}
