@@ -84,7 +84,6 @@ function injectStyles() {
             text-transform: uppercase !important;
             color: #ffffff !important;
             text-shadow: 4px 4px 0 #ff0040, 8px 8px 0 #000000 !important;
-            /* Reset pill styles */
             background: transparent !important;
             border-radius: 0 !important;
             box-shadow: none !important;
@@ -101,7 +100,6 @@ function injectStyles() {
             text-transform: uppercase !important;
             color: #ffffff !important;
             text-shadow: 3px 3px 0 #ff0040, 6px 6px 0 #000000 !important;
-            /* Reset pill styles */
             background: transparent !important;
             border-radius: 0 !important;
             box-shadow: none !important;
@@ -201,11 +199,11 @@ function injectStyles() {
             margin-top: clamp(1.5rem, 3vw, 2.5rem) !important;
         }
 
-        /* ══ 2-Track choice buttons ══ */
+        /* ══ 3-Track choice buttons ══ */
         .track-choose-btns {
             display: flex;
             flex-direction: row;
-            gap: 28px;
+            gap: 24px;
             justify-content: center;
             align-items: stretch;
             flex-wrap: wrap;
@@ -218,12 +216,11 @@ function injectStyles() {
             flex-direction: column;
             align-items: flex-start;
             gap: 10px;
-            width: 300px;
+            width: 280px;
             max-width: 100%;
             padding: 28px 30px;
             text-decoration: none;
             position: relative;
-            /* Comic-button border gimmick */
             border: 3px solid #000;
             background: rgba(255,255,255,0.04);
             transition: transform 0.25s, box-shadow 0.25s;
@@ -236,6 +233,9 @@ function injectStyles() {
         .track-choose-btn--sw {
             box-shadow: 6px 6px 0 #00f0ff;
         }
+        .track-choose-btn--ind {
+            box-shadow: 6px 6px 0 #fcee0a;
+        }
 
         .track-choose-btn:hover {
             transform: translate(-3px, -3px);
@@ -246,6 +246,9 @@ function injectStyles() {
         .track-choose-btn--sw:hover {
             box-shadow: 9px 9px 0 #00f0ff;
         }
+        .track-choose-btn--ind:hover {
+            box-shadow: 9px 9px 0 #fcee0a;
+        }
 
         .track-choose-btn__icon {
             font-size: 2rem;
@@ -255,7 +258,7 @@ function injectStyles() {
 
         .track-choose-btn__label {
             font-family: 'Anton', sans-serif !important;
-            font-size: clamp(1.4rem, 3vw, 2rem) !important;
+            font-size: clamp(1.1rem, 2.2vw, 1.55rem) !important;
             font-weight: 400 !important;
             letter-spacing: 0.08em !important;
             text-transform: uppercase !important;
@@ -268,6 +271,9 @@ function injectStyles() {
         .track-choose-btn--sw .track-choose-btn__label {
             text-shadow: 3px 3px 0 #00f0ff !important;
         }
+        .track-choose-btn--ind .track-choose-btn__label {
+            text-shadow: 3px 3px 0 #fcee0a !important;
+        }
 
         .track-choose-btn__sub {
             font-family: var(--ff-body, sans-serif) !important;
@@ -277,6 +283,18 @@ function injectStyles() {
             text-transform: uppercase !important;
             color: rgba(255,255,255,0.38) !important;
             line-height: 1.5 !important;
+        }
+
+        /* ── Responsive: stack vertically on small screens ── */
+        @media (max-width: 700px) {
+            .track-choose-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            .track-choose-btn {
+                width: 100%;
+                max-width: 340px;
+            }
         }
     `;
     document.head.appendChild(style);
@@ -336,9 +354,6 @@ export function initProblems() {
 
     injectStyles();
 
-    const hardware = UNIVERSES.filter((universe) => universe.family === 'hardware');
-    const software = UNIVERSES.filter((universe) => universe.family === 'software');
-
     ui.innerHTML = `
         <div class="track-selector__board" style="background:transparent;">
             <div class="track-selector__copy">
@@ -355,6 +370,11 @@ export function initProblems() {
                     <span class="track-choose-btn__icon">◈</span>
                     <span class="track-choose-btn__label">SOFTWARE</span>
                     <span class="track-choose-btn__sub">AI · Smart Cities · Blockchain · AR/VR · FinTech · Governance</span>
+                </a>
+                <a href="industrial.html" class="track-choose-btn track-choose-btn--ind">
+                    <span class="track-choose-btn__icon">🏭</span>
+                    <span class="track-choose-btn__label">INDUSTRIAL PROBLEM STATEMENTS</span>
+                    <span class="track-choose-btn__sub">Manufacturing · Automation · Supply Chain · Industry 4.0</span>
                 </a>
             </div>
         </div>
