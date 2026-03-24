@@ -17,16 +17,105 @@ export const UNIVERSES = [
             {
                 title: 'Smartphone-Linked Off-Grid Mesh Communication System for Reserve Forests',
                 tag: 'Mesh Networking / Off-Grid Communication',
-                desc: 'Remote forests and trekking zones lack reliable communication due to poor cellular coverage and restrictions on radio systems, making it difficult to coordinate rescues and ensure safety during emergencies like missing persons or wildlife threats. Existing solutions are expensive, infrastructure-dependent, or not user-friendly for the general public. A decentralized communication system can enable real-time connectivity without relying on cellular networks, improving safety and response time in off-grid environments.',
+                desc: 'Remote forests and trekking zones lack reliable communication due to poor cellular coverage and restrictions on radio systems, making it difficult to coordinate rescues and ensure safety during emergencies like missing persons or wildlife threats. Existing solutions are expensive, infrastructure-dependent, or not user-friendly for the general public. A decentralized communication system can enable real-time connectivity without relying on cellular networks, improving safety and response time in off-grid environments. This supports disaster resilience, environmental monitoring, and public safety in remote regions.',
                 solution: [
                     'Portable communication module using LoRa/BLE for long-range, low-power transmission',
                     'Mesh networking for peer-to-peer and multi-hop communication',
                     'Smartphone integration via mobile app for messaging, GPS sharing, and SOS alerts',
                     'End-to-end encryption and secure authentication',
                     'Offline functionality with efficient data compression',
-                    'Scalable architecture for large forest deployments'
+                    'Scalable architecture for large forest deployments',
                 ],
                 sdgs: ['SDG 9: Industry, Innovation, and Infrastructure', 'SDG 15: Life on Land']
+            },
+            {
+                title: 'Intelligent Water Distribution Monitoring System',
+                tag: 'Water Management / Smart Infrastructure IoT',
+                desc: 'Invisible Water Loss & Contamination Water distribution systems in cities and rural areas suffer from leakage, illegal tapping, and contamination. These issues often go undetected due to lack of real-time monitoring, resulting in massive water loss and public health risks. Traditional inspection methods are manual, reactive, and inefficient. The Challenge: Continuous Pipeline Intelligence Participants must develop an embedded system capable of continuously monitoring water pipelines for anomalies such as leaks, pressure drops, and contamination. The challenge lies in designing a reliable, low-cost system that can operate in harsh environments with minimal maintenance.',
+                solution: [
+                    'Smart Pipeline Monitoring Node',
+                    'The system should act as an intelligent node in a distributed monitoring network:',
+                    'Flow & Pressure Sensors: Detect abnormal drops indicating leaks',
+                    'Water Quality Sensors: pH, turbidity, TDS for contamination detection',
+                    'Edge Analytics: Real-time anomaly detection at device level',
+                    'Wireless Communication: LoRa/GSM for long-range data transmission',
+                    'Dashboard Integration: Visualize pipeline health and alerts',
+                ],
+                sdgs: ['SDG 6: Clean Water & Sanitation']
+            },
+            {
+                title: 'Condition-based monitoring and maintenance system',
+                tag: 'Automation / Condition Monitoring',
+                desc: 'There are a large number of tunnel booster fans (TBF) of different capacity installed in tunnel area at underground metro stations. These TBFs have different maintenance schedules and frequency prescribed by OEM. The TBF\'s are not operated regularly but are tested during mock drills. The exercise of scheduled preventive maintenance of this equipment involves a large number of manpower and risk of working at height. The Condition-based maintenance in place of scheduled preventive maintenance would be very helpful in optimizing the maintenance and manpower cost involved. To optimize the maintenance and manpower cost there is a great need of developing a condition-based monitoring and maintenance system. The historical data pertaining to failures along with the symptoms, the permissible limits of different parameters. the previous maintenance records of TBF shall be fed into the AI-based condition monitoring system. The AI-based system shall analyze and compare this historical data with parameter obtained at the time of operation during the testing/mock drill to predict any maintenance requirement based on the condition of TBF and the system shall also alert in case of any deviation from specified values.',
+                solution: [
+                    'Condition-based monitoring and maintenance system which can use machine learning & behavioural analytics to predict any maintenance requirement based on the condition of a particular system.',
+                ],
+                sdgs: ['SDG 9 – Industry, Innovation, and Infrastructure']
+            },
+            {
+                title: 'Autonomous Edge-Tracked "Smart Crate"',
+                tag: 'Edge Computing / Smart Logistics',
+                desc: 'Perishable goods such as pharmaceuticals, vaccines, and fresh produce often get damaged during transportation due to unnoticed temperature and humidity fluctuations. Current systems rely on passive data loggers that only provide information after delivery, making it impossible to take corrective action in real time. This results in significant financial losses and wastage in the supply chain.',
+                solution: [
+                    'Design an autonomous smart crate capable of real-time monitoring of environmental conditions during transit',
+                    'Integrate temperature and humidity sensors suitable for refrigerated and cold-chain environments',
+                    'Include an onboard processing unit such as ESP32 or Raspberry Pi for real-time data analysis and threshold detection',
+                    'Implement local alert mechanisms using LEDs or buzzers to indicate unsafe conditions instantly',
+                    'Enable transmission of real-time data and alerts using GSM, NB-IoT, or LoRa communication modules',
+                    'Ensure low power consumption and efficient operation for long-duration shipments',
+                    'Support remote monitoring through a centralized dashboard for tracking and decision-making',
+                    'Design the system to be compact, durable, and easily deployable within existing logistics infrastructure',
+                ],
+                sdgs: ['SDG 9: Industry & Innovation', 'SDG 12: Responsible Consumption']
+            },
+            {
+                title: 'Intelligent Wearable-Based Anti-Collision System for Industrial Safety in LOS and NLOS Environments',
+                tag: 'Industrial Safety / Anti-Collision',
+                desc: 'Industrial environments such as warehouses, manufacturing facilities, and logistics hubs involve continuous interaction between human workers and moving vehicles, including forklifts, pallet trucks, and automated carts. These environments are inherently dynamic and often characterized by congestion, high noise levels, and the presence of both line-of-sight (LOS) and non-line-of-sight (NLOS) conditions, such as blind corners, aisles, and intersections. In such settings, limited situational awareness, obstructed visibility, and human factors such as distraction and delayed reaction significantly increase the risk of collisions between workers and vehicles. While accidents in NLOS scenarios are primarily caused by lack of visibility, even in LOS conditions, workers may fail to respond in time due to environmental complexity and operational workload. These incidents can result in serious injuries, operational disruptions, and financial losses. Existing safety measures, including mirrors, warning signs, and audible alarms, are largely passive and depend heavily on human attention and compliance. As a result, they are insufficient for ensuring real-time accident prevention in complex industrial environments. Therefore, there is a need for an intelligent, real-time, and proactive collision avoidance system capable of operating effectively in both LOS and NLOS conditions. Such a system should continuously monitor the proximity and movement of workers and vehicles, accurately identify potential collision scenarios—including head-on, lateral, and blind spot interactions—and provide immediate, reliable alerts to prevent accidents. Additionally, the solution must be cost-effective, energy-efficient, scalable, and easy to deploy, ensuring its practicality and adoption across diverse industrial settings.',
+                solution: [
+                    'Wearable and vehicle-mounted sensing to monitor proximity and movement in both line-of-sight and non-line-of-sight industrial zones',
+                    'Real-time collision-risk detection for head-on, lateral, blind-spot, and intersection scenarios',
+                    'Immediate worker and vehicle alerts using reliable low-latency feedback mechanisms',
+                    'Energy-efficient, scalable system design suitable for warehouses, factories, and logistics hubs',
+                ],
+                sdgs: ['SDG 9 – Industry, Innovation, and Infrastructure']
+            },
+            {
+                title: 'Self-Calibrating Sensor System',
+                tag: 'Edge Intelligence / TinyML',
+                desc: 'Modern sensor-based systems suffer from measurement drift, environmental noise, and long-term inaccuracies, leading to unreliable data and poor decision-making. Most low-cost embedded systems rely on manual calibration or fixed calibration values, which degrade over time due to environmental changes such as temperature, humidity, and sensor aging. This limitation makes such systems unsuitable for applications requiring long-term reliability, as incorrect sensor readings can lead to faulty outputs and system failures. There is a need for an intelligent system that can automatically detect inaccuracies in sensor readings and recalibrate itself dynamically without human intervention. The proposed system should develop a self-calibrating sensor framework capable of identifying deviations in sensor outputs and correcting them in real time. The system will continuously monitor sensor data and compare it against expected patterns, reference signals, or correlated sensor inputs. Using statistical methods or lightweight machine learning models, the system should: Detect anomalies or drift in sensor readings Estimate the magnitude of error Apply corrective calibration factors dynamically The system may use multi-sensor correlation (sensor fusion) or periodic reference checks to validate accuracy. It should also maintain a history of calibration adjustments to improve long-term performance.',
+                solution: [
+                    'Real-time sensor data acquisition',
+                    'Drift detection algorithm',
+                    'Automatic calibration adjustment logic',
+                    'Optional multi-sensor validation mechanism',
+                    'Visualization of raw vs corrected data',
+                    'Performance comparison before and after calibration',
+                ],
+                sdgs: ['SDG 9: Industry, Innovation and Infrastructure', 'SDG 12: Responsible Consumption and Production']
+            },
+            {
+                title: 'Fault Detection in Analog Circuits',
+                tag: 'Circuit Diagnostics / Signal-Based Fault Detection',
+                desc: 'Diagnosing faults in analog circuits is a time-consuming and manual process, requiring expert knowledge and extensive testing. Small component failures or parameter deviations can significantly affect circuit behavior, making fault identification difficult. There is a need for an automated system that can analyze circuit behavior and identify potential faults based on signal deviations. The system should: Input known signals into an analog circuit Measure output responses Compare actual vs expected behavior Using signal analysis techniques, the system should identify: Component-level faults (e.g., resistor drift, capacitor failure) Signal distortion or abnormal response patterns The system may use predefined models or learned patterns to classify faults.',
+                solution: [
+                    'Signal injection into test circuit',
+                    'Output waveform acquisition',
+                    'Feature extraction (amplitude, phase, distortion)',
+                    'Fault classification logic',
+                    'Identification of possible faulty components',
+                    'Visualization of waveform differences',
+                ],
+                sdgs: ['SDG 9: Industry, Innovation and Infrastructure']
+            },
+            {
+                title: 'Adaptive Crowd Behavior Intelligence Node for Public Spaces',
+                tag: 'Edge AI / Behavioral Sensing',
+                desc: 'Public spaces such as railway stations, festivals, and campuses face dynamic crowd behavior patterns that can shift rapidly into unsafe conditions. Existing systems rely on CCTV monitoring but lack localized, low-cost, real-time behavioral interpretation at the edge.',
+                solution: [
+                    'Develop an IoT node integrating camera, sound intensity, and proximity sensing to capture crowd density, movement direction, and anomaly signals (sudden dispersal, clustering, panic noise). Use lightweight edge AI models to classify crowd states and predict unsafe transitions. The system should geo-tag events, trigger alerts, and provide heatmap-based visualization while operating under constrained compute and power conditions.',
+                ],
+                sdgs: ['SDG 11 – Sustainable Cities and Communities']
             },
         ],
     },
@@ -45,10 +134,40 @@ export const UNIVERSES = [
         background: 'assets/background/ironspider_bg.webp',
         href: 'universe.html?u=2',
         problems: [
-            { title: 'Balance Assist Band', tag: 'wearable', desc: 'Create a wearable feedback layer that helps users correct posture and gait in real time.' },
-            { title: 'Smart Brake Module', tag: 'controls', desc: 'Prototype a compact braking controller for lightweight mobility platforms and carts.' },
-            { title: 'Impact Telemetry Pad', tag: 'safety', desc: 'Capture shock patterns and translate them into safety guidance for riders and operators.' },
-            { title: 'Motion Recovery Loop', tag: 'assistive', desc: 'Design a recovery loop that can recalibrate itself after sudden movement or misalignment.' },
+            {
+                title: 'Fatigue Detection for Drivers',
+                tag: 'Physiological Monitoring / Driver Safety',
+                desc: 'Driver fatigue is a major cause of road accidents, often going undetected until it is too late. Existing solutions rely on camera-based systems or simple alert mechanisms, which are either intrusive or unreliable. There is a need for a wearable-based system that can continuously monitor physiological and behavioral signals to detect driver fatigue in real time. The system should use wearable sensors to monitor: Heart rate variability Motion patterns (head/hand movement) Activity levels By analyzing these signals, the system should detect fatigue trends rather than sudden events. It must differentiate between normal inactivity and actual drowsiness. The system should provide graded alerts based on fatigue severity.',
+                solution: [
+                    'Wearable sensor integration',
+                    'Real-time physiological monitoring',
+                    'Fatigue detection algorithm',
+                    'Multi-level alert system',
+                    'Data visualization',
+                    'Demonstration of fatigue vs alert states',
+                ],
+                sdgs: ['SDG 3: Good Health and Well-being', 'SDG 11: Sustainable Cities and Communities']
+            },
+            {
+                title: 'Multi-Parameter Fatigue & Cognitive Load Monitoring Wearable',
+                tag: 'Biosignal Processing',
+                desc: 'Cognitive fatigue impacts performance in students and workers but is not easily measurable through a single parameter.',
+                solution: [
+                    'Build a wearable integrating heart rate variability, skin temperature, motion, and possibly eye-blink patterns (via external input). Use',
+                    'AI models to fuse these signals and estimate fatigue levels, cognitive load, and recovery time. Provide personalized feedback, adaptive thresholds, and longitudinal tracking via a mobile dashboard.',
+                ],
+                sdgs: ['SDG 3 – Good Health and Well-being']
+            },
+            {
+                title: 'AI-Based Real-Time Dynamic Range Control for Safe Audio Consumption',
+                tag: 'Hearing Safety / Adaptive Audio Systems',
+                desc: 'While using earphones or earbuds for multimedia consumption, users typically set a fixed volume level based on average audio intensity. However, audio streams often contain sudden high-amplitude spikes such as explosions, sharp sound effects, or loud transitions that exceed comfortable listening levels. These abrupt variations can cause discomfort, disrupt the listening experience, and may contribute to hearing fatigue or damage over time. Existing solutions such as volume normalization and dynamic range compression provide limited control but are not sufficiently adaptive in real time and fail to distinguish between different types of audio content. As a result, users must frequently adjust volume manually, leading to an inconsistent and inefficient experience. There is a need for an intelligent system that can dynamically regulate audio output in real time while preserving clarity and context.',
+                solution: [
+                    'Develop an intelligent real-time audio adaptation system that continuously monitors and analyzes audio signals to detect sudden intensity spikes. The system should use a combination of digital signal processing and AI-based models to classify audio content (e.g., speech, music, sound effects) and apply context-aware adjustments such as adaptive gain control, peak limiting, and dynamic range compression.',
+                    'The solution should ensure smooth transitions between audio levels, maintain speech clarity, and prevent distortion. It should support personalized listening profiles based on user sensitivity and preferences. The system can be implemented at the device level (earbuds/headphones), operating system level, or within media playback applications, enabling automated volume regulation and enhanced hearing protection without requiring manual intervention.',
+                ],
+                sdgs: ['SDG 9 – Industry, Innovation and Infrastructure', 'SDG 3 – Good Health and Well-being']
+            },
         ],
     },
     {
@@ -76,9 +195,49 @@ export const UNIVERSES = [
                     'Oxygen- and light-resistant packaging design',
                     'IoT sensors for real-time monitoring of storage conditions',
                     'Mobile/web dashboard with alerts for condition deviations',
-                    'Cost-effective and scalable solution for rural deployment'
+                    'Cost-effective and scalable solution for rural deployment.',
                 ],
                 sdgs: ['SDG 2: Zero Hunger', 'SDG 12: Responsible Consumption and Production']
+            },
+            {
+                title: 'Multi-Animal Health State Inference & Disease Propagation System',
+                tag: 'Livestock Health Monitoring / Disease Analytics',
+                desc: 'Livestock diseases often spread silently within herds before visible symptoms appear, leading to large-scale economic losses and delayed intervention. Current monitoring systems focus on individual animals and fail to capture collective behavioral patterns and early-stage disease propagation dynamics. There is a need for a system that can analyze multi-animal physiological and behavioral data to infer early signs of disease spread within a group, identifying not only affected animals but also predicting potential propagation patterns.',
+                solution: [
+                    'Wearable sensing (temperature, motion, activity) across multiple animals',
+                    'Detection of subtle deviations from baseline behavior',
+                    'Group-level anomaly detection (not just individual)',
+                    'Identification of “index animal” (first affected)',
+                    'Basic disease spread modeling (proximity/activity-based inference)',
+                    'Visualization of herd health state and risk zones',
+                    'Alert system for early containment',
+                ],
+                sdgs: ['SDG 3: Good Health and Well-Being', 'SDG 2: Zero Hunger']
+            },
+            {
+                title: 'Dynamic Pest Activity Detection',
+                tag: 'Non-Visual Pest Detection / Bio-Signal Monitoring',
+                desc: 'Early detection of pest activity is critical in agriculture to prevent crop damage and yield loss. However, most existing detection systems rely on visual inspection or image-based techniques, which are often ineffective in early stages and require expensive hardware and computational resources. There is a need for a system that can detect pest activity using indirect physical signals, enabling early-stage detection without relying on visual methods. The proposed system focuses on developing a non-visual pest detection mechanism using physical signals such as vibration, acoustic patterns, or plant movement. The system will use sensors placed on or near plants to capture subtle disturbances caused by pest activity. The collected signals will be analyzed to identify distinct patterns associated with pest movement or feeding behavior, differentiating them from environmental noise such as wind or human interaction. Basic signal processing techniques such as filtering, frequency analysis, or pattern recognition may be used. The system should generate alerts when abnormal activity patterns indicative of pests are detected, enabling timely intervention.',
+                solution: [
+                    'Sensor-based acquisition of vibration/acoustic signals',
+                    'Noise filtering and signal preprocessing',
+                    'Feature extraction (frequency/amplitude patterns)',
+                    'Pest activity detection logic',
+                    'Alert or notification system',
+                    'Demonstration distinguishing normal vs pest activity',
+                ],
+                sdgs: ['SDG 2: Zero Hunger']
+            },
+            {
+                title: 'Predictive Phytonutrient Diagnostic and Precision Recovery System',
+                tag: 'Precision Farming',
+                desc: 'Current farming practices largely depend on visible symptoms such as discoloration or stunted growth to identify nutrient deficiencies. However, by the time these symptoms appear, the crop has already undergone physiological stress leading to reduced yield and quality. Early-stage nutrient imbalance often manifests as subtle variations in how plant leaves absorb and reflect light across different wavelengths, which are not detectable by the human eye. Additionally, field conditions such as changing sunlight intensity, leaf orientation, and environmental noise make consistent observation difficult. There is a need for a portable, non-destructive diagnostic system that can reliably capture these hidden indicators and enable early, localized intervention before damage becomes visible.',
+                solution: [
+                    'Design a compact optical sensing device capable of actively illuminating plant leaves using controlled light sources and measuring reflected signals across multiple spectral bands. The system should include provisions to minimize interference from ambient lighting and ensure consistent readings under varying outdoor conditions. The captured signals should be processed to derive meaningful indicators such as reflectance patterns or vegetation indices that correlate with plant health and nutrient status.',
+                    'The device should interpret these patterns to identify potential deficiencies (such as nitrogen, phosphorus, or potassium imbalance) and provide clear, actionable outputs indicating the type and severity of stress. It should also support location-based tagging of observations to help identify variation across different regions of a field. Optionally, the system may enable targeted recovery actions by guiding localized nutrient application rather than uniform treatment.',
+                    'The overall solution should emphasize ease of use, repeatable measurements, robustness in real field conditions, and affordability, ensuring it can be effectively used by farmers without requiring specialized expertise while still enabling data-driven precision farming.',
+                ],
+                sdgs: ['SDG 2 – Zero Hunger', 'SDG 12 – Responsible Consumption and Production']
             },
         ],
     },
@@ -97,10 +256,49 @@ export const UNIVERSES = [
         background: 'assets/background/miles_morales_bg.jpeg',
         href: 'universe.html?u=4',
         problems: [
-            { title: 'Autonomous flood‑submergence marker and rescue‑guidance buoy for urban drains and nullahs', tag: 'energy', desc: 'Description: Urban floods in Indian cities regularly claim lives when people or vehicles enter deep‑water stretches of drains and nullahs with no visible depth markers. Existing markers are often washed away or not visible at night. Expected solution:- Design an autonomous floating buoy with: - Water‑level sensor and sonar‑based depth measurement. - On‑board LED/LED‑strip that changes color based on depth (e.g., green ≤ 0.5 m, red > 1.5 m). - GPS and GSM/NB‑IoT module to transmit real‑time water levels and location to a control room. - Integrate a solar‑charged battery and tilt‑proof casing for long‑term deployment in urban drains. - Enable remote configuration of depth thresholds and flashing patterns for different zo' },
-            { title: 'Heat Sink Battery Aid', tag: 'power', desc: 'Use thermal gradients to assist low-power charging and reduce battery stress.' },
-            { title: 'Burst Buffer Board', tag: 'pcb', desc: 'Smooth erratic harvested power into stable output that downstream circuits can trust.' },
-            { title: 'Idle Power Divider', tag: 'optimization', desc: 'Design a controller that distributes tiny energy reserves without wasting a single burst.' },
+            {
+                title: 'Disaster Response Drone for Remote Areas',
+                tag: 'Autonomous Delivery / Disaster Logistics',
+                desc: 'During natural disasters such as floods and earthquakes, many remote areas become isolated and difficult to access. Delivering essential medical supplies and communication devices becomes a major challenge due to damaged roads and lack of transportation. There is a need for a fast and reliable solution to reach these affected areas. A drone-based delivery system can help transport critical supplies quickly and safely. By using AI for real-time navigation and obstacle avoidance, the drone can operate efficiently even in complex and unpredictable environments.',
+                solution: [
+                    'Develop a drone-based delivery system for disaster-affected areas',
+                    'Ensure the drone can carry a minimum payload of 5 kg',
+                    'Implement AI-based navigation and obstacle avoidance',
+                    'Enable safe delivery of medical supplies and communication devices',
+                ],
+                sdgs: ['SDG 3: Delivers medical help', 'SDG 11: Supports disaster management']
+            },
+            {
+                title: 'Autonomous flood-submergence marker and rescue-guidance buoy for urban drains and nullahs',
+                tag: 'Smart Flood Monitoring / Early Warning Systems',
+                desc: 'Urban floods in Indian cities regularly claim lives when people or vehicles enter deep ‑water stretches of drains and nullahs with no visible depth markers. Existing markers are often washed away or not visible at night.',
+                solution: [
+                    'Design an autonomous floating buoy with:',
+                    'Water ‑level sensor and sonar ‑based depth measurement.',
+                    'On ‑board LED/LED ‑strip that changes color based on depth (e.g., green ≤ 0.5 m, red > 1.5 m).',
+                    'GPS and GSM/NB ‑IoT module to transmit real ‑time water levels and location to a control room.',
+                    'Integrate a solar ‑charged battery and tilt ‑proof casing for long ‑term deployment in urban drains.',
+                    'Enable remote configuration of depth thresholds and flashing patterns for different zones.',
+                    'Ensure the buoy is low ‑cost, easy to deploy, and resistant to debris and vandalism',
+                ],
+                sdgs: ['SDG 11 (Sustainable cities and communities)', 'SDG 13 (Climate action)', 'SDG 17 (Partnerships for the goals – via local ‑government ‑tech integration)']
+            },
+            {
+                title: 'Rapid-Deploy Wildfire "Smoke-Sniffer" Network',
+                tag: 'IoT Mesh / Early Warning',
+                desc: 'Wildfires spread rapidly and become uncontrollable if not detected at an early stage. Existing detection methods such as satellite monitoring are often delayed due to environmental limitations like cloud cover, while human observation usually occurs only after the fire has significantly progressed. This delay leads to severe ecological damage, loss of wildlife, and destruction of infrastructure.',
+                solution: [
+                    'Design ultra-low-cost, battery-operated sensor nodes for rapid deployment in forest and high-risk wildfire zones',
+                    'Integrate multi-modal sensing including CO2, particulate matter (PM2.5), and temperature sensors to detect early signs of fire ignition',
+                    'Implement onboard processing to analyze sensor data and identify abnormal patterns indicating potential fire outbreaks',
+                    'Enable long-range communication between nodes using technologies such as LoRa or mesh networking protocols',
+                    'Develop an auto-configuring mesh network where nodes can discover each other and relay data to a central gateway',
+                    'Optimize power consumption using sleep-wake cycles and efficient data transmission for long-term operation on battery',
+                    'Design rugged, weather-resistant enclosures suitable for harsh outdoor environments and varying terrains',
+                    'Ensure the system is easy to deploy, scalable, and capable of covering large forest areas with minimal human intervention',
+                ],
+                sdgs: ['SDG 13: Climate Action', 'SDG 15: Life on Land']
+            },
         ],
     },
     {
@@ -118,10 +316,22 @@ export const UNIVERSES = [
         background: 'assets/background/scarlett_spider_bg.jpeg',
         href: 'universe.html?u=5',
         problems: [
-            { title: 'Crowd Flow Tile', tag: 'smart-space', desc: 'Build a smart floor tile that detects traffic density and movement direction in public spaces.' },
-            { title: 'Context Beacon', tag: 'interface', desc: 'Prototype an indicator that adapts messaging to occupancy and ambient conditions.' },
-            { title: 'Touchless Panel Kit', tag: 'ux-hardware', desc: 'Design a public control panel that reduces contact while preserving reliable input.' },
-            { title: 'Presence Anchor', tag: 'interaction', desc: 'Create a context-aware marker that reacts differently when a person approaches or leaves.' },
+            {
+                title: 'Autonomous Inspection Robot for Hazardous Environments',
+                tag: 'Industrial Robotics / Autonomous Systems',
+                desc: 'Unsafe Human Exposure in Industrial Environments Industries such as chemical plants, oil refineries, mines, and manufacturing units often involve hazardous environments with toxic gases, extreme temperatures, and structurally unstable zones. Human inspection in these areas poses serious safety risks and is often inefficient due to limited accessibility and visibility. The Challenge: Autonomous Navigation & Intelligent Fault Detection Participants must design a robotic system capable of navigating complex industrial environments autonomously while detecting anomalies such as gas leaks, cracks, overheating equipment, or structural damage. The challenge lies in real-time decision-making, obstacle avoidance, and reliable sensing in harsh conditions.',
+                solution: [
+                    'AI-Powered Inspection Robot',
+                    'The system should function as an intelligent inspection unit capable of reducing human intervention:',
+                    'Mobility System: Wheeled/tracked robot for rough terrain navigation',
+                    'Sensor Integration: Gas sensors, thermal sensors, cameras, ultrasonic sensors',
+                    'Autonomous Navigation: Path planning and obstacle avoidance',
+                    'Computer Vision: Detect cracks, leaks, or abnormal patterns',
+                    'Remote Monitoring: Live video streaming and alert system',
+                    'Data Logging: Store inspection data for analysis',
+                ],
+                sdgs: ['SDG 8 – Decent Work & Economic Growth', 'SDG 9 – Industry, Innovation & Infrastructure']
+            },
         ],
     },
     {
@@ -140,6 +350,35 @@ export const UNIVERSES = [
         href: 'universe.html?u=6',
         problems: [
             {
+                title: 'Sustainable Utilization of 100% of Ash from Coal based Thermal Power Plants',
+                tag: 'Waste-to-Energy / Material Reuse Systems',
+                desc: 'Thermal power plants that use coal produce a large amount of fly ash as a waste material. Improper disposal of fly ash causes serious environmental problems like land pollution, water contamination, and air pollution. Even though fly ash can be used in construction, agriculture, and industries, a lot of it is not used properly due to lack of simple systems to check its quality and usage. So, there is a need to develop a simple and efficient solution to reuse fly ash safely and convert it into useful materials.',
+                solution: [
+                    'Create a basic prototype using fly ash (like bricks, soil mix, or other material)',
+                    'Check simple properties of fly ash (like moisture, texture, etc.)',
+                    'Show how fly ash can be used for a specific purpose',
+                    'Demonstrate that the final output is usable and improved (Optional) Use sensors or simple methods to monitor quality',
+                    'Explain how your solution is useful and environmentally safe',
+                ],
+                sdgs: ['SDG 12: Converts waste into useful products', 'SDG 13: Reduces environmental pollution']
+            },
+            {
+                title: 'Autonomous Infrastructure Monitoring for High-Voltage Environments',
+                tag: 'Smart Grids / Energy Harvesting',
+                desc: 'Power distribution networks face constant risks from invisible threats such as corona discharge and structural fatigue, which can lead to insulator failure, fire hazards, and power loss. Current detection methods rely on manual inspection or drone-based monitoring, which are costly, limited by electromagnetic interference, and unable to provide continuous coverage. This results in delayed fault detection and increased risk to infrastructure and personnel.',
+                solution: [
+                    'Design a low-cost, autonomous monitoring node capable of operating in both indoor substations and outdoor transmission environments',
+                    'Integrate multi-modal sensing including ultraviolet sensors for corona detection, thermal sensors for overheating components, and acoustic sensors for detecting electrical discharge sounds',
+                    'Implement onboard edge processing using lightweight AI models to filter noise and identify fault patterns in real time',
+                    'Ensure reliable operation in high electromagnetic interference environments without dependence on continuous internet connectivity',
+                    'Develop a versatile mechanical design that allows deployment on busbars, transmission lines, or tower structures',
+                    'Incorporate energy harvesting techniques such as inductive coupling to enable self-sustaining operation without frequent battery replacement',
+                    'Enable classification of detected faults based on severity to support predictive maintenance and prioritization of repairs',
+                    'Ensure the system is rugged, weather-resistant, and capable of long-term deployment with minimal maintenance',
+                ],
+                sdgs: ['SDG 7: Affordable and Clean Energy', 'SDG 9: Industry, Innovation, and Infrastructure']
+            },
+            {
                 title: 'IoT-Enabled Self-Powered Industrial Equipment Health Monitoring System Using Waste Heat Energy Harvesting',
                 tag: 'Waste-to-Energy / Green Technology',
                 desc: 'Industrial machines such as motors, boilers, and compressors generate significant waste heat that remains unused, while existing condition monitoring systems rely on external power or frequent battery replacement. This limits continuous monitoring in harsh or remote industrial environments, leading to unplanned failures, increased downtime, and higher maintenance costs. A self-powered monitoring system is needed that can harvest waste heat and operate autonomously while continuously tracking machine health for predictive maintenance.',
@@ -151,9 +390,19 @@ export const UNIVERSES = [
                     'Edge-level feature extraction (RMS, FFT, anomaly indicators)',
                     'Wireless communication (LoRa/Wi-Fi) for real-time data transmission',
                     'Cloud/dashboard for predictive maintenance insights and alerts',
-                    'Rugged, compact design for industrial deployment'
+                    'Rugged, compact design for industrial deployment',
                 ],
                 sdgs: ['SDG 7: Affordable and Clean Energy', 'SDG 11: Sustainable Cities and Communities']
+            },
+            {
+                title: 'AI-Powered Autonomous Water Bot for Ocean Pollution Detection and Cleanup',
+                tag: 'Environmental Monitoring / Marine Technology',
+                desc: 'Ocean pollution caused by plastic waste, oil spills, and chemical contaminants poses a severe threat to marine ecosystems and biodiversity. Existing monitoring systems are often manual, time-consuming, and lack real-time analysis and response capabilities. There is a need for an intelligent, autonomous system that can continuously monitor water bodies, accurately detect pollutants, and provide actionable insights while reducing human intervention.',
+                solution: [
+                    'Develop an autonomous water bot (surface/underwater hybrid) equipped with cameras and environmental sensors to detect and classify pollutants using',
+                    'AI-based computer vision models in real time. The system should support geo-tagging, hotspot mapping, and integration with environmental monitoring platforms. Additionally, it should incorporate active remediation features such as collecting floating plastic waste and deploying eco-friendly bioremediation agents or absorbents to digest or neutralize oil spills and contaminants, enabling both monitoring and cleanup in a unified solution.',
+                ],
+                sdgs: ['SDG 6 (Clean Water & Sanitation)', 'SDG 13 (Climate Action)', 'SDG 14 (Life Below Water)']
             },
         ],
     },
@@ -173,18 +422,63 @@ export const UNIVERSES = [
         href: 'universe.html?u=7',
         problems: [
             {
-                title: 'AI-Based Early Detection System for Diabetic Retinopathy Using Retinal Fundus Images',
-                tag: 'Medical Imaging / Computer Vision',
-                desc: 'Diabetic retinopathy is a major cause of preventable blindness, especially in rural areas where access to specialists is limited. Manual screening is time-consuming and not scalable. An AI-powered diagnostic system can automate detection and classification, enabling early intervention and large-scale screening.',
+                title: 'Personalized Learning for Dyslexic Students',
+                tag: 'Adaptive Learning / Assistive AI',
+                desc: 'Dyslexia affects 15-20% of Indian schoolchildren (35 million+), with poor diagnosis and tools widening urban-rural learning gaps—standard curricula fail neurodiverse kids, dropping dropout rates. An adaptive ML platform uses eye-tracking, comprehension AI, and AR overlays (e.g., color-coded text, phoneme highlights) to tailor lessons, improving retention by 40%. It',
                 solution: [
-                    'Image processing pipeline for retinal fundus images',
-                    'Deep learning model (CNN) for classification of severity levels',
-                    'Explainable AI (heatmaps) for highlighting affected regions',
-                    'Deployment on mobile or cloud platforms',
-                    'Simple interface for healthcare workers',
-                    'Secure handling of medical data and compliance'
+                    'Web/mobile app with webcam-based eye-tracking and NLP to assess reading patterns, generating personalized content.',
+                    'ML adaptive engine (e.g., reinforcement learning) adjusts difficulty, tracks progress, and suggests interventions.',
+                    'Teacher dashboard for class insights, IEP generation, and parent reports; multilingual for Tamil/Hindi.',
+                    'Integrate with school LMS (e.g., DIKSHA) and gamification for engagement, with free tier for rural govt schools.',
+                    'Optional (AR features (via WebAR) overlay audio guides, dyslexia fonts, and spaced repetition on textbooks/PDFs).',
+                ],
+                sdgs: ['SDG 4 (Quality Education)', 'SDG 10 (Reduced Inequalities)', 'SDG 3 (Health)']
+            },
+            {
+                title: 'AI "Lawyer" for Small Vendors',
+                tag: 'NLP / AI for Social Good',
+                desc: 'Small shop owners, street vendors, and rural entrepreneurs are often exploited by complex legal documents such as lease agreements, loan contracts, and supplier deals written in difficult legal language. Due to financial constraints, they are unable to hire legal professionals and are forced to sign contracts without fully understanding the risks, which can negatively impact their livelihoods.',
+                solution: [
+                    'Develop a mobile-first application that enables users to analyze legal documents easily',
+                    'Integrate optical character recognition to scan and extract text from physical contracts using a smartphone camera',
+                    'Use NLP or large language models to identify and flag risky clauses such as hidden fees, high interest rates, and unfair eviction terms',
+                    'Provide simplified explanations of complex legal content in user-friendly language',
+                    'Support regional languages such as Tamil and Hindi for better accessibility',
+                    'Implement a risk scoring system that visually indicates the fairness or danger level of a contract',
+                    'Ensure the application is lightweight, fast, and usable by individuals with minimal technical knowledge',
+                    'Enable offline or low-data usage modes to support users in rural or low-connectivity areas',
+                ],
+                sdgs: ['SDG 8: Decent Work & Economic Growth', 'SDG 10: Reduced Inequalities']
+            },
+            {
+                title: 'Cognitive-Aware Affective Intelligence Platform for Structured Emotional Modeling and Predictive Mental Well-being Analytics',
+                tag: 'Digital Mental Health',
+                desc: 'Contemporary digital mental health solutions—including journaling applications, mood trackers, and wellness platforms—are fundamentally constrained by their reliance on episodic and unstructured emotional inputs, such as free-form text, voice logs, and simplistic mood indicators. While these tools facilitate basic emotional expression, they lack the computational intelligence required to transform subjective experiences into structured, context-aware, and temporally evolving psychological models. Consequently, large volumes of user-generated emotional data remain semantically unprocessed and analytically underutilized, limiting the ability to derive meaningful insights into an individual’s cognitive and affective states over time. The absence of semantic encoding, temporal sequencing, and contextual enrichment results in fragmented emotional records that fail to capture the multidimensional nature of human behavior. Existing systems are predominantly reactive rather than predictive, lacking the capability to: Infer latent emotional dynamics and behavioral patterns Detect recurring triggers, cognitive biases, and affective anomalies Establish causal relationships between environmental, physiological, and emotional factors Deliver proactive, personalized, and adaptive mental health interventions Moreover, current platforms demonstrate limited integration of multi-modal data streams, including linguistic sentiment, vocal tonality, physiological signals (e.g., heart rate variability, sleep cycles), and contextual metadata (location, activity patterns, social interactions). The absence of such integration restricts the development of a holistic and comprehensive emotional intelligence framework. This results in a critical gap where individuals are unable to: Quantify and structurally model their emotional experiences Track longitudinal emotional trajectories and behavioral evolution Identify hidden correlations, predictive indicators, and early warning signals Translate emotional data into actionable insights for self-regulation and personal growth',
+                solution: [
+                    'Collect multi-modal data: text, voice, physiological signals, and context',
+                    'Convert inputs into structured emotional models (emotion vectors, semantic tags)',
+                    'Perform temporal analysis to track emotional trends over time',
+                    'Use AI to predict risks, detect anomalies, and identify triggers',
+                    'Fuse all data into a unified emotional profile',
+                    'Provide personalized interventions (habits, mindfulness, alerts)',
+                    'Ensure Explainable AI for clear, trustworthy insights',
+                    'Implement privacy-first design (on-device processing, secure data handling)',
+                    'Outcome: A system that transforms raw emotional data into predictive, actionable mental health insights.',
                 ],
                 sdgs: ['SDG 3: Good Health and Well-being']
+            },
+            {
+                title: 'Deep Learning for Cyclone Intensity',
+                tag: 'Predictive Analytics',
+                desc: 'Unpredictable Storm Escalation Cyclones in the Bay of Bengal and Arabian Sea frequently undergo rapid intensification, catching coastal communities off guard and leading to massive loss of life. Currently, meteorological departments rely heavily on heuristic models and delayed international data, which struggle to predict sudden spikes in storm severity. The Challenge: Real-Time Satellite Analytics Participants must train an AI model to analyze raw satellite imagery and estimate storm intensity faster than traditional weather models.',
+                solution: [
+                    'Cyclone CV Estimator',
+                    'Successful prototypes should incorporate:',
+                    '• Image Processing: Utilizing historical INSAT-3D Infrared (IR) imagery.',
+                    '• Deep Learning: Convolutional Neural Networks (CNNs) trained to correlate cloud pattern structures with wind speed and pressure drops.',
+                    '• Early Warning Dashboard: Visualizing the projected intensity curve to assist disaster response teams.',
+                ],
+                sdgs: ['SDG 13: Climate Action', 'SDG 11: Sustainable Cities']
             },
         ],
     },
@@ -203,10 +497,72 @@ export const UNIVERSES = [
         background: 'assets/background/spiderman_2099_bg.jpeg',
         href: 'universe.html?u=8',
         problems: [
-            { title: 'Community-Verified Utility Outage Map', tag: 'mapping', desc: 'Description: In many Indian cities and towns, power and water outages are highly local, poorly communicated, and often only known through informal WhatsApp groups or word of mouth. This creates confusion, unnecessary complaint volume, and lack of trust between citizens and utilities, as people don’t know what’s happening, where, and for how long. A community-verified outage mapping platform that combines citizen reports with simple sensor data can provide near real-time visibility into outages, helping both consumers and utility providers. Expected solution:- Build a platform where users can quickly report outages (power/water) with approximate location via app, web, WhatsApp, or IVR. - Use clustering and validation logic to merge duplicate/outlier reports and reduce false positives. - Optionally integrate low-cost IoT sensors (at apartments, RWAs, public buildings) to automatically detect outages and validate community reports. - Visualize live outage zones on a map with basic metadata (start time, status, approximate restoration time if available). - Provide simple dashboards or APIs for utilities/municipalities to monitor outages and communicate planned maintenance.' },
-            { title: 'Proximity Risk Engine', tag: 'analytics', desc: 'Detect congestion and unsafe clustering from live location data before it spreads.' },
-            { title: 'View-State Overlay', tag: 'frontend', desc: 'Build a visual layer that explains spatial changes across floors, zones, or rooms.' },
-            { title: 'Navigation Replay', tag: 'ux', desc: 'Show how a user or device moved through space so the result is easy to inspect.' },
+            {
+                title: 'Community-Verified Utility Outage Map',
+                tag: 'Urban Monitoring / Crowdsourced Infrastructure',
+                desc: 'In many Indian cities and towns, power and water outages are highly local, poorly communicated, and often only known through informal WhatsApp groups or word of mouth. This creates confusion, unnecessary complaint volume, and lack of trust between citizens and utilities, as people don’t know what’s happening, where, and for how long. A community-verified outage mapping platform that combines citizen reports with simple sensor data can provide near real-time visibility into outages, helping both consumers and utility providers.',
+                solution: [
+                    'Build a platform where users can quickly report outages (power/water) with approximate location via app, web, WhatsApp, or IVR.',
+                    'Use clustering and validation logic to merge duplicate/outlier reports and reduce false positives.',
+                    'Optionally integrate low-cost IoT sensors (at apartments, RWAs, public buildings) to automatically detect outages and validate community reports.',
+                    'Visualize live outage zones on a map with basic metadata (start time, status, approximate restoration time if available).',
+                    'Provide simple dashboards or APIs for utilities/municipalities to monitor outages and communicate planned maintenance.',
+                ],
+                sdgs: ['SDG 6 (Clean Water and Sanitation)', 'SDG 7 (Affordable and Clean Energy)', 'SDG 11 (Sustainable Cities and Communities)', 'SDG 9 (Industry, Innovation and Infrastructure)']
+            },
+            {
+                title: 'Digital twin of cities for disaster preparedness and planning',
+                tag: 'Urban Planning / Disaster Management',
+                desc: 'Urban areas face increasing risks from disasters such as floods, earthquakes, and fires, but existing planning systems lack real-time data integration and predictive simulation capabilities. Authorities often rely on static models, resulting in delayed responses, inefficient evacuation planning, and inadequate preparedness for dynamic urban conditions.',
+                solution: [
+                    'Build a digital twin using real-time and historical data',
+                    'Integrate traffic, weather, infrastructure, and population data',
+                    'Simulate disasters (floods, earthquakes, fires)',
+                    'Use predictive analytics for risk and impact assessment',
+                    'Generate optimized evacuation routes',
+                    'Provide decision-support dashboards',
+                    'Enable efficient resource allocation',
+                    'Visualize data via GIS-based interfaces',
+                    'Support real-time updates for monitoring and response',
+                ],
+                sdgs: ['SDG 11 – Sustainable Cities and Communities']
+            },
+            {
+                title: 'Data-Driven Digital Twin Platform for Smart Warehouse Management',
+                tag: 'Digital Twin Systems / Warehouse Analytics',
+                desc: 'In modern inventory warehouses, stock management is heavily dependent on manually maintained records, typically stored in structured formats such as Excel sheets. While these records provide a digital overview of inventory distribution across racks, shelves, and storage zones, they often lack intuitive visualization and real-time validation mechanisms. Warehouse operators face significant challenges in understanding spatial inventory distribution, identifying misplaced or missing stock, and efficiently managing storage utilization. Traditional systems display inventory data in tabular form, making it difficult to interpret the physical arrangement of goods within the warehouse. This results in inefficiencies such as delayed retrieval, poor space optimization, and increased dependency on manual verification. The problem focuses on developing a software-based intelligent system that transforms uploaded Excel inventory data into an interactive visual representation of the warehouse. The system should interpret structured Excel inputs (rack ID, shelf number, product details, quantity, etc.) and generate a digital twin of the warehouse in both 2D and 3D formats. The platform should enable users to clearly visualize which cases/products are present in specific warehouse areas, track occupancy levels, and identify inconsistencies within the dataset (such as missing entries, incorrect placements, or abnormal stock distribution). This approach enhances visibility, reduces human error, and improves operational efficiency without relying on IoT hardware.',
+                solution: [
+                    'Develop an Excel upload module supporting.xlsx /.csv formats containing:',
+                    'Rack ID',
+                    'Shelf/Level',
+                    'Product Name / ID',
+                    'Quantity',
+                    'Storage Zone / Section',
+                    'Implement a data parsing and validation engine to:',
+                    'Process structured inventory data',
+                    'Detect missing, duplicate, or inconsistent entries',
+                    'Build a 2D warehouse layout visualization:',
+                    'Represent racks and storage zones',
+                    'Display case/product presence in each location',
+                    'Use color coding (Full / Partial / Empty / Overloaded)',
+                    'Create a 3D digital twin of warehouse racks:',
+                    'Interactive view (zoom, rotate, navigate)',
+                    'Visualize case placement across shelves',
+                    'Highlight occupied vs available space',
+                    'Provide area-based inventory insights:',
+                    'Show all cases/products present in a selected zone',
+                    'Enable filtering by product, rack, or category',
+                    'Implement inventory validation features:',
+                    'Identify abnormal stock distribution',
+                    'Highlight empty or underutilized racks',
+                    'Detect logical inconsistencies in uploaded data',
+                    'Enable rack-level detailed view:',
+                    'Total capacity vs occupied space',
+                    'Product breakdown per shelf',
+                    'Last updated dataset reference',
+                ],
+                sdgs: ['SDG 9 – Industry, Innovation and Infrastructure', 'SDG 11 – Sustainable Cities and Communities']
+            },
         ],
     },
     {
@@ -224,10 +580,78 @@ export const UNIVERSES = [
         background: 'assets/background/spiderman_india_bg.jpeg',
         href: 'universe.html?u=9',
         problems: [
-            { title: 'Blockchain Credential Verification for Education', tag: 'security', desc: 'Description: Credential fraud is rampant in India, with over 1.5 million fake certificates detected annually, costing the economy billions and hindering rural youth employment—rural students often lack verifiable qualifications for urban jobs or international opportunities. A blockchain-based decentralized platform issues tamper-proof digital certificates (e.g., degrees, skill certifications) stored on a public ledger, allowing instant, intermediary-free verification via QR codes or wallet shares. This empowers 250 million rural Indians under NEP 2020 and aligns globally with SDG 4 by enabling cross-border academic mobility without forgery risks. Expected Solution:- Deploy Ethereum/Polygon blockchain for low-cost, scalable credential minting with cryptographic signatures. - Institutions use a web dashboard to issue NFTs or verifiable credentials (VCs) compliant with W3C standards. - Users access a mobile wallet app to share selective credentials securely with employers via zero-knowledge proofs. - Integrate QR scanners and APIs for employers to verify authenticity in seconds, with audit trails. - Add smart contracts for automated expiry/renewal and multi-language support for rural accessibility' },
-            { title: 'Local-Language Grievance Auto-Routing for Municipalities', tag: 'forensics', desc: 'Description: Municipalities receive thousands of citizen complaints daily across channels like WhatsApp, helplines, and apps, usually in mixed local language, English, slang, voice notes, and images. Human operators struggle to read, understand, categorize, and forward each complaint to the right department, leading to delays, misrouting, and citizen frustration. An AI-driven, local-language-aware routing engine can drastically improve response times and accountability by automatically interpreting multi-modal complaints and sending them to the correct municipal teams. Expected solution: - Design an NLP and speech-processing pipeline that can handle code-mixed Indian languages (e.g., Tamil+English, Hindi+English) and dialects. - Accept multi-modal inputs (text, voice notes, images) and convert them into a structured complaint representation (category, location, urgency). - Auto-route complaints to the appropriate department/ward and priority level based on content and historical patterns. - Provide a simple dashboard for officials to track volumes, resolution status, and recurring issues. - Implement feedback mechanisms (user rating, reopened complaints) to improve classification and routing accuracy over time.' },
-            { title: 'Silent Fallback Channel', tag: 'networking', desc: 'Maintain secure communication when the primary network paths degrade or disappear.' },
-            { title: 'Trust Boundary Map', tag: 'governance', desc: 'Render where trust starts and ends so the system can block unsafe transitions early.' },
+            {
+                title: 'Blockchain Credential Verification for Education',
+                tag: 'Digital Identity / Credential Systems',
+                desc: 'Credential fraud is rampant in India, with over 1.5 million fake certificates detected annually, costing the economy billions and hindering rural youth employment—rural students often lack verifiable qualifications for urban jobs or international opportunities. A blockchain-based decentralized platform issues tamper-proof digital certificates (e.g., degrees, skill certifications) stored on a public ledger, allowing instant, intermediary-free verification via QR codes or wallet shares. This empowers 250 million rural Indians under NEP 2020 and aligns globally',
+                solution: [
+                    'Deploy Ethereum/Polygon blockchain for low-cost, scalable credential minting with cryptographic signatures.',
+                    'Institutions use a web dashboard to issue NFTs or verifiable credentials (VCs) compliant with W3C standards.',
+                    'Users access a mobile wallet app to share selective credentials securely with employers via zero-knowledge proofs.',
+                    'Integrate QR scanners and APIs for employers to verify authenticity in seconds, with audit trails.',
+                    'Add smart contracts for automated expiry/renewal and multi-language support for rural accessibility.',
+                ],
+                sdgs: ['SDG 4 (Quality Education)', 'SDG 8 (Decent Work)', 'SDG 10 (Reduced Inequalities)']
+            },
+            {
+                title: 'Local-Language Grievance Auto-Routing for Municipalities',
+                tag: 'Intelligent Citizen Service Systems',
+                desc: 'Municipalities receive thousands of citizen complaints daily across channels like WhatsApp, helplines, and apps, usually in mixed local language, English, slang, voice notes, and images. Human operators struggle to read, understand, categorize, and forward each complaint to the right department, leading to delays, misrouting, and citizen frustration. An AI-driven, local-language-aware routing engine can drastically improve response times and accountability by automatically interpreting multi-modal complaints and sending them to the correct municipal teams.',
+                solution: [
+                    'Design an NLP and speech-processing pipeline that can handle code-mixed Indian languages (e.g., Tamil+English, Hindi+English) and dialects.',
+                    'Accept multi-modal inputs (text, voice notes, images) and convert them into a structured complaint representation (category, location, urgency).',
+                    'Auto-route complaints to the appropriate department/ward and priority level based on content and historical patterns.',
+                    'Provide a simple dashboard for officials to track volumes, resolution status, and recurring issues.',
+                    'Implement feedback mechanisms (user rating, reopened complaints) to improve classification and routing accuracy over time.',
+                ],
+                sdgs: ['SDG 3 (Good Health and Well-Being)', 'SDG 9 (Industry, Innovation and Infrastructure)', 'SDG 10 (Reduced Inequalities)']
+            },
+            {
+                title: 'Real-time multilingual classroom translation for inclusive education',
+                tag: 'Inclusive Learning Systems',
+                desc: 'Language barriers in classrooms hinder effective learning, especially in regions with diverse linguistic backgrounds. Students who are not proficient in the primary language of instruction often struggle to understand concepts, leading to reduced engagement and poor academic performance. Existing translation tools are not optimized for real-time classroom use, often suffering from latency issues, poor accuracy in noisy environments, and dependence on continuous internet connectivity, making them unsuitable for many educational settings.',
+                solution: [
+                    'Capture classroom speech in real time',
+                    'Convert speech to text using ASR models',
+                    'Translate into multiple regional languages',
+                    'Provide output as text or audio',
+                    'Ensure low-latency performance',
+                    'Handle noisy classroom environments',
+                    'Support offline/edge processing for low connectivity',
+                ],
+                sdgs: ['SDG 4 – Quality Education']
+            },
+            {
+                title: 'Voice-Based E-Governance for Rural India',
+                tag: 'Citizen Services',
+                desc: 'Government services such as ration cards, pensions, and subsidies are increasingly being digitized, but many rural citizens lack the digital literacy required to access them. As a result, they depend on middlemen or must travel long distances to government offices, creating barriers to accessing essential services and increasing the risk of exploitation.',
+                solution: [
+                    'Develop a voice-based platform that allows users to access government services without needing to read or use smartphones',
+                    'Integrate speech-to-text systems capable of understanding regional Indian languages and dialects',
+                    'Implement conversational AI that guides users step-by-step to collect required information and fill digital forms',
+                    'Enable text-to-speech functionality to communicate responses and instructions in the user’s native language',
+                    'Include an audio confirmation system that reads back submitted information for user verification before final submission',
+                    'Ensure the system works through basic phone calls without requiring internet browsing or advanced devices',
+                    'Design the platform to handle multiple government service workflows efficiently',
+                    'Ensure accessibility, reliability, and ease of use for individuals with little to no technical knowledge',
+                ],
+                sdgs: ['SDG 10: Reduced Inequalities', 'SDG 16: Peace & Justice']
+            },
+            {
+                title: 'Unified Rural Digital Service Platform',
+                tag: 'E-Governance / Rural Tech',
+                desc: 'Fragmented Access to Rural Services Rural communities face challenges in accessing education, government schemes, and employment opportunities due to lack of centralized platforms and digital literacy. The Challenge: Multi-Service Integration with Low Connectivity Participants must create a unified platform that integrates multiple services with offline support. The challenge lies in ensuring usability, scalability, and accessibility.',
+                solution: [
+                    'Rural Digital Empowerment Platform',
+                    'Multi-Service Integration: Education, governance, healthcare',
+                    'Offline Mode: Access without internet',
+                    'Multilingual Support: Regional language interface',
+                    'AI Assistance: Chatbot for guidance',
+                    'Skill Development: Learning modules',
+                    'User-Friendly UI: Simple navigation',
+                ],
+                sdgs: ['SDG 4 – Quality Education', 'SDG 10 – Reduced Inequalities']
+            },
         ],
     },
     {
@@ -246,18 +670,67 @@ export const UNIVERSES = [
         href: 'universe.html?u=10',
         problems: [
             {
-                title: 'Blockchain-Based Secure Authentication Framework for IoT Devices',
-                tag: 'IoT Security / Device Authentication',
-                desc: 'IoT devices are widely used but lack strong security, making them vulnerable to cyberattacks. Centralized authentication systems create single points of failure and scalability issues. A decentralized authentication framework is needed to ensure secure communication and trust between devices.',
+                title: 'Agent-less Windows System Vulnerability and Network Scanner',
+                tag: 'Vulnerability Assessment / Network Security',
+                desc: 'In today’s digital world, both individuals and organizations heavily depend on computer systems for daily operations. However, many users fail to regularly update their systems or properly configure security settings. This creates serious security risks, especially in Windows-based systems, which are widely used and often targeted by cyber attacks. Common vulnerabilities arise from outdated software, missing security patches, weak user permissions, disabled protection features, and unsafe network configurations. These issues can lead to problems such as unauthorized access, malware infections, data leaks, and system compromise. Although various security tools are available, most of them are complex, require installation, consume high system resources, and may not be suitable for quick or beginner-friendly use. In many cases, users are unaware of their system’s security status until a problem occurs. There is a strong need for a simple, fast, and lightweight solution that can quickly analyze a system’s security without installing any additional software. An agent-less vulnerability assessment tool can help users easily identify risks, understand system weaknesses, and take corrective actions. Such a system should be capable of collecting important system and network information, analyzing potential vulnerabilities, and presenting the results in a clear and easy-to-understand manner. This will help improve awareness, enhance system security, and support proactive protection against cyber threats.',
                 solution: [
-                    'Blockchain-based identity management for IoT devices',
-                    'Secure device authentication and authorization protocols',
-                    'Tamper-proof transaction logging',
-                    'Lightweight cryptographic mechanisms',
-                    'Scalable architecture for large IoT networks',
-                    'Integration with existing IoT platforms'
+                    'Develop an agent-less vulnerability scanning tool for Windows (Windows 10/11)',
+                    'Collect basic system information such as OS version, installed updates, and software',
+                    'Check important security settings like firewall status, antivirus, and user permissions',
+                    'Identify weak configurations such as outdated patches, open ports, and risky services',
+                    'Analyze network details like active connections, connected devices, and shared resources',
+                    'Detect possible vulnerabilities and highlight security risks',
+                    'Provide simple recommendations or fixes for each issue',
+                    'Generate a clear report (PDF/HTML) with findings and suggestions',
+                    'Display results in a user-friendly dashboard or summary',
+                    'Ensure the tool is lightweight, fast, and easy to use',
                 ],
-                sdgs: ['SDG 9: Industry, Innovation, and Infrastructure', 'SDG 11: Sustainable Cities and Communities']
+                sdgs: ['SDG 9: Enhances cybersecurity', 'SDG 16: Ensures safety']
+            },
+            {
+                title: 'UPI/Wallet Scam Early-Warning Coach for First-Time Users',
+                tag: 'Behavioral Fraud Detection / User Safety',
+                desc: 'As digital payments explode across India, many first-time users—especially senior citizens, rural users, and low-digital-literacy groups—are targeted by social-engineering scams like fake payment requests, “receive” vs “send” confusion, remote screen-sharing, and phishing links. Traditional awareness campaigns are generic and not context-aware at the moment when a risky action is being taken. An intelligent, real-time “safety coach” can monitor patterns of requests and messages and intervene just in time with clear warnings in the user’s language.',
+                solution: [
+                    'Create an assistive app/service that can monitor incoming payment requests, SMS/notifications, and key UPI interactions (with consent).',
+                    'Use rules and ML models to identify risky behavior patterns (unknown collect requests, unusually high amounts, repeated failed PIN entries, suspicious message templates).',
+                    'Provide immediate, simple, language-appropriate alerts using text and voice (“This request looks suspicious. Verify before paying.”).',
+                    'Offer an educational mode with interactive, scenario-based training so new users can practice safely.',
+                    'Log anonymized incidents (with consent) to continuously improve scam pattern detection and share insights with partners (banks/UPI apps).',
+                ],
+                sdgs: ['SDG 8 (Decent Work and Economic Growth)', 'SDG 9 (Industry, Innovation and Infrastructure)', 'SDG 10 (Reduced Inequalities)', 'SDG 16 (Peace, Justice and Strong Institutions)']
+            },
+            {
+                title: 'Decentralized Proof of Origin for Crafts',
+                tag: 'Token Systems / Provenance',
+                desc: 'Authentic handcrafted products such as handloom sarees, Dokra art, and terracotta pottery are increasingly being replaced by mass-produced imitations sold at lower prices. Rural artisans lack a reliable way to prove the authenticity and origin of their work to buyers, leading to reduced income, loss of cultural heritage, and decline in traditional craftsmanship.',
+                solution: [
+                    'Develop a system that links physical craft products to secure digital records representing their origin and authenticity',
+                    'Integrate low-cost tagging solutions such as NFC or QR codes that can be easily attached to handmade products',
+                    'Create a digital record for each item including artisan details, materials used, and production timeline',
+                    'Enable a simple mobile interface for artisans to upload and verify their work during different stages of creation',
+                    'Ensure the system is tamper-resistant and suitable for use in rural environments with minimal infrastructure',
+                    'Provide a consumer-facing platform where buyers can scan a product and view its full history and authenticity details',
+                    'Support decentralized or secure data storage to prevent manipulation of records',
+                    'Design the solution to be scalable, affordable, and easy to adopt by artisans with minimal technical knowledge',
+                ],
+                sdgs: ['SDG 8: Decent Work', 'SDG 9: Industry & Innovation']
+            },
+            {
+                title: 'Decentralized Immutable Protocol for Rural Land Title Governance',
+                tag: 'Decentralized Apps / Digital Identity',
+                desc: 'In many rural regions, land ownership records are maintained through physical ledgers or centralized systems that are vulnerable to tampering, loss, and manipulation. This lack of transparency enables land disputes, fraudulent claims, and exploitation of vulnerable landowners, often leading to prolonged legal conflicts and social instability.',
+                solution: [
+                    'Develop a decentralized system for secure and tamper-proof storage of land ownership records',
+                    'Implement smart contracts to automate land title transfers during sale, inheritance, or legal verification processes',
+                    'Integrate decentralized identity mechanisms such as biometric-linked digital IDs to verify ownership securely',
+                    'Ensure accurate mapping of land boundaries using GPS coordinates and survey data to prevent overlapping claims',
+                    'Enable multi-signature validation where transactions require approval from multiple stakeholders such as buyer, seller, and authorized validators',
+                    'Incorporate privacy-preserving techniques such as zero-knowledge proofs to verify ownership without exposing sensitive data',
+                    'Use decentralized storage solutions to securely store land documents, maps, and records for long-term access',
+                    'Design the system to be accessible, transparent, and usable in rural environments with minimal technical barriers',
+                ],
+                sdgs: ['SDG 10: Reduced Inequalities', 'SDG 16: Peace, Justice, and Strong Institutions']
             },
         ],
     },
@@ -279,7 +752,7 @@ export const UNIVERSES = [
             {
                 title: 'AR-Based 3D Crime Scene Reconstruction and Training Platform for Law Enforcement',
                 tag: '3D Reconstruction / Law Enforcement Technology',
-                desc: 'Effective crime scene investigation depends on accurate documentation and spatial analysis, but traditional methods like photographs and manual sketches often fail to capture complete scene details. This can lead to loss of critical evidence and reduced investigation efficiency. A digital solution is needed to enable 3D reconstruction of crime scenes, allowing investigators to visualize, analyze, and revisit scenes remotely. Integrating AR/VR-based training can further enhance officers\' skills in modern forensic techniques and improve investigation outcomes.',
+                desc: 'Effective crime scene investigation depends on accurate documentation and spatial analysis, but traditional methods like photographs and manual sketches often fail to capture complete scene details. This can lead to loss of critical evidence and reduced investigation efficiency. A digital solution is needed to enable 3D reconstruction of crime scenes, allowing investigators to visualize, analyze, and revisit scenes remotely. Integrating AR/VR-based training can further enhance officers’ skills in modern forensic techniques and improve investigation outcomes.',
                 solution: [
                     '3D scanning of crime scenes using LiDAR/mobile camera (photogrammetry)',
                     'Automated 3D reconstruction for accurate spatial visualization',
@@ -287,9 +760,50 @@ export const UNIVERSES = [
                     'AR-based training modules for crime scene procedures and evidence handling',
                     'Annotation tools to mark, measure, and analyze evidence points',
                     'Cloud storage for secure access and collaboration among investigators',
-                    'User-friendly interface for law enforcement personnel'
+                    'User-friendly interface for law enforcement personnel',
                 ],
                 sdgs: ['SDG 9: Industry, Innovation, and Infrastructure', 'SDG 16: Peace, Justice, and Strong Institutions']
+            },
+            {
+                title: 'Virtual Apprenticeship Metaverse',
+                tag: 'Metaverse Applications',
+                desc: 'Rural youth often lack access to quality vocational training, limiting their ability to acquire practical skills required for jobs such as electricians, mechanics, and plumbers. Traditional training methods require expensive equipment, consumable materials, and can pose safety risks for beginners, creating barriers to skill development.',
+                solution: [
+                    'Develop a virtual training platform that simulates real-world vocational environments and tasks',
+                    'Implement interactive physics to allow users to handle tools, assemble components, and perform practical activities in a virtual space',
+                    'Create guided training modules with step-by-step instructions, real-time feedback, and performance evaluation',
+                    'Ensure the platform can run on low-cost VR headsets or standard computers to maximize accessibility',
+                    'Design intuitive user interfaces suitable for first-time users with minimal technical experience',
+                    'Enable progress tracking and skill assessment for learners',
+                    'Optimize the system for smooth performance even in low-resource environments',
+                    'Ensure the solution is scalable and adaptable for multiple vocational domains',
+                ],
+                sdgs: ['SDG 4: Quality Education', 'SDG 8: Decent Work']
+            },
+            {
+                title: 'AR-Guided Industrial Repair',
+                tag: 'Training Systems',
+                desc: 'In industrial environments, machinery breakdowns lead to significant downtime as technicians spend hours referring to complex manuals and schematics to diagnose and fix issues. If the problem cannot be resolved locally, production is halted until expert engineers arrive, resulting in increased costs and operational delays.',
+                solution: [
+                    'Develop an augmented reality application that assists technicians in real-time during machine repair and maintenance',
+                    'Implement object recognition to identify specific machine components using a smartphone or tablet camera',
+                    'Provide 3D overlay guidance such as arrows, highlighted components, and safety instructions directly on the physical equipment',
+                    'Enable step-by-step repair instructions mapped spatially onto machinery for intuitive understanding',
+                    'Include a remote expert mode where off-site engineers can view the live feed and add annotations visible in the technician’s AR view',
+                    'Ensure the application is user-friendly and suitable for technicians with varying levels of expertise',
+                    'Optimize performance for real-time interaction with minimal latency',
+                    'Design the system to be compatible with commonly available devices for easy deployment',
+                ],
+                sdgs: ['SDG 9: Industry & Innovation', 'SDG 8: Decent Work']
+            },
+            {
+                title: 'Context-Aware AR-Based Real-Time Circuit Behavior & Fault Visualization System',
+                tag: 'Immersive Learning / Interactive Simulation',
+                desc: 'Understanding circuit behavior is inherently abstract because electrical phenomena such as current flow, voltage potential differences, transient responses, and signal propagation are invisible and dynamic. Students often rely on static diagrams or delayed simulations, which fail to build intuition about real-time circuit interactions, fault conditions, and parameter variations. Additionally, there is no seamless integration between physical breadboard setups and conceptual visualization, leading to a gap between theory, simulation, and hardware implementation.',
+                solution: [
+                    'Develop an AR-based interactive system that overlays real-time circuit behavior directly onto physical circuits (breadboards or schematics). The system should use computer vision to recognize circuit components and topology, reconstruct the circuit graph, and perform real-time simulation using lightweight solvers. It should dynamically visualize parameters such as current direction, voltage gradients, signal waveforms, and power dissipation using intuitive AR cues (color gradients, animated flows, waveform overlays). Additionally, the system should support fault injection and debugging modes (e.g., open circuit, short circuit, wrong connections), parameter tuning (resistance, frequency, supply changes), and time-domain vs frequency-domain visualization switching. Advanced features may include integration with SPICE-based simulation engines, step-by-step learning guidance, and AI-based error detection with contextual hints. The platform should work with mobile devices and optionally support marker-based or markerless tracking for robustness.',
+                ],
+                sdgs: ['SDG 4 – Quality Education']
             },
         ],
     },
@@ -309,18 +823,17 @@ export const UNIVERSES = [
         href: 'universe.html?u=12',
         problems: [
             {
-                title: 'AI-Powered Fraud Detection System to Protect Rural and Low-Literacy Banking Users from Social Engineering Attacks',
-                tag: 'Cybersecurity / Fraud Detection',
-                desc: 'Social engineering attacks such as phishing and fraudulent calls are increasingly targeting rural and low-literacy users, exploiting human behavior rather than system vulnerabilities. Traditional fraud detection systems fail to capture these behavioral patterns, resulting in financial losses. An intelligent system that detects suspicious user behavior and provides real-time intervention can significantly reduce fraud incidents while remaining accessible to vulnerable users.',
+                title: 'Micro-Insurance for Climate-Resilient Farmers',
+                tag: 'InsurTech / Climate Risk Analytics',
+                desc: 'Climate events cause ₹1.5 lakh crore annual losses to India\'s 120 million small farmers, with traditional insurance failing due to delayed claims (30-90 days). Parametric insurance uses objective triggers like rainfall deficits, excess rain, heatwaves, or poor crop health (NDVI) to auto-trigger payouts within 24 hours via blockchain smart contracts—no crop surveys needed. A FinTech mobile app integrates satellite data (ISRO/IMD), AI risk forecasting, and UPI payments to deliver instant funds for replanting or recovery, scaling to global smallholders',
                 solution: [
-                    'Behavioral analysis of transaction patterns and anomalies',
-                    'Detection of contextual risk signals (unusual activity, rapid OTP usage)',
-                    'Call/SMS pattern monitoring without violating privacy',
-                    'AI-based adaptive risk scoring models',
-                    'Real-time alerts, voice warnings, and transaction delay mechanisms',
-                    'Multilingual, voice-enabled interface for accessibility'
+                    'Integrate multi-parameter APIs: ISRO Bhuvan/IMD for rainfall (SPI indices), NASA MODIS for NDVI/vegetation health, temperature extremes (heatwave/frost).',
+                    'Blockchain smart contracts (Polygon/Ethereum) automate UPI premium collection and instant wallet payouts when ANY trigger breaches (e.g., rainfall <40% normal OR NDVI drop >25% OR temp >42°C).',
+                    'AI/ML risk engine forecasts personalized premiums using historical + real-time data; mobile app with regional language support (Hindi, Tamil, etc.) for policy signup.',
+                    'Farmer dashboard showing live Risk Score (Red/Yellow/Green) across rainfall, temperature, crop health; group policies for cooperatives.',
+                    'Insurer partnership backend for risk pooling, impact analytics, and gamified adoption (loyalty tokens, climate-smart farming modules).',
                 ],
-                sdgs: ['SDG 9: Industry, Innovation, and Infrastructure', 'SDG 10: Reduced Inequalities']
+                sdgs: ['SDG 13 (Climate Action)', 'SDG 2 (Zero Hunger)', 'SDG 1 (No Poverty)']
             },
             {
                 title: 'Unified Digital Platform for Insurance Portfolio Management and Smart Policy Discovery',
@@ -332,9 +845,45 @@ export const UNIVERSES = [
                     'AI-based recommendations for policy comparison and optimization',
                     'Risk analysis to identify coverage gaps and redundancies',
                     'Secure onboarding for insurers and intermediaries',
-                    'Data privacy, encryption, and compliance mechanisms'
+                    'Data privacy, encryption, and compliance mechanisms',
                 ],
                 sdgs: ['SDG 8: Decent Work and Economic Growth', 'SDG 9: Industry, Innovation, and Infrastructure']
+            },
+            {
+                title: 'AI-Powered Fraud Detection System to Protect Rural and Low-Literacy Banking Users from Social Engineering Attacks',
+                tag: 'Cybersecurity / Fraud Detection',
+                desc: 'Social engineering attacks such as phishing and fraudulent calls are increasingly targeting rural and low-literacy users, exploiting human behavior rather than system vulnerabilities. Traditional fraud detection systems fail to capture these behavioral patterns, resulting in financial losses. An intelligent system that detects suspicious user behavior and provides real-time intervention can significantly reduce fraud incidents while remaining accessible to vulnerable users.',
+                solution: [
+                    'Behavioral analysis of transaction patterns and anomalies',
+                    'Detection of contextual risk signals (unusual activity, rapid OTP usage)',
+                    'Call/SMS pattern monitoring without violating privacy',
+                    'AI-based adaptive risk scoring models',
+                    'Real-time alerts, voice warnings, and transaction delay mechanisms',
+                    'Multilingual, voice-enabled interface for accessibility',
+                ],
+                sdgs: ['SDG 9: Industry, Innovation, and Infrastructure', 'SDG 10: Reduced Inequalities']
+            },
+            {
+                title: 'AI-Driven Intelligent Product Recommendation and Price Optimization Platform',
+                tag: 'Intelligent Recommendation / Price Intelligence',
+                desc: 'In the current digital ecosystem, users intending to purchase products—especially technical equipment such as smart devices, and electronics or any product —face a highly fragmented and overwhelming decision-making process. Multiple e-commerce platforms like Amazon and Flipkart offer thousands of product options with varying specifications, pricing, and user reviews. However, these platforms lack a unified, intelligent system that can interpret individual user requirements and provide optimized recommendations. Most users do not possess the technical expertise required to understand complex specifications such as resolution types, storage formats, connectivity protocols, or environmental suitability (indoor/outdoor usage). Additionally, product reviews are often inconsistent, biased, or manipulated, making it difficult to assess product reliability. Price variations across different platforms further complicate decision-making, as users are required to manually compare multiple sources to identify the most cost-effective option. Existing recommendation systems are largely generic and rely on basic filtering or popularity metrics rather than contextual user needs. They do not engage interactively with users to refine requirements or adapt recommendations dynamically. As a result, users often end up purchasing products that are either overpriced, unsuitable for their use case, or of lower quality. There is a critical need for a centralized, intelligent platform that can: Understand user-specific requirements through guided interaction Analyze large volumes of product data across platforms Evaluate authenticity and sentiment of user reviews Compare real-time pricing across vendors Provide personalized, reliable, and cost-effective product recommendations Such a system would significantly enhance user decision-making, reduce time and effort, and ensure optimal utilization of financial resources.',
+                solution: [
+                    'The system will:',
+                    'Collect user inputs through an interactive questionnaire (e.g., usage type, budget, features required)',
+                    'Dynamically refine requirements using a smart questioning mechanism',
+                    'Aggregate product data (specifications, ratings, reviews, pricing) from multiple e-commerce platforms',
+                    'Apply AI/ML algorithms to:',
+                    'Perform sentiment analysis on reviews',
+                    'Detect fake or biased feedback',
+                    'Rank products based on relevance and quality',
+                    'Compare prices across platforms and identify the most cost-effective purchasing option',
+                    'Provide a final output including:',
+                    'Top recommended products',
+                    'Best platform to purchase (lowest price)',
+                    'Feature comparison and simplified specifications',
+                    'Trust score based on review authenticity',
+                ],
+                sdgs: ['SDG 8 – Decent Work and Economic Growth', 'SDG 12 – Responsible Consumption and Production']
             },
         ],
     },
@@ -344,3 +893,4 @@ export function getUniverseById(id) {
     const numericId = Number(id);
     return UNIVERSES.find((universe) => universe.id === numericId) || UNIVERSES[0];
 }
+

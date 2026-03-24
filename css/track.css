@@ -603,37 +603,54 @@
   z-index: 1;
   width: min(90%, 600px);
   max-height: 80vh;
-  overflow-y: auto;
   background: #0c0e16;
   border: 2px solid var(--c-cyan);
   box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
-  padding: 40px;
   border-radius: 12px;
   transform: translateY(20px);
   transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .ps-modal[aria-hidden="false"] .ps-modal__content {
   transform: translateY(0);
 }
 
+#ps-modal-body {
+  padding: 40px;
+  overflow-y: auto;
+  flex: 1;
+}
+
 .ps-modal__close {
   position: absolute;
   top: 15px;
-  right: 20px;
-  background: none;
-  border: none;
+  right: 15px;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  transition: all 0.2s ease;
+  padding: 0;
   line-height: 1;
-  opacity: 0.6;
-  transition: opacity 0.2s;
 }
 
 .ps-modal__close:hover {
-  opacity: 1;
-  color: var(--c-cyan);
+  background: #ff0040;
+  border-color: #ff0040;
+  color: #fff;
+  transform: rotate(90deg);
+  box-shadow: 0 0 15px rgba(255, 0, 64, 0.5);
 }
 
 .ps-modal__title {
@@ -644,6 +661,7 @@
   margin-bottom: 20px;
   letter-spacing: 0.05em;
   text-shadow: 3px 3px 0 #ff0040;
+  padding-right: 50px; /* Space for the close button */
 }
 
 .ps-modal__tag {

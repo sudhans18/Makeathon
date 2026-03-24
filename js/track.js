@@ -181,7 +181,6 @@ function selectDomain(idx) {
       </div>
     ` : '';
     modalBody.innerHTML = `
-      <button id="ps-modal-close-inner" style="position:absolute; top:12px; right:12px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; font-size:1.2rem; cursor:pointer; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:10; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,0,64,0.5)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">&times;</button>
       <span class="ps-modal__tag">${problem.tag}</span>
       <h2 class="ps-modal__title" style="padding-right:40px;">${problem.title}</h2>
       <p class="ps-modal__desc">${problem.desc}</p>
@@ -190,8 +189,6 @@ function selectDomain(idx) {
     `;
     modal.setAttribute('aria-hidden', 'false');
 
-    // Attach close handler to the inner close button
-    document.getElementById('ps-modal-close-inner').onclick = closePSModal;
   };
 
   const closePSModal = () => {
