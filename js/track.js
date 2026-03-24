@@ -167,12 +167,31 @@ function selectDomain(idx) {
   const modalOverlay = document.getElementById('ps-modal-overlay');
 
   const openPSModal = (problem) => {
+    const solutionHtml = problem.solution ? `
+      <div style="margin-top:1rem;">
+        <h3 style="font-family:'Anton',sans-serif; color:#00f0ff; font-size:0.95rem; margin-bottom:0.5rem; letter-spacing:0.05em;">EXPECTED SOLUTION</h3>
+        <ul style="list-style:none; padding:0; margin:0;">
+          ${problem.solution.map(s => `<li style="padding:0.4rem 0; border-bottom:1px solid rgba(255,255,255,0.08); color:rgba(255,255,255,0.85); font-size:0.82rem;">→ ${s}</li>`).join('')}
+        </ul>
+      </div>
+    ` : '';
+    const sdgHtml = problem.sdgs && problem.sdgs.length ? `
+      <div style="margin-top:1rem; display:flex; flex-wrap:wrap; gap:8px;">
+        ${problem.sdgs.map(s => `<span style="display:inline-block; padding:5px 12px; background:rgba(252,238,10,0.15); border:1px solid rgba(252,238,10,0.5); border-radius:6px; font-family:'Anton',sans-serif; font-size:0.72rem; color:#fcee0a; letter-spacing:0.03em;">${s}</span>`).join('')}
+      </div>
+    ` : '';
     modalBody.innerHTML = `
+      <button id="ps-modal-close-inner" style="position:absolute; top:12px; right:12px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; font-size:1.2rem; cursor:pointer; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:10; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,0,64,0.5)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">&times;</button>
       <span class="ps-modal__tag">${problem.tag}</span>
-      <h2 class="ps-modal__title">${problem.title}</h2>
+      <h2 class="ps-modal__title" style="padding-right:40px;">${problem.title}</h2>
       <p class="ps-modal__desc">${problem.desc}</p>
+      ${solutionHtml}
+      ${sdgHtml}
     `;
     modal.setAttribute('aria-hidden', 'false');
+
+    // Attach close handler to the inner close button
+    document.getElementById('ps-modal-close-inner').onclick = closePSModal;
   };
 
   const closePSModal = () => {

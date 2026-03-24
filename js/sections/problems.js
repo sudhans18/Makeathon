@@ -364,12 +364,12 @@ export function initProblems() {
                 <a href="track.html?t=hardware" class="track-choose-btn track-choose-btn--hw">
                     <span class="track-choose-btn__icon">⚙</span>
                     <span class="track-choose-btn__label">HARDWARE</span>
-                    <span class="track-choose-btn__sub">IoT · Robotics · Energy · Healthcare · Agriculture · Disaster</span>
+                    <span class="track-choose-btn__sub">IoT · Healthcare · Agriculture · Disaster · Robotics · Energy</span>
                 </a>
                 <a href="track.html?t=software" class="track-choose-btn track-choose-btn--sw">
                     <span class="track-choose-btn__icon">◈</span>
                     <span class="track-choose-btn__label">SOFTWARE</span>
-                    <span class="track-choose-btn__sub">AI · Smart Cities · Blockchain · AR/VR · FinTech · Governance</span>
+                    <span class="track-choose-btn__sub">AI · Smart Cities · Governance · Blockchain · AR/VR · FinTech</span>
                 </a>
                 <a href="industrial.html" class="track-choose-btn track-choose-btn--ind">
                     <span class="track-choose-btn__icon">🏭</span>

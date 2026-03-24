@@ -43,6 +43,19 @@ if (root) {
                                     <div class="problem-card__content">
                                         <span class="universe-card__tag">${problem.tag}</span>
                                         <p class="universe-card__desc">${problem.desc}</p>
+                                        ${problem.solution ? `
+                                        <div style="margin-top:0.8rem;">
+                                          <h4 style="font-family:'Anton',sans-serif; color:#00f0ff; font-size:0.85rem; margin-bottom:0.4rem; letter-spacing:0.04em;">EXPECTED SOLUTION</h4>
+                                          <ul style="list-style:none; padding:0; margin:0;">
+                                            ${problem.solution.map(s => `<li style="padding:0.3rem 0; border-bottom:1px solid rgba(255,255,255,0.08); color:rgba(255,255,255,0.8); font-size:0.8rem;">→ ${s}</li>`).join('')}
+                                          </ul>
+                                        </div>
+                                        ` : ''}
+                                        ${problem.sdgs && problem.sdgs.length ? `
+                                        <div style="margin-top:0.8rem; display:flex; flex-wrap:wrap; gap:6px;">
+                                          ${problem.sdgs.map(s => `<span style="display:inline-block; padding:4px 10px; background:rgba(252,238,10,0.15); border:1px solid rgba(252,238,10,0.5); border-radius:6px; font-family:'Anton',sans-serif; font-size:0.68rem; color:#fcee0a; letter-spacing:0.03em;">${s}</span>`).join('')}
+                                        </div>
+                                        ` : ''}
                                     </div>
                                 </article>
                             `).join('')}

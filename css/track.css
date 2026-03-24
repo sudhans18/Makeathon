@@ -602,6 +602,8 @@
   position: relative;
   z-index: 1;
   width: min(90%, 600px);
+  max-height: 80vh;
+  overflow-y: auto;
   background: #0c0e16;
   border: 2px solid var(--c-cyan);
   box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
