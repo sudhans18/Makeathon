@@ -388,14 +388,53 @@
 .tiers-back {
   min-width: 240px;
   text-align: center;
-  margin-top: 1cm;
+  margin-top: 10cm;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .tiers-back__btn {
+  position: relative;
+  display: inline-block;
   text-decoration: none;
+}
+
+
+/* FIX TEXT POSITION */
+.tiers-back__btn span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 4px;
+  /* 🔥 moves text DOWN */
+}
+
+/* RED LAYER FIX */
+.tiers-back__btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translate(4px, 4px);
+  /* 🔥 reduce if needed */
+  z-index: -1;
+}
+
+/* BLUE HOVER FIX */
+.tiers-back__btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translate(6px, 6px);
+  /* ❌ too much before */
+  transition: transform 0.3s ease;
+  z-index: -2;
+}
+
+/* 🔥 HOVER CONTROL */
+.tiers-back__btn:hover::after {
+  transform: translate(3px, 3px);
+  /* ✅ smaller movement */
 }
 
 /* ── Footer override ── */
