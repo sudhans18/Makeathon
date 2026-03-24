@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Industrial Problem Statements — Makeathon 7.0</title>
+
+    <!-- Fonts: Anton (matches site's comic heading style) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ── Reset ── */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ── Root ── */
+        :root {
+            --c-bg:      #000000;
+            --c-yellow:  #fcee0a;
+            --c-red:     #ff0040;
+            --c-cyan:    #00f0ff;
+            --c-white:   #ffffff;
+        }
+
+        /* ── Body: full-height black ── */
+        html, body {
+            height: 100%;
+            background: var(--c-bg);
+            overflow: hidden;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative;
+            font-family: 'DM Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Cobweb SVG corners (pure CSS-drawn via JS below) ── */
+        .cobweb-corner {
+            position: fixed;
+            width: 280px;
+            height: 280px;
+            pointer-events: none;
+            opacity: 0;
+            animation: cobweb-fade-in 1.2s ease forwards, cobweb-pulse 4s ease-in-out infinite alternate;
+        }
+        .cobweb-corner--tl { top: 0; left: 0; animation-delay: 0.2s, 1.4s; }
+        .cobweb-corner--tr { top: 0; right: 0; transform: scaleX(-1); animation-delay: 0.4s, 1.4s; }
+        .cobweb-corner--bl { bottom: 0; left: 0; transform: scaleY(-1); animation-delay: 0.6s, 1.4s; }
+        .cobweb-corner--br { bottom: 0; right: 0; transform: scale(-1); animation-delay: 0.8s, 1.4s; }
+
+        @keyframes cobweb-fade-in {
+            to { opacity: 0.75; }
+        }
+        @keyframes cobweb-pulse {
+            from { filter: drop-shadow(0 0 4px rgba(252,238,10,0.4)); opacity: 0.4; }
+            to   { filter: drop-shadow(0 0 14px rgba(252,238,10,0.9)); opacity: 0.85; }
+        }
+
+        /* ── Halftone dot grid ── */
+        .halftone {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.045) 1px, transparent 1px);
+            background-size: 18px 18px;
+            animation: halftone-drift 14s linear infinite;
+            z-index: 0;
+        }
+        @keyframes halftone-drift {
+            0%   { background-position: 0 0; }
+            100% { background-position: 36px 36px; }
+        }
+
+        /* ── Ambient color blobs ── */
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(80px);
+            z-index: 0;
+        }
+        .blob--yellow {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(252,238,10,0.07), transparent 70%);
+            top: -100px;
+            left: -100px;
+            animation: blob-float 18s ease-in-out infinite;
+        }
+        .blob--red {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,0,64,0.06), transparent 70%);
+            bottom: -80px;
+            right: -80px;
+            animation: blob-float 22s ease-in-out infinite reverse;
+        }
+        @keyframes blob-float {
+            0%,100% { transform: translate(0,0) scale(1); }
+            50%     { transform: translate(30px,50px) scale(1.08); }
+        }
+
+        /* ── Main content wrapper ── */
+        .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
+            padding: 2rem;
+        }
+
+        /* ── "INDUSTRIAL PROBLEM STATEMENTS" label ── */
+        .eyebrow {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: clamp(0.65rem, 1.5vw, 0.85rem);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--c-yellow);
+            opacity: 0;
+            animation: slide-up 0.6s ease 0.3s forwards;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .eyebrow::before,
+        .eyebrow::after {
+            content: '';
+            display: block;
+            width: 32px;
+            height: 1px;
+            background: var(--c-yellow);
+            opacity: 0.6;
+        }
+
+        /* ── BIG "COMING SOON" ── */
+        .coming-soon {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(3.5rem, 11vw, 8.5rem);
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--c-white);
+            /* Offset comic shadow — matches the site's .track-selector__heading */
+            text-shadow:
+                4px 4px 0 var(--c-red),
+                8px 8px 0 #000000;
+            line-height: 1;
+            opacity: 0;
+            animation: slam-in 0.85s cubic-bezier(0.22,1,0.36,1) 0.5s forwards;
+        }
+
+        /* Glitch flicker on the text — occasional, every ~6s */
+        .coming-soon {
+            animation:
+                slam-in 0.85s cubic-bezier(0.22,1,0.36,1) 0.5s forwards,
+                glitch 6s ease-in-out 2s infinite;
+        }
+
+        @keyframes slam-in {
+            0%   { opacity: 0; transform: scale(1.25) rotate(-2deg); }
+            60%  { transform: scale(0.97) rotate(0.5deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0); }
+        }
+
+        @keyframes glitch {
+            0%,90%,100% {
+                text-shadow: 4px 4px 0 var(--c-red), 8px 8px 0 #000;
+                clip-path: none;
+            }
+            92% {
+                text-shadow: -4px 0 var(--c-cyan), 4px 0 var(--c-red), 8px 8px 0 #000;
+                clip-path: inset(10% 0 75% 0);
+                transform: translate(-3px, 0);
+            }
+            94% {
+                text-shadow: 4px 0 var(--c-yellow), -4px 0 var(--c-red), 8px 8px 0 #000;
+                clip-path: inset(55% 0 15% 0);
+                transform: translate(3px, 0);
+            }
+            96% {
+                text-shadow: 4px 4px 0 var(--c-red), 8px 8px 0 #000;
+                clip-path: none;
+                transform: translate(0, 0);
+            }
+        }
+
+        /* ── Sub-caption ── */
+        .caption {
+            font-family: 'DM Sans', sans-serif;
+            font-size: clamp(0.8rem, 1.8vw, 1rem);
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            opacity: 0;
+            animation: slide-up 0.6s ease 1s forwards;
+        }
+
+        /* ── Back button ── */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 12px;
+            padding: 0.75rem 2rem;
+            text-decoration: none;
+            font-family: 'Anton', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--c-yellow);
+            border: 2px solid var(--c-yellow);
+            background: transparent;
+            box-shadow: 4px 4px 0 rgba(252,238,10,0.3);
+            transition: transform 0.22s ease, box-shadow 0.22s ease, color 0.22s ease;
+            opacity: 0;
+            animation: slide-up 0.6s ease 1.2s forwards;
+        }
+        .back-btn:hover {
+            transform: translate(-2px,-2px);
+            box-shadow: 6px 6px 0 var(--c-yellow);
+            color: #fff;
+        }
+        .back-btn__arrow {
+            display: inline-block;
+            transition: transform 0.22s ease;
+        }
+        .back-btn:hover .back-btn__arrow {
+            transform: translateX(-4px);
+        }
+
+        /* ── Shared slide-up keyframe ── */
+        @keyframes slide-up {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient layers -->
+    <div class="halftone" aria-hidden="true"></div>
+    <div class="blob blob--yellow" aria-hidden="true"></div>
+    <div class="blob blob--red" aria-hidden="true"></div>
+
+    <!-- Cobweb corners (injected by JS below) -->
+    <div id="cobweb-mount" aria-hidden="true"></div>
+
+    <!-- Main content -->
+    <main class="content">
+        <p class="eyebrow">Industrial Problem Statements</p>
+        <h1 class="coming-soon">COMING SOON</h1>
+        <p class="caption">Check back later — something's being built</p>
+        <a href="index.html#problems" class="back-btn">
+            <span class="back-btn__arrow">←</span>
+            BACK TO TRACKS
+        </a>
+    </main>
+
+    <script>
+        // ── Generate cobweb SVG (same algorithm as problems.js) ──
+        function generateWeb(w, h, originX, originY) {
+            const cx = originX === 0 ? 0 : w;
+            const cy = originY === 0 ? 0 : h;
+            const rays = 8, rings = 6;
+            const maxR = Math.max(w, h) * 0.95;
+            let svg = '';
+
+            const angleStart =
+                originX === 0 && originY === 0 ? 0 :
+                originX > 0  && originY === 0 ? 90 :
+                originX === 0 && originY > 0  ? 270 : 180;
+
+            for (let i = 0; i < rays; i++) {
+                const angle = (angleStart + (i / rays) * 90) * (Math.PI / 180);
+                const x2 = cx + Math.cos(angle) * maxR;
+                const y2 = cy + Math.sin(angle) * maxR;
+                svg += `<line x1="${cx}" y1="${cy}" x2="${x2.toFixed(2)}" y2="${y2.toFixed(2)}"
+                              stroke="rgba(252,238,10,0.35)" stroke-width="0.8"/>`;
+            }
+            for (let r = 1; r <= rings; r++) {
+                const radius = (r / rings) * maxR;
+                const sa = angleStart * (Math.PI / 180);
+                const ea = (angleStart + 90) * (Math.PI / 180);
+                const x1 = cx + Math.cos(sa) * radius;
+                const y1 = cy + Math.sin(sa) * radius;
+                const x2 = cx + Math.cos(ea) * radius;
+                const y2 = cy + Math.sin(ea) * radius;
+                svg += `<path d="M ${x1.toFixed(2)} ${y1.toFixed(2)} A ${radius.toFixed(2)} ${radius.toFixed(2)} 0 0 1 ${x2.toFixed(2)} ${y2.toFixed(2)}"
+                              fill="none" stroke="rgba(252,238,10,0.28)" stroke-width="0.7"/>`;
+            }
+            return svg;
+        }
+
+        const mount = document.getElementById('cobweb-mount');
+        const corners = [
+            { cls: 'tl', ox: 0,   oy: 0   },
+            { cls: 'tr', ox: 300, oy: 0   },
+            { cls: 'bl', ox: 0,   oy: 300 },
+            { cls: 'br', ox: 300, oy: 300 },
+        ];
+        corners.forEach(({ cls, ox, oy }) => {
+            mount.innerHTML += `
+                <svg class="cobweb-corner cobweb-corner--${cls}"
+                     viewBox="0 0 300 300"
+                     xmlns="http://www.w3.org/2000/svg">
+                    ${generateWeb(300, 300, ox, oy)}
+                </svg>`;
+        });
+    </script>
+</body>
+</html>

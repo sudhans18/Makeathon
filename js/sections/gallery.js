@@ -44,60 +44,81 @@ const GALLERY_IMAGES = [
 ];
 
 export function initGallery() {
-  const displays = document.querySelectorAll('.gallery-display');
-  if (!displays || displays.length === 0) return;
-  
-  let currentIndex = 0;
+  const wrapperTop = document.getElementById('gallery-wrapper-top');
+  const wrapperBottom = document.getElementById('gallery-wrapper-bottom');
+  if (!wrapperTop || !wrapperBottom) return;
 
-  // Initialize first 5 images
-  displays.forEach((display, i) => {
-    const imgElement = display.querySelector('.gallery-img');
-    if (imgElement && GALLERY_IMAGES[i]) {
-      imgElement.src = GALLERY_IMAGES[i];
-    }
+  // Split images: first half in top, second half in bottom
+  const half = Math.ceil(GALLERY_IMAGES.length / 2);
+  const imagesTop = GALLERY_IMAGES.slice(0, half);
+  const imagesBottom = GALLERY_IMAGES.slice(half);
+
+  // 1. Inject slides into top row
+  imagesTop.forEach((src, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'swiper-slide gallery-display';
+    slide.innerHTML = `<div class="gallery-img-wrapper">
+      <img src="${src}" class="gallery-img gallery-img-main" alt="Gallery Image Top ${i + 1}" loading="lazy" />
+      <img src="${src}" class="gallery-img gallery-img-cyan" alt="" aria-hidden="true" loading="lazy" />
+      <img src="${src}" class="gallery-img gallery-img-red" alt="" aria-hidden="true" loading="lazy" />
+      <div class="comic-flash"></div>
+    </div>`;
+    wrapperTop.appendChild(slide);
   });
 
-  // Cycle images every 4 seconds
-  setInterval(() => {
-    // 1. Trigger glitch animation
-    displays.forEach(display => display.classList.add('is-glitching'));
+  // 1b. Inject slides into bottom row
+  imagesBottom.forEach((src, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'swiper-slide gallery-display';
+    slide.innerHTML = `<div class="gallery-img-wrapper">
+      <img src="${src}" class="gallery-img gallery-img-main" alt="Gallery Image Bottom ${i + 1}" loading="lazy" />
+      <img src="${src}" class="gallery-img gallery-img-cyan" alt="" aria-hidden="true" loading="lazy" />
+      <img src="${src}" class="gallery-img gallery-img-red" alt="" aria-hidden="true" loading="lazy" />
+      <div class="comic-flash"></div>
+    </div>`;
+    wrapperBottom.appendChild(slide);
+  });
 
-    // 2. Wait halfway through animation to swap image
-    setTimeout(() => {
-      currentIndex = (currentIndex + 5) % GALLERY_IMAGES.length;
-      
-      displays.forEach((display, i) => {
-        const imgElement = display.querySelector('.gallery-img');
-        const imgIndex = (currentIndex + i) % GALLERY_IMAGES.length;
-        if (imgElement && GALLERY_IMAGES[imgIndex]) {
-          imgElement.src = GALLERY_IMAGES[imgIndex];
-        }
-      });
-    }, 400); // Wait 400ms before changing image to hide the swap within the glitch
+  // Base Swiper settings (Larger boxes -> slidesPerView: 4 on desktop instead of 6)
+  const swiperOptions = {
+    slidesPerView: 3, // Defaults to 3 on desktop for larger images
+    spaceBetween: 30,
+    loop: true,
+    allowTouchMove: false,
+    speed: 5000,
+    breakpoints: {
+      320: { slidesPerView: 1.2, spaceBetween: 15 },
+      768: { slidesPerView: 2.2, spaceBetween: 20 },
+      1024: { slidesPerView: 3, spaceBetween: 30 }
+    }
+  };
 
-    // 3. Remove glitch class
-    setTimeout(() => {
-      displays.forEach(display => display.classList.remove('is-glitching'));
-    }, 800);
+  // 2. Initialize Swipers (Top = Forward, Bottom = Reverse)
+  const swiperTop = new Swiper('.gallery-swiper-top', {
+    ...swiperOptions,
+    autoplay: { delay: 0, disableOnInteraction: false }
+  });
 
-  }, 4000);
+  const swiperBottom = new Swiper('.gallery-swiper-bottom', {
+    ...swiperOptions,
+    autoplay: { delay: 0, disableOnInteraction: false, reverseDirection: true }
+  });
 
-  // Intro animation using GSAP ScrollTrigger
+  // 3. Intro animation using GSAP ScrollTrigger
   if (typeof gsap !== 'undefined') {
-      displays.forEach((display, i) => {
-        gsap.fromTo(display,
-          { opacity: 0, scale: 0.5, rotationY: 90 },
-          {
-            opacity: 1, scale: 1, rotationY: i % 2 !== 0 ? 5 : -5,
-            duration: 1,
-            ease: 'elastic.out(1, 0.5)',
-            delay: i * 0.15,
-            scrollTrigger: {
-              trigger: '#gallery',
-              start: 'top 70%',
-            }
-          }
-        );
-      });
+    gsap.fromTo('.gallery-swiper',
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1, y: 0,
+        duration: 1.5,
+        stagger: 0.2, // slight delay for the second row
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '#gallery',
+          start: 'top 70%',
+        }
+      }
+    );
   }
 }
+

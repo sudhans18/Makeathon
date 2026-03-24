@@ -43,7 +43,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:ra
 body::after{content:"";position:fixed;inset:0;background:rgba(0,0,0,0.6);pointer-events:none;z-index:-1}
 @media (max-width:900px){
     .universe-hero__grid{grid-template-columns:1fr}
-    .universe-hero__art{order:-1}
+    .universe-hero__art{display:none !important;}
     .universe-grid{grid-template-columns:1fr}
     .universe-nav .btn--nav {
         display: block !important;
