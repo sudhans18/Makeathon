@@ -1,21 +1,17 @@
-/* ═══════════════════════════════════════════════════════════
-   js/sections/loading.js — Full-screen Loading Overlay
-   
-   Preloads 89 Spider-Man animation frames and tracks overall
-   page load progress. The frame displayed syncs with load %,
-   so the animation plays out as the site initializes.
-   
-   Exports initLoading() → Promise<void>
-   Resolved once loading is complete and the overlay has faded.
-═══════════════════════════════════════════════════════════ */
+/*
+   js/sections/loading.js - Full-screen Loading Overlay
 
-const TOTAL_FRAMES = 89;
+   Preloads frame animation and critical init resources, tracks progress,
+   and resolves only when initialization is ready to continue.
+*/
+
+const TOTAL_FRAMES = 74;
 const FRAME_PATH = 'assets/page_loading/';
-const MIN_DISPLAY_MS = 2000; // minimum time the loading screen is shown
+const MIN_DISPLAY_MS = 2000;
+const ASSET_TIMEOUT_MS = 8000;
 
-// Spider-Verse quotes to cycle through during loading
 const QUOTES = [
-    '"Anyone can wear the mask." — Miles Morales',
+    '"Anyone can wear the mask." - Miles Morales',
     '"What makes you different is what makes you Spider-Man."',
     '"The only way to really be Spider-Man is to be yourself."',
     '"That person who helps others simply because it should be done."',
@@ -24,10 +20,6 @@ const QUOTES = [
     '"It\'s a leap of faith. That\'s all it is."',
 ];
 
-/**
- * Build the list of frame file names.
- * Files are named: frame_00_delay-0.033s.webp … frame_88_delay-0.033s.webp
- */
 function getFrameNames() {
     const names = [];
     for (let i = 0; i < TOTAL_FRAMES; i++) {
@@ -37,32 +29,70 @@ function getFrameNames() {
     return names;
 }
 
-/**
- * Preload a single image and return it.
- */
+function getCriticalAssets() {
+    const fromDOM = [
+        ...Array.from(document.querySelectorAll('img[src]')).map((el) => el.getAttribute('src')),
+        ...Array.from(document.querySelectorAll('source[src]')).map((el) => el.getAttribute('src')),
+    ]
+        .filter(Boolean)
+        .filter((src) => !src.startsWith('http'));
+
+    const dynamicInitAssets = [
+        'assets/problembg.jpg',
+        ...Array.from({ length: 12 }, (_, i) => `assets/spiderlogos/s${i + 1}.png`),
+    ];
+
+    return [...new Set([...fromDOM, ...dynamicInitAssets])];
+}
+
 function loadImage(src) {
     return new Promise((resolve) => {
         const img = new Image();
         img.onload = () => resolve(img);
-        img.onerror = () => resolve(img); // don't block on error
+        img.onerror = () => resolve(img);
         img.src = src;
     });
 }
 
-/**
- * Initialize and run the loading screen.
- * Returns a Promise that resolves when loading is fully complete
- * and the overlay has been removed.
- */
+function loadAsset(src) {
+    return new Promise((resolve) => {
+        let settled = false;
+
+        const done = () => {
+            if (settled) return;
+            settled = true;
+            clearTimeout(timeoutId);
+            resolve();
+        };
+
+        const timeoutId = setTimeout(done, ASSET_TIMEOUT_MS);
+
+        if (/\.(mp4|webm|ogg)$/i.test(src)) {
+            const video = document.createElement('video');
+            video.preload = 'auto';
+            video.onloadeddata = done;
+            video.onerror = done;
+            video.src = src;
+            video.load();
+            return;
+        }
+
+        const img = new Image();
+        img.onload = done;
+        img.onerror = done;
+        img.src = src;
+    });
+}
+
 export function initLoading() {
     return new Promise((resolve) => {
         const screen = document.getElementById('loading-screen');
-        if (!screen) { resolve(); return; }
+        if (!screen) {
+            resolve();
+            return;
+        }
 
-        // ── Skip loading when navigating back from a sub-page ─────────────
-        // The inline <script> in index.html runs synchronously and stamps
-        // data-skip-loading on <html> when ?nl=1 is in the URL. We check
-        // both the attribute (belt) and the URL param (suspenders).
+        // Skip loader when navigating back from sub-pages.
         const shouldSkip =
             document.documentElement.dataset.skipLoading === '1' ||
             new URLSearchParams(window.location.search).get('nl') === '1' ||
@@ -74,71 +104,66 @@ export function initLoading() {
             resolve();
             return;
         }
-        // ─────────────────────────────────────────────────────────────────
 
         const frameImg = document.getElementById('loading-frame');
         const barEl = document.getElementById('loading-bar');
         const percentEl = document.getElementById('loading-percent');
         const quoteEl = screen.querySelector('.loading__quote');
+        const dotsEl = screen.querySelector('.loading__dots');
 
         const frameNames = getFrameNames();
+        const criticalAssets = getCriticalAssets();
         const loadedImages = new Array(TOTAL_FRAMES);
 
-        // ── Quote rotation ──
         let quoteIndex = 0;
-        if (quoteEl) {
-            quoteEl.textContent = QUOTES[0];
-        }
+        if (quoteEl) quoteEl.textContent = QUOTES[0];
+
         const quoteInterval = setInterval(() => {
             quoteIndex = (quoteIndex + 1) % QUOTES.length;
-            if (quoteEl) {
-                quoteEl.style.opacity = '0';
-                setTimeout(() => {
-                    quoteEl.textContent = QUOTES[quoteIndex];
-                    quoteEl.style.opacity = '0.85';
-                }, 300);
-            }
+            if (!quoteEl) return;
+            quoteEl.style.opacity = '0';
+            setTimeout(() => {
+                quoteEl.textContent = QUOTES[quoteIndex];
+                quoteEl.style.opacity = '0.85';
+            }, 300);
         }, 3000);
 
-        // ── Dots animation for "INITIALIZING..." ──
-        const dotsEl = screen.querySelector('.loading__dots');
         let dotCount = 0;
         const dotsInterval = setInterval(() => {
             dotCount = (dotCount + 1) % 4;
             if (dotsEl) dotsEl.textContent = '.'.repeat(dotCount);
         }, 400);
 
-        // ── Progress state ──
-        let frameProgress = 0;   // 0–100  (weight: 70%)
-        let pageProgress = 0;    // 0–100  (weight: 30%)
+        let frameProgress = 0;
+        let assetProgress = 0;
+        let pageProgress = 0;
+
         let framesLoaded = 0;
+        let assetsLoaded = 0;
         let windowLoaded = false;
         let finished = false;
         const startTime = performance.now();
 
         function getOverallProgress() {
-            return Math.min(100, Math.round(frameProgress * 0.7 + pageProgress * 0.3));
+            return Math.min(100, Math.round(frameProgress * 0.6 + assetProgress * 0.25 + pageProgress * 0.15));
         }
 
         function updateUI() {
             const pct = getOverallProgress();
             const frameIndex = Math.min(TOTAL_FRAMES - 1, Math.floor((pct / 100) * (TOTAL_FRAMES - 1)));
 
-            // Update frame
             if (loadedImages[frameIndex] && frameImg) {
                 frameImg.src = loadedImages[frameIndex].src;
             }
 
-            // Update progress bar & text
-            if (barEl) barEl.style.width = pct + '%';
-            if (percentEl) percentEl.textContent = pct + '%';
+            if (barEl) barEl.style.width = `${pct}%`;
+            if (percentEl) percentEl.textContent = `${pct}%`;
 
-            // Check completion — only finish after minimum display time
             if (pct >= 100 && !finished) {
                 const elapsed = performance.now() - startTime;
                 const remaining = Math.max(0, MIN_DISPLAY_MS - elapsed);
                 finished = true;
-                setTimeout(() => completeLoading(), remaining);
+                setTimeout(completeLoading, remaining);
             }
         }
 
@@ -146,8 +171,8 @@ export function initLoading() {
             clearInterval(quoteInterval);
             clearInterval(dotsInterval);
 
-            // Play remaining frames at ~30fps (33ms per frame) for a smooth flourish
             let currentFrame = Math.floor((getOverallProgress() / 100) * (TOTAL_FRAMES - 1));
+
             const playRemaining = () => {
                 if (currentFrame < TOTAL_FRAMES - 1) {
                     currentFrame++;
@@ -155,21 +180,21 @@ export function initLoading() {
                         frameImg.src = loadedImages[currentFrame].src;
                     }
                     setTimeout(playRemaining, 33);
-                } else {
-                    // Fade out after a brief pause
-                    setTimeout(() => {
-                        screen.classList.add('fade-out');
-                        setTimeout(() => {
-                            screen.remove();
-                            resolve();
-                        }, 650);
-                    }, 300);
+                    return;
                 }
+
+                setTimeout(() => {
+                    screen.classList.add('fade-out');
+                    setTimeout(() => {
+                        screen.remove();
+                        resolve();
+                    }, 650);
+                }, 300);
             };
+
             playRemaining();
         }
 
-        // ── Preload frames ──
         frameNames.forEach((src, i) => {
             loadImage(src).then((img) => {
                 loadedImages[i] = img;
@@ -179,13 +204,24 @@ export function initLoading() {
             });
         });
 
-        // ── Track window load for other assets ──
+        if (criticalAssets.length === 0) {
+            assetProgress = 100;
+            updateUI();
+        } else {
+            criticalAssets.forEach((src) => {
+                loadAsset(src).then(() => {
+                    assetsLoaded++;
+                    assetProgress = (assetsLoaded / criticalAssets.length) * 100;
+                    updateUI();
+                });
+            });
+        }
+
         if (document.readyState === 'complete') {
             pageProgress = 100;
             windowLoaded = true;
             updateUI();
         } else {
-            // Gradually tick page progress to feel responsive
             let fakeTick = 0;
             const tickInterval = setInterval(() => {
                 if (!windowLoaded && fakeTick < 80) {

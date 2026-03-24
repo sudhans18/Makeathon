@@ -6,7 +6,7 @@
 
 /* ── Hero Banner ── */
 .tiers-hero {
-  padding: 10rem 0 3rem;
+  padding: 4rem 0 1rem;
   text-align: center;
   position: relative;
   background:
@@ -29,7 +29,7 @@
 
 /* ── Tiers Section ── */
 .tiers-section {
-  padding: var(--sp-xl) 0 var(--sp-2xl);
+  padding: 2rem 0 var(--sp-2xl);
   position: relative;
 }
 

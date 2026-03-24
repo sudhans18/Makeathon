@@ -52,6 +52,7 @@ async function boot() {
     initGallery();
     initProblems();
     initTeam();
+    initSponsorship();
     initFAQ();
 
     console.log('[Makeathon 7.0] All systems online. Welcome to the Creation Zone.');
