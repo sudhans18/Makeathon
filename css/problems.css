@@ -1,5 +1,4 @@
 .section--problems{background:linear-gradient(180deg,#d8d8d8 0%,#cfcfcf 100%);padding-bottom:calc(var(--sp-2xl)*1.25);position:relative}
-.section--problems::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 12%,rgba(255,255,255,.45),transparent 28%),radial-gradient(circle at 20% 20%,rgba(255,0,0,.08),transparent 16%),radial-gradient(circle at 80% 20%,rgba(255,0,0,.08),transparent 16%);opacity:.75}
 #track-selector,#track-selector section,.track-selector__board{background:#000!important}
 .track-selector{position:relative;width:100%;min-height:620px;padding:clamp(1.5rem,3vw,2.25rem);overflow:hidden;isolation:isolate}
 .track-selector__board{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding-top:clamp(.5rem,2vw,1.25rem)}

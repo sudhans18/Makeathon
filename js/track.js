@@ -1,0 +1,268 @@
+/* ═══════════════════════════════════════════════════════════
+   js/track.js — Domain Track Detail Page
+   Reads ?t=hardware or ?t=software from the URL,
+   renders a left thumbnail list + right domain detail panel.
+═══════════════════════════════════════════════════════════ */
+import { UNIVERSES } from './data/universes.js';
+
+/* ── URL param ──────────────────────────────────────────── */
+const params = new URLSearchParams(location.search);
+const trackFamily = (params.get('t') || 'hardware').toLowerCase();
+const domains = UNIVERSES.filter(u => u.family === trackFamily);
+
+/* ── Stat definitions (same order for all domains) ────── */
+const STAT_LABELS = [
+  { key: 'tech',   label: 'Technical Depth',       icon: '⚙' },
+  { key: 'innov',  label: 'Innovation Potential',   icon: '◈' },
+  { key: 'impact', label: 'Impact Factor',           icon: '◎' },
+  { key: 'scope',  label: 'Implementation Scope',   icon: '▦' },
+];
+
+/* Stat values per domain — indexed by domain id */
+const DOMAIN_STATS = {
+  1:  { tech:88, innov:76, impact:82, scope:70 },
+  2:  { tech:80, innov:88, impact:92, scope:74 },
+  3:  { tech:74, innov:82, impact:88, scope:78 },
+  4:  { tech:72, innov:70, impact:95, scope:66 },
+  5:  { tech:92, innov:84, impact:80, scope:72 },
+  6:  { tech:78, innov:86, impact:90, scope:76 },
+  7:  { tech:94, innov:92, impact:88, scope:80 },
+  8:  { tech:82, innov:88, impact:92, scope:84 },
+  9:  { tech:70, innov:80, impact:94, scope:88 },
+  10: { tech:90, innov:82, impact:86, scope:78 },
+  11: { tech:86, innov:96, impact:80, scope:72 },
+  12: { tech:82, innov:86, impact:90, scope:80 },
+};
+
+/* ── State ──────────────────────────────────────────────── */
+let activeIndex = 0;
+
+/* ── DOM refs ───────────────────────────────────────────── */
+const leftHeader = document.getElementById('track-left-header');
+const leftList   = document.getElementById('track-left-list');
+const rightPanel = document.getElementById('track-right');
+
+/* ══════════════════════════════════════════
+   BUILD LEFT PANEL
+   ══════════════════════════════════════════ */
+function buildLeft() {
+  const isHW = trackFamily === 'hardware';
+  const label = isHW ? 'Hardware' : 'Software';
+  const accent = isHW ? '#ff0040' : '#00f0ff';
+
+  /* Header */
+  leftHeader.innerHTML = `
+    <div class="track-left__track-name">
+      <span>TRACK</span>${label.toUpperCase()}
+    </div>
+    <div class="track-left__accent-bar" style="background:${accent}"></div>
+  `;
+
+  /* Thumbnails */
+  leftList.innerHTML = domains.map((d, i) => `
+    <div class="track-thumb ${i === activeIndex ? 'is-active' : ''}"
+         data-index="${i}"
+         role="button"
+         tabindex="0"
+         aria-label="${d.title}">
+      <div class="track-thumb__img-wrap">
+        <img class="track-thumb__img"
+             src="${d.image}"
+             alt="${d.variantName}"
+             loading="lazy"
+             onerror="this.style.opacity='0'" />
+        <span class="track-thumb__index">${d.code}</span>
+      </div>
+      <div class="track-thumb__text">
+        <span class="track-thumb__code">${d.code}</span>
+        <span class="track-thumb__title">${d.title}</span>
+      </div>
+    </div>
+  `).join('');
+
+  /* Attach events */
+  leftList.querySelectorAll('.track-thumb').forEach(card => {
+    const select = () => selectDomain(+card.dataset.index);
+    card.addEventListener('click', select);
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') select(); });
+  });
+}
+
+/* ══════════════════════════════════════════
+   SELECT / RENDER RIGHT PANEL
+   ══════════════════════════════════════════ */
+function selectDomain(idx) {
+  activeIndex = idx;
+
+  /* Update left highlights */
+  leftList.querySelectorAll('.track-thumb').forEach((c, i) => {
+    c.classList.toggle('is-active', i === idx);
+  });
+
+  const d = domains[idx];
+  const stats = DOMAIN_STATS[d.id] || { tech: 80, innov: 80, impact: 80, scope: 80 };
+
+    rightPanel.innerHTML = `
+    <!-- ── Hero ── -->
+    <div class="detail-hero">
+      <div class="detail-hero__bg"
+           style="background-image:url('${d.background}')"></div>
+      <div class="detail-hero__overlay"></div>
+      <div class="detail-hero__dots"></div>
+      <div class="hero-particles"></div>
+      
+      <div class="detail-hero__art-wrap flip-card" id="hero-flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img class="detail-hero__art"
+                 src="${d.image}"
+                 alt="${d.variantName}"
+                 loading="eager"
+                 onerror="this.style.display='none'" />
+          </div>
+          <div class="flip-card-back">
+            <div class="detail-hero__info-card">
+              <span class="detail-hero__info-label">${d.label}</span>
+              <strong class="detail-hero__info-name">${d.variantName}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-hero__text">
+        <span class="detail-hero__code">${d.code} — TRACK</span>
+        <h1 class="detail-hero__name">${d.title}</h1>
+        <p class="detail-hero__tagline">${d.tagline}</p>
+        <div id="spider-signal" class="spider-signal" title="Click for a signal..."></div>
+      </div>
+    </div>
+
+    <!-- ── Body ── -->
+    <div class="detail-body">
+      <!-- PROBLEM STATEMENTS -->
+      <div class="detail-problems">
+        <p class="detail-problems__heading">Problem Statements</p>
+        <div class="problem-list">
+          ${d.problems.map((p, pi) => `
+            <div class="problem-skill" data-problem-index="${pi}">
+              <div class="problem-skill__icon">P${pi + 1}</div>
+              <div class="problem-skill__text">
+                <span class="problem-skill__name">${p.title}</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div><!-- /detail-body -->
+  `;
+
+  // Easter Egg: Console
+  console.log(`%c [SYSTEM]: Analyzing ${d.code} - ${d.label} ...`, "color: #00f0ff; font-weight: bold; font-size: 12px;");
+  if (Math.random() > 0.8) console.log("%c [ALERT]: Multiversal anomaly detected!", "color: #ff0040; font-weight: bold;");
+
+  // Modal logic
+  const modal = document.getElementById('ps-modal');
+  const modalBody = document.getElementById('ps-modal-body');
+  const modalClose = document.getElementById('ps-modal-close');
+  const modalOverlay = document.getElementById('ps-modal-overlay');
+
+  const openPSModal = (problem) => {
+    modalBody.innerHTML = `
+      <span class="ps-modal__tag">${problem.tag}</span>
+      <h2 class="ps-modal__title">${problem.title}</h2>
+      <p class="ps-modal__desc">${problem.desc}</p>
+    `;
+    modal.setAttribute('aria-hidden', 'false');
+  };
+
+  const closePSModal = () => {
+    modal.setAttribute('aria-hidden', 'true');
+  };
+
+  modalClose.onclick = closePSModal;
+  modalOverlay.onclick = closePSModal;
+
+  // Particles init
+  const pContainer = rightPanel.querySelector('.hero-particles');
+  if (pContainer) {
+    for (let i = 0; i < 30; i++) {
+        const p = document.createElement('span');
+        p.style.left = Math.random() * 100 + '%';
+        p.style.top = Math.random() * 100 + '%';
+        p.style.animationDelay = Math.random() * 5 + 's';
+        pContainer.appendChild(p);
+    }
+  }
+
+  // Flip Card logic & Tilt
+  const flipCard = document.getElementById('hero-flip-card');
+  if (flipCard) {
+    flipCard.addEventListener('click', () => {
+      flipCard.classList.toggle('is-flipped');
+      const inner = flipCard.querySelector('.flip-card-inner');
+      if (inner) {
+        if (flipCard.classList.contains('is-flipped')) {
+          inner.style.transform = ''; // allow CSS to handle 180deg flip
+        } else {
+          inner.style.transform = ''; // allow CSS to settle back to 0
+        }
+      }
+    });
+
+    flipCard.addEventListener('mousemove', (e) => {
+        const rect = flipCard.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        const inner = flipCard.querySelector('.flip-card-inner');
+        if (inner && !flipCard.classList.contains('is-flipped')) {
+            inner.style.transform = `rotateY(${x * 20}deg) rotateX(${y * -20}deg)`;
+        }
+    });
+
+    flipCard.addEventListener('mouseleave', () => {
+        const inner = flipCard.querySelector('.flip-card-inner');
+        if (inner && !flipCard.classList.contains('is-flipped')) {
+            inner.style.transform = `rotateY(0) rotateX(0)`;
+        }
+    });
+  }
+
+  // Click listeners for problem items
+  rightPanel.querySelectorAll('.problem-skill').forEach(el => {
+    el.addEventListener('click', () => {
+      const pIdx = el.dataset.problemIndex;
+      openPSModal(d.problems[pIdx]);
+    });
+  });
+
+}
+
+/* ── Init ───────────────────────────────────────────────── */
+buildLeft();
+selectDomain(0);
+
+/* ── Global Easter Eggs ─────────────────────────────────── */
+// Konami Code Web Shooter
+const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+let konamiIndex = 0;
+document.addEventListener('keydown', (e) => {
+  if (e.key === konamiCode[konamiIndex]) {
+    konamiIndex++;
+    if (konamiIndex === konamiCode.length) {
+      shootWeb();
+      konamiIndex = 0;
+    }
+  } else {
+    konamiIndex = 0;
+  }
+});
+
+function shootWeb() {
+  const web = document.createElement('div');
+  web.className = 'easter-web';
+  document.body.appendChild(web);
+  setTimeout(() => web.remove(), 2000);
+}
+
+
+

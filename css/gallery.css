@@ -1,112 +1,171 @@
 /* ═══════════════════════════════════════════════════════════
    gallery.css — SPIDER-VERSE
-   Polaroid snapshots scattered randomly, tilt on hover.
+   Glitching Display Monitors in Spidey world
 ═══════════════════════════════════════════════════════════ */
 
 .section--gallery {
-    background: var(--c-magenta);
-    background-image:
-        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(0, 240, 255, 0.2) 0%, transparent 40%);
-    overflow: hidden;
-}
-
-.gallery__scatter {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--sp-lg);
-    padding: var(--sp-xl) 0;
-}
-
-/* Polaroid Card */
-.polaroid-card {
     position: relative;
-    background: #fff;
-    padding: 12px 12px 60px 12px;
-    border: 2px solid var(--c-border-dark);
-    box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.4);
-    width: 280px;
-    cursor: pointer;
-    /* Default rotations applied via inline style in JS, this is base transition */
-    transition: transform 0.4s var(--ease-pop), box-shadow 0.4s, z-index 0s;
+    background: url('../assets/gallery_background.jpg') center bottom no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    padding: var(--sp-xl) 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery__bg-overlay {
+    position: absolute;
+    inset: 0;
+    /* Subtle overlay to make UI pop and enhance contrast, spiderverse style */
+    background: linear-gradient(to bottom, rgba(17, 17, 17, 0.8) 0%, rgba(17, 17, 17, 0.2) 30%, rgba(17, 17, 17, 0.6) 100%);
     z-index: 1;
 }
 
-.polaroid-card:hover {
-    transform: scale(1.15) rotate(0deg) !important;
-    box-shadow: 20px 20px 0 var(--c-yellow), -5px -5px 0 var(--c-cyan);
-    z-index: 10;
+.gallery-main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
 }
 
-.polaroid-img-wrapper {
+.gallery-layout-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-lg);
+    margin-top: 1rem;
     width: 100%;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    border: 2px solid var(--c-border-dark);
     position: relative;
+    z-index: 2;
 }
 
-.polaroid-img-wrapper img {
+.gallery-top-row {
+    display: flex;
+    justify-content: center;
+    gap: var(--sp-lg);
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(0.5) contrast(1.2);
-    transition: filter 0.4s;
 }
 
-.polaroid-card:hover .polaroid-img-wrapper img {
-    filter: grayscale(0) contrast(1.1);
+.gallery-bottom-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    /* Create a large gap in the middle for Miles Morales in the background image */
+    padding: 0 10%;
 }
 
-/* Glitch hover effect on image */
-.polaroid-img-wrapper::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--c-red);
-    mix-blend-mode: color;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.polaroid-card:hover .polaroid-img-wrapper::after {
-    opacity: 0.2;
-}
-
-/* Marker Text on Polaroid */
-.polaroid-caption {
-    position: absolute;
-    bottom: 15px;
-    left: 15px;
-    right: 15px;
-    text-align: center;
-}
-
-.polaroid-title {
-    font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
-    /* True handmade feel */
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #111;
-    transform: rotate(-2deg);
-}
-
-.polaroid-sub {
-    font-family: var(--ff-display);
-    font-size: 0.8rem;
-    color: var(--c-magenta);
-    text-transform: uppercase;
+@media (max-width: 1024px) {
+    .gallery-bottom-row { padding: 0 5%; }
 }
 
 @media (max-width: 768px) {
-    .polaroid-card {
-        width: 45%;
+    .gallery-top-row { flex-wrap: wrap; }
+    .gallery-bottom-row {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--sp-lg);
+        padding: 0;
     }
 }
 
+/* Spiderverse Monitor Display Styles */
+.gallery-display {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: #000;
+    border: 3px solid var(--c-cyan);
+    box-shadow: 
+      4px 4px 0 var(--c-magenta),
+      -4px -4px 0 var(--c-yellow),
+      0 0 15px rgba(0, 240, 255, 0.4);
+    transform: perspective(800px) rotateY(-5deg) rotateX(5deg);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+@media (max-width: 1024px) {
+    .gallery-display { width: 260px; height: 173px; }
+}
+
+@media (max-width: 768px) {
+    .gallery-display { width: 45%; height: auto; aspect-ratio: 3/2; }
+}
 @media (max-width: 480px) {
-    .polaroid-card {
-        width: 90%;
-    }
+    .gallery-display { width: 90%; margin: 0 auto; }
+}
+
+.gallery-display:nth-child(even) {
+    transform: perspective(800px) rotateY(5deg) rotateX(-2deg);
+    border-color: var(--c-yellow);
+    box-shadow: 
+      4px 4px 0 var(--c-cyan),
+      -4px -4px 0 var(--c-magenta),
+      0 0 15px rgba(255, 230, 0, 0.4);
+}
+
+.gallery-display:hover {
+    transform: perspective(800px) rotateY(0deg) rotateX(0deg) scale(1.05);
+    z-index: 10;
+}
+
+.gallery-img-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Halftone scanlines over the image for comic vibe */
+.gallery-img-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0,0,0,0.1) 0px,
+        rgba(0,0,0,0.1) 2px,
+        transparent 2px,
+        transparent 4px
+    );
+    pointer-events: none;
+    z-index: 2;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 1;
+    filter: saturate(1.2) contrast(1.1);
+}
+
+/* Glitch Animation Classes */
+.is-glitching .gallery-img-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--c-red);
+    mix-blend-mode: overlay;
+    z-index: 3;
+    animation: flash 0.2s alternate infinite;
+}
+
+.is-glitching .gallery-img {
+    animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+}
+
+@keyframes flash {
+    0% { opacity: 0; }
+    100% { opacity: 0.8; }
+}
+
+@keyframes glitch-skew {
+    0% { transform: skew(0deg); filter: hue-rotate(0deg); }
+    20% { transform: skew(-10deg) translateX(-5px); filter: hue-rotate(90deg) drop-shadow(-2px 0 var(--c-cyan)) drop-shadow(2px 0 var(--c-magenta)); }
+    40% { transform: skew(10deg) translateX(5px); filter: hue-rotate(180deg) drop-shadow(-2px 0 var(--c-cyan)) drop-shadow(2px 0 var(--c-magenta)); }
+    60% { transform: skew(-5deg) translateY(-2px); filter: hue-rotate(270deg) drop-shadow(-2px 0 var(--c-cyan)) drop-shadow(2px 0 var(--c-magenta)); }
+    80% { transform: skew(5deg) translateY(2px); filter: hue-rotate(360deg) drop-shadow(-2px 0 var(--c-cyan)) drop-shadow(2px 0 var(--c-magenta)); }
+    100% { transform: skew(0deg); filter: hue-rotate(0deg); }
 }

@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,600;0,800;1,400;1,800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Montserrat:ital,wght@0,400;0,600;0,800;1,400;1,800&display=swap"
     rel="stylesheet" />
 
   <!-- Stylesheets -->
@@ -30,9 +30,11 @@
   <link rel="stylesheet" href="css/loading.css" />
 
   <!-- CDN Libraries -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 
 <body>
@@ -75,8 +77,27 @@
       </ul>
       <a href="https://forms.gle/MSiu9x7Mo2kYBmmA9" target="_blank" rel="noopener noreferrer"
         class="btn btn--nav text-yellow">REGISTER</a>
+      <!-- Hamburger toggle (mobile only) -->
+      <button class="nav__hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-drawer">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile slide-out drawer -->
+  <div class="nav__drawer" id="nav-drawer" role="dialog" aria-label="Navigation menu">
+    <a href="#about" class="nav__drawer-link">About Us</a>
+    <a href="#timeline" class="nav__drawer-link">Timeline</a>
+    <a href="#problems" class="nav__drawer-link">Problem Statements</a>
+    <a href="#sponsorship" class="nav__drawer-link">Sponsors</a>
+    <a href="#team" class="nav__drawer-link">The Crew</a>
+    <a href="#faq" class="nav__drawer-link">FAQ</a>
+    <a href="#hero" class="btn btn--nav text-yellow">REGISTER</a>
+  </div>
+  <!-- Backdrop -->
+  <div class="nav__overlay" id="nav-overlay" aria-hidden="true"></div>
 
   <!-- ═══════════════════════════════════════════════════════════
        SECTION 1 — HERO / LANDING
@@ -394,11 +415,24 @@
        SECTION 4 — GALLERY
   ═══════════════════════════════════════════════════════════ -->
   <section id="gallery" class="section section--gallery" aria-label="Previous Dimensions">
-    <div class="container">
-      <h2 class="section__heading comic-heading text-yellow">PAST ANOMALIES</h2>
-      <p class="section__sub">Snapshots from previous Makeathon editions.</p>
-      <div class="gallery__scatter" id="gallery-scatter">
-        <!-- Polaroids injected by JS -->
+    <!-- The background image and overlay -->
+    <div class="gallery__bg-overlay"></div>
+    <div class="container relative z-10 gallery-main-container">
+      <h2 class="section__heading comic-heading text-yellow" style="text-shadow: 2px 2px 0 var(--c-magenta), -2px -2px 0 var(--c-cyan);">PAST ANOMALIES</h2>
+      <p class="section__sub" style="color: #fff; text-shadow: 1px 1px 2px #000;">Snapshots from previous Makeathon editions.</p>
+      
+      <div class="gallery-layout-wrapper" id="gallery-layout">
+        <!-- TOP ROW: 3 Containers -->
+        <div class="gallery-top-row">
+          <div class="gallery-display"><div class="gallery-img-wrapper"><img src="" class="gallery-img" alt="Gallery Image 1" /></div></div>
+          <div class="gallery-display"><div class="gallery-img-wrapper"><img src="" class="gallery-img" alt="Gallery Image 2" /></div></div>
+          <div class="gallery-display"><div class="gallery-img-wrapper"><img src="" class="gallery-img" alt="Gallery Image 3" /></div></div>
+        </div>
+        <!-- BOTTOM ROW: 2 Containers -->
+        <div class="gallery-bottom-row">
+          <div class="gallery-display"><div class="gallery-img-wrapper"><img src="" class="gallery-img" alt="Gallery Image 4" /></div></div>
+          <div class="gallery-display"><div class="gallery-img-wrapper"><img src="" class="gallery-img" alt="Gallery Image 5" /></div></div>
+        </div>
       </div>
     </div>
   </section>
@@ -415,42 +449,7 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       SECTION 6 — OUR TEAM
-  ═══════════════════════════════════════════════════════════ -->
-  <section id="team" class="section section--team" aria-label="The Crew">
-    <!-- Faint web-pattern background -->
-    <div class="team__web-bg" aria-hidden="true"></div>
-
-    <div class="container">
-      <h2 class="section__heading comic-heading">THE CREW</h2>
-      <p class="section__sub">The powerhouses coordinating this dimension's Makeathon.</p>
-
-      <!-- Team Tabs -->
-      <div class="team__tabs" role="tablist">
-        <button class="team__tab active" data-team="ecea" role="tab" aria-selected="true">ECEA</button>
-        <button class="team__tab" data-team="iete" role="tab" aria-selected="false">IETE-SF</button>
-        <button class="team__tab" data-team="race" role="tab" aria-selected="false">RACE</button>
-      </div>
-
-      <!-- ECEA Panel -->
-      <div class="team__panel active" data-team="ecea" role="tabpanel">
-        <div class="team__grid" id="team-grid-ecea"></div>
-      </div>
-
-      <!-- IETE-SF Panel -->
-      <div class="team__panel" data-team="iete" role="tabpanel">
-        <div class="team__grid" id="team-grid-iete"></div>
-      </div>
-
-      <!-- RACE Panel -->
-      <div class="team__panel" data-team="race" role="tabpanel">
-        <div class="team__grid" id="team-grid-race"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════════
-       SECTION 7 — SPONSORSHIP
+       SECTION 6 — SPONSORSHIP
   ═══════════════════════════════════════════════════════════ -->
   <section id="sponsorship" class="section section--sponsorship" aria-label="Sponsorship">
     <div class="container">
@@ -484,30 +483,75 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       SECTION 8 — FAQs
+ <!-- ═══════════════════════════════════════════════════════════
+       SECTION 7 — FAQs (SPIDER-VERSE)
   ═══════════════════════════════════════════════════════════ -->
   <section id="faq" class="section section--faq" aria-label="FAQ">
     <div class="container">
-      <h2 class="section__heading comic-heading">WEB OF DESTINY</h2>
-      <p class="section__sub">Untangle the mysteries. Click a web node.</p>
+      <h2 class="section__heading comic-heading text-cyan">MULTIVERSAL QUERIES</h2>
+      <p class="section__sub">Ask Miles. Peter has the answers.</p>
 
-      <div class="web-destiny" id="web-destiny">
-        <svg id="web-lines" class="web-lines" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice"></svg>
-        <div id="faq-nodes" class="faq-nodes"></div>
-      </div>
-
-      <div class="thought-bubble" id="faq-answer-bubble" aria-live="polite">
-        <div class="bubble-content" id="faq-answer-content">
-          <p class="placeholder-text">Select a node on the web...</p>
+      <div class="faq-comic-container">
+        <!-- Left Side: Peter Parker's Answer Bubble -->
+        <div class="speech-bubble speech-bubble--peter">
+          <div class="speech-bubble__content">
+            <p id="peter-answer-text" class="peter-answer">"Ask me a question"</p>
+          </div>
         </div>
-        <div class="bubble-tail" aria-hidden="true"></div>
+
+        <!-- Right Side: Miles Morales's Question Bubble -->
+        <div class="speech-bubble speech-bubble--miles">
+          <div class="speech-bubble__content">
+            <p class="speech-bubble__default" id="miles-default-text">"Let me ask you something..."</p>
+            <div class="faq-custom-select" id="faq-custom-select">
+              <div class="faq-custom-select-trigger" id="faq-custom-select-trigger">Select a question...</div>
+              <div class="faq-custom-select-options" id="faq-custom-select-options" data-lenis-prevent="true">
+                <!-- Options injected via JS -->
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       SECTION 8 — FOOTER
+       SECTION 8 — OUR TEAM
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="team" class="section section--team" aria-label="The Crew">
+    <!-- Faint web-pattern background -->
+    <div class="team__web-bg" aria-hidden="true"></div>
+
+    <div class="container">
+      <h2 class="section__heading comic-heading">THE CREW</h2>
+      <p class="section__sub">The powerhouses coordinating this dimension's Makeathon.</p>
+
+      <!-- Team Tabs -->
+      <div class="team__tabs" role="tablist">
+        <button class="team__tab active" data-team="race" role="tab" aria-selected="true">RACE</button>
+        <button class="team__tab" data-team="iete" role="tab" aria-selected="false">IETE-SF</button>
+        <button class="team__tab" data-team="ecea" role="tab" aria-selected="false">ECEA</button>
+      </div>
+
+      <!-- RACE Panel -->
+      <div class="team__panel active" data-team="race" role="tabpanel">
+        <div class="team__grid" id="team-grid-race"></div>
+      </div>
+
+      <!-- IETE-SF Panel -->
+      <div class="team__panel" data-team="iete" role="tabpanel">
+        <div class="team__grid" id="team-grid-iete"></div>
+      </div>
+
+      <!-- ECEA Panel -->
+      <div class="team__panel" data-team="ecea" role="tabpanel">
+        <div class="team__grid" id="team-grid-ecea"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 9 FOOTER
   ═══════════════════════════════════════════════════════════ -->
   <footer id="footer" class="section section--footer" aria-label="Footer">
     <div class="container footer__inner">
@@ -528,7 +572,7 @@
             Engineering.</p>
           <div style="width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m2!1s0x3a52c2cae4f9b8c9%3A0xc3f6afce6a5369bb!2sSri%20Venkateswara%20College%20of%20Engineering%20(SVCE)!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              src="https://maps.google.com/maps?q=Sri+Venkateswara+College+of+Engineering+Sriperumbudur&t=&z=15&ie=UTF8&iwloc=&output=embed"
               width="100%" height="160"
               style="border:0; display: block; opacity: 0.6; filter: grayscale(1) invert(1) contrast(1.2);"
               allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -560,9 +604,15 @@
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; text-align: left;">
               <div>
                 <p style="font-family: var(--ff-body); color: var(--c-text); font-size: 0.85rem; margin-bottom: 2px;">
-                  Mohammed Raeef</p>
-                <p style="font-family: var(--ff-body); color: var(--c-cyan); font-size: 0.85rem; font-weight: bold;">
-                  91501 58647</p>
+                  Roshan M</p>
+                <p style="font-family: var(--ff-body); color: var(--c-red); font-size: 0.85rem; font-weight: bold;">
+                  98410 92274</p>
+              </div>
+              <div>
+                <p style="font-family: var(--ff-body); color: var(--c-text); font-size: 0.85rem; margin-bottom: 2px;">
+                  Adarsh S</p>
+                <p style="font-family: var(--ff-body); color: var(--c-red); font-size: 0.85rem; font-weight: bold;">
+                  73059 70106</p>
               </div>
               <div>
                 <p style="font-family: var(--ff-body); color: var(--c-text); font-size: 0.85rem; margin-bottom: 2px;">
@@ -572,28 +622,24 @@
               </div>
               <div>
                 <p style="font-family: var(--ff-body); color: var(--c-text); font-size: 0.85rem; margin-bottom: 2px;">
-                  Harinee V T</p>
-                <p style="font-family: var(--ff-body); color: var(--c-red); font-size: 0.85rem; font-weight: bold;">
-                  73581 20955</p>
-              </div>
-              <div>
-                <p style="font-family: var(--ff-body); color: var(--c-text); font-size: 0.85rem; margin-bottom: 2px;">
                   Roobuck Rao C</p>
-                <p style="font-family: var(--ff-body); color: var(--c-cyan); font-size: 0.85rem; font-weight: bold;">
+                <p style="font-family: var(--ff-body); color: var(--c-magenta); font-size: 0.85rem; font-weight: bold;">
                   81482 04922</p>
               </div>
               <div>
                 <p style="font-family: var(--ff-body); color: var(--c-text); font-size: 0.85rem; margin-bottom: 2px;">
-                  Roshan M</p>
-                <p style="font-family: var(--ff-body); color: var(--c-magenta); font-size: 0.85rem; font-weight: bold;">
-                  98410 92274</p>
+                  Mohammed Raeef</p>
+                <p style="font-family: var(--ff-body); color: var(--c-cyan); font-size: 0.85rem; font-weight: bold;">
+                  91501 58647</p>
               </div>
               <div>
                 <p style="font-family: var(--ff-body); color: var(--c-text); font-size: 0.85rem; margin-bottom: 2px;">
-                  Adarsh S</p>
-                <p style="font-family: var(--ff-body); color: var(--c-red); font-size: 0.85rem; font-weight: bold;">
-                  73059 70106</p>
+                  Harinee V T</p>
+                <p style="font-family: var(--ff-body); color: var(--c-cyan); font-size: 0.85rem; font-weight: bold;">
+                  73581 20955</p>
               </div>
+
+
             </div>
           </div>
         </div>
@@ -614,29 +660,30 @@
 
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; width: 100%;">
 
-            <!-- ECEA -->
+
+            <!-- RACE -->
             <div
-              style="border-left: 2px solid var(--c-cyan); padding-left: 12px; display: flex; flex-direction: column; gap: 8px;">
+              style="border-left: 2px solid var(--c-red); padding-left: 12px; display: flex; flex-direction: column; gap: 8px;">
               <h5
-                style="font-family: var(--ff-body); color: var(--c-cyan); font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0;">
-                ECEA</h5>
+                style="font-family: var(--ff-body); color: var(--c-red); font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0;">
+                RACE</h5>
               <div style="display: flex; gap: 8px;">
-                <a href="https://www.instagram.com/eceasvce/" target="_blank" rel="noopener noreferrer"
-                  class="social-icon social-icon--ig" style="width: 32px; height: 32px;" aria-label="ECEA Instagram">
+                <a href="https://www.instagram.com/race_svce/" target="_blank" rel="noopener noreferrer"
+                  class="social-icon social-icon--ig" style="width: 32px; height: 32px;" aria-label="RACE Instagram">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                     <path
                       d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.97.24 2.43.403a4.08 4.08 0 011.523.99 4.08 4.08 0 01.99 1.524c.163.46.35 1.26.403 2.43.058 1.265.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.24 1.97-.403 2.43a4.08 4.08 0 01-.99 1.523 4.08 4.08 0 01-1.524.99c-.46.163-1.26.35-2.43.403-1.265.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.97-.24-2.43-.403a4.08 4.08 0 01-1.523-.99 4.08 4.08 0 01-.99-1.524c-.163-.46-.35-1.26-.403-2.43C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.054-1.17.24-1.97.403-2.43a4.08 4.08 0 01.99-1.523A4.08 4.08 0 015.15 2.636c.46-.163 1.26-.35 2.43-.403C8.845 2.175 9.225 2.163 12 2.163zM12 0C8.741 0 8.333.014 7.053.072 5.775.13 4.903.333 4.14.63a6.21 6.21 0 00-2.245 1.462A6.21 6.21 0 00.433 4.337C.136 5.1-.067 5.972.01 7.25.068 8.53.082 8.938.082 12.197c0 3.259.014 3.668.072 4.948.058 1.277.261 2.15.558 2.912a6.21 6.21 0 001.462 2.245 6.21 6.21 0 002.245 1.462c.763.297 1.636.5 2.913.558C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c1.277-.058 2.15-.261 2.912-.558a6.21 6.21 0 002.245-1.462 6.21 6.21 0 001.462-2.245c.297-.763.5-1.636.558-2.913.058-1.28.072-1.688.072-4.948s-.014-3.668-.072-4.948c-.058-1.277-.261-2.15-.558-2.912a6.21 6.21 0 00-1.462-2.245A6.21 6.21 0 0019.86.435C19.1.138 18.227-.065 16.95.007 15.668.065 15.259.079 12 .079zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z" />
                   </svg>
                 </a>
-                <a href="https://www.linkedin.com/in/ecea-svce-2b49062b7/" target="_blank" rel="noopener noreferrer"
-                  class="social-icon social-icon--li" style="width: 32px; height: 32px;" aria-label="ECEA LinkedIn">
+                <a href="https://www.linkedin.com/in/raic-svce/" target="_blank" rel="noopener noreferrer"
+                  class="social-icon social-icon--li" style="width: 32px; height: 32px;" aria-label="RACE LinkedIn">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                     <path
                       d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                   </svg>
                 </a>
-                <a href="mailto:ecea@svce.ac.in" class="social-icon social-icon--mail"
-                  style="width: 32px; height: 32px;" aria-label="ECEA Email">
+                <a href="mailto:race@svce.ac.in" class="social-icon social-icon--mail"
+                  style="width: 32px; height: 32px;" aria-label="RACE Email">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                     <path
                       d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
@@ -675,30 +722,29 @@
                 </a>
               </div>
             </div>
-
-            <!-- RACE -->
+            <!-- ECEA -->
             <div
-              style="border-left: 2px solid var(--c-red); padding-left: 12px; display: flex; flex-direction: column; gap: 8px;">
+              style="border-left: 2px solid var(--c-cyan); padding-left: 12px; display: flex; flex-direction: column; gap: 8px;">
               <h5
-                style="font-family: var(--ff-body); color: var(--c-red); font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0;">
-                RACE</h5>
+                style="font-family: var(--ff-body); color: var(--c-cyan); font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0;">
+                ECEA</h5>
               <div style="display: flex; gap: 8px;">
-                <a href="https://www.instagram.com/race_svce/" target="_blank" rel="noopener noreferrer"
-                  class="social-icon social-icon--ig" style="width: 32px; height: 32px;" aria-label="RACE Instagram">
+                <a href="https://www.instagram.com/eceasvce/" target="_blank" rel="noopener noreferrer"
+                  class="social-icon social-icon--ig" style="width: 32px; height: 32px;" aria-label="ECEA Instagram">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                     <path
                       d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.97.24 2.43.403a4.08 4.08 0 011.523.99 4.08 4.08 0 01.99 1.524c.163.46.35 1.26.403 2.43.058 1.265.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.24 1.97-.403 2.43a4.08 4.08 0 01-.99 1.523 4.08 4.08 0 01-1.524.99c-.46.163-1.26.35-2.43.403-1.265.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.97-.24-2.43-.403a4.08 4.08 0 01-1.523-.99 4.08 4.08 0 01-.99-1.524c-.163-.46-.35-1.26-.403-2.43C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.054-1.17.24-1.97.403-2.43a4.08 4.08 0 01.99-1.523A4.08 4.08 0 015.15 2.636c.46-.163 1.26-.35 2.43-.403C8.845 2.175 9.225 2.163 12 2.163zM12 0C8.741 0 8.333.014 7.053.072 5.775.13 4.903.333 4.14.63a6.21 6.21 0 00-2.245 1.462A6.21 6.21 0 00.433 4.337C.136 5.1-.067 5.972.01 7.25.068 8.53.082 8.938.082 12.197c0 3.259.014 3.668.072 4.948.058 1.277.261 2.15.558 2.912a6.21 6.21 0 001.462 2.245 6.21 6.21 0 002.245 1.462c.763.297 1.636.5 2.913.558C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c1.277-.058 2.15-.261 2.912-.558a6.21 6.21 0 002.245-1.462 6.21 6.21 0 001.462-2.245c.297-.763.5-1.636.558-2.913.058-1.28.072-1.688.072-4.948s-.014-3.668-.072-4.948c-.058-1.277-.261-2.15-.558-2.912a6.21 6.21 0 00-1.462-2.245A6.21 6.21 0 0019.86.435C19.1.138 18.227-.065 16.95.007 15.668.065 15.259.079 12 .079zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z" />
                   </svg>
                 </a>
-                <a href="https://www.linkedin.com/in/raic-svce/" target="_blank" rel="noopener noreferrer"
-                  class="social-icon social-icon--li" style="width: 32px; height: 32px;" aria-label="RACE LinkedIn">
+                <a href="https://www.linkedin.com/in/ecea-svce-2b49062b7/" target="_blank" rel="noopener noreferrer"
+                  class="social-icon social-icon--li" style="width: 32px; height: 32px;" aria-label="ECEA LinkedIn">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                     <path
                       d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                   </svg>
                 </a>
-                <a href="mailto:race@svce.ac.in" class="social-icon social-icon--mail"
-                  style="width: 32px; height: 32px;" aria-label="RACE Email">
+                <a href="mailto:ecea@svce.ac.in" class="social-icon social-icon--mail"
+                  style="width: 32px; height: 32px;" aria-label="ECEA Email">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                     <path
                       d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
@@ -706,6 +752,9 @@
                 </a>
               </div>
             </div>
+
+
+
 
           </div>
         </div>
@@ -715,13 +764,14 @@
 
       <!-- ── Bottom Bar ── -->
       <div class="footer__bottom">
-        <p class="footer__tagline">"With great power comes great code."</p>
+        <p class="footer__tagline">"With great power comes great innovation."</p>
         <p class="copyright">&copy; 2026 Makeathon 7.0 — All realities reserved.</p>
       </div>
 
     </div>
   </footer>
 
+  <script src="js/core/hamburger.js"></script>
   <script type="module" src="js/main.js"></script>
 </body>
 

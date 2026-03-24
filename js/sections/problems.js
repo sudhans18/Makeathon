@@ -1,19 +1,5 @@
 import { UNIVERSES } from '../data/universes.js';
 
-const TRACK_SUBDOMAINS = {
-    1: 'IoT & Embedded Systems',
-    2: 'Healthcare & Wearable Technology',
-    3: 'Agriculture & Food Technology',
-    4: 'Disaster Management',
-    5: 'Robotics & Industrial Automation',
-    6: 'Energy & Sustainable Solutions',
-    7: 'Artificial Intelligence & Machine Learning',
-    8: 'Smart Cities & Infrastructure',
-    9: 'Governance, Education & Rural Innovation',
-    10: 'Blockchain & Cyber-Security',
-    11: 'Augmented Reality / Virtual Reality',
-    12: 'FinTech & Digital Economy',
-};
 
 function generateWeb(w, h, originX, originY) {
     const cx = originX === 0 ? 0 : w;
@@ -86,24 +72,42 @@ function injectStyles() {
             to   { opacity: 0.9; filter: drop-shadow(0 0 14px rgba(123,47,190,1)); }
         }
 
-        /* ── Section font override ── */
-        #track-selector,
-        #track-selector * {
-            font-family: 'Rajdhani', sans-serif !important;
-        }
+        /* ── Hide bridge wire lines ── */
+        .track-selector__bridge { display: none !important; }
 
-        /* ── Heading style ── */
+        /* ══ CHOOSE YOUR TRACK heading — white comic style ══ */
         .track-selector__heading {
-            font-family: 'Rajdhani', sans-serif !important;
-            font-weight: 700 !important;
-            letter-spacing: 0.12em !important;
+            font-family: 'Anton', sans-serif !important;
+            font-size: clamp(2.5rem, 6vw, 4.5rem) !important;
+            font-weight: 400 !important;
+            letter-spacing: 0.05em !important;
+            text-transform: uppercase !important;
+            color: #ffffff !important;
+            text-shadow: 4px 4px 0 #ff0040, 8px 8px 0 #000000 !important;
+            /* Reset pill styles */
+            background: transparent !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            border: none !important;
         }
 
-        /* ── Labels (HARDWARE / SOFTWARE) ── */
+        /* ══ HARDWARE / SOFTWARE labels — white comic style ══ */
         .track-selector__label {
-            font-family: 'Rajdhani', sans-serif !important;
-            font-weight: 700 !important;
-            letter-spacing: 0.15em !important;
+            font-family: 'Anton', sans-serif !important;
+            font-size: clamp(1.6rem, 3.5vw, 2.6rem) !important;
+            font-weight: 400 !important;
+            letter-spacing: 0.05em !important;
+            text-transform: uppercase !important;
+            color: #ffffff !important;
+            text-shadow: 3px 3px 0 #ff0040, 6px 6px 0 #000000 !important;
+            /* Reset pill styles */
+            background: transparent !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            border: none !important;
+            min-width: unset !important;
         }
 
         /* ── Board transparent ── */
@@ -163,9 +167,9 @@ function injectStyles() {
         /* ── Subdomain label ── */
         .track-selector__spider-subdomain {
             display: block;
-            font-family: 'Rajdhani', sans-serif !important;
-            font-size: 0.95rem;
-            font-weight: 700;
+            font-family: 'Anton', sans-serif !important;
+            font-size: 0.85rem;
+            font-weight: 400;
             letter-spacing: 0.04em;
             text-align: center;
             color: #ffffff;
@@ -191,6 +195,89 @@ function injectStyles() {
         .track-selector__grid {
             row-gap: 2.6rem !important;
         }
+
+        /* ── Labels row layout — no bridge, just space-evenly ── */
+        .track-selector__labels {
+            margin-top: clamp(1.5rem, 3vw, 2.5rem) !important;
+        }
+
+        /* ══ 2-Track choice buttons ══ */
+        .track-choose-btns {
+            display: flex;
+            flex-direction: row;
+            gap: 28px;
+            justify-content: center;
+            align-items: stretch;
+            flex-wrap: wrap;
+            margin-top: 36px;
+            padding-bottom: 12px;
+        }
+
+        .track-choose-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+            width: 300px;
+            max-width: 100%;
+            padding: 28px 30px;
+            text-decoration: none;
+            position: relative;
+            /* Comic-button border gimmick */
+            border: 3px solid #000;
+            background: rgba(255,255,255,0.04);
+            transition: transform 0.25s, box-shadow 0.25s;
+            cursor: pointer;
+        }
+
+        .track-choose-btn--hw {
+            box-shadow: 6px 6px 0 #ff0040;
+        }
+        .track-choose-btn--sw {
+            box-shadow: 6px 6px 0 #00f0ff;
+        }
+
+        .track-choose-btn:hover {
+            transform: translate(-3px, -3px);
+        }
+        .track-choose-btn--hw:hover {
+            box-shadow: 9px 9px 0 #ff0040;
+        }
+        .track-choose-btn--sw:hover {
+            box-shadow: 9px 9px 0 #00f0ff;
+        }
+
+        .track-choose-btn__icon {
+            font-size: 2rem;
+            line-height: 1;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .track-choose-btn__label {
+            font-family: 'Anton', sans-serif !important;
+            font-size: clamp(1.4rem, 3vw, 2rem) !important;
+            font-weight: 400 !important;
+            letter-spacing: 0.08em !important;
+            text-transform: uppercase !important;
+            color: #ffffff !important;
+        }
+
+        .track-choose-btn--hw .track-choose-btn__label {
+            text-shadow: 3px 3px 0 #ff0040 !important;
+        }
+        .track-choose-btn--sw .track-choose-btn__label {
+            text-shadow: 3px 3px 0 #00f0ff !important;
+        }
+
+        .track-choose-btn__sub {
+            font-family: var(--ff-body, sans-serif) !important;
+            font-size: 0.72rem !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.08em !important;
+            text-transform: uppercase !important;
+            color: rgba(255,255,255,0.38) !important;
+            line-height: 1.5 !important;
+        }
     `;
     document.head.appendChild(style);
 }
@@ -211,7 +298,7 @@ export function initProblems() {
     const section = container.closest('section') || container.parentElement;
     if (section) {
         section.style.cssText = `
-            background-image: url('assets/problembg.jpeg') !important;
+            background-image: url('assets/problembg.jpg') !important;
             background-size: cover !important;
             background-position: center !important;
             background-repeat: no-repeat !important;
@@ -258,50 +345,26 @@ export function initProblems() {
                 <h2 class="track-selector__heading">CHOOSE YOUR TRACK</h2>
             </div>
 
-            <div class="track-selector__bridge track-selector__bridge--left" aria-hidden="true"></div>
-            <div class="track-selector__bridge track-selector__bridge--right" aria-hidden="true"></div>
-
-            <div class="track-selector__labels">
-                <span class="track-selector__label track-selector__label--hardware">HARDWARE</span>
-                <span class="track-selector__label track-selector__label--software">SOFTWARE</span>
-            </div>
-
-            <div class="track-selector__columns">
-                <div class="track-selector__column">
-                    <div class="track-selector__grid track-selector__grid--hardware">
-                        ${hardware.map((universe) => renderUniverseButton(universe)).join('')}
-                    </div>
-                </div>
-
-                <div class="track-selector__column">
-                    <div class="track-selector__grid track-selector__grid--software">
-                        ${software.map((universe) => renderUniverseButton(universe)).join('')}
-                    </div>
-                </div>
+            <div class="track-choose-btns">
+                <a href="track.html?t=hardware" class="track-choose-btn track-choose-btn--hw">
+                    <span class="track-choose-btn__icon">⚙</span>
+                    <span class="track-choose-btn__label">HARDWARE</span>
+                    <span class="track-choose-btn__sub">IoT · Robotics · Energy · Healthcare · Agriculture · Disaster</span>
+                </a>
+                <a href="track.html?t=software" class="track-choose-btn track-choose-btn--sw">
+                    <span class="track-choose-btn__icon">◈</span>
+                    <span class="track-choose-btn__label">SOFTWARE</span>
+                    <span class="track-choose-btn__sub">AI · Smart Cities · Blockchain · AR/VR · FinTech · Governance</span>
+                </a>
             </div>
         </div>
     `;
-
-    const buttons = container.querySelectorAll('.track-selector__spider-link');
-    if (typeof gsap !== 'undefined') {
-        gsap.fromTo(
-            buttons,
-            { opacity: 0, y: 20, scale: 0.92 },
-            {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                duration: 0.7,
-                stagger: 0.05,
-                ease: 'power3.out',
-            }
-        );
-    }
 }
+
 
 function renderUniverseButton(universe) {
     const spiderLogo = `assets/spiderlogos/s${universe.id}.png`;
-    const subdomain = TRACK_SUBDOMAINS[universe.id] || '';
+    const subdomain = universe.title || '';
 
     return `
         <a class="track-selector__spider-link track-selector__spider-link--${universe.family}"
