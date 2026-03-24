@@ -304,7 +304,10 @@ ol {
 /* --- Shared CTA Button (Comic Box) --- */
 .btn--comic {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   padding: 1rem 2.5rem;
   font-family: var(--ff-display);
   font-size: clamp(1.2rem, 2vw, 1.5rem);
@@ -313,11 +316,19 @@ ol {
   background: var(--c-yellow);
   border: 4px solid var(--c-border-dark);
   text-transform: uppercase;
+  text-decoration: none;
   z-index: 10;
   transition: transform var(--dur) var(--ease-pop);
 }
 
-.btn--comic::after {
+.btn__text {
+  position: relative;
+  z-index: 2;
+}
+
+/* Common style for both span shadow and pseudo-element shadow */
+.btn--comic::after,
+.btn__shadow {
   content: '';
   position: absolute;
   top: 6px;
@@ -334,7 +345,8 @@ ol {
   transform: translate(-4px, -4px);
 }
 
-.btn--comic:hover::after {
+.btn--comic:hover::after,
+.btn--comic:hover .btn__shadow {
   transform: translate(8px, 8px);
   background: var(--c-cyan);
 }

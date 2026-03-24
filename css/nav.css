@@ -40,10 +40,11 @@
 }
 
 .nav__logo-img {
-    height: 120px;
+    height: 140px;
     width: auto;
     display: block;
     transition: opacity 0.2s;
+    transform: translateY(5px);
 }
 
 .nav__logo:hover .nav__logo-img {

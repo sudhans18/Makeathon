@@ -47,32 +47,65 @@
 }
 
 .team__tab {
-  font-family: var(--ff-body, 'Inter');
-  font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
+  font-family: 'Bangers', var(--ff-display, 'Anton'), sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 10px 24px;
-  border-radius: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.03);
-  color: rgba(255, 255, 255, 0.6);
+  padding: 10px 30px;
+  background: rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0% 100%);
+  display: inline-block;
+  min-width: 120px;
+}
+
+.team__tab::before {
+  content: '';
+  position: absolute;
+  top: 0; 
+  left: -100%;
+  width: 100%; 
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.team__tab:hover::before {
+  left: 100%;
 }
 
 .team__tab:hover {
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.1);
   color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px) scale(1.05);
 }
 
 .team__tab.active {
-  background: rgba(255, 40, 100, 0.15);
-  color: #fff;
-  border-color: rgba(255, 40, 100, 0.5);
-  box-shadow: 0 0 15px rgba(255, 40, 100, 0.2);
-  transform: translateY(-2px);
+  color: #111;
+  border-color: transparent;
+  transform: translateY(-3px) scale(1.1);
+  font-weight: 600;
+}
+
+.team__tab[data-team="race"].active {
+  background: var(--c-cyan, #28c8ff);
+  box-shadow: 4px 4px 0px var(--c-red, #ff2864), -2px -2px 0px rgba(255,255,255,0.2);
+}
+
+.team__tab[data-team="iete"].active {
+  background: var(--c-magenta, #ff28cc);
+  box-shadow: 4px 4px 0px var(--c-cyan, #28c8ff), -2px -2px 0px rgba(255,255,255,0.2);
+}
+
+.team__tab[data-team="ecea"].active {
+  background: var(--c-yellow, #ffdc28);
+  box-shadow: 4px 4px 0px var(--c-magenta, #ff28cc), -2px -2px 0px rgba(255,255,255,0.2);
 }
 
 /* ── Team Panels ────────────────────────────────────────── */
@@ -128,11 +161,13 @@
 .team-card.swiper-slide-active {
   filter: grayscale(0%) brightness(1);
   border-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.08) translateY(-5px);
   box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.6),
     -4px -4px 15px rgba(40, 200, 255, 0.4),
     4px 4px 15px rgba(255, 40, 100, 0.4);
   background: #1a1d2a;
+  z-index: 5;
 }
 
 /* Corner Webs exclusively on active card */
@@ -281,6 +316,7 @@
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.6s ease, filter 0.5s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  margin: 0 auto;
 }
 
 .team-card.in-view {

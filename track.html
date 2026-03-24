@@ -34,8 +34,36 @@
       <a href="index.html?nl=1#problems" class="nav__logo" aria-label="Back to main">
         <img src="assets/Logo/logo.svg" alt="Makeathon 7.0" class="nav__logo-img" />
       </a>
-      <a href="index.html?nl=1#problems" class="btn btn--nav text-yellow">← BACK</a>
+      <ul class="nav__links">
+        <li><a href="index.html#about" class="nav__link">About Us</a></li>
+        <li><a href="index.html#timeline" class="nav__link">Timeline</a></li>
+        <li><a href="index.html#problems" class="nav__link">Problem Statements</a></li>
+        <li><a href="index.html#sponsorship" class="nav__link">Sponsors</a></li>
+        <li><a href="index.html#team" class="nav__link">The Crew</a></li>
+        <li><a href="index.html#faq" class="nav__link">FAQ</a></li>
+      </ul>
+      <a href="index.html#hero" class="btn btn--nav text-yellow">REGISTER</a>
+      <!-- Hamburger toggle (mobile only) -->
+      <button class="nav__hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-drawer">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
+  </nav>
+
+  <!-- Mobile slide-out drawer -->
+  <div class="nav__drawer" id="nav-drawer" role="dialog" aria-label="Navigation menu">
+    <a href="index.html#about" class="nav__drawer-link">About Us</a>
+    <a href="index.html#timeline" class="nav__drawer-link">Timeline</a>
+    <a href="index.html#problems" class="nav__drawer-link">Problem Statements</a>
+    <a href="index.html#sponsorship" class="nav__drawer-link">Sponsors</a>
+    <a href="index.html#team" class="nav__drawer-link">The Crew</a>
+    <a href="index.html#faq" class="nav__drawer-link">FAQ</a>
+    <a href="index.html#hero" class="btn btn--nav text-yellow">REGISTER</a>
+  </div>
+  <!-- Backdrop -->
+  <div class="nav__overlay" id="nav-overlay" aria-hidden="true"></div>
   </nav>
 
   <!-- Main layout -->
@@ -68,6 +96,7 @@
     </div>
   </div>
 
+  <script src="js/core/hamburger.js"></script>
   <script type="module" src="js/track.js"></script>
 </body>
 </html>
