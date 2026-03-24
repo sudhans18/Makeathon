@@ -14,10 +14,10 @@ export const UNIVERSES = [
         background: 'assets/background/friendly_neighbourhood_spiderman_bg.jpeg',
         href: 'universe.html?u=1',
         problems: [
-            { title: 'Field Mesh Beacon',  tag: 'embedded',       desc: 'Build a resilient beacon network that can fail over locally when the field conditions get messy.' },
-            { title: 'Sensor Fusion Hub',  tag: 'iot',            desc: 'Combine noisy sensor feeds into one dependable dashboard that can still be trusted under stress.' },
-            { title: 'Rapid Repair Shell', tag: 'mechanical',     desc: 'Prototype a modular enclosure that makes emergency fixes fast, simple, and tool-light.' },
-            { title: 'Live Health Probe',  tag: 'telemetry',      desc: 'Show device health in real time with a small diagnostics unit that can warn before failure.' },
+            { title: 'Field Mesh Beacon', tag: 'embedded', desc: 'Build a resilient beacon network that can fail over locally when the field conditions get messy.' },
+            { title: 'Sensor Fusion Hub', tag: 'iot', desc: 'Combine noisy sensor feeds into one dependable dashboard that can still be trusted under stress.' },
+            { title: 'Rapid Repair Shell', tag: 'mechanical', desc: 'Prototype a modular enclosure that makes emergency fixes fast, simple, and tool-light.' },
+            { title: 'Live Health Probe', tag: 'telemetry', desc: 'Show device health in real time with a small diagnostics unit that can warn before failure.' },
         ],
     },
     {
@@ -35,10 +35,10 @@ export const UNIVERSES = [
         background: 'assets/background/ironspider_bg.webp',
         href: 'universe.html?u=2',
         problems: [
-            { title: 'Balance Assist Band',   tag: 'wearable',  desc: 'Create a wearable feedback layer that helps users correct posture and gait in real time.' },
-            { title: 'Smart Brake Module',    tag: 'controls',  desc: 'Prototype a compact braking controller for lightweight mobility platforms and carts.' },
-            { title: 'Impact Telemetry Pad',  tag: 'safety',    desc: 'Capture shock patterns and translate them into safety guidance for riders and operators.' },
-            { title: 'Motion Recovery Loop',  tag: 'assistive', desc: 'Design a recovery loop that can recalibrate itself after sudden movement or misalignment.' },
+            { title: 'Balance Assist Band', tag: 'wearable', desc: 'Create a wearable feedback layer that helps users correct posture and gait in real time.' },
+            { title: 'Smart Brake Module', tag: 'controls', desc: 'Prototype a compact braking controller for lightweight mobility platforms and carts.' },
+            { title: 'Impact Telemetry Pad', tag: 'safety', desc: 'Capture shock patterns and translate them into safety guidance for riders and operators.' },
+            { title: 'Motion Recovery Loop', tag: 'assistive', desc: 'Design a recovery loop that can recalibrate itself after sudden movement or misalignment.' },
         ],
     },
     {
@@ -56,10 +56,10 @@ export const UNIVERSES = [
         background: 'assets/background/mcu_spiderman_bg.webp',
         href: 'universe.html?u=3',
         problems: [
-            { title: 'Microclimate Node',  tag: 'climate',         desc: 'Build a compact node that can measure heat pockets, humidity shifts, and airflow loss.' },
+            { title: 'Microclimate Node', tag: 'climate', desc: 'Build a compact node that can measure heat pockets, humidity shifts, and airflow loss.' },
             { title: 'Hazard Strip Array', tag: 'instrumentation', desc: 'Create a deployable strip that maps air quality across a corridor or lab floor.' },
-            { title: 'Thermal Drift Alert',tag: 'monitoring',      desc: 'Detect gradual thermal anomalies before they turn into visible system failures.' },
-            { title: 'Ventilation Map',    tag: 'sensing',         desc: 'Visualize moving air and dead zones so teams can quickly understand the room state.' },
+            { title: 'Thermal Drift Alert', tag: 'monitoring', desc: 'Detect gradual thermal anomalies before they turn into visible system failures.' },
+            { title: 'Ventilation Map', tag: 'sensing', desc: 'Visualize moving air and dead zones so teams can quickly understand the room state.' },
         ],
     },
     {
@@ -77,10 +77,10 @@ export const UNIVERSES = [
         background: 'assets/background/miles_morales_bg.jpeg',
         href: 'universe.html?u=4',
         problems: [
-            { title: 'Stairwell Harvester', tag: 'energy',       desc: 'Capture repeat footfall energy and buffer it for intermittent loads or edge devices.' },
-            { title: 'Heat Sink Battery Aid',tag: 'power',       desc: 'Use thermal gradients to assist low-power charging and reduce battery stress.' },
-            { title: 'Burst Buffer Board',  tag: 'pcb',          desc: 'Smooth erratic harvested power into stable output that downstream circuits can trust.' },
-            { title: 'Idle Power Divider',  tag: 'optimization', desc: 'Design a controller that distributes tiny energy reserves without wasting a single burst.' },
+            { title: 'Autonomous flood‑submergence marker and rescue‑guidance buoy for urban drains and nullahs', tag: 'energy', desc: 'Description: Urban floods in Indian cities regularly claim lives when people or vehicles enter deep‑water stretches of drains and nullahs with no visible depth markers. Existing markers are often washed away or not visible at night. Expected solution:- Design an autonomous floating buoy with: - Water‑level sensor and sonar‑based depth measurement. - On‑board LED/LED‑strip that changes color based on depth (e.g., green ≤ 0.5 m, red > 1.5 m). - GPS and GSM/NB‑IoT module to transmit real‑time water levels and location to a control room. - Integrate a solar‑charged battery and tilt‑proof casing for long‑term deployment in urban drains. - Enable remote configuration of depth thresholds and flashing patterns for different zo' },
+            { title: 'Heat Sink Battery Aid', tag: 'power', desc: 'Use thermal gradients to assist low-power charging and reduce battery stress.' },
+            { title: 'Burst Buffer Board', tag: 'pcb', desc: 'Smooth erratic harvested power into stable output that downstream circuits can trust.' },
+            { title: 'Idle Power Divider', tag: 'optimization', desc: 'Design a controller that distributes tiny energy reserves without wasting a single burst.' },
         ],
     },
     {
@@ -98,10 +98,10 @@ export const UNIVERSES = [
         background: 'assets/background/scarlett_spider_bg.jpeg',
         href: 'universe.html?u=5',
         problems: [
-            { title: 'Crowd Flow Tile',   tag: 'smart-space', desc: 'Build a smart floor tile that detects traffic density and movement direction in public spaces.' },
-            { title: 'Context Beacon',    tag: 'interface',   desc: 'Prototype an indicator that adapts messaging to occupancy and ambient conditions.' },
-            { title: 'Touchless Panel Kit',tag: 'ux-hardware',desc: 'Design a public control panel that reduces contact while preserving reliable input.' },
-            { title: 'Presence Anchor',   tag: 'interaction', desc: 'Create a context-aware marker that reacts differently when a person approaches or leaves.' },
+            { title: 'Crowd Flow Tile', tag: 'smart-space', desc: 'Build a smart floor tile that detects traffic density and movement direction in public spaces.' },
+            { title: 'Context Beacon', tag: 'interface', desc: 'Prototype an indicator that adapts messaging to occupancy and ambient conditions.' },
+            { title: 'Touchless Panel Kit', tag: 'ux-hardware', desc: 'Design a public control panel that reduces contact while preserving reliable input.' },
+            { title: 'Presence Anchor', tag: 'interaction', desc: 'Create a context-aware marker that reacts differently when a person approaches or leaves.' },
         ],
     },
     {
@@ -119,10 +119,10 @@ export const UNIVERSES = [
         background: 'assets/background/spider_gwen_bg.jpeg',
         href: 'universe.html?u=6',
         problems: [
-            { title: 'Snap-Lock Frame',     tag: 'mechanical',    desc: 'Create a repeatable frame system for quick assembly of experimental rigs.' },
+            { title: 'Snap-Lock Frame', tag: 'mechanical', desc: 'Create a repeatable frame system for quick assembly of experimental rigs.' },
             { title: 'Service Joint Stack', tag: 'manufacturing', desc: 'Design a joint assembly that tolerates repeated teardown without alignment drift.' },
-            { title: 'Modular Test Cradle', tag: 'fabrication',   desc: 'Build an adjustable test cradle for rapid prototyping across different device sizes.' },
-            { title: 'Quick Swap Spine',    tag: 'maintenance',   desc: 'Prototype a backbone mount that lets parts be replaced without rebuilding the full system.' },
+            { title: 'Modular Test Cradle', tag: 'fabrication', desc: 'Build an adjustable test cradle for rapid prototyping across different device sizes.' },
+            { title: 'Quick Swap Spine', tag: 'maintenance', desc: 'Prototype a backbone mount that lets parts be replaced without rebuilding the full system.' },
         ],
     },
     {
@@ -140,10 +140,10 @@ export const UNIVERSES = [
         background: 'assets/background/spider_noir_bg.jpeg',
         href: 'universe.html?u=7',
         problems: [
-            { title: 'Priority Shift Engine',   tag: 'backend',  desc: 'Build a planner that reorders tasks continuously as urgency and risk change.' },
-            { title: 'Explainable Alert Layer',  tag: 'ai',      desc: 'Design a system that flags anomalies and explains why action is needed in plain language.' },
-            { title: 'Multi-Stream Triage',      tag: 'systems', desc: 'Handle competing event streams without starving critical signals or operator focus.' },
-            { title: 'Decision Traceboard',      tag: 'ops',     desc: 'Summarize the full decision path so teams can audit why the system chose a branch.' },
+            { title: 'Personalized Learning for Dyslexic Students', tag: 'backend', desc: 'Description: Dyslexia affects 15-20% of Indian schoolchildren (35 million+), with poor diagnosis and tools widening urban-rural learning gaps—standard curricula fail neurodiverse kids, dropping dropout rates. An adaptive ML platform uses eye-tracking, comprehension AI, and AR overlays (e.g., color-coded text, phoneme highlights) to tailor lessons, improving retention by 40%. It supports SDG 4 inclusivity worldwide. Expected Solution: Web/mobile app with webcam-based eye-tracking and NLP to assess reading patterns, generating personalized content. - ML adaptive engine (e.g., reinforcement learning) adjusts difficulty, tracks progress, and suggests interventions. - Teacher dashboard for class insights, IEP generation, and parent reports; multilingual for Tamil/Hindi. -Integrate with school LMS (e.g., DIKSHA) and gamification for engagement, with free tier for rural govt schools. - Optional (AR features (via WebAR) overlay audio guides, dyslexia fonts, and spaced repetition on textbooks/PDFs).' },
+            { title: 'Explainable Alert Layer', tag: 'ai', desc: 'Design a system that flags anomalies and explains why action is needed in plain language.' },
+            { title: 'Multi-Stream Triage', tag: 'systems', desc: 'Handle competing event streams without starving critical signals or operator focus.' },
+            { title: 'Decision Traceboard', tag: 'ops', desc: 'Summarize the full decision path so teams can audit why the system chose a branch.' },
         ],
     },
     {
@@ -161,10 +161,10 @@ export const UNIVERSES = [
         background: 'assets/background/spiderman_2099_bg.jpeg',
         href: 'universe.html?u=8',
         problems: [
-            { title: 'Indoor Path Mesh',     tag: 'mapping',    desc: 'Generate adaptive indoor routing when corridors, elevators, or access states change.' },
-            { title: 'Proximity Risk Engine',tag: 'analytics',  desc: 'Detect congestion and unsafe clustering from live location data before it spreads.' },
-            { title: 'View-State Overlay',   tag: 'frontend',   desc: 'Build a visual layer that explains spatial changes across floors, zones, or rooms.' },
-            { title: 'Navigation Replay',    tag: 'ux',         desc: 'Show how a user or device moved through space so the result is easy to inspect.' },
+            { title: 'Community-Verified Utility Outage Map', tag: 'mapping', desc: 'Description: In many Indian cities and towns, power and water outages are highly local, poorly communicated, and often only known through informal WhatsApp groups or word of mouth. This creates confusion, unnecessary complaint volume, and lack of trust between citizens and utilities, as people don’t know what’s happening, where, and for how long. A community-verified outage mapping platform that combines citizen reports with simple sensor data can provide near real-time visibility into outages, helping both consumers and utility providers. Expected solution:- Build a platform where users can quickly report outages (power/water) with approximate location via app, web, WhatsApp, or IVR. - Use clustering and validation logic to merge duplicate/outlier reports and reduce false positives. - Optionally integrate low-cost IoT sensors (at apartments, RWAs, public buildings) to automatically detect outages and validate community reports. - Visualize live outage zones on a map with basic metadata (start time, status, approximate restoration time if available). - Provide simple dashboards or APIs for utilities/municipalities to monitor outages and communicate planned maintenance.' },
+            { title: 'Proximity Risk Engine', tag: 'analytics', desc: 'Detect congestion and unsafe clustering from live location data before it spreads.' },
+            { title: 'View-State Overlay', tag: 'frontend', desc: 'Build a visual layer that explains spatial changes across floors, zones, or rooms.' },
+            { title: 'Navigation Replay', tag: 'ux', desc: 'Show how a user or device moved through space so the result is easy to inspect.' },
         ],
     },
     {
@@ -182,10 +182,10 @@ export const UNIVERSES = [
         background: 'assets/background/spiderman_india_bg.jpeg',
         href: 'universe.html?u=9',
         problems: [
-            { title: 'Ephemeral Access Broker', tag: 'security',    desc: 'Issue short-lived credentials across devices with strong audit trails and expiry logic.' },
-            { title: 'Trace Compression Tool',  tag: 'forensics',   desc: 'Summarize suspicious behavior across large event logs into operator-friendly views.' },
-            { title: 'Silent Fallback Channel',  tag: 'networking',  desc: 'Maintain secure communication when the primary network paths degrade or disappear.' },
-            { title: 'Trust Boundary Map',       tag: 'governance',  desc: 'Render where trust starts and ends so the system can block unsafe transitions early.' },
+            { title: 'Blockchain Credential Verification for Education', tag: 'security', desc: 'Description: Credential fraud is rampant in India, with over 1.5 million fake certificates detected annually, costing the economy billions and hindering rural youth employment—rural students often lack verifiable qualifications for urban jobs or international opportunities. A blockchain-based decentralized platform issues tamper-proof digital certificates (e.g., degrees, skill certifications) stored on a public ledger, allowing instant, intermediary-free verification via QR codes or wallet shares. This empowers 250 million rural Indians under NEP 2020 and aligns globally with SDG 4 by enabling cross-border academic mobility without forgery risks. Expected Solution:- Deploy Ethereum/Polygon blockchain for low-cost, scalable credential minting with cryptographic signatures. - Institutions use a web dashboard to issue NFTs or verifiable credentials (VCs) compliant with W3C standards. - Users access a mobile wallet app to share selective credentials securely with employers via zero-knowledge proofs. - Integrate QR scanners and APIs for employers to verify authenticity in seconds, with audit trails. - Add smart contracts for automated expiry/renewal and multi-language support for rural accessibility' },
+            { title: 'Local-Language Grievance Auto-Routing for Municipalities', tag: 'forensics', desc: 'Description: Municipalities receive thousands of citizen complaints daily across channels like WhatsApp, helplines, and apps, usually in mixed local language, English, slang, voice notes, and images. Human operators struggle to read, understand, categorize, and forward each complaint to the right department, leading to delays, misrouting, and citizen frustration. An AI-driven, local-language-aware routing engine can drastically improve response times and accountability by automatically interpreting multi-modal complaints and sending them to the correct municipal teams. Expected solution: - Design an NLP and speech-processing pipeline that can handle code-mixed Indian languages (e.g., Tamil+English, Hindi+English) and dialects. - Accept multi-modal inputs (text, voice notes, images) and convert them into a structured complaint representation (category, location, urgency). - Auto-route complaints to the appropriate department/ward and priority level based on content and historical patterns. - Provide a simple dashboard for officials to track volumes, resolution status, and recurring issues. - Implement feedback mechanisms (user rating, reopened complaints) to improve classification and routing accuracy over time.' },
+            { title: 'Silent Fallback Channel', tag: 'networking', desc: 'Maintain secure communication when the primary network paths degrade or disappear.' },
+            { title: 'Trust Boundary Map', tag: 'governance', desc: 'Render where trust starts and ends so the system can block unsafe transitions early.' },
         ],
     },
     {
@@ -203,10 +203,10 @@ export const UNIVERSES = [
         background: 'assets/background/superior_spiderman_bg.jpg',
         href: 'universe.html?u=10',
         problems: [
-            { title: 'Signal Storyboard',    tag: 'visualization', desc: 'Transform raw time-series streams into meaningful incident narratives.' },
-            { title: 'Pattern Drift Lens',   tag: 'observability', desc: 'Highlight slow changes before they trigger obvious failures or missed alerts.' },
-            { title: 'Operator Replay Board',tag: 'product',       desc: 'Create a replay interface for decision points during an event or outage.' },
-            { title: 'Metric Timeline Split',tag: 'dashboard',     desc: 'Lay out the same incident across multiple views so the storyline stays readable.' },
+            { title: 'UPI/Wallet Scam Early-Warning Coach for First-Time Users', tag: 'visualization', desc: 'Description: As digital payments explode across India, many first-time users—especially senior citizens, rural users, and low-digital-literacy groups—are targeted by social-engineering scams like fake payment requests, “receive” vs “send” confusion, remote screen-sharing, and phishing links. Traditional awareness campaigns are generic and not context-aware at the moment when a risky action is being taken. An intelligent, real-time “safety coach” can monitor patterns of requests and messages and intervene just in time with clear warnings in the user’s language. Expected solution:- Create an assistive app/service that can monitor incoming payment requests, SMS/notifications, and key UPI interactions (with consent). - Use rules and ML models to identify risky behavior patterns (unknown collect requests, unusually high amounts, repeated failed PIN entries, suspicious message templates). - Provide immediate, simple, language-appropriate alerts using text and voice (“This request looks suspicious. Verify before paying.”). - Offer an educational mode with interactive, scenario-based training so new users can practice safely. - Log anonymized incidents (with consent) to continuously improve scam pattern detection and share insights with partners (banks/UPI apps)' },
+            { title: 'Pattern Drift Lens', tag: 'observability', desc: 'Highlight slow changes before they trigger obvious failures or missed alerts.' },
+            { title: 'Operator Replay Board', tag: 'product', desc: 'Create a replay interface for decision points during an event or outage.' },
+            { title: 'Metric Timeline Split', tag: 'dashboard', desc: 'Lay out the same incident across multiple views so the storyline stays readable.' },
         ],
     },
     {
@@ -224,10 +224,10 @@ export const UNIVERSES = [
         background: 'assets/background/symbiote_spiderman_bg.jpeg',
         href: 'universe.html?u=11',
         problems: [
-            { title: 'Escalation Router',          tag: 'workflow',    desc: 'Route alerts and tasks based on role, load, and historical response quality.' },
-            { title: 'Recovery Sequence Builder',   tag: 'automation',  desc: 'Create a safe automation engine for repeatable recovery procedures.' },
-            { title: 'Operator Override Panel',     tag: 'ui',          desc: 'Design a UI that makes automation state and intervention points obvious.' },
-            { title: 'Rollback Sentinel',            tag: 'safety',      desc: 'Detect when an automated action has drifted and stop it before it multiplies.' },
+            { title: 'Escalation Router', tag: 'workflow', desc: 'Route alerts and tasks based on role, load, and historical response quality.' },
+            { title: 'Recovery Sequence Builder', tag: 'automation', desc: 'Create a safe automation engine for repeatable recovery procedures.' },
+            { title: 'Operator Override Panel', tag: 'ui', desc: 'Design a UI that makes automation state and intervention points obvious.' },
+            { title: 'Rollback Sentinel', tag: 'safety', desc: 'Detect when an automated action has drifted and stop it before it multiplies.' },
         ],
     },
     {
@@ -245,10 +245,10 @@ export const UNIVERSES = [
         background: 'assets/background/tasm_bg.webp',
         href: 'universe.html?u=12',
         problems: [
-            { title: 'Anomaly Classifier Desk', tag: 'ml',         desc: 'Prototype a review workflow for model-suggested anomaly categories with feedback loops.' },
-            { title: 'Ops Summary Agent',        tag: 'agents',     desc: 'Condense noisy telemetry into practical action items that humans can trust quickly.' },
-            { title: 'Confidence Gatekeeper',    tag: 'governance', desc: 'Control when model output is allowed to act and when a human must intervene.' },
-            { title: 'Bias Check Loop',           tag: 'validation', desc: 'Surface weak spots in the model\'s choices before the result reaches production.' },
+            { title: 'Micro-Insurance for Climate-Resilient Farmers', tag: 'ml', desc: ' Description: Climate events cause ₹1.5 lakh crore annual losses to India 120 million small farmers, with traditional insurance failing due to delayed claims (30-90 days). Parametric insurance uses objective triggers like rainfall deficits, excess rain, heatwaves, or poor crop health (NDVI) to auto-trigger payouts within 24 hours via blockchain smart contracts—no crop surveys needed. A FinTech mobile app integrates satellite data (ISRO/IMD), AI risk forecasting, and UPI payments to deliver instant funds for replanting or recovery, scaling to global smallholders under SDG 13 (Climate Action), SDG 2 (Zero Hunger). Expected Solution:- Integrate multi-parameter APIs: ISRO Bhuvan/IMD for rainfall (SPI indices), NASA MODIS for NDVI/vegetation health, temperature extremes (heatwave/frost). - Blockchain smart contracts (Polygon/Ethereum) automate UPI premium collection and instant wallet payouts when ANY trigger breaches (e.g., rainfall <40% normal OR NDVI drop >25% OR temp >42°C). - AI/ML risk engine forecasts personalized premiums using historical + real-time data; mobile app with regional language support (Hindi, Tamil, etc.) for policy signup. - Farmer dashboard showing live Risk Score (Red/Yellow/Green) across rainfall, temperature, crop health; group policies for cooperatives. - Insurer partnership backend for risk pooling, impact analytics, and gamified adoption (loyalty tokens, climate-smart farming modules)' },
+            { title: 'Ops Summary Agent', tag: 'agents', desc: 'Condense noisy telemetry into practical action items that humans can trust quickly.' },
+            { title: 'Confidence Gatekeeper', tag: 'governance', desc: 'Control when model output is allowed to act and when a human must intervene.' },
+            { title: 'Bias Check Loop', tag: 'validation', desc: 'Surface weak spots in the model\'s choices before the result reaches production.' },
         ],
     },
 ];
