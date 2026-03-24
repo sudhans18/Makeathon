@@ -14,10 +14,20 @@ export const UNIVERSES = [
         background: 'assets/background/friendly_neighbourhood_spiderman_bg.jpeg',
         href: 'universe.html?u=1',
         problems: [
-            { title: 'Field Mesh Beacon', tag: 'embedded', desc: 'Build a resilient beacon network that can fail over locally when the field conditions get messy.' },
-            { title: 'Sensor Fusion Hub', tag: 'iot', desc: 'Combine noisy sensor feeds into one dependable dashboard that can still be trusted under stress.' },
-            { title: 'Rapid Repair Shell', tag: 'mechanical', desc: 'Prototype a modular enclosure that makes emergency fixes fast, simple, and tool-light.' },
-            { title: 'Live Health Probe', tag: 'telemetry', desc: 'Show device health in real time with a small diagnostics unit that can warn before failure.' },
+            {
+                title: 'Smartphone-Linked Off-Grid Mesh Communication System for Reserve Forests',
+                tag: 'Mesh Networking / Off-Grid Communication',
+                desc: 'Remote forests and trekking zones lack reliable communication due to poor cellular coverage and restrictions on radio systems, making it difficult to coordinate rescues and ensure safety during emergencies like missing persons or wildlife threats. Existing solutions are expensive, infrastructure-dependent, or not user-friendly for the general public. A decentralized communication system can enable real-time connectivity without relying on cellular networks, improving safety and response time in off-grid environments.',
+                solution: [
+                    'Portable communication module using LoRa/BLE for long-range, low-power transmission',
+                    'Mesh networking for peer-to-peer and multi-hop communication',
+                    'Smartphone integration via mobile app for messaging, GPS sharing, and SOS alerts',
+                    'End-to-end encryption and secure authentication',
+                    'Offline functionality with efficient data compression',
+                    'Scalable architecture for large forest deployments'
+                ],
+                sdgs: ['SDG 9: Industry, Innovation, and Infrastructure', 'SDG 15: Life on Land']
+            },
         ],
     },
     {
@@ -56,10 +66,20 @@ export const UNIVERSES = [
         background: 'assets/background/mcu_spiderman_bg.webp',
         href: 'universe.html?u=3',
         problems: [
-            { title: 'Microclimate Node', tag: 'climate', desc: 'Build a compact node that can measure heat pockets, humidity shifts, and airflow loss.' },
-            { title: 'Hazard Strip Array', tag: 'instrumentation', desc: 'Create a deployable strip that maps air quality across a corridor or lab floor.' },
-            { title: 'Thermal Drift Alert', tag: 'monitoring', desc: 'Detect gradual thermal anomalies before they turn into visible system failures.' },
-            { title: 'Ventilation Map', tag: 'sensing', desc: 'Visualize moving air and dead zones so teams can quickly understand the room state.' },
+            {
+                title: 'Smart Tamarind Storage System for Retaining Natural Color and Quality',
+                tag: 'Post-Harvest Technology / Food Preservation / Agri IoT',
+                desc: 'Post-harvest tamarind storage suffers from color degradation, moisture imbalance, and microbial growth, leading to reduced quality and economic losses for farmers. Traditional storage methods fail to preserve product quality over long durations, and existing solutions lack automation and scalability. A smart storage system that controls environmental conditions and monitors quality in real time can significantly improve shelf life and market value while supporting sustainable agricultural practices.',
+                solution: [
+                    'Temperature (4–6°C) and humidity-controlled storage system',
+                    'Anti-browning solutions (safe sulphur fumigation or natural alternatives like ascorbic acid)',
+                    'Oxygen- and light-resistant packaging design',
+                    'IoT sensors for real-time monitoring of storage conditions',
+                    'Mobile/web dashboard with alerts for condition deviations',
+                    'Cost-effective and scalable solution for rural deployment'
+                ],
+                sdgs: ['SDG 2: Zero Hunger', 'SDG 12: Responsible Consumption and Production']
+            },
         ],
     },
     {
@@ -119,10 +139,22 @@ export const UNIVERSES = [
         background: 'assets/background/spider_gwen_bg.jpeg',
         href: 'universe.html?u=6',
         problems: [
-            { title: 'Snap-Lock Frame', tag: 'mechanical', desc: 'Create a repeatable frame system for quick assembly of experimental rigs.' },
-            { title: 'Service Joint Stack', tag: 'manufacturing', desc: 'Design a joint assembly that tolerates repeated teardown without alignment drift.' },
-            { title: 'Modular Test Cradle', tag: 'fabrication', desc: 'Build an adjustable test cradle for rapid prototyping across different device sizes.' },
-            { title: 'Quick Swap Spine', tag: 'maintenance', desc: 'Prototype a backbone mount that lets parts be replaced without rebuilding the full system.' },
+            {
+                title: 'IoT-Enabled Self-Powered Industrial Equipment Health Monitoring System Using Waste Heat Energy Harvesting',
+                tag: 'Waste-to-Energy / Green Technology',
+                desc: 'Industrial machines such as motors, boilers, and compressors generate significant waste heat that remains unused, while existing condition monitoring systems rely on external power or frequent battery replacement. This limits continuous monitoring in harsh or remote industrial environments, leading to unplanned failures, increased downtime, and higher maintenance costs. A self-powered monitoring system is needed that can harvest waste heat and operate autonomously while continuously tracking machine health for predictive maintenance.',
+                solution: [
+                    'Thermoelectric generator (TEG) module for converting waste heat into electrical energy',
+                    'Energy storage system (supercapacitor/battery) for stable power supply',
+                    'Embedded sensors for vibration, temperature, and current monitoring',
+                    'Low-power microcontroller for data acquisition and preprocessing',
+                    'Edge-level feature extraction (RMS, FFT, anomaly indicators)',
+                    'Wireless communication (LoRa/Wi-Fi) for real-time data transmission',
+                    'Cloud/dashboard for predictive maintenance insights and alerts',
+                    'Rugged, compact design for industrial deployment'
+                ],
+                sdgs: ['SDG 7: Affordable and Clean Energy', 'SDG 11: Sustainable Cities and Communities']
+            },
         ],
     },
     {
@@ -140,10 +172,20 @@ export const UNIVERSES = [
         background: 'assets/background/spider_noir_bg.jpeg',
         href: 'universe.html?u=7',
         problems: [
-            { title: 'Personalized Learning for Dyslexic Students', tag: 'backend', desc: 'Description: Dyslexia affects 15-20% of Indian schoolchildren (35 million+), with poor diagnosis and tools widening urban-rural learning gaps—standard curricula fail neurodiverse kids, dropping dropout rates. An adaptive ML platform uses eye-tracking, comprehension AI, and AR overlays (e.g., color-coded text, phoneme highlights) to tailor lessons, improving retention by 40%. It supports SDG 4 inclusivity worldwide. Expected Solution: Web/mobile app with webcam-based eye-tracking and NLP to assess reading patterns, generating personalized content. - ML adaptive engine (e.g., reinforcement learning) adjusts difficulty, tracks progress, and suggests interventions. - Teacher dashboard for class insights, IEP generation, and parent reports; multilingual for Tamil/Hindi. -Integrate with school LMS (e.g., DIKSHA) and gamification for engagement, with free tier for rural govt schools. - Optional (AR features (via WebAR) overlay audio guides, dyslexia fonts, and spaced repetition on textbooks/PDFs).' },
-            { title: 'Explainable Alert Layer', tag: 'ai', desc: 'Design a system that flags anomalies and explains why action is needed in plain language.' },
-            { title: 'Multi-Stream Triage', tag: 'systems', desc: 'Handle competing event streams without starving critical signals or operator focus.' },
-            { title: 'Decision Traceboard', tag: 'ops', desc: 'Summarize the full decision path so teams can audit why the system chose a branch.' },
+            {
+                title: 'AI-Based Early Detection System for Diabetic Retinopathy Using Retinal Fundus Images',
+                tag: 'Medical Imaging / Computer Vision',
+                desc: 'Diabetic retinopathy is a major cause of preventable blindness, especially in rural areas where access to specialists is limited. Manual screening is time-consuming and not scalable. An AI-powered diagnostic system can automate detection and classification, enabling early intervention and large-scale screening.',
+                solution: [
+                    'Image processing pipeline for retinal fundus images',
+                    'Deep learning model (CNN) for classification of severity levels',
+                    'Explainable AI (heatmaps) for highlighting affected regions',
+                    'Deployment on mobile or cloud platforms',
+                    'Simple interface for healthcare workers',
+                    'Secure handling of medical data and compliance'
+                ],
+                sdgs: ['SDG 3: Good Health and Well-being']
+            },
         ],
     },
     {
@@ -203,10 +245,20 @@ export const UNIVERSES = [
         background: 'assets/background/superior_spiderman_bg.jpg',
         href: 'universe.html?u=10',
         problems: [
-            { title: 'UPI/Wallet Scam Early-Warning Coach for First-Time Users', tag: 'visualization', desc: 'Description: As digital payments explode across India, many first-time users—especially senior citizens, rural users, and low-digital-literacy groups—are targeted by social-engineering scams like fake payment requests, “receive” vs “send” confusion, remote screen-sharing, and phishing links. Traditional awareness campaigns are generic and not context-aware at the moment when a risky action is being taken. An intelligent, real-time “safety coach” can monitor patterns of requests and messages and intervene just in time with clear warnings in the user’s language. Expected solution:- Create an assistive app/service that can monitor incoming payment requests, SMS/notifications, and key UPI interactions (with consent). - Use rules and ML models to identify risky behavior patterns (unknown collect requests, unusually high amounts, repeated failed PIN entries, suspicious message templates). - Provide immediate, simple, language-appropriate alerts using text and voice (“This request looks suspicious. Verify before paying.”). - Offer an educational mode with interactive, scenario-based training so new users can practice safely. - Log anonymized incidents (with consent) to continuously improve scam pattern detection and share insights with partners (banks/UPI apps)' },
-            { title: 'Pattern Drift Lens', tag: 'observability', desc: 'Highlight slow changes before they trigger obvious failures or missed alerts.' },
-            { title: 'Operator Replay Board', tag: 'product', desc: 'Create a replay interface for decision points during an event or outage.' },
-            { title: 'Metric Timeline Split', tag: 'dashboard', desc: 'Lay out the same incident across multiple views so the storyline stays readable.' },
+            {
+                title: 'Blockchain-Based Secure Authentication Framework for IoT Devices',
+                tag: 'IoT Security / Device Authentication',
+                desc: 'IoT devices are widely used but lack strong security, making them vulnerable to cyberattacks. Centralized authentication systems create single points of failure and scalability issues. A decentralized authentication framework is needed to ensure secure communication and trust between devices.',
+                solution: [
+                    'Blockchain-based identity management for IoT devices',
+                    'Secure device authentication and authorization protocols',
+                    'Tamper-proof transaction logging',
+                    'Lightweight cryptographic mechanisms',
+                    'Scalable architecture for large IoT networks',
+                    'Integration with existing IoT platforms'
+                ],
+                sdgs: ['SDG 9: Industry, Innovation, and Infrastructure', 'SDG 11: Sustainable Cities and Communities']
+            },
         ],
     },
     {
@@ -224,10 +276,21 @@ export const UNIVERSES = [
         background: 'assets/background/symbiote_spiderman_bg.jpeg',
         href: 'universe.html?u=11',
         problems: [
-            { title: 'Escalation Router', tag: 'workflow', desc: 'Route alerts and tasks based on role, load, and historical response quality.' },
-            { title: 'Recovery Sequence Builder', tag: 'automation', desc: 'Create a safe automation engine for repeatable recovery procedures.' },
-            { title: 'Operator Override Panel', tag: 'ui', desc: 'Design a UI that makes automation state and intervention points obvious.' },
-            { title: 'Rollback Sentinel', tag: 'safety', desc: 'Detect when an automated action has drifted and stop it before it multiplies.' },
+            {
+                title: 'AR-Based 3D Crime Scene Reconstruction and Training Platform for Law Enforcement',
+                tag: '3D Reconstruction / Law Enforcement Technology',
+                desc: 'Effective crime scene investigation depends on accurate documentation and spatial analysis, but traditional methods like photographs and manual sketches often fail to capture complete scene details. This can lead to loss of critical evidence and reduced investigation efficiency. A digital solution is needed to enable 3D reconstruction of crime scenes, allowing investigators to visualize, analyze, and revisit scenes remotely. Integrating AR/VR-based training can further enhance officers\' skills in modern forensic techniques and improve investigation outcomes.',
+                solution: [
+                    '3D scanning of crime scenes using LiDAR/mobile camera (photogrammetry)',
+                    'Automated 3D reconstruction for accurate spatial visualization',
+                    'VR interface for immersive scene walkthrough and analysis',
+                    'AR-based training modules for crime scene procedures and evidence handling',
+                    'Annotation tools to mark, measure, and analyze evidence points',
+                    'Cloud storage for secure access and collaboration among investigators',
+                    'User-friendly interface for law enforcement personnel'
+                ],
+                sdgs: ['SDG 9: Industry, Innovation, and Infrastructure', 'SDG 16: Peace, Justice, and Strong Institutions']
+            },
         ],
     },
     {
@@ -245,10 +308,34 @@ export const UNIVERSES = [
         background: 'assets/background/tasm_bg.webp',
         href: 'universe.html?u=12',
         problems: [
-            { title: 'Micro-Insurance for Climate-Resilient Farmers', tag: 'ml', desc: ' Description: Climate events cause ₹1.5 lakh crore annual losses to India 120 million small farmers, with traditional insurance failing due to delayed claims (30-90 days). Parametric insurance uses objective triggers like rainfall deficits, excess rain, heatwaves, or poor crop health (NDVI) to auto-trigger payouts within 24 hours via blockchain smart contracts—no crop surveys needed. A FinTech mobile app integrates satellite data (ISRO/IMD), AI risk forecasting, and UPI payments to deliver instant funds for replanting or recovery, scaling to global smallholders under SDG 13 (Climate Action), SDG 2 (Zero Hunger). Expected Solution:- Integrate multi-parameter APIs: ISRO Bhuvan/IMD for rainfall (SPI indices), NASA MODIS for NDVI/vegetation health, temperature extremes (heatwave/frost). - Blockchain smart contracts (Polygon/Ethereum) automate UPI premium collection and instant wallet payouts when ANY trigger breaches (e.g., rainfall <40% normal OR NDVI drop >25% OR temp >42°C). - AI/ML risk engine forecasts personalized premiums using historical + real-time data; mobile app with regional language support (Hindi, Tamil, etc.) for policy signup. - Farmer dashboard showing live Risk Score (Red/Yellow/Green) across rainfall, temperature, crop health; group policies for cooperatives. - Insurer partnership backend for risk pooling, impact analytics, and gamified adoption (loyalty tokens, climate-smart farming modules)' },
-            { title: 'Ops Summary Agent', tag: 'agents', desc: 'Condense noisy telemetry into practical action items that humans can trust quickly.' },
-            { title: 'Confidence Gatekeeper', tag: 'governance', desc: 'Control when model output is allowed to act and when a human must intervene.' },
-            { title: 'Bias Check Loop', tag: 'validation', desc: 'Surface weak spots in the model\'s choices before the result reaches production.' },
+            {
+                title: 'AI-Powered Fraud Detection System to Protect Rural and Low-Literacy Banking Users from Social Engineering Attacks',
+                tag: 'Cybersecurity / Fraud Detection',
+                desc: 'Social engineering attacks such as phishing and fraudulent calls are increasingly targeting rural and low-literacy users, exploiting human behavior rather than system vulnerabilities. Traditional fraud detection systems fail to capture these behavioral patterns, resulting in financial losses. An intelligent system that detects suspicious user behavior and provides real-time intervention can significantly reduce fraud incidents while remaining accessible to vulnerable users.',
+                solution: [
+                    'Behavioral analysis of transaction patterns and anomalies',
+                    'Detection of contextual risk signals (unusual activity, rapid OTP usage)',
+                    'Call/SMS pattern monitoring without violating privacy',
+                    'AI-based adaptive risk scoring models',
+                    'Real-time alerts, voice warnings, and transaction delay mechanisms',
+                    'Multilingual, voice-enabled interface for accessibility'
+                ],
+                sdgs: ['SDG 9: Industry, Innovation, and Infrastructure', 'SDG 10: Reduced Inequalities']
+            },
+            {
+                title: 'Unified Digital Platform for Insurance Portfolio Management and Smart Policy Discovery',
+                tag: 'InsurTech / Personal Finance Management',
+                desc: 'Individuals often manage multiple insurance policies across different providers, leading to fragmented information, missed payments, and poor coverage decisions. Existing systems lack centralization, transparency, and personalized insights. A unified digital platform can simplify insurance management, improve financial awareness, and help users make informed decisions about their coverage needs.',
+                solution: [
+                    'Centralized dashboard to store and manage multiple insurance policies',
+                    'Automated reminders for premiums, renewals, and claims',
+                    'AI-based recommendations for policy comparison and optimization',
+                    'Risk analysis to identify coverage gaps and redundancies',
+                    'Secure onboarding for insurers and intermediaries',
+                    'Data privacy, encryption, and compliance mechanisms'
+                ],
+                sdgs: ['SDG 8: Decent Work and Economic Growth', 'SDG 9: Industry, Innovation, and Infrastructure']
+            },
         ],
     },
 ];
