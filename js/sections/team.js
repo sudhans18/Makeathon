@@ -3,7 +3,7 @@
    ─────────────────────────────────────────────────────────
    ★ EASY CONFIG — change either value below to your liking:
    ═══════════════════════════════════════════════════════════ */
-const CAROUSEL_AUTO_INTERVAL_MS = 1500; // auto-slide speed (milliseconds)
+const CAROUSEL_AUTO_INTERVAL_MS = 1000; // auto-slide speed (milliseconds)
 const CAROUSEL_VISIBLE_SIDES = 2;    // how many cards visible on each side
 
 /* ── SVG icons ───────────────────────────────────────────── */
@@ -27,7 +27,7 @@ const eceaMembers = [
 ].map(m => ({ ...m, path: `assets/ECEA-MEMBERS/${m.img}` }));
 
 const ieteMembers = [
-  { name: "Yaaminy S K", role: "Chair Person", img: "YAAMINY S K ECE.JPG", linkedin: "https://www.linkedin.com/in/yaaminy-karthikeyan", email: "yaaminykarthik@gmail.com" },
+  { name: "Yaaminy S K", role: "Chair Person", img: "YAAMINY S K ECE.jpg", linkedin: "https://www.linkedin.com/in/yaaminy-karthikeyan", email: "yaaminykarthik@gmail.com" },
   { name: "Roobuck Ganeshwara Rao C", role: "Vice Chair Person", img: "Roobuck ganeshwara rao C.jpg", linkedin: "https://www.linkedin.com/in/roobuck/", github: "https://github.com/ROOBUCK22", email: "roobuckrao2205@gmail.com" },
   { name: "Harini Chinnasamy", role: "Honorary Secretary", img: "HARINI C ECE.jpeg", linkedin: "https://www.linkedin.com/in/harini-chinnasamy-577209291/", github: "https://github.com/harini1208", email: "harinichinnasamy@gmail.com" },
   { name: "Bawadharani Sree R", role: "Honorary Treasurer", img: "BAWADHARANI.jpg", linkedin: "https://www.linkedin.com/in/bawadharani-sree-ramakrishnan-97a638218", github: "https://github.com/BawadharaniSree", email: "bawadharanisree@gmail.com" },
@@ -121,32 +121,43 @@ function initTeamSwipers() {
   const containers = ['team-panel-ecea', 'team-panel-iete', 'team-panel-race'];
   containers.forEach(id => {
     const swiperContainerId = `swiper-${id}`;
-    if (!document.getElementById(swiperContainerId)) return;
+    const containerEl = document.getElementById(swiperContainerId);
+    if (!containerEl) return;
+    
     teamSwipers[id] = new Swiper(`#${swiperContainerId}`, {
-      effect: 'coverflow',
+      effect: 'slide',
       grabCursor: true,
       centeredSlides: true,
       loop: true,
-      speed: 250, /* Improved scrolling speed */
+      speed: 800, /* Smooth sliding speed */
+      spaceBetween: 40,
       autoplay: {
-        delay: 2000,
+        delay: CAROUSEL_AUTO_INTERVAL_MS,
         disableOnInteraction: false, /* Keeps autoplay running after user swipes */
-        pauseOnMouseEnter: true      /* Pauses when the user hovers to read */
+        pauseOnMouseEnter: false     /* Custom logic below */
       },
       slidesPerView: 1.5,
+      slideToClickedSlide: true,
       observer: true,
       observeParents: true,
-      coverflowEffect: {
-        rotate: 0,
-        stretch: 95, /* Increased spacing between cards slightly */
-        depth: 140,
-        modifier: 1,
-        slideShadows: false,
-      },
       breakpoints: {
         768: { slidesPerView: 2.5 },
         1100: { slidesPerView: 3 }
       }
+    });
+
+    // Pause autoplay only when hovering the specifically active (centered) card
+    containerEl.addEventListener('mouseover', (e) => {
+      // Check if hovered element is within the active slide
+      if (e.target.closest('.swiper-slide-active')) {
+        teamSwipers[id].autoplay.stop();
+      } else {
+        teamSwipers[id].autoplay.start();
+      }
+    });
+    
+    containerEl.addEventListener('mouseout', () => {
+      teamSwipers[id].autoplay.start();
     });
   });
 }

@@ -538,10 +538,12 @@
     min-height: 220px;
   }
 
+  .detail-hero__art-wrap {
+    display: none !important;
+  }
+
   .detail-hero__art {
-    right: -40px;
-    height: 90%;
-    opacity: 0.4;
+    display: none !important;
   }
 
   .detail-hero__text {
