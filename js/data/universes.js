@@ -45,10 +45,10 @@ export const UNIVERSES = [
         background: 'assets/background/ironspider_bg.webp',
         href: 'universe.html?u=2',
         problems: [
-            { title: 'Balance Assist Band',   tag: 'wearable',  desc: 'Create a wearable feedback layer that helps users correct posture and gait in real time.' },
-            { title: 'Smart Brake Module',    tag: 'controls',  desc: 'Prototype a compact braking controller for lightweight mobility platforms and carts.' },
-            { title: 'Impact Telemetry Pad',  tag: 'safety',    desc: 'Capture shock patterns and translate them into safety guidance for riders and operators.' },
-            { title: 'Motion Recovery Loop',  tag: 'assistive', desc: 'Design a recovery loop that can recalibrate itself after sudden movement or misalignment.' },
+            { title: 'Balance Assist Band', tag: 'wearable', desc: 'Create a wearable feedback layer that helps users correct posture and gait in real time.' },
+            { title: 'Smart Brake Module', tag: 'controls', desc: 'Prototype a compact braking controller for lightweight mobility platforms and carts.' },
+            { title: 'Impact Telemetry Pad', tag: 'safety', desc: 'Capture shock patterns and translate them into safety guidance for riders and operators.' },
+            { title: 'Motion Recovery Loop', tag: 'assistive', desc: 'Design a recovery loop that can recalibrate itself after sudden movement or misalignment.' },
         ],
     },
     {
@@ -97,10 +97,10 @@ export const UNIVERSES = [
         background: 'assets/background/miles_morales_bg.jpeg',
         href: 'universe.html?u=4',
         problems: [
-            { title: 'Stairwell Harvester', tag: 'energy',       desc: 'Capture repeat footfall energy and buffer it for intermittent loads or edge devices.' },
-            { title: 'Heat Sink Battery Aid',tag: 'power',       desc: 'Use thermal gradients to assist low-power charging and reduce battery stress.' },
-            { title: 'Burst Buffer Board',  tag: 'pcb',          desc: 'Smooth erratic harvested power into stable output that downstream circuits can trust.' },
-            { title: 'Idle Power Divider',  tag: 'optimization', desc: 'Design a controller that distributes tiny energy reserves without wasting a single burst.' },
+            { title: 'Autonomous flood‑submergence marker and rescue‑guidance buoy for urban drains and nullahs', tag: 'energy', desc: 'Description: Urban floods in Indian cities regularly claim lives when people or vehicles enter deep‑water stretches of drains and nullahs with no visible depth markers. Existing markers are often washed away or not visible at night. Expected solution:- Design an autonomous floating buoy with: - Water‑level sensor and sonar‑based depth measurement. - On‑board LED/LED‑strip that changes color based on depth (e.g., green ≤ 0.5 m, red > 1.5 m). - GPS and GSM/NB‑IoT module to transmit real‑time water levels and location to a control room. - Integrate a solar‑charged battery and tilt‑proof casing for long‑term deployment in urban drains. - Enable remote configuration of depth thresholds and flashing patterns for different zo' },
+            { title: 'Heat Sink Battery Aid', tag: 'power', desc: 'Use thermal gradients to assist low-power charging and reduce battery stress.' },
+            { title: 'Burst Buffer Board', tag: 'pcb', desc: 'Smooth erratic harvested power into stable output that downstream circuits can trust.' },
+            { title: 'Idle Power Divider', tag: 'optimization', desc: 'Design a controller that distributes tiny energy reserves without wasting a single burst.' },
         ],
     },
     {
@@ -118,10 +118,10 @@ export const UNIVERSES = [
         background: 'assets/background/scarlett_spider_bg.jpeg',
         href: 'universe.html?u=5',
         problems: [
-            { title: 'Crowd Flow Tile',   tag: 'smart-space', desc: 'Build a smart floor tile that detects traffic density and movement direction in public spaces.' },
-            { title: 'Context Beacon',    tag: 'interface',   desc: 'Prototype an indicator that adapts messaging to occupancy and ambient conditions.' },
-            { title: 'Touchless Panel Kit',tag: 'ux-hardware',desc: 'Design a public control panel that reduces contact while preserving reliable input.' },
-            { title: 'Presence Anchor',   tag: 'interaction', desc: 'Create a context-aware marker that reacts differently when a person approaches or leaves.' },
+            { title: 'Crowd Flow Tile', tag: 'smart-space', desc: 'Build a smart floor tile that detects traffic density and movement direction in public spaces.' },
+            { title: 'Context Beacon', tag: 'interface', desc: 'Prototype an indicator that adapts messaging to occupancy and ambient conditions.' },
+            { title: 'Touchless Panel Kit', tag: 'ux-hardware', desc: 'Design a public control panel that reduces contact while preserving reliable input.' },
+            { title: 'Presence Anchor', tag: 'interaction', desc: 'Create a context-aware marker that reacts differently when a person approaches or leaves.' },
         ],
     },
     {
@@ -203,10 +203,10 @@ export const UNIVERSES = [
         background: 'assets/background/spiderman_2099_bg.jpeg',
         href: 'universe.html?u=8',
         problems: [
-            { title: 'Indoor Path Mesh',     tag: 'mapping',    desc: 'Generate adaptive indoor routing when corridors, elevators, or access states change.' },
-            { title: 'Proximity Risk Engine',tag: 'analytics',  desc: 'Detect congestion and unsafe clustering from live location data before it spreads.' },
-            { title: 'View-State Overlay',   tag: 'frontend',   desc: 'Build a visual layer that explains spatial changes across floors, zones, or rooms.' },
-            { title: 'Navigation Replay',    tag: 'ux',         desc: 'Show how a user or device moved through space so the result is easy to inspect.' },
+            { title: 'Community-Verified Utility Outage Map', tag: 'mapping', desc: 'Description: In many Indian cities and towns, power and water outages are highly local, poorly communicated, and often only known through informal WhatsApp groups or word of mouth. This creates confusion, unnecessary complaint volume, and lack of trust between citizens and utilities, as people don’t know what’s happening, where, and for how long. A community-verified outage mapping platform that combines citizen reports with simple sensor data can provide near real-time visibility into outages, helping both consumers and utility providers. Expected solution:- Build a platform where users can quickly report outages (power/water) with approximate location via app, web, WhatsApp, or IVR. - Use clustering and validation logic to merge duplicate/outlier reports and reduce false positives. - Optionally integrate low-cost IoT sensors (at apartments, RWAs, public buildings) to automatically detect outages and validate community reports. - Visualize live outage zones on a map with basic metadata (start time, status, approximate restoration time if available). - Provide simple dashboards or APIs for utilities/municipalities to monitor outages and communicate planned maintenance.' },
+            { title: 'Proximity Risk Engine', tag: 'analytics', desc: 'Detect congestion and unsafe clustering from live location data before it spreads.' },
+            { title: 'View-State Overlay', tag: 'frontend', desc: 'Build a visual layer that explains spatial changes across floors, zones, or rooms.' },
+            { title: 'Navigation Replay', tag: 'ux', desc: 'Show how a user or device moved through space so the result is easy to inspect.' },
         ],
     },
     {
@@ -224,10 +224,10 @@ export const UNIVERSES = [
         background: 'assets/background/spiderman_india_bg.jpeg',
         href: 'universe.html?u=9',
         problems: [
-            { title: 'Ephemeral Access Broker', tag: 'security',    desc: 'Issue short-lived credentials across devices with strong audit trails and expiry logic.' },
-            { title: 'Trace Compression Tool',  tag: 'forensics',   desc: 'Summarize suspicious behavior across large event logs into operator-friendly views.' },
-            { title: 'Silent Fallback Channel',  tag: 'networking',  desc: 'Maintain secure communication when the primary network paths degrade or disappear.' },
-            { title: 'Trust Boundary Map',       tag: 'governance',  desc: 'Render where trust starts and ends so the system can block unsafe transitions early.' },
+            { title: 'Blockchain Credential Verification for Education', tag: 'security', desc: 'Description: Credential fraud is rampant in India, with over 1.5 million fake certificates detected annually, costing the economy billions and hindering rural youth employment—rural students often lack verifiable qualifications for urban jobs or international opportunities. A blockchain-based decentralized platform issues tamper-proof digital certificates (e.g., degrees, skill certifications) stored on a public ledger, allowing instant, intermediary-free verification via QR codes or wallet shares. This empowers 250 million rural Indians under NEP 2020 and aligns globally with SDG 4 by enabling cross-border academic mobility without forgery risks. Expected Solution:- Deploy Ethereum/Polygon blockchain for low-cost, scalable credential minting with cryptographic signatures. - Institutions use a web dashboard to issue NFTs or verifiable credentials (VCs) compliant with W3C standards. - Users access a mobile wallet app to share selective credentials securely with employers via zero-knowledge proofs. - Integrate QR scanners and APIs for employers to verify authenticity in seconds, with audit trails. - Add smart contracts for automated expiry/renewal and multi-language support for rural accessibility' },
+            { title: 'Local-Language Grievance Auto-Routing for Municipalities', tag: 'forensics', desc: 'Description: Municipalities receive thousands of citizen complaints daily across channels like WhatsApp, helplines, and apps, usually in mixed local language, English, slang, voice notes, and images. Human operators struggle to read, understand, categorize, and forward each complaint to the right department, leading to delays, misrouting, and citizen frustration. An AI-driven, local-language-aware routing engine can drastically improve response times and accountability by automatically interpreting multi-modal complaints and sending them to the correct municipal teams. Expected solution: - Design an NLP and speech-processing pipeline that can handle code-mixed Indian languages (e.g., Tamil+English, Hindi+English) and dialects. - Accept multi-modal inputs (text, voice notes, images) and convert them into a structured complaint representation (category, location, urgency). - Auto-route complaints to the appropriate department/ward and priority level based on content and historical patterns. - Provide a simple dashboard for officials to track volumes, resolution status, and recurring issues. - Implement feedback mechanisms (user rating, reopened complaints) to improve classification and routing accuracy over time.' },
+            { title: 'Silent Fallback Channel', tag: 'networking', desc: 'Maintain secure communication when the primary network paths degrade or disappear.' },
+            { title: 'Trust Boundary Map', tag: 'governance', desc: 'Render where trust starts and ends so the system can block unsafe transitions early.' },
         ],
     },
     {
