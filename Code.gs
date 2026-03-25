@@ -2,6 +2,9 @@ const SHEET_ID   = 'PASTE_YOUR_GOOGLE_SHEET_ID_HERE'; // ← REPLACE THIS WITH Y
 const SHEET_NAME = 'Feedback';
 
 function doPost(e) {
+  const lock = LockService.getScriptLock();
+  lock.tryLock(10000);
+
   try {
     const data  = JSON.parse(e.postData.contents);
     const sheet = SpreadsheetApp
@@ -45,6 +48,8 @@ function doPost(e) {
       .createTextOutput(JSON.stringify({ status: 'error', message: err.message }));
     output.setMimeType(ContentService.MimeType.JSON);
     return output;
+  } finally {
+    lock.releaseLock();
   }
 }
 
