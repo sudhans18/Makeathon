@@ -25,7 +25,7 @@
  * ──────────────────────────────────────────────────────────
  */
 
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwy79XZ6orV3t79e7Ssqb2B-GJid1Ir24ytvFP88bN-5a8gDNSOMShGG1RwRpr5z45x/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxduFo28ugimDshltEElh0opx4uo4gaeFao9DBGBkTKyyXNhnzHEQzGTvGtjvDtUP3T/exec';
 
 const RATING_LABELS = {
   1: '1 / 5 — NEEDS WORK',
