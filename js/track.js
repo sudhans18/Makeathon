@@ -184,7 +184,7 @@ function selectDomain(idx) {
         <div class="problem-list">
           ${d.problems.map((p, pi) => `
             <div class="problem-skill" data-problem-index="${pi}">
-              <div class="problem-skill__icon">ID</div>
+              <div class="problem-skill__icon">P${pi + 1}</div>
               <div class="problem-skill__text">
                 <span class="problem-skill__id">${getProblemId(d, pi)}</span>
                 <span class="problem-skill__name">${p.title}</span>
