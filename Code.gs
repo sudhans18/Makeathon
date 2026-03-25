@@ -8,6 +8,13 @@ function doPost(e) {
                     .openById(SHEET_ID)
                     .getSheetByName(SHEET_NAME);
 
+    if (!sheet) {
+      throw new Error(
+        'Sheet tab "' + SHEET_NAME + '" not found. ' +
+        'Check SHEET_NAME in Code.gs matches your tab name exactly.'
+      );
+    }
+
     // Auto-create header row if sheet is empty
     if (sheet.getLastRow() === 0) {
       sheet.appendRow([
@@ -28,14 +35,16 @@ function doPost(e) {
       data.userAgent   || '',
     ]);
 
-    return ContentService
-      .createTextOutput(JSON.stringify({ status: 'ok' }))
-      .setMimeType(ContentService.MimeType.JSON);
+    const output = ContentService
+      .createTextOutput(JSON.stringify({ status: 'ok' }));
+    output.setMimeType(ContentService.MimeType.JSON);
+    return output;
 
   } catch (err) {
-    return ContentService
-      .createTextOutput(JSON.stringify({ status: 'error', message: err.message }))
-      .setMimeType(ContentService.MimeType.JSON);
+    const output = ContentService
+      .createTextOutput(JSON.stringify({ status: 'error', message: err.message }));
+    output.setMimeType(ContentService.MimeType.JSON);
+    return output;
   }
 }
 
@@ -51,9 +60,10 @@ function doGet(e) {
 
       // No data yet (only header or empty)
       if (lastRow <= 1) {
-        return ContentService
-          .createTextOutput(JSON.stringify({ avgRating: 0, count: 0 }))
-          .setMimeType(ContentService.MimeType.JSON);
+        const output = ContentService
+          .createTextOutput(JSON.stringify({ avgRating: 0, count: 0 }));
+        output.setMimeType(ContentService.MimeType.JSON);
+        return output;
       }
 
       // Ratings are in column B (index 2), rows 2 onward
@@ -68,19 +78,22 @@ function doGet(e) {
         ? Math.round((ratings.reduce((a, b) => a + b, 0) / count) * 10) / 10
         : 0;
 
-      return ContentService
-        .createTextOutput(JSON.stringify({ avgRating, count }))
-        .setMimeType(ContentService.MimeType.JSON);
+      const output = ContentService
+        .createTextOutput(JSON.stringify({ avgRating, count }));
+      output.setMimeType(ContentService.MimeType.JSON);
+      return output;
     }
 
     // Default GET — health check
-    return ContentService
-      .createTextOutput(JSON.stringify({ status: 'alive' }))
-      .setMimeType(ContentService.MimeType.JSON);
+    const output = ContentService
+      .createTextOutput(JSON.stringify({ status: 'alive' }));
+    output.setMimeType(ContentService.MimeType.JSON);
+    return output;
 
   } catch (err) {
-    return ContentService
-      .createTextOutput(JSON.stringify({ status: 'error', message: err.message }))
-      .setMimeType(ContentService.MimeType.JSON);
+    const output = ContentService
+      .createTextOutput(JSON.stringify({ status: 'error', message: err.message }));
+    output.setMimeType(ContentService.MimeType.JSON);
+    return output;
   }
 }

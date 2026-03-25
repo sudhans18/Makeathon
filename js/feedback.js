@@ -163,36 +163,36 @@ document.addEventListener('DOMContentLoaded', () => {
         page: window.location.href,
       };
 
+      function handleSuccess() {
+        sessionStorage.setItem('feedback_submitted', '1');
+        if (resultDiv) {
+          resultDiv.textContent = '✓ FEEDBACK RECEIVED — ACROSS ALL DIMENSIONS';
+          resultDiv.classList.add('success');
+        }
+        setTimeout(() => {
+          showThankYouState();
+        }, 1200);
+      }
+
+      function handleError() {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'SUBMIT FEEDBACK';
+        if (resultDiv) {
+          resultDiv.textContent = '✕ TRANSMISSION FAILED — TRY AGAIN';
+          resultDiv.classList.add('error');
+        }
+      }
+
       fetch(APPS_SCRIPT_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8',
+        },
         body: JSON.stringify(payload),
       })
-        .then(response => response.json())
-        .then((data) => {
-          if (data && data.status === 'error') {
-            throw new Error(data.message || 'Server error');
-          }
-          sessionStorage.setItem('feedback_submitted', '1');
-
-          if (resultDiv) {
-            resultDiv.textContent = '✓ FEEDBACK RECEIVED — ACROSS ALL DIMENSIONS';
-            resultDiv.classList.add('success');
-          }
-
-          setTimeout(() => {
-            showThankYouState();
-          }, 1200);
-        })
-        .catch((err) => {
-          console.error('Feedback submission error:', err);
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'SUBMIT FEEDBACK';
-          if (resultDiv) {
-            resultDiv.textContent = '✕ TRANSMISSION FAILED — CHECK YOUR CONNECTION';
-            resultDiv.classList.add('error');
-          }
-        });
+      .then(res => res.text())
+      .then(() => handleSuccess())
+      .catch(() => handleError());
     });
   }
 
