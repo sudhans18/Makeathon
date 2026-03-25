@@ -217,7 +217,7 @@ export const UNIVERSES = [
             {
                 title: 'Dynamic Pest Activity Detection',
                 tag: 'Non-Visual Pest Detection / Bio-Signal Monitoring',
-                desc: 'Early detection of pest activity is critical in agriculture to prevent crop damage and yield loss. However, most existing detection systems rely on visual inspection or image-based techniques, which are often ineffective in early stages and require expensive hardware and computational resources. \nThere is a need for a system that can detect pest activity using indirect physical signals, enabling early-stage detection without relying on visual methods. The proposed system focuses on developing a non-visual pest detection mechanism using physical signals such as vibration, acoustic patterns, or plant movement. The system will use sensors placed on or near plants to capture subtle disturbances caused by pest activity.\n\n The collected signals will be analyzed to identify distinct patterns associated with pest movement or feeding behavior, differentiating them from environmental noise such as wind or human interaction. Basic signal processing techniques such as filtering, frequency analysis, or pattern recognition may be used. The system should generate alerts when abnormal activity patterns indicative of pests are detected, enabling timely intervention.',
+                desc: 'Early detection of pest activity is critical in agriculture to prevent crop damage and yield loss. However, most existing detection systems rely on visual inspection or image-based techniques, which are often ineffective in early stages and require expensive hardware and computational resources. \n\nThere is a need for a system that can detect pest activity using indirect physical signals, enabling early-stage detection without relying on visual methods. The proposed system focuses on developing a non-visual pest detection mechanism using physical signals such as vibration, acoustic patterns, or plant movement. The system will use sensors placed on or near plants to capture subtle disturbances caused by pest activity.\n\n The collected signals will be analyzed to identify distinct patterns associated with pest movement or feeding behavior, differentiating them from environmental noise such as wind or human interaction. Basic signal processing techniques such as filtering, frequency analysis, or pattern recognition may be used. The system should generate alerts when abnormal activity patterns indicative of pests are detected, enabling timely intervention.',
                 solution: [
                     'Sensor-based acquisition of vibration/acoustic signals',
                     'Noise filtering and signal preprocessing',
@@ -534,10 +534,7 @@ export const UNIVERSES = [
                 desc: 'In modern inventory warehouses, stock management is heavily dependent on manually maintained records, typically stored in structured formats such as Excel sheets. While these records provide a digital overview of inventory distribution across racks, shelves, and storage zones, they often lack intuitive visualization and real-time validation mechanisms.\n Warehouse operators face significant challenges in understanding spatial inventory distribution, identifying misplaced or missing stock, and efficiently managing storage utilization. Traditional systems display inventory data in tabular form, making it difficult to interpret the physical arrangement of goods within the warehouse. This results in inefficiencies such as delayed retrieval, poor space optimization, and increased dependency on manual verification. \n The problem focuses on developing a software-based intelligent system that transforms uploaded Excel inventory data into an interactive visual representation of the warehouse. The system should interpret structured Excel inputs (rack ID, shelf number, product details, quantity, etc.) and generate a digital twin of the warehouse in both 2D and 3D formats.\n The platform should enable users to clearly visualize which cases/products are present in specific warehouse areas, track occupancy levels, and identify inconsistencies within the dataset (such as missing entries, incorrect placements, or abnormal stock distribution). This approach enhances visibility, reduces human error, and improves operational efficiency without relying on IoT hardware.',
                 solution: [
                     'Develop an Excel upload module supporting.xlsx /.csv formats containing:',
-                    'Rack ID',
-                    'Shelf/Level',
-                    'Product Name / ID',
-                    'Quantity',
+                    'Rack ID, Shelf/Level, Product Name /ID, Quantity',
                     'Storage Zone / Section',
                     'Implement a data parsing and validation engine to:',
                     'Process structured inventory data',
@@ -558,6 +555,7 @@ export const UNIVERSES = [
                     'Highlight empty or underutilized racks',
                     'Detect logical inconsistencies in uploaded data',
                     'Enable rack-level detailed view:',
+                    '                                  ',
                     'Total capacity vs occupied space',
                     'Product breakdown per shelf',
                     'Last updated dataset reference',
