@@ -165,12 +165,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       fetch(APPS_SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload),
       })
-        .then(() => {
-          // Opaque response expected due to no-cors
+        .then(response => response.json())
+        .then((data) => {
+          if (data && data.status === 'error') {
+            throw new Error(data.message || 'Server error');
+          }
           sessionStorage.setItem('feedback_submitted', '1');
 
           if (resultDiv) {

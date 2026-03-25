@@ -1,4 +1,4 @@
-const SHEET_ID   = 'PASTE_YOUR_GOOGLE_SHEET_ID_HERE';
+const SHEET_ID   = 'PASTE_YOUR_GOOGLE_SHEET_ID_HERE'; // ← REPLACE THIS WITH YOUR ACTUAL SHEET ID
 const SHEET_NAME = 'Feedback';
 
 function doPost(e) {
@@ -22,7 +22,7 @@ function doPost(e) {
     // Append the submission
     sheet.appendRow([
       data.timestamp   || new Date().toISOString(),
-      data.rating      || '',
+      parseInt(data.rating, 10) || data.rating || '',
       data.suggestion  || '',
       data.page        || '',
       data.userAgent   || '',
