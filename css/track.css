@@ -683,6 +683,11 @@
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.6;
+  margin: 0 0 1rem;
+}
+
+.ps-modal__desc:last-of-type {
+  margin-bottom: 0;
 }
 
 /* 3D Flip Card */

@@ -42,6 +42,30 @@ const leftHeader = document.getElementById('track-left-header');
 const leftList   = document.getElementById('track-left-list');
 const rightPanel = document.getElementById('track-right');
 
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function renderProblemDescription(desc) {
+  const paragraphs = String(desc)
+    .split(/\n\s*\n/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  if (!paragraphs.length) {
+    return '';
+  }
+
+  return paragraphs
+    .map((part) => `<p class="ps-modal__desc">${escapeHtml(part).replace(/\n/g, '<br>')}</p>`)
+    .join('');
+}
+
 /* ══════════════════════════════════════════
    BUILD LEFT PANEL
    ══════════════════════════════════════════ */
@@ -167,6 +191,7 @@ function selectDomain(idx) {
   const modalOverlay = document.getElementById('ps-modal-overlay');
 
   const openPSModal = (problem) => {
+    const descHtml = renderProblemDescription(problem.desc);
     const solutionHtml = problem.solution ? `
       <div style="margin-top:1rem;">
         <h3 style="font-family:'Anton',sans-serif; color:#00f0ff; font-size:0.95rem; margin-bottom:0.5rem; letter-spacing:0.05em;">EXPECTED SOLUTION</h3>
@@ -183,7 +208,7 @@ function selectDomain(idx) {
     modalBody.innerHTML = `
       <span class="ps-modal__tag">${problem.tag}</span>
       <h2 class="ps-modal__title" style="padding-right:40px;">${problem.title}</h2>
-      <p class="ps-modal__desc">${problem.desc}</p>
+      ${descHtml}
       ${solutionHtml}
       ${sdgHtml}
     `;
