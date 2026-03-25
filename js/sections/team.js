@@ -47,7 +47,7 @@ const raceMembers = [
   { name: "Balasaraswathy B", role: "Lead Mentor", img: "BALASARASWATHY B ECE.jpg", linkedin: "https://www.linkedin.com/in/balasaraswathy-balagurusamy-a53a58265", github: "https://github.com/Balasaraswathy27", email: "bbalasaraswathy00@gmail.com" },
   { name: "Aswin Kumar K", role: "Lead Mentor", img: "ASWIN KUMAR K.jpg", linkedin: "https://www.linkedin.com/in/aswin-kumar5824", email: "aswinkumark1975@gmail.com" },
   { name: "Vikash S K", role: "Lead Mentor", img: "vikash Krishnakumar.jpg", linkedin: "https://www.linkedin.com/in/vikash07/", github: "https://github.com/vikash-prog", email: "yeskvikash@gmail.com" },
-  { name: "Lohith Ashwa S", role: "Mentor", img: "LOHITH ASHWA S ECE.png", linkedin: "https://www.linkedin.com/in/lohith-ashwa-s-480842277", github: "https://lohithashwa.me", email: "lohithashwa51@gmail.com" },
+  { name: "Lohith Ashwa S", role: "Mentor", img: "LOHITH ASHWA FORMAL PHOTO - PASSPORT.png", linkedin: "https://www.linkedin.com/in/lohith-ashwa-s-480842277", github: "https://lohithashwa.me", email: "lohithashwa51@gmail.com" },
   { name: "Muhilan S", role: "Mentor", img: "MUHILAN S ECE.jpg", linkedin: "https://www.linkedin.com/in/muhilan-selvakumar-a294a2353", github: "https://github.com/Muhilan30", email: "www.muhilan30@gmail.com" },
   { name: "Srivatsan S P", role: "Mentor", img: "SRIVATSAN S P ECE.jpg", linkedin: "https://www.linkedin.com/in/srivatsan-sp-849a592a5", email: "2023ec0033@svce.ac.in" },
   { name: "Shriram Kumar V", role: "Mentor", img: "SHRIRAM KUMAR V ECE.jpg", linkedin: "https://www.linkedin.com/in/shriram-kumar-v-383b0228b/", email: "2023ec0881@svce.ac.in" },
