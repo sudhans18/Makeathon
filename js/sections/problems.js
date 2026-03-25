@@ -75,7 +75,7 @@ function injectStyles() {
         /* ── Hide bridge wire lines ── */
         .track-selector__bridge { display: none !important; }
 
-        /* ══ CHOOSE YOUR TRACK heading — white comic style ══ */
+        /* ══ CHOOSE YOUR TRACK heading ══ */
         .track-selector__heading {
             font-family: 'Anton', sans-serif !important;
             font-size: clamp(2.5rem, 6vw, 4.5rem) !important;
@@ -83,7 +83,12 @@ function injectStyles() {
             letter-spacing: 0.05em !important;
             text-transform: uppercase !important;
             color: #ffffff !important;
-            text-shadow: 4px 4px 0 #ff0040, 8px 8px 0 #000000 !important;
+            /* Thin crisp outline — no heavy offset shadow competing with the text */
+            text-shadow:
+                0 0 1px #000,
+                0 2px 12px rgba(0,0,0,0.95),
+                0 0 32px rgba(0,0,0,0.7) !important;
+            -webkit-text-stroke: 1.5px rgba(255,0,64,0.6) !important;
             background: transparent !important;
             border-radius: 0 !important;
             box-shadow: none !important;
@@ -91,7 +96,7 @@ function injectStyles() {
             border: none !important;
         }
 
-        /* ══ HARDWARE / SOFTWARE labels — white comic style ══ */
+        /* ══ HARDWARE / SOFTWARE labels ══ */
         .track-selector__label {
             font-family: 'Anton', sans-serif !important;
             font-size: clamp(1.6rem, 3.5vw, 2.6rem) !important;
@@ -99,7 +104,11 @@ function injectStyles() {
             letter-spacing: 0.05em !important;
             text-transform: uppercase !important;
             color: #ffffff !important;
-            text-shadow: 3px 3px 0 #ff0040, 6px 6px 0 #000000 !important;
+            text-shadow:
+                0 1px 0 rgba(0,0,0,0.9),
+                0 2px 10px rgba(0,0,0,0.95),
+                0 0 24px rgba(0,0,0,0.6) !important;
+            -webkit-text-stroke: 1px rgba(255,0,64,0.5) !important;
             background: transparent !important;
             border-radius: 0 !important;
             box-shadow: none !important;
@@ -174,19 +183,26 @@ function injectStyles() {
             line-height: 1.3;
             max-width: 130px;
             text-transform: uppercase;
+            /* Solid dark backdrop — ensures white text reads on any bg */
             text-shadow:
-                0 0 10px rgba(0, 0, 0, 1),
-                0 0 6px rgba(0, 0, 0, 0.9),
-                0 2px 4px rgba(0, 0, 0, 0.8);
+                0 1px 0 rgba(0,0,0,1),
+                0 -1px 0 rgba(0,0,0,1),
+                1px 0 0 rgba(0,0,0,1),
+                -1px 0 0 rgba(0,0,0,1),
+                0 2px 8px rgba(0,0,0,0.95),
+                0 4px 16px rgba(0,0,0,0.8) !important;
             transition: color 0.25s ease, text-shadow 0.25s ease;
         }
 
         .track-selector__spider-link:hover .track-selector__spider-subdomain {
-            color: #E8115B;
+            color: #ff6b8a;
             text-shadow:
+                0 1px 0 rgba(0,0,0,1),
+                0 -1px 0 rgba(0,0,0,1),
+                1px 0 0 rgba(0,0,0,1),
+                -1px 0 0 rgba(0,0,0,1),
                 0 0 12px rgba(232,17,91,0.9),
-                0 0 24px rgba(232,17,91,0.5),
-                0 2px 4px rgba(0,0,0,0.8);
+                0 0 24px rgba(232,17,91,0.5) !important;
         }
 
         /* ── Grid row spacing ── */
@@ -222,8 +238,11 @@ function injectStyles() {
             text-decoration: none;
             position: relative;
             border: 3px solid #000;
-            background: rgba(255,255,255,0.04);
-            transition: transform 0.25s, box-shadow 0.25s;
+            /* Semi-transparent dark fill — text always readable regardless of bg image */
+            background: rgba(0,0,0,0.55) !important;
+            backdrop-filter: blur(6px) !important;
+            -webkit-backdrop-filter: blur(6px) !important;
+            transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
             cursor: pointer;
         }
 
@@ -239,6 +258,7 @@ function injectStyles() {
 
         .track-choose-btn:hover {
             transform: translate(-3px, -3px);
+            background: rgba(0,0,0,0.72) !important;
         }
         .track-choose-btn--hw:hover {
             box-shadow: 9px 9px 0 #ff0040;
@@ -253,7 +273,7 @@ function injectStyles() {
         .track-choose-btn__icon {
             font-size: 2rem;
             line-height: 1;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255,255,255,0.55);
         }
 
         .track-choose-btn__label {
@@ -263,26 +283,28 @@ function injectStyles() {
             letter-spacing: 0.08em !important;
             text-transform: uppercase !important;
             color: #ffffff !important;
+            line-height: 1.15 !important;
         }
 
         .track-choose-btn--hw .track-choose-btn__label {
-            text-shadow: 3px 3px 0 #ff0040 !important;
+            text-shadow: 2px 2px 0 #ff0040, 0 1px 8px rgba(0,0,0,0.8) !important;
         }
         .track-choose-btn--sw .track-choose-btn__label {
-            text-shadow: 3px 3px 0 #00f0ff !important;
+            text-shadow: 2px 2px 0 #00c8d4, 0 1px 8px rgba(0,0,0,0.8) !important;
         }
         .track-choose-btn--ind .track-choose-btn__label {
-            text-shadow: 3px 3px 0 #fcee0a !important;
+            text-shadow: 2px 2px 0 #c9bc00, 0 1px 8px rgba(0,0,0,0.8) !important;
         }
 
         .track-choose-btn__sub {
             font-family: var(--ff-body, sans-serif) !important;
-            font-size: 0.72rem !important;
-            font-weight: 600 !important;
-            letter-spacing: 0.08em !important;
+            font-size: 0.75rem !important;
+            font-weight: 500 !important;
+            letter-spacing: 0.06em !important;
             text-transform: uppercase !important;
-            color: rgba(255,255,255,0.38) !important;
-            line-height: 1.5 !important;
+            /* Bumped from 0.38 to 0.72 — actually readable now */
+            color: rgba(255,255,255,0.72) !important;
+            line-height: 1.6 !important;
         }
 
         /* ── Responsive: stack vertically on small screens ── */
@@ -374,7 +396,7 @@ export function initProblems() {
                 <a href="industrial.html" class="track-choose-btn track-choose-btn--ind">
                     <span class="track-choose-btn__icon">🏭</span>
                     <span class="track-choose-btn__label">INDUSTRIAL PROBLEM STATEMENTS</span>
-                    <span class="track-choose-btn__sub">Manufacturing · Automation · Supply Chain · Industry 4.0</span>
+                    <span class="track-choose-btn__sub">COMING SOON</span>
                 </a>
             </div>
         </div>
