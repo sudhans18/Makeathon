@@ -47,7 +47,6 @@ function setupCustomDropdown() {
         
         optionDiv.addEventListener('click', () => {
             trigger.textContent = `${index + 1}. ${item.q}`;
-            milesDefaultText.innerHTML = `<strong>${item.q}</strong>`;
             
             peterAnswer.classList.remove('typing');
             void peterAnswer.offsetWidth;
