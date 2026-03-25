@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
           WITH GREAT POWER COMES GREAT FEEDBACK
         </p>
         <p class="feedback-thankyou__sub">
-          Your rating has been logged in our multiverse database.
+          Your rating has been logged in our database.
         </p>
       </div>
     `;
