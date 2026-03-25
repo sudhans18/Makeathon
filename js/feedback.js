@@ -191,8 +191,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         body: JSON.stringify(payload),
       })
-      .then(() => handleSuccess())
-      .catch(() => handleError());
+        .then(() => handleSuccess())
+        .catch(() => handleError());
     });
   }
 
