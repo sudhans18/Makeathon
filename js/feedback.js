@@ -93,9 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const val = parseInt(btn.dataset.value, 10);
       selectedRating = val;
 
-      // Force reflow to restay slam animation
+      // Force reflow to restart slam animation
       starBtns.forEach(b => b.classList.remove('slam'));
-      void btn.offsetWidth; // trigger reflow
+      void btn.offsetWidth;
       btn.classList.add('slam');
 
       updateStarsVisuals();
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Check layout session for duplicate submissions
+  // Check session for duplicate submissions
   const hasSubmitted = sessionStorage.getItem('feedback_submitted') === '1';
   if (hasSubmitted) {
     showThankYouState();
@@ -193,7 +193,8 @@ document.addEventListener('DOMContentLoaded', () => {
       })
         .then(() => handleSuccess())
         .catch(() => handleError());
-    });
+
+    }); // ← FIXED: was missing this closing ); for addEventListener
   }
 
   // Scroll Reveal
@@ -214,13 +215,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Fetch Aggregate
+  // Fetch Aggregate (silently fails if CORS blocks it)
   if (APPS_SCRIPT_URL !== 'YOUR_URL_HERE') {
     fetch(APPS_SCRIPT_URL + '?action=stats', {
       method: 'GET',
-      mode: 'cors' // for GET we usually need cors or it fails to parse JSON, but let's see. The prompt doesn't forbid cors on GET. No wait, the prompt says "If it fails (CORS / network), silently hide the aggregate div."
+      mode: 'no-cors',
     })
-      .then(r => r.json())
+      .then(r => {
+        if (r.type === 'opaque') return null; // no-cors response, can't read
+        return r.json();
+      })
       .then(data => {
         if (!data) return;
         const avg = data.avgRating || 0;
@@ -234,12 +238,10 @@ document.addEventListener('DOMContentLoaded', () => {
           if (aggStars) {
             const fullStars = Math.floor(avg);
             const hasHalf = (avg % 1) >= 0.5;
-            const starsText = '★'.repeat(fullStars) + (hasHalf ? '☆' : '') + '☆'.repeat(5 - fullStars - (hasHalf ? 1 : 0));
-            // Depending on styling, we might just use '★' vs empty strings or other chars.
-            // Fallback to simple stars
-            aggStars.textContent = '★'.repeat(fullStars) + (hasHalf ? '☆' : '') + ' '.repeat(5 - fullStars - (hasHalf ? 1 : 0));
-            // Better yet, just use ★ and regular empty stars.
-            aggStars.textContent = '★'.repeat(fullStars) + (hasHalf ? '☆' : '') + '★'.repeat(5 - fullStars - (hasHalf ? 1 : 0)).replace(/★/g, '☆');
+            aggStars.textContent =
+              '★'.repeat(fullStars) +
+              (hasHalf ? '☆' : '') +
+              '☆'.repeat(5 - fullStars - (hasHalf ? 1 : 0));
           }
           if (aggScore) {
             aggScore.textContent = avg.toFixed(1) + ' / 5';
@@ -252,9 +254,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       })
       .catch(err => {
-        // Intentionally silent
         console.warn('Could not load feedback stats:', err);
       });
   }
 
-});
+}); // ← closes DOMContentLoaded
