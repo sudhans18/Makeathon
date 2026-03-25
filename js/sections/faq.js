@@ -24,7 +24,7 @@ const FAQ_DATA = [
     { q: 'What should participants bring?', a: 'Participants are expected to bring:<br>• Laptops & chargers<br>• Required hardware components and tools (soldering kits, etc.)<br>• Extension boards, cables, and accessories<br>• Valid college ID<br>• Personal WiFi hotspots (recommended due to network congestion)<br>• Basic essentials (change of clothes, personal items, etc.)<br><br>Organizers will not provide any hardware components or software tools.' },
     { q: 'Will internet access be provided?', a: 'Yes, WiFi/LAN access will be available.<br><br>However, due to a large number of participants and possible network congestion, participants are strongly advised to bring their own WiFi hotspots.' },
     { q: 'Can participants leave the venue during the hackathon?', a: 'No. Participants are expected to remain within the venue and campus throughout the hackathon duration.<br><br>Exiting the venue will not be permitted once the event begins.' },
-    { q: 'Who can we contact for queries?', a: 'Contact our student coordinators:<br>• Roshan M<br>• Aadharsh S<br>• Yaaminy K<br>• Roobuck ganesh rao<br>• Raeef M<br>• Harini V T<br><br>You may also reach out through official event communication channels:<br>admin@makeathon.in or @eceasvce.' }
+    { q: 'Who can we contact for queries?', a: 'Contact our student coordinators:<br>• Roshan M - 9841092274 <br>• Adarsh S - 7305970106<br>• Yaaminy S K - 6380989594<br>• Roobuck Rao C - 8148204922<br>• Mohammed Raeef - 9150158647 <br>• Harinee V T - 7358120955<br>• Lakshanaa A M - 9940337194<br>• Harini C - 8610163433<br>• Bawadharani Sree R - 9080251947<br>• Balaji S - 8122586514<br>• Surya K - 8754425137' }
 ];
 
 export function initFAQ() {
