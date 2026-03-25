@@ -18,6 +18,41 @@
   /* ── Touch guard ─────────────────────────────────────────── */
   if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
 
+  /* ── Click sound ─────────────────────────────────────────── */
+  let clickAudio = null;
+  let audioUnlocked = false;
+
+  function initAudio() {
+    if (clickAudio) return;
+    clickAudio = new Audio('assets/sound.mp3');
+    clickAudio.preload = 'auto';
+    clickAudio.volume = 0.55;
+  }
+
+  /* Unlock audio context on first user interaction (browser autoplay policy) */
+  function unlockAudio() {
+    if (audioUnlocked) return;
+    initAudio();
+    /* Play & immediately pause — primes the audio buffer */
+    clickAudio.play().then(() => {
+      clickAudio.pause();
+      clickAudio.currentTime = 0;
+      audioUnlocked = true;
+    }).catch(() => {
+      /* Silently fail if browser still blocks — cursor works fine without sound */
+    });
+    document.removeEventListener('mousemove', unlockAudio);
+  }
+
+  document.addEventListener('mousemove', unlockAudio, { once: true });
+
+  function playClickSound() {
+    if (!clickAudio) return;
+    /* Rewind and replay — allows rapid successive clicks */
+    clickAudio.currentTime = 0;
+    clickAudio.play().catch(() => { });
+  }
+
   /* ── Inject styles ───────────────────────────────────────── */
   const style = document.createElement('style');
   style.textContent = `
@@ -342,10 +377,10 @@
     // Visual state handled via CSS classes on #rc-spider
   }
 
-  /* ── Click particle burst + THWIP! ──────────────────────── */
+  /* ── Click particle burst ────────────────────────────────── */
   document.addEventListener('mousedown', e => {
+    playClickSound();
     spawnParticles(e.clientX, e.clientY);
-    spawnThwip(e.clientX, e.clientY);
     spider.style.transform = 'translate(-50%, -50%) scale(0.75)';
   });
   document.addEventListener('mouseup', () => {
@@ -387,79 +422,6 @@
         requestAnimationFrame(animateParticle);
       })();
     }
-  }
-
-  /* ── THWIP! text burst ───────────────────────────────────── */
-  const THWIP_VARIANTS = ['THWIP!', 'THWIP!', 'THWIP!', 'THWIIP!', 'T H W I P !'];
-
-  function spawnThwip(cx, cy) {
-    const el = document.createElement('div');
-    const word = THWIP_VARIANTS[Math.floor(Math.random() * THWIP_VARIANTS.length)];
-    const angle = -18 + Math.random() * 36; // slight random tilt each click
-
-    el.textContent = word;
-    el.style.cssText = `
-      position: fixed;
-      left: ${cx}px;
-      top: ${cy - 10}px;
-      transform: translate(-50%, -50%) rotate(${angle}deg) scale(0.4);
-      transform-origin: center center;
-      pointer-events: none;
-      z-index: 999999;
-      font-family: 'Impact', 'Arial Black', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: #E74C3C;
-      letter-spacing: 0.06em;
-      text-shadow:
-        2px 2px 0 #000,
-       -1px -1px 0 #000,
-        1px -1px 0 #000,
-       -1px  1px 0 #000,
-        0px  2px 0 #7B0000;
-      white-space: nowrap;
-      opacity: 0;
-      will-change: transform, opacity;
-    `;
-    document.body.appendChild(el);
-
-    const start = performance.now();
-    const duration = 680;
-
-    (function animateThwip() {
-      const elapsed = performance.now() - start;
-      const progress = Math.min(elapsed / duration, 1);
-
-      // pop in fast (0→0.3), hold (0.3→0.7), fade out (0.7→1)
-      let opacity, scale;
-      if (progress < 0.25) {
-        const t = progress / 0.25;
-        scale = 0.4 + t * 0.85;          // 0.4 → 1.25 overshoot
-        opacity = t;
-      } else if (progress < 0.35) {
-        const t = (progress - 0.25) / 0.1;
-        scale = 1.25 - t * 0.2;          // 1.25 → 1.05 settle
-        opacity = 1;
-      } else if (progress < 0.65) {
-        scale = 1.05;
-        opacity = 1;
-      } else {
-        const t = (progress - 0.65) / 0.35;
-        scale = 1.05 + t * 0.15;         // drift upward slightly
-        opacity = 1 - t;
-      }
-
-      const floatY = progress > 0.35 ? -((progress - 0.35) * 28) : 0;
-
-      el.style.transform = `translate(-50%, calc(-50% + ${floatY}px)) rotate(${angle}deg) scale(${scale.toFixed(3)})`;
-      el.style.opacity = opacity.toFixed(3);
-
-      if (progress < 1) {
-        requestAnimationFrame(animateThwip);
-      } else {
-        el.remove();
-      }
-    })();
   }
 
   /* ── Web strand trail ────────────────────────────────────── */
