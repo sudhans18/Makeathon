@@ -102,7 +102,7 @@ export const UNIVERSES = [
             {
                 title: 'Fault Detection in Analog Circuits',
                 tag: 'Circuit Diagnostics / Signal-Based Fault Detection',
-                desc: 'Diagnosing faults in analog circuits is a time-consuming and manual process, requiring expert knowledge and extensive testing. Small component failures or parameter deviations can significantly affect circuit behavior, making fault identification difficult. There is a need for an automated system that can analyze circuit behavior and identify potential faults based on signal deviations. The system should: Input known signals into an analog circuit Measure output responses Compare actual vs expected behavior Using signal analysis techniques, the system should identify: Component-level faults (e.g., resistor drift, capacitor failure) Signal distortion or abnormal response patterns The system may use predefined models or learned patterns to classify faults.',
+                desc: 'Diagnosing faults in analog circuits is a time-consuming and manual process, requiring expert knowledge and extensive testing. Small component failures or parameter deviations can significantly affect circuit behavior, making fault identification difficult. \nThere is a need for an automated system that can analyze circuit behavior and identify potential faults based on signal deviations. \n\nThe system should: \n- Input known signals into an analog circuit \n- Measure output responses \n- Compare actual vs expected behavior \n\n Using signal analysis techniques, the system should identify: \n- Component-level faults (e.g., resistor drift, capacitor failure) \n- Signal distortion or abnormal response patterns\n\n The system may use predefined models or learned patterns to classify faults.',
                 solution: [
                     'Signal injection into test circuit',
                     'Output waveform acquisition',
@@ -118,7 +118,9 @@ export const UNIVERSES = [
                 tag: 'Edge AI / Behavioral Sensing',
                 desc: 'Public spaces such as railway stations, festivals, and campuses face dynamic crowd behavior patterns that can shift rapidly into unsafe conditions. Existing systems rely on CCTV monitoring but lack localized, low-cost, real-time behavioral interpretation at the edge.',
                 solution: [
-                    'Develop an IoT node integrating camera, sound intensity, and proximity sensing to capture crowd density, movement direction, and anomaly signals (sudden dispersal, clustering, panic noise). Use lightweight edge AI models to classify crowd states and predict unsafe transitions. The system should geo-tag events, trigger alerts, and provide heatmap-based visualization while operating under constrained compute and power conditions.',
+                    'Develop an IoT node integrating camera, sound intensity, and proximity sensing to capture crowd density, movement direction, and anomaly signals (sudden dispersal, clustering, panic noise).',
+                    'Use lightweight edge AI models to classify crowd states and predict unsafe transitions.',
+                    'The system should geo-tag events, trigger alerts, and provide heatmap-based visualization while operating under constrained compute and power conditions.',
                 ],
                 sdgs: ['SDG 11 – Sustainable Cities and Communities']
             },
