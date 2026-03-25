@@ -590,7 +590,383 @@
   </main>
 
   <!-- ═══════════════════════════════════════════════════════════
-       SECTION 9 FOOTER
+       SECTION 9 FEEDBACK
+  ═══════════════════════════════════════════════════════════ -->
+  <style>
+/* ── Section wrapper ── */
+.feedback-section {
+  padding: var(--sp-xl, 5rem) 0 var(--sp-2xl, 7rem);
+  position: relative;
+  border-top: 2px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ── Tag label ── */
+.feedback-section__tag {
+  font-family: var(--ff-body);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--c-cyan);
+  text-align: center;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.feedback-section__tag::before,
+.feedback-section__tag::after {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--c-cyan);
+  opacity: 0.6;
+}
+
+/* ── Main heading ── */
+.feedback-section__heading {
+  font-family: var(--ff-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  text-shadow: 3px 3px 0 rgba(255, 0, 85, 0.35);
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+/* ── Sub caption ── */
+.feedback-section__sub {
+  font-family: var(--ff-body);
+  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+  color: var(--c-text-dim, rgba(232,234,246,0.55));
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Glassmorphism card ── */
+.feedback-card {
+  max-width: 580px;
+  margin: 0 auto;
+  background: rgba(14, 16, 32, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 2px solid var(--c-cyan);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border-radius: 14px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.06),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ── Star row ── */
+.feedback-stars {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+/* Each star button */
+.feedback-star-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.15);
+  transition: color 0.18s ease,
+              transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.18s ease;
+  position: relative;
+}
+
+/* Filled state */
+.feedback-star-btn.filled {
+  color: var(--c-yellow, #fcee0a);
+  filter: drop-shadow(0 0 8px rgba(252, 238, 10, 0.6));
+}
+
+/* Hover preview */
+.feedback-star-btn.preview {
+  color: rgba(252, 238, 10, 0.5);
+}
+
+.feedback-star-btn:hover {
+  transform: scale(1.25) rotate(-5deg);
+}
+
+/* Star slam animation on selection */
+@keyframes starSlam {
+  0%   { transform: scale(0.6) rotate(-15deg); }
+  60%  { transform: scale(1.4) rotate(5deg); }
+  100% { transform: scale(1)   rotate(0deg); }
+}
+.feedback-star-btn.slam {
+  animation: starSlam 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Rating label ── */
+.feedback-rating-label {
+  font-family: var(--ff-display);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-yellow, #fcee0a);
+  text-align: center;
+  min-height: 1.4em;
+  margin-bottom: 1.5rem;
+  transition: opacity 0.3s ease;
+}
+
+/* ── Label above textarea ── */
+.feedback-label {
+  display: block;
+  font-family: var(--ff-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-text-dim, rgba(232,234,246,0.55));
+  margin-bottom: 0.6rem;
+}
+
+/* ── Textarea ── */
+.feedback-textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--c-text, #e8eaf6);
+  font-family: var(--ff-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  padding: 0.85rem 1rem;
+  resize: vertical;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  outline: none;
+}
+.feedback-textarea::placeholder {
+  color: rgba(232, 234, 246, 0.2);
+  font-style: italic;
+}
+.feedback-textarea:focus {
+  border-color: var(--c-cyan);
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1);
+}
+
+/* ── Char count ── */
+.feedback-charcount {
+  font-family: var(--ff-mono, monospace);
+  font-size: 0.7rem;
+  color: rgba(232, 234, 246, 0.25);
+  text-align: right;
+  margin-top: 0.3rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+}
+
+/* ── Submit button — matches site's red CTA style ── */
+.feedback-submit {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  font-family: var(--ff-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff0055 0%, #cc0044 100%);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(255, 0, 85, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: transform 0.2s ease,
+              box-shadow 0.2s ease,
+              opacity 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+/* Shimmer sweep — matches existing hero CTA */
+.feedback-submit::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 200%; height: 100%;
+  background: linear-gradient(
+    90deg, transparent, rgba(255,255,255,0.18), transparent
+  );
+  transition: left 0.5s ease;
+}
+.feedback-submit:not(:disabled):hover::before { left: 100%; }
+.feedback-submit:not(:disabled):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 36px rgba(255, 0, 85, 0.5);
+}
+.feedback-submit:not(:disabled):active {
+  transform: translateY(-1px);
+}
+/* Disabled state */
+.feedback-submit:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ── Result message ── */
+.feedback-result {
+  margin-top: 1.2rem;
+  font-family: var(--ff-body);
+  font-size: 0.9rem;
+  text-align: center;
+  min-height: 1.4em;
+  letter-spacing: 0.04em;
+}
+.feedback-result.success {
+  color: var(--c-green, #00ff73);
+}
+.feedback-result.error {
+  color: #ff6b6b;
+}
+
+/* ── Aggregate display ── */
+.feedback-aggregate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 2rem;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  flex-wrap: wrap;
+}
+.feedback-aggregate.visible {
+  opacity: 1;
+}
+.feedback-aggregate__stars {
+  color: var(--c-yellow, #fcee0a);
+  font-size: 1.1rem;
+  filter: drop-shadow(0 0 6px rgba(252, 238, 10, 0.5));
+  letter-spacing: 0.1em;
+}
+.feedback-aggregate__score {
+  font-family: var(--ff-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+}
+.feedback-aggregate__count {
+  font-family: var(--ff-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-text-dim, rgba(232,234,246,0.55));
+}
+
+/* ── Scroll-reveal (matches site's IntersectionObserver pattern) ── */
+.feedback-section .reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease,
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.feedback-section .reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Thank You State ── */
+.feedback-thankyou {
+  text-align: center;
+  padding: 1rem 0;
+}
+.feedback-thankyou__icon {
+  font-size: 3rem;
+  display: block;
+  text-align: center;
+  margin-bottom: 1rem;
+  animation: abdomenBreathe 2s ease-in-out infinite;
+}
+@keyframes abdomenBreathe {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+.feedback-thankyou__heading {
+  font-family: var(--ff-display);
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 3px 3px 0 rgba(255, 0, 85, 0.35);
+  margin-bottom: 0.75rem;
+}
+.feedback-thankyou__sub {
+  font-family: var(--ff-body);
+  color: var(--c-text-dim, rgba(232,234,246,0.55));
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .feedback-star-btn,
+  .feedback-submit,
+  .feedback-section .reveal,
+  .feedback-thankyou__icon {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 0 !important;
+  }
+}
+</style>
+
+<section id="feedback" class="feedback-section">
+  <div class="container">
+    <p class="feedback-section__tag reveal">MULTIVERSAL FEEDBACK</p>
+    <h2 class="feedback-section__heading reveal">RATE THE MULTIVERSE</h2>
+    <p class="feedback-section__sub reveal">
+      How did we do? Your feedback shapes the next dimension.
+    </p>
+    <div class="feedback-card reveal">
+      <div class="feedback-stars" role="group" aria-label="Star rating">
+        <!-- 5 star buttons, rendered by JS -->
+      </div>
+      <p class="feedback-rating-label" aria-live="polite"></p>
+      
+      <label class="feedback-label" for="feedback-text">
+        LEAVE A SUGGESTION (OPTIONAL)
+      </label>
+      <textarea
+        id="feedback-text"
+        class="feedback-textarea"
+        rows="4"
+        maxlength="500"
+        placeholder="Tell us what worked, what didn't, or what you'd love to see..."
+      ></textarea>
+      <p class="feedback-charcount"><span id="feedback-chars">0</span> / 500</p>
+      
+      <button class="feedback-submit" id="feedback-submit-btn" disabled>
+        SUBMIT FEEDBACK
+      </button>
+      
+      <div class="feedback-result" id="feedback-result" aria-live="polite"></div>
+    </div>
+    
+    <div class="feedback-aggregate" id="feedback-aggregate">
+      <span class="feedback-aggregate__stars" id="agg-stars">★★★★★</span>
+      <span class="feedback-aggregate__score" id="agg-score"></span>
+      <span class="feedback-aggregate__count" id="agg-count"></span>
+    </div>
+  </div>
+</section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 10 FOOTER
   ═══════════════════════════════════════════════════════════ -->
   <footer id="footer" class="section section--footer" aria-label="Footer">
     <div class="container footer__inner">
@@ -814,6 +1190,7 @@
   <script src="js/core/hamburger.js"></script>
   <script type="module" src="js/main.js"></script>
   <script src="js/cursor.js"></script>
+  <script type="module" src="js/feedback.js"></script>
 </body>
 
 </html>
