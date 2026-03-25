@@ -872,6 +872,21 @@ export const UNIVERSES = [
                 ],
                 sdgs: ['SDG 8 – Decent Work and Economic Growth', 'SDG 12 – Responsible Consumption and Production']
             },
+            {
+                title: 'AI-Powered Autonomous Job Search & Application Optimization System',
+                tag: 'Platforms & Job Automation Systems',
+                desc: 'In the current job ecosystem, candidates face a fragmented and time-intensive process involving job discovery, resume customization, application submission, and tracking. Most job portals offer limited personalization and require users to manually tailor resumes for each role, often without clear insights into ATS (Applicant Tracking System) compatibility. This leads to inefficiencies, lower visibility, and reduced chances of securing interviews.\n\nThe proposed solution is an AI-powered autonomous job search and application optimization system designed to streamline and automate the entire workflow. The platform begins by collecting user data such as skills, experience, projects, preferences, and career goals. It then uses this data to intelligently scan and aggregate job listings from multiple platforms and company career pages.\n\nUsing Natural Language Processing (NLP) and machine learning algorithms, the system analyzes job descriptions and dynamically modifies the user\'s resume to match role-specific requirements. It enhances keyword relevance, formats resumes according to ATS standards, and generates an ATS compatibility score.\n\nThe platform further automates the application process by submitting optimized applications to relevant job openings. It continuously tracks application statuses, extracts updates from emails or portals, and provides real-time notifications to users.\n\nAdditionally, the system integrates with calendars and communication channels to manage interview scheduling efficiently. It also delivers actionable insights such as success probability, skill gaps, and personalized recommendations to improve employability.\n\nOverall, the solution reduces manual effort, increases application efficiency, and improves the chances of job acquisition through intelligent automation and data-driven decision-making.',
+                solution: [
+                    'Automated job search across multiple platforms',
+                    'AI-based resume tailoring for each job role',
+                    'ATS score analysis and optimization',
+                    'Auto-application to relevant job openings',
+                    'Real-time tracking of application status',
+                    'Interview scheduling and notification system',
+                    'Personalized recommendations and insights',
+                ],
+                sdgs: ['SDG 8 – Decent Work and Economic Growth', 'SDG 9 – Industry, Innovation and Infrastructure']
+            },
         ],
     },
 ];
