@@ -31,7 +31,7 @@ export const UNIVERSES = [
             {
                 title: 'Intelligent Water Distribution Monitoring System',
                 tag: 'Water Management / Smart Infrastructure IoT',
-                desc: 'Invisible Water Loss & Contamination Water distribution systems in cities and rural areas suffer from leakage, illegal tapping, and contamination. These issues often go undetected due to lack of real-time monitoring, resulting in massive water loss and public health risks. Traditional inspection methods are manual, reactive, and inefficient. The Challenge: Continuous Pipeline Intelligence Participants must develop an embedded system capable of continuously monitoring water pipelines for anomalies such as leaks, pressure drops, and contamination. The challenge lies in designing a reliable, low-cost system that can operate in harsh environments with minimal maintenance.',
+                desc: ' Water distribution systems in cities and rural areas suffer from leakage, illegal tapping, and contamination. These issues often go undetected due to lack of real-time monitoring, resulting in massive water loss and public health risks. Traditional inspection methods are manual, reactive, and inefficient. \n\nThe Challenge: Continuous Pipeline Intelligence \nParticipants must develop an embedded system capable of continuously monitoring water pipelines for anomalies such as leaks, pressure drops, and contamination. The challenge lies in designing a reliable, low-cost system that can operate in harsh environments with minimal maintenance.',
                 solution: [
                     'Smart Pipeline Monitoring Node',
                     'The system should act as an intelligent node in a distributed monitoring network:',
@@ -45,8 +45,8 @@ export const UNIVERSES = [
             },
             {
                 title: 'Condition-based monitoring and maintenance system',
-                tag: 'Automation / Condition Monitoring',
-                desc: 'There are a large number of tunnel booster fans (TBF) of different capacity installed in tunnel area at underground metro stations. These TBFs have different maintenance schedules and frequency prescribed by OEM. The TBF\'s are not operated regularly but are tested during mock drills. The exercise of scheduled preventive maintenance of this equipment involves a large number of manpower and risk of working at height. The Condition-based maintenance in place of scheduled preventive maintenance would be very helpful in optimizing the maintenance and manpower cost involved. To optimize the maintenance and manpower cost there is a great need of developing a condition-based monitoring and maintenance system. The historical data pertaining to failures along with the symptoms, the permissible limits of different parameters. the previous maintenance records of TBF shall be fed into the AI-based condition monitoring system. The AI-based system shall analyze and compare this historical data with parameter obtained at the time of operation during the testing/mock drill to predict any maintenance requirement based on the condition of TBF and the system shall also alert in case of any deviation from specified values.',
+                tag: 'Automation',
+                desc: 'There are a large number of tunnel booster fans (TBF) of different capacity installed in tunnel area at underground metro stations. These TBFs have different maintenance schedules and frequency prescribed by OEM. The TBF\'s are not operated regularly but are tested during mock drills. The exercise of scheduled preventive maintenance of this equipment involves a large number of manpower and risk of working at height. The Condition-based maintenance in place of scheduled preventive maintenance would be very helpful in optimizing the maintenance and manpower cost involved. \n\nTo optimize the maintenance and manpower cost there is a great need of developing a condition-based monitoring and maintenance system. The historical data pertaining to failures along with the symptoms, the permissible limits of different parameters. the previous maintenance records of TBF shall be fed into the AI-based condition monitoring system. The AI-based system shall analyze and compare this historical data with parameter obtained at the time of operation during the testing/mock drill to predict any maintenance requirement based on the condition of TBF and the system shall also alert in case of any deviation from specified values.',
                 solution: [
                     'Condition-based monitoring and maintenance system which can use machine learning & behavioural analytics to predict any maintenance requirement based on the condition of a particular system.',
                 ],
@@ -319,7 +319,7 @@ export const UNIVERSES = [
             {
                 title: 'Autonomous Inspection Robot for Hazardous Environments',
                 tag: 'Industrial Robotics / Autonomous Systems',
-                desc: 'Unsafe Human Exposure in Industrial Environments Industries such as chemical plants, oil refineries, mines, and manufacturing units often involve hazardous environments with toxic gases, extreme temperatures, and structurally unstable zones. Human inspection in these areas poses serious safety risks and is often inefficient due to limited accessibility and visibility. The Challenge: Autonomous Navigation & Intelligent Fault Detection Participants must design a robotic system capable of navigating complex industrial environments autonomously while detecting anomalies such as gas leaks, cracks, overheating equipment, or structural damage. The challenge lies in real-time decision-making, obstacle avoidance, and reliable sensing in harsh conditions.',
+                desc: 'Industries such as chemical plants, oil refineries, mines, and manufacturing units often involve hazardous environments with toxic gases, extreme temperatures, and structurally unstable zones. Human inspection in these areas poses serious safety risks and is often inefficient due to limited accessibility and visibility. \n\nThe Challenge: Autonomous Navigation & Intelligent Fault Detection \nParticipants must design a robotic system capable of navigating complex industrial environments autonomously while detecting anomalies such as gas leaks, cracks, overheating equipment, or structural damage. The challenge lies in real-time decision-making, obstacle avoidance, and reliable sensing in harsh conditions.',
                 solution: [
                     'AI-Powered Inspection Robot',
                     'The system should function as an intelligent inspection unit capable of reducing human intervention:',
@@ -471,7 +471,7 @@ export const UNIVERSES = [
             {
                 title: 'Deep Learning for Cyclone Intensity',
                 tag: 'Predictive Analytics',
-                desc: 'Unpredictable Storm Escalation Cyclones in the Bay of Bengal and Arabian Sea frequently undergo rapid intensification, catching coastal communities off guard and leading to massive loss of life. Currently, meteorological departments rely heavily on heuristic models and delayed international data, which struggle to predict sudden spikes in storm severity.\n\n The Challenge: Real-Time Satellite Analytics \nParticipants must train an AI model to analyze raw satellite imagery and estimate storm intensity faster than traditional weather models.',
+                desc: 'Unpredictable Storm Escalation Cyclones in the Bay of Bengal and Arabian Sea frequently undergo rapid intensification, catching coastal communities off guard and leading to massive loss of life. Currently, meteorological departments rely heavily on heuristic models and delayed international data, which struggle to predict sudden spikes in storm severity.\n\nThe Challenge: Real-Time Satellite Analytics \nParticipants must train an AI model to analyze raw satellite imagery and estimate storm intensity faster than traditional weather models.',
                 solution: [
                     'Cyclone CV Estimator',
                     'Successful prototypes should incorporate:',
@@ -741,7 +741,7 @@ export const UNIVERSES = [
         code: 'SW-05',
         family: 'software',
         track: 'Software',
-        title: 'AR/VR',
+        title: 'Augmented Reality / Virtual Reality(AR/VR)',
         tagline: 'Reality is just the beginning.',
         variantName: 'Symbiote Spider-Man',
         whyContent: 'I thrive under pressure… building immersive experiences that transcend the physical world.',
