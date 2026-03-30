@@ -166,7 +166,8 @@ function selectDomain(idx) {
       <!-- PROBLEM STATEMENTS -->
       <div class="detail-problems">
         <p class="detail-problems__heading">Problem Statements</p>
-        <div class="problem-list">
+        
+        <div class="problem-list" style="margin-bottom: 2.5rem;">
           ${d.problems.map((p, pi) => `
             <div class="problem-skill" data-problem-index="${pi}">
               <div class="problem-skill__icon">P${pi + 1}</div>
@@ -175,6 +176,35 @@ function selectDomain(idx) {
               </div>
             </div>
           `).join('')}
+        </div>
+
+        <div style="padding: 1.5rem; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.4); border-radius: 8px; text-align: left;">
+          <h4 style="font-family:'Anton',sans-serif; color:#fcee0a; font-size:1.1rem; margin-bottom:0.8rem; letter-spacing:0.04em; text-transform:uppercase;">Rules and Regulations: Participation Guidelines</h4>
+          <div style="color: rgba(255,255,255,0.85); font-size: 0.9rem; line-height: 1.6;">
+            <strong style="color: #00f0ff; letter-spacing:0.03em;">Eligibility:</strong>
+            <ul style="list-style-type: disc; margin-left: 1.2rem; margin-bottom: 1rem;">
+              <li>Open to all undergraduate engineering students</li>
+              <li>Teams must be from the same college only (inter-college teams are not permitted)</li>
+              <li>Inter-department teams are allowed</li>
+            </ul>
+
+            <strong style="color: #00f0ff; letter-spacing:0.03em;">Team Composition:</strong>
+            <ul style="list-style-type: disc; margin-left: 1.2rem; margin-bottom: 1rem;">
+              <li>Minimum: 4 members</li>
+              <li>Maximum: 6 members</li>
+            </ul>
+
+            <ul style="list-style-type: disc; margin-left: 1.2rem; margin-bottom: 1rem;">
+              <li>Organizers will not provide any hardware components or software tools.</li>
+              <li>Only Team leader must register for the team.</li>
+              <li>PPT TEMPLATE SHOULD BE FOLLOWED STRICTLY (NO EXTRA SLIDES SHOULD BE ADDED)</li>
+            </ul>
+
+            <strong style="color: #00f0ff; letter-spacing:0.03em;">Queries:</strong>
+            <ul style="list-style-type: disc; margin-left: 1.2rem; margin-bottom: 0;">
+              <li>For further queries, please refer to the FAQ page</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div><!-- /detail-body -->
@@ -205,6 +235,7 @@ function selectDomain(idx) {
         ${problem.sdgs.map(s => `<span style="display:inline-block; padding:5px 12px; background:rgba(252,238,10,0.15); border:1px solid rgba(252,238,10,0.5); border-radius:6px; font-family:'Anton',sans-serif; font-size:0.72rem; color:#fcee0a; letter-spacing:0.03em;">${s}</span>`).join('')}
       </div>
     ` : '';
+    
     modalBody.innerHTML = `
       <span class="ps-modal__tag">${problem.tag}</span>
       <h2 class="ps-modal__title" style="padding-right:40px;">${problem.title}</h2>
