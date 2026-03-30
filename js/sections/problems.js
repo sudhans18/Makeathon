@@ -1,6 +1,3 @@
-import { UNIVERSES } from '../data/universes.js';
-
-
 function generateWeb(w, h, originX, originY) {
     const cx = originX === 0 ? 0 : w;
     const cy = originY === 0 ? 0 : h;
@@ -400,29 +397,5 @@ export function initProblems() {
                 </a>
             </div>
         </div>
-    `;
-}
-
-
-function renderUniverseButton(universe) {
-    const spiderLogo = `assets/spiderlogos/s${universe.id}.png`;
-    const subdomain = universe.title || '';
-
-    return `
-        <a class="track-selector__spider-link track-selector__spider-link--${universe.family}"
-           href="${universe.href}"
-           aria-label="${subdomain}">
-            <span class="track-selector__spider-tile">
-                <img
-                    class="track-selector__spider-img"
-                    src="${spiderLogo}"
-                    alt="${subdomain}"
-                    loading="lazy"
-                    onerror="this.style.display='none'"
-                />
-            </span>
-            <span class="track-selector__spider-name">${universe.label}</span>
-            <span class="track-selector__spider-subdomain">${subdomain}</span>
-        </a>
     `;
 }

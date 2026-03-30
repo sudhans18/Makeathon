@@ -39,7 +39,7 @@ function getCriticalAssets() {
 
     const dynamicInitAssets = [
         'assets/problembg.jpg',
-        ...Array.from({ length: 12 }, (_, i) => `assets/spiderlogos/s${i + 1}.png`),
+        'assets/sound.mp3',
     ];
 
     return [...new Set([...fromDOM, ...dynamicInitAssets])];
@@ -67,7 +67,17 @@ function loadAsset(src) {
 
         const timeoutId = setTimeout(done, ASSET_TIMEOUT_MS);
 
-        if (/\.(mp4|webm|ogg)$/i.test(src)) {
+        if (/\.(mp3|wav|ogg)$/i.test(src)) {
+            const audio = new Audio();
+            audio.preload = 'auto';
+            audio.oncanplaythrough = done;
+            audio.onerror = done;
+            audio.src = src;
+            audio.load();
+            return;
+        }
+
+        if (/\.(mp4|webm)$/i.test(src)) {
             const video = document.createElement('video');
             video.preload = 'auto';
             video.onloadeddata = done;

@@ -5,6 +5,8 @@
 ═══════════════════════════════════════════════════════════ */
 import { UNIVERSES } from './data/universes.js';
 
+const ABSTRACT_PPT_TEMPLATE = 'assets/MAKEATHON%207.0%20ABSTRACT%20PPT%20TEMPLATE.pptx';
+
 /* ── URL param ──────────────────────────────────────────── */
 const params = new URLSearchParams(location.search);
 const trackFamily = (params.get('t') || 'hardware').toLowerCase();
@@ -64,6 +66,10 @@ function renderProblemDescription(desc) {
   return paragraphs
     .map((part) => `<p class="ps-modal__desc">${escapeHtml(part).replace(/\n/g, '<br>')}</p>`)
     .join('');
+}
+
+function getProblemId(domain, problemIndex) {
+  return `${domain.code.replace('-', '')}${String(problemIndex + 1).padStart(2, '0')}`;
 }
 
 /* ══════════════════════════════════════════
@@ -157,6 +163,15 @@ function selectDomain(idx) {
         <span class="detail-hero__code">${d.code} — TRACK</span>
         <h1 class="detail-hero__name">${d.title}</h1>
         <p class="detail-hero__tagline">${d.tagline}</p>
+        <div class="detail-hero__actions" aria-label="Track actions">
+          <a class="detail-hero__action detail-hero__action--download" href="${ABSTRACT_PPT_TEMPLATE}" download>
+            Download PPT Template
+          </a>
+          <a class="detail-hero__action detail-hero__action--back" href="index.html#problems">
+            <span class="detail-hero__action-arrow" aria-hidden="true">←</span>
+            Back to Tracks
+          </a>
+        </div>
         <div id="spider-signal" class="spider-signal" title="Click for a signal..."></div>
       </div>
     </div>
@@ -172,6 +187,7 @@ function selectDomain(idx) {
             <div class="problem-skill" data-problem-index="${pi}">
               <div class="problem-skill__icon">P${pi + 1}</div>
               <div class="problem-skill__text">
+                <span class="problem-skill__id">${getProblemId(d, pi)}</span>
                 <span class="problem-skill__name">${p.title}</span>
               </div>
             </div>
@@ -220,7 +236,7 @@ function selectDomain(idx) {
   const modalClose = document.getElementById('ps-modal-close');
   const modalOverlay = document.getElementById('ps-modal-overlay');
 
-  const openPSModal = (problem) => {
+  const openPSModal = (problem, problemId) => {
     const descHtml = renderProblemDescription(problem.desc);
     const solutionHtml = problem.solution ? `
       <div style="margin-top:1rem;">
@@ -237,7 +253,10 @@ function selectDomain(idx) {
     ` : '';
     
     modalBody.innerHTML = `
-      <span class="ps-modal__tag">${problem.tag}</span>
+      <div class="ps-modal__meta">
+        <span class="ps-modal__tag">${problem.tag}</span>
+        <span class="ps-modal__id">Problem ID: ${problemId}</span>
+      </div>
       <h2 class="ps-modal__title" style="padding-right:40px;">${problem.title}</h2>
       ${descHtml}
       ${solutionHtml}
@@ -302,8 +321,8 @@ function selectDomain(idx) {
   // Click listeners for problem items
   rightPanel.querySelectorAll('.problem-skill').forEach(el => {
     el.addEventListener('click', () => {
-      const pIdx = el.dataset.problemIndex;
-      openPSModal(d.problems[pIdx]);
+      const pIdx = Number(el.dataset.problemIndex);
+      openPSModal(d.problems[pIdx], getProblemId(d, pIdx));
     });
   });
 

@@ -16,7 +16,10 @@
 
 (function () {
   /* ── Touch guard ─────────────────────────────────────────── */
-  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+  const hasFinePointer = typeof window.matchMedia === 'function'
+    ? window.matchMedia('(hover: hover) and (pointer: fine)').matches
+    : !('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  if (!hasFinePointer) return;
 
   /* ── Click sound ─────────────────────────────────────────── */
   let clickAudio = null;
