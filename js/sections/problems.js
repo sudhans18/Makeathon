@@ -1,3 +1,6 @@
+import { UNIVERSES } from '../data/universes.js';
+
+
 function generateWeb(w, h, originX, originY) {
     const cx = originX === 0 ? 0 : w;
     const cy = originY === 0 ? 0 : h;
@@ -304,6 +307,32 @@ function injectStyles() {
             line-height: 1.6 !important;
         }
 
+        /* ══ DEADLINE text ══ */
+        .track-deadline {
+            font-family: 'Anton', sans-serif !important;
+            font-size: clamp(1.1rem, 2.5vw, 1.6rem) !important;
+            font-weight: 400 !important;
+            letter-spacing: 0.12em !important;
+            text-transform: uppercase !important;
+            color: #ffffff !important;
+            text-align: center !important;
+            margin-top: 28px !important;
+            -webkit-text-stroke: 1px rgba(255,0,64,0.55) !important;
+            text-shadow:
+                0 0 1px #000,
+                0 2px 10px rgba(0,0,0,0.95),
+                0 0 20px rgba(255,0,64,0.45) !important;
+        }
+
+        .track-deadline span {
+            color: #ff0040;
+            text-shadow:
+                0 0 8px rgba(255,0,64,0.9),
+                0 0 20px rgba(255,0,64,0.5),
+                0 2px 10px rgba(0,0,0,0.95) !important;
+            -webkit-text-stroke: 0 !important;
+        }
+
         /* ── Responsive: stack vertically on small screens ── */
         @media (max-width: 700px) {
             .track-choose-btns {
@@ -396,6 +425,32 @@ export function initProblems() {
                     <span class="track-choose-btn__sub">COMING SOON</span>
                 </a>
             </div>
+
+            <p class="track-deadline">DEADLINE : APRIL 4TH</p>
         </div>
+    `;
+}
+
+
+function renderUniverseButton(universe) {
+    const spiderLogo = `assets/spiderlogos/s${universe.id}.png`;
+    const subdomain = universe.title || '';
+
+    return `
+        <a class="track-selector__spider-link track-selector__spider-link--${universe.family}"
+           href="${universe.href}"
+           aria-label="${subdomain}">
+            <span class="track-selector__spider-tile">
+                <img
+                    class="track-selector__spider-img"
+                    src="${spiderLogo}"
+                    alt="${subdomain}"
+                    loading="lazy"
+                    onerror="this.style.display='none'"
+                />
+            </span>
+            <span class="track-selector__spider-name">${universe.label}</span>
+            <span class="track-selector__spider-subdomain">${subdomain}</span>
+        </a>
     `;
 }
