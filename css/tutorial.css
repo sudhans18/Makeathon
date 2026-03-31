@@ -1,0 +1,500 @@
+/* ═══════════════════════════════════════════════════════════
+   tutorial.css — Spider-Man Game-Style Tutorial Guide
+   Spider-Verse theme · neon accents · comic speech bubble
+   web-line drop · idle swing · exit animation
+   
+   ONLY loaded on track.html & industrial.html
+═══════════════════════════════════════════════════════════ */
+
+/* ── Dim overlay while tutorial is active ── */
+.tutorial-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 12, 20, 0.2); /* Increased transparency */
+  z-index: 9997;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.tutorial-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Root container — pinned top-right ── */
+.tutorial-guide {
+  position: fixed;
+  top: 0;
+  right: 56px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+/* ── Web line: grows downward from viewport top ── */
+.tutorial-guide__web-line {
+  width: 2px;
+  height: 0;
+  flex-shrink: 0;
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.04) 0%,
+      rgba(210, 218, 228, 0.72) 35%,
+      rgba(255, 255, 255, 0.92) 55%,
+      rgba(210, 218, 228, 0.6) 78%,
+      rgba(255, 255, 255, 0.28) 100%);
+  box-shadow:
+    0 0 4px rgba(255, 255, 255, 0.22),
+    0 0 10px rgba(0, 240, 255, 0.12);
+  transform-origin: top center;
+  transition: height 1.2s cubic-bezier(.22, 1, .36, 1);
+}
+
+.tutorial-guide.entering .tutorial-guide__web-line {
+  height: 120px;
+}
+
+.tutorial-guide.exiting .tutorial-guide__web-line {
+  height: 0;
+  transition: height 0.7s cubic-bezier(.55, 0, 1, .45);
+}
+
+/* ── Spider-Man image ── */
+.tutorial-guide__spider {
+  transform: translateY(-520px);
+  transition: transform 1.2s cubic-bezier(.22, 1, .36, 1);
+  pointer-events: auto;
+  filter:
+    drop-shadow(0 0 14px rgba(255, 0, 64, 0.42)) drop-shadow(0 0 28px rgba(0, 240, 255, 0.18));
+  z-index: 2;
+}
+
+.tutorial-guide__spider img {
+  width: 280px;
+  height: auto;
+  display: block;
+  /* renders in SVG's native orientation */
+}
+
+.tutorial-guide.entering .tutorial-guide__spider {
+  transform: translateY(0);
+}
+
+.tutorial-guide.exiting .tutorial-guide__spider {
+  transform: translateY(-520px);
+  transition: transform 0.7s cubic-bezier(.55, 0, 1, .45);
+}
+
+/* ── Idle swing (pendulum) ── */
+.tutorial-guide__pendulum {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: top center;
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes pendulumSwing {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(2deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-2deg);
+  }
+}
+
+.tutorial-guide.idle .tutorial-guide__pendulum {
+  animation: pendulumSwing 4s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SPEECH BUBBLE
+═══════════════════════════════════════════════════════════ */
+.tutorial-bubble {
+  position: absolute;
+  top: 170px;
+  right: 100%;
+  margin-right: 35px;
+  width: 380px;
+  z-index: 1;
+  background: rgba(16, 18, 32, 0.93);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 2px solid #00f0ff;
+  border-radius: 16px;
+  padding: 1.3rem 1.2rem;
+  pointer-events: auto;
+
+  /* hidden by default */
+  opacity: 0;
+  transform: scale(0.82) translateX(22px);
+  transition:
+    opacity 0.45s cubic-bezier(.22, 1, .36, 1) .35s,
+    transform 0.45s cubic-bezier(.22, 1, .36, 1) .35s;
+
+  box-shadow:
+    0 0 18px rgba(0, 240, 255, 0.12),
+    0 0 42px rgba(255, 0, 64, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Neon border glow cycle */
+@keyframes bubbleGlow {
+
+  0%,
+  100% {
+    border-color: #00f0ff;
+    box-shadow:
+      0 0 18px rgba(0, 240, 255, 0.14),
+      0 0 42px rgba(255, 0, 64, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  50% {
+    border-color: #ff0040;
+    box-shadow:
+      0 0 18px rgba(255, 0, 64, 0.2),
+      0 0 42px rgba(0, 240, 255, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+}
+
+.tutorial-bubble.visible {
+  opacity: 1;
+  transform: scale(1) translateX(0);
+  animation: bubbleGlow 4s ease-in-out infinite;
+}
+
+/* Tail → pointing RIGHT toward Spider-Man */
+.tutorial-bubble::after {
+  content: '';
+  position: absolute;
+  top: 22px;
+  right: -13px;
+  border-left: 14px solid #00f0ff;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  filter: drop-shadow(2px 0 5px rgba(0, 240, 255, 0.3));
+}
+
+.tutorial-bubble::before {
+  content: '';
+  position: absolute;
+  top: 23px;
+  right: -9px;
+  border-left: 11px solid rgba(16, 18, 32, 0.93);
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  z-index: 1;
+}
+
+/* Hide bubble on exit */
+.tutorial-guide.exiting .tutorial-bubble {
+  opacity: 0;
+  transform: scale(0.82) translateX(22px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+/* ── Step dots ── */
+.tutorial-bubble__dots {
+  display: flex;
+  gap: 7px;
+  margin-bottom: .75rem;
+}
+
+.tutorial-bubble__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.13);
+  transition: background .3s, transform .3s, box-shadow .3s;
+}
+
+.tutorial-bubble__dot.active {
+  background: #00f0ff;
+  transform: scale(1.35);
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.55);
+}
+
+.tutorial-bubble__dot.done {
+  background: rgba(255, 0, 64, 0.7);
+}
+
+/* ── Tag ── */
+.tutorial-bubble__tag {
+  font-family: 'Montserrat', sans-serif;
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: #ff0040;
+  margin-bottom: .5rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tutorial-bubble__tag::before {
+  content: '🕷️';
+  font-size: .72rem;
+}
+
+/* ── Text ── */
+.tutorial-bubble__text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: .9rem;
+  font-weight: 500;
+  line-height: 1.65;
+  color: #ffffff;
+  margin-bottom: 1.15rem;
+  min-height: 3em;
+}
+
+.tutorial-bubble__text::after {
+  content: '▋';
+  font-size: .75em;
+  color: #00f0ff;
+  margin-left: 2px;
+  animation: cursorBlink 1s steps(1) infinite;
+}
+
+@keyframes cursorBlink {
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ── Buttons ── */
+.tutorial-bubble__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* NEXT */
+.tutorial-bubble__btn-next {
+  flex: 1;
+  padding: .55rem 1rem;
+  font-family: 'Anton', sans-serif;
+  font-size: .88rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #0f1118;
+  background: linear-gradient(135deg, #00f0ff 0%, #00c0d4 100%);
+  border: 2px solid rgba(0, 0, 0, .25);
+  border-radius: 7px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transition: transform .2s cubic-bezier(.175, .885, .32, 1.275), box-shadow .2s;
+  box-shadow: 0 4px 14px rgba(0, 240, 255, .28);
+}
+
+.tutorial-bubble__btn-next::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .22), transparent);
+  transition: left .4s ease;
+}
+
+.tutorial-bubble__btn-next:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 22px rgba(0, 240, 255, .42);
+}
+
+.tutorial-bubble__btn-next:hover::before {
+  left: 100%;
+}
+
+.tutorial-bubble__btn-next:active {
+  transform: translateY(0);
+}
+
+/* Last step: red CTA */
+.tutorial-bubble__btn-next.last-step {
+  background: linear-gradient(135deg, #ff0040 0%, #cc0036 100%);
+  box-shadow: 0 4px 14px rgba(255, 0, 64, .28);
+}
+
+.tutorial-bubble__btn-next.last-step:hover {
+  box-shadow: 0 7px 22px rgba(255, 0, 64, .42);
+}
+
+/* SKIP */
+.tutorial-bubble__btn-skip {
+  padding: .55rem .9rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #a0aab8;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 7px;
+  cursor: pointer;
+  transition: color .2s, border-color .2s, background .2s;
+}
+
+.tutorial-bubble__btn-skip:hover {
+  color: #ff0040;
+  border-color: rgba(255, 0, 64, .5);
+  background: rgba(255, 0, 64, .06);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE — Mobile (≤ 768px)
+   Spider-Man centered top, bubble flows BELOW him in
+   normal flex flow — no fixed-bottom pinning, no overlap.
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Center the whole guide column at top-center */
+  .tutorial-guide {
+    right: auto;
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+    /* let bubble flow below spider naturally */
+    align-items: center;
+  }
+
+  /* Bigger spider on mobile */
+  .tutorial-guide__spider img {
+    width: 240px;
+  }
+
+  /* Slightly shorter web line to leave room */
+  .tutorial-guide.entering .tutorial-guide__web-line {
+    height: 70px;
+  }
+
+  /* ── Bubble: in-flow below spider, not fixed ── */
+  .tutorial-bubble {
+    position: relative;
+    /* back in flex flow */
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    margin-top: 16px;
+    /* gap between spider and bubble */
+    width: 85vw;
+    max-width: 380px;
+
+    /* center transforms only — no translateX(-50%) needed */
+    transform: scale(0.88) translateY(10px);
+  }
+
+  .tutorial-bubble.visible {
+    transform: scale(1) translateY(0);
+  }
+
+  .tutorial-guide.exiting .tutorial-bubble {
+    opacity: 0;
+    transform: scale(0.88) translateY(10px);
+  }
+
+  /* Tail → points UP toward Spider-Man */
+  .tutorial-bubble::after {
+    top: -13px;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 14px solid #00f0ff;
+    border-top: none;
+  }
+
+  .tutorial-bubble::before {
+    top: -9px;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 12px solid rgba(16, 18, 32, 0.93);
+    border-top: none;
+    z-index: 1;
+  }
+
+  /* Readable text + buttons */
+  .tutorial-bubble__text {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    min-height: auto;
+  }
+
+  .tutorial-bubble__actions {
+    gap: 10px;
+  }
+
+  .tutorial-bubble__btn-next {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .tutorial-bubble__btn-skip {
+    padding: 0.6rem 0.85rem;
+    font-size: 0.68rem;
+  }
+}
+
+/* ── Small phones (≤ 480px) — minor tweaks ── */
+@media (max-width: 480px) {
+  .tutorial-guide {
+    top: 12px;
+  }
+
+  .tutorial-guide__spider img {
+    width: 200px;
+  }
+
+  .tutorial-guide.entering .tutorial-guide__web-line {
+    height: 50px;
+  }
+
+  .tutorial-bubble {
+    width: 90vw;
+    padding: 1rem;
+    margin-top: 12px;
+  }
+
+  .tutorial-bubble__text {
+    font-size: 0.82rem;
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+
+  .tutorial-guide__spider,
+  .tutorial-guide__web-line,
+  .tutorial-bubble,
+  .tutorial-bubble__dot {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
