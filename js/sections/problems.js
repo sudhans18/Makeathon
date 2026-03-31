@@ -426,7 +426,7 @@ export function initProblems() {
                 </a>
             </div>
 
-            <p class="track-deadline">DEADLINE : APRIL 4TH  REGISTRATION FEE : Rs 350</p>
+            <p class="track-deadline">DEADLINE : APRIL 4TH</p>
         </div>
     `;
 }
