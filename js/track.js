@@ -210,15 +210,19 @@ function selectDomain(idx) {
               <li>Maximum: 6 members</li>
             </ul>
 
+            <strong style="color: #00f0ff; letter-spacing:0.03em;">Rules:</strong>
             <ul style="list-style-type: disc; margin-left: 1.2rem; margin-bottom: 1rem;">
-              <li>Organizers will not provide any hardware components or software tools.</li>
-              <li>Only Team leader must register for the team.</li>
-              <li>PPT TEMPLATE SHOULD BE FOLLOWED STRICTLY (NO EXTRA SLIDES SHOULD BE ADDED)</li>
+              <li>Organizers will not provide any hardware components or software tools</li>
+              <li>PPT template must be followed strictly (no extra slides should be added)</li>
+              <li>The abstract must not exceed 10 slides</li>
+              <li>Upload your solutions in PDF format only</li>
+              <li>Only the team leader must fill the form on behalf of the team</li>
+              <li>Ensure that the Google Drive document you upload has Viewer/Open access enabled for all</li>
             </ul>
 
             <strong style="color: #00f0ff; letter-spacing:0.03em;">Queries:</strong>
             <ul style="list-style-type: disc; margin-left: 1.2rem; margin-bottom: 0;">
-              <li>For further queries, please refer to the FAQ page</li>
+              <li>For further queries, please refer to the <a href="index.html#faq">FAQ</a> page</li>
             </ul>
           </div>
         </div>
