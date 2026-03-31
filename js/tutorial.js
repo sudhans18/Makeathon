@@ -262,12 +262,12 @@
   function wireEvents() {
     btnNext.addEventListener('click', nextStep);
     btnSkip.addEventListener('click', skipTutorial);
-    overlay.addEventListener('click', skipTutorial);
+    // overlay.addEventListener('click', skipTutorial);
 
-    /* Keyboard: Esc = skip, → / Enter = next */
+    /* Keyboard: → / Enter = next */
     document.addEventListener('keydown', function (e) {
       if (!tutorialActive) return;
-      if (e.key === 'Escape') skipTutorial();
+      // if (e.key === 'Escape') skipTutorial();
       if (e.key === 'ArrowRight' || e.key === 'Enter') nextStep();
     });
 
