@@ -61,7 +61,7 @@ if (root) {
                             `).join('')}
                         </div>
 
-                        <div style="padding: 1.5rem; border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.3); border-radius: 8px; text-align: left;">
+                        <div id="rules" style="padding: 1.5rem; border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.3); border-radius: 8px; text-align: left;">
                           <h4 style="font-family:'Anton',sans-serif; color:#fcee0a; font-size:1.1rem; margin-bottom:0.8rem; letter-spacing:0.04em; text-transform:uppercase;">Rules and Regulations: Participation Guidelines</h4>
                           <div style="color: rgba(255,255,255,0.85); font-size: 0.9rem; line-height: 1.6;">
                             <strong style="color: #00f0ff; letter-spacing:0.03em;">Eligibility:</strong>
