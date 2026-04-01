@@ -253,7 +253,7 @@ function injectStyles() {
             box-shadow: 6px 6px 0 #00f0ff;
         }
         .track-choose-btn--ind {
-            box-shadow: 6px 6px 0 #fcee0a;
+            box-shadow: 6px 6px 0 #ffffff;
         }
 
         .track-choose-btn:hover {
@@ -267,7 +267,7 @@ function injectStyles() {
             box-shadow: 9px 9px 0 #00f0ff;
         }
         .track-choose-btn--ind:hover {
-            box-shadow: 9px 9px 0 #fcee0a;
+            box-shadow: 9px 9px 0 #ffffff;
         }
 
         .track-choose-btn__icon {
@@ -293,7 +293,7 @@ function injectStyles() {
             text-shadow: 2px 2px 0 #00c8d4, 0 1px 8px rgba(0,0,0,0.8) !important;
         }
         .track-choose-btn--ind .track-choose-btn__label {
-            text-shadow: 2px 2px 0 #c9bc00, 0 1px 8px rgba(0,0,0,0.8) !important;
+            text-shadow: 2px 2px 0 #888888, 0 1px 8px rgba(0,0,0,0.8) !important;
         }
 
         .track-choose-btn__sub {
@@ -419,10 +419,10 @@ export function initProblems() {
                     <span class="track-choose-btn__label">SOFTWARE</span>
                     <span class="track-choose-btn__sub">AI · Smart Cities · Governance · Blockchain · AR/VR · FinTech</span>
                 </a>
-                <a href="industrial.html" class="track-choose-btn track-choose-btn--ind">
-                    <span class="track-choose-btn__icon">🏭</span>
-                    <span class="track-choose-btn__label">INDUSTRIAL PROBLEM STATEMENTS</span>
-                    <span class="track-choose-btn__sub">COMING SOON</span>
+                <a href="industrial.html" class="track-choose-btn track-choose-btn--ind" style="box-shadow: 6px 6px 0 #ffffff;">
+                    <span class="track-choose-btn__icon">🚚</span>
+                    <span class="track-choose-btn__label" style="text-shadow: 2px 2px 0 #333 !important;">INDUSTRIAL PROBLEM STATEMENTS</span>
+                    <span class="track-choose-btn__sub">THE PROWLER'S DOMAIN</span>
                 </a>
             </div>
 
