@@ -1,176 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HEKCE27K1S"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
+    function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-HEKCE27K1S');
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Industry Problem Statements — Makeathon 7.0</title>
-  <meta name="description"
-    content="Industry track problem statements for Makeathon 7.0. Real-world challenges from leading companies." />
+  <meta name="description" content="Industry track problem statements for Makeathon 7.0. Real-world challenges from leading companies." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;600;800&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/nav.css" />
   <link rel="stylesheet" href="css/track.css" />
-  <!-- Fonts: Anton (matches site's comic heading style) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;600&display=swap"
-    rel="stylesheet" />
 
   <style>
-    /* ── Prowler accent overrides ── */
     :root {
       --ind-accent: #9146ff;
-      --ind-glow: rgba(145, 70, 255, 0.45);
+      --ind-glow:   rgba(145, 70, 255, 0.45);
     }
 
+    /* ── Page background ── */
     .track-page-body {
-      background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)),
-        url('assets/background/prowler_bg.jpg');
+      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)),
+                  url('assets/background/prowler_bg.jpg');
       background-size: cover;
       background-attachment: fixed;
       background-position: center;
     }
 
-    /* Left panel header accent */
+    /* ── Left panel ── */
     .track-left {
       background: rgba(9, 9, 20, 0.92);
       border-right: 1px solid rgba(145, 70, 255, 0.15);
     }
+    .track-left__accent-bar { background: var(--ind-accent) !important; }
 
-    .track-left__accent-bar {
-      background: var(--ind-accent) !important;
-    }
-
-    /* Active thumb uses purple instead of cyan */
+    /* Active / hover thumb — purple instead of cyan */
     .track-thumb.is-active {
-      border-color: rgba(145, 70, 255, 0.5);
-      background: rgba(145, 70, 255, 0.05);
-      box-shadow: inset 4px 0 0 var(--ind-accent), 0 0 0 1px rgba(145, 70, 255, 0.15);
+      border-color: rgba(145,70,255,0.5);
+      background:   rgba(145,70,255,0.05);
+      box-shadow: inset 4px 0 0 var(--ind-accent), 0 0 0 1px rgba(145,70,255,0.15);
     }
+    .track-thumb:hover { box-shadow: inset 3px 0 0 rgba(145,70,255,0.5); }
+    .track-thumb.is-active .track-thumb__code  { color: var(--ind-accent); }
+    .track-thumb.is-active .track-thumb__index { color: var(--ind-accent); }
 
-    .track-thumb:hover {
-      box-shadow: inset 3px 0 0 rgba(145, 70, 255, 0.5);
-    }
-
-    .track-thumb.is-active .track-thumb__code {
-      color: var(--ind-accent);
-    }
-
-    .track-thumb.is-active .track-thumb__index {
-      color: var(--ind-accent);
-    }
-
-    /* ── Prowler Flip Card (left panel) ── */
-    .prowler-flip-wrap {
-      padding: 14px 14px 0;
-      flex-shrink: 0;
-    }
-
-    .prowler-flip {
-      width: 100%;
-      height: 160px;
-      perspective: 900px;
-      cursor: pointer;
-    }
-
-    .prowler-flip__inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-      transform-style: preserve-3d;
-    }
-
-    .prowler-flip.is-flipped .prowler-flip__inner {
-      transform: rotateY(180deg);
-    }
-
-    .prowler-flip__front,
-    .prowler-flip__back {
-      position: absolute;
-      inset: 0;
-      border-radius: 10px;
-      overflow: hidden;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      border: 1px solid rgba(145, 70, 255, 0.3);
-    }
-
-    .prowler-flip__front img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .prowler-flip__back {
-      background: #09090f;
-      transform: rotateY(180deg);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      box-shadow: inset 0 0 30px rgba(145, 70, 255, 0.15);
-    }
-
-    .prowler-flip__back-title {
-      font-family: 'Anton', sans-serif;
-      font-size: 1.3rem;
-      color: var(--ind-accent);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .prowler-flip__back-sub {
-      font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.5);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .prowler-flip__back-tag {
-      margin-top: 8px;
-      font-family: 'Anton', sans-serif;
-      font-size: 0.6rem;
-      color: var(--ind-accent);
-      border: 1px solid var(--ind-accent);
-      padding: 3px 8px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .prowler-flip__hint {
-      text-align: center;
-      font-size: 0.6rem;
-      color: rgba(255, 255, 255, 0.25);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 6px 0 10px;
-    }
-
-    /* Company logo thumbnail — square not portrait */
+    /* Company logo thumbnail — white square container */
     .track-thumb__img-wrap {
-      width: 52px;
-      height: 52px;
+      width: 52px; height: 52px;
       background: #fff;
       border-radius: 6px;
       padding: 4px;
     }
-
     .track-thumb__img {
       object-fit: contain;
       object-position: center;
@@ -178,1095 +67,480 @@
       opacity: 0.85;
       transition: opacity 0.25s;
     }
-
     .track-thumb:hover .track-thumb__img,
-    .track-thumb.is-active .track-thumb__img {
-      opacity: 1;
-    }
+    .track-thumb.is-active .track-thumb__img { opacity: 1; }
 
-    /* Right panel dark overlay */
-    .track-right {
-      background: rgba(9, 9, 20, 0.6);
-    }
+    /* ── Right panel ── */
+    .track-right { background: rgba(9,9,20,0.6); }
+    .detail-hero__bg      { filter: brightness(0.5); }
+    .detail-hero__overlay { background: linear-gradient(to top, rgba(9,9,20,0.95) 0%, transparent 60%); }
+    .detail-hero__name    { text-shadow: 4px 4px 0 var(--ind-accent), 8px 8px 0 rgba(0,0,0,0.8); }
+    .detail-hero__code    { color: var(--ind-accent); }
 
-    /* Hero BG override — use prowler_bg */
-    .detail-hero__bg {
-      filter: brightness(0.5);
-    }
-
-    .detail-hero__overlay {
-      background: linear-gradient(to top, rgba(9, 9, 20, 0.95) 0%, transparent 60%);
-    }
-
-    /* Company name style */
-    .detail-hero__name {
-      text-shadow: 4px 4px 0 var(--ind-accent), 8px 8px 0 rgba(0, 0, 0, 0.8);
-    }
-
-    .detail-hero__code {
-      color: var(--ind-accent);
-    }
-
-    /* Problem grid — 2×2 */
-    .problem-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      width: 100%;
-    }
-
-    /* Skill card hover uses purple */
-    .problem-skill:hover {
-      border-color: rgba(145, 70, 255, 0.35);
-      background: rgba(145, 70, 255, 0.04);
-    }
-
-    .problem-skill:hover .problem-skill__name {
-      color: var(--ind-accent);
-    }
-
-    .problem-skill__id {
-      color: var(--ind-accent);
-    }
-
-    .problem-skill__icon {
-      color: rgba(145, 70, 255, 0.7);
-      border-color: rgba(145, 70, 255, 0.2);
-    }
-
-    /* PS Modal purple tint */
-    .ps-modal__content {
-      border-color: var(--ind-accent);
-      box-shadow: 0 0 30px var(--ind-glow);
-    }
-
-    .ps-modal__tag {
-      background: rgba(145, 70, 255, 0.1);
-      border-color: var(--ind-accent);
-      color: var(--ind-accent);
-    }
-
-    .ps-modal__title {
-      text-shadow: 3px 3px 0 var(--ind-accent);
-    }
-
-    .ps-modal__close:hover {
-      background: var(--ind-accent);
-      border-color: var(--ind-accent);
-      box-shadow: 0 0 15px var(--ind-glow);
-    }
-
-    /* Company profile info bar */
-    .company-profile {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .company-profile__chip {
-      font-family: var(--ff-body, sans-serif);
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.6);
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 4px 10px;
-      border-radius: 4px;
-    }
-
-    .company-profile__chip span {
-      color: var(--ind-accent);
-      margin-right: 4px;
-    }
-
-    /* Download / Back buttons */
+    /* ── Action buttons ── */
     .detail-hero__action--download {
       border-color: var(--ind-accent);
-      background: var(--ind-accent);
+      background:   var(--ind-accent);
       color: #fff;
-      box-shadow: 4px 4px 0 rgba(145, 70, 255, 0.3);
+      box-shadow: 4px 4px 0 rgba(145,70,255,0.3);
     }
-
     .detail-hero__action--download:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0 rgba(145, 70, 255, 0.4);
+      transform: translate(-2px,-2px);
+      box-shadow: 6px 6px 0 rgba(145,70,255,0.4);
       background: #a461ff;
-      color: #fff;
     }
-
     .detail-hero__action--back {
       border-color: var(--ind-accent);
       color: var(--ind-accent);
-      box-shadow: 4px 4px 0 rgba(145, 70, 255, 0.2);
+      box-shadow: 4px 4px 0 rgba(145,70,255,0.2);
     }
-
     .detail-hero__action--back:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0 rgba(145, 70, 255, 0.3);
+      transform: translate(-2px,-2px);
+      box-shadow: 6px 6px 0 rgba(145,70,255,0.3);
       color: #fff;
     }
 
-    /* SDG badge */
+    /* ── Problem grid 2×2 ── */
+    .problem-list {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 16px;
+      width: 100%;
+    }
+    @media (max-width: 768px) { .problem-list { grid-template-columns: 1fr; } }
+
+    /* Skill card purple hover */
+    .problem-skill:hover            { border-color: rgba(145,70,255,0.35); background: rgba(145,70,255,0.04); }
+    .problem-skill:hover .problem-skill__name { color: var(--ind-accent); }
+    .problem-skill__id   { color: var(--ind-accent); }
+    .problem-skill__icon { color: rgba(145,70,255,0.7); border-color: rgba(145,70,255,0.2); }
+
+    /* ── Modal purple tint ── */
+    .ps-modal__content   { border-color: var(--ind-accent); box-shadow: 0 0 30px var(--ind-glow); }
+    .ps-modal__tag       { background: rgba(145,70,255,0.1); border-color: var(--ind-accent); color: var(--ind-accent); }
+    .ps-modal__title     { text-shadow: 3px 3px 0 var(--ind-accent); }
+    .ps-modal__close:hover { background: var(--ind-accent); border-color: var(--ind-accent); box-shadow: 0 0 15px var(--ind-glow); }
+
+    /* ── SDG badge ── */
     .sdg-badge {
       display: inline-block;
       padding: 4px 12px;
-      background: rgba(145, 70, 255, 0.1);
-      border: 1px solid rgba(145, 70, 255, 0.4);
+      background: rgba(145,70,255,0.1);
+      border: 1px solid rgba(145,70,255,0.4);
       border-radius: 6px;
       font-family: 'Anton', sans-serif;
       font-size: 0.72rem;
       color: var(--ind-accent);
       letter-spacing: 0.03em;
     }
-
-    /* Mobile */
-    @media (max-width: 768px) {
-      .problem-list {
-        grid-template-columns: 1fr;
-      }
-    }
   </style>
-  <style>
-    /* ── Reset ── */
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    /* ── Root ── */
-    :root {
-      --c-bg: #000000;
-      --c-yellow: #fcee0a;
-      --c-red: #ff0040;
-      --c-cyan: #00f0ff;
-      --c-white: #ffffff;
-    }
-
-    /* ── Body: full-height black ── */
-    html,
-    body {
-      height: 100%;
-      background: var(--c-bg);
-      overflow: hidden;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      position: relative;
-      font-family: 'DM Sans', sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ── Cobweb SVG corners (pure CSS-drawn via JS below) ── */
-    .cobweb-corner {
-      position: fixed;
-      width: 280px;
-      height: 280px;
-      pointer-events: none;
-      opacity: 0;
-      animation: cobweb-fade-in 1.2s ease forwards, cobweb-pulse 4s ease-in-out infinite alternate;
-    }
-
-    .cobweb-corner--tl {
-      top: 0;
-      left: 0;
-      animation-delay: 0.2s, 1.4s;
-    }
-
-    .cobweb-corner--tr {
-      top: 0;
-      right: 0;
-      transform: scaleX(-1);
-      animation-delay: 0.4s, 1.4s;
-    }
-
-    .cobweb-corner--bl {
-      bottom: 0;
-      left: 0;
-      transform: scaleY(-1);
-      animation-delay: 0.6s, 1.4s;
-    }
-
-    .cobweb-corner--br {
-      bottom: 0;
-      right: 0;
-      transform: scale(-1);
-      animation-delay: 0.8s, 1.4s;
-    }
-
-    @keyframes cobweb-fade-in {
-      to {
-        opacity: 0.75;
-      }
-    }
-
-    @keyframes cobweb-pulse {
-      from {
-        filter: drop-shadow(0 0 4px rgba(252, 238, 10, 0.4));
-        opacity: 0.4;
-      }
-
-      to {
-        filter: drop-shadow(0 0 14px rgba(252, 238, 10, 0.9));
-        opacity: 0.85;
-      }
-    }
-
-    /* ── Halftone dot grid ── */
-    .halftone {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-      background-size: 18px 18px;
-      animation: halftone-drift 14s linear infinite;
-      z-index: 0;
-    }
-
-    @keyframes halftone-drift {
-      0% {
-        background-position: 0 0;
-      }
-
-      100% {
-        background-position: 36px 36px;
-      }
-    }
-
-    /* ── Ambient color blobs ── */
-    .blob {
-      position: fixed;
-      border-radius: 50%;
-      pointer-events: none;
-      filter: blur(80px);
-      z-index: 0;
-    }
-
-    .blob--yellow {
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(252, 238, 10, 0.07), transparent 70%);
-      top: -100px;
-      left: -100px;
-      animation: blob-float 18s ease-in-out infinite;
-    }
-
-    .blob--red {
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(255, 0, 64, 0.06), transparent 70%);
-      bottom: -80px;
-      right: -80px;
-      animation: blob-float 22s ease-in-out infinite reverse;
-    }
-
-    @keyframes blob-float {
-
-      0%,
-      100% {
-        transform: translate(0, 0) scale(1);
-      }
-
-      50% {
-        transform: translate(30px, 50px) scale(1.08);
-      }
-    }
-
-    /* ── Main content wrapper ── */
-    .content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 28px;
-      padding: 2rem;
-    }
-
-    /* ── "INDUSTRIAL PROBLEM STATEMENTS" label ── */
-    .eyebrow {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600;
-      font-size: clamp(0.65rem, 1.5vw, 0.85rem);
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--c-yellow);
-      opacity: 0;
-      animation: slide-up 0.6s ease 0.3s forwards;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .eyebrow::before,
-    .eyebrow::after {
-      content: '';
-      display: block;
-      width: 32px;
-      height: 1px;
-      background: var(--c-yellow);
-      opacity: 0.6;
-    }
-
-    /* ── BIG "COMING SOON" ── */
-    .coming-soon {
-      font-family: 'Anton', sans-serif;
-      font-size: clamp(3.5rem, 11vw, 8.5rem);
-      font-weight: 400;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--c-white);
-      /* Offset comic shadow — matches the site's .track-selector__heading */
-      text-shadow:
-        4px 4px 0 var(--c-red),
-        8px 8px 0 #000000;
-      line-height: 1;
-      opacity: 0;
-      animation: slam-in 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
-    }
-
-    /* Glitch flicker on the text — occasional, every ~6s */
-    .coming-soon {
-      animation:
-        slam-in 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards,
-        glitch 6s ease-in-out 2s infinite;
-    }
-
-    @keyframes slam-in {
-      0% {
-        opacity: 0;
-        transform: scale(1.25) rotate(-2deg);
-      }
-
-      60% {
-        transform: scale(0.97) rotate(0.5deg);
-      }
-
-      100% {
-        opacity: 1;
-        transform: scale(1) rotate(0);
-      }
-    }
-
-    @keyframes glitch {
-
-      0%,
-      90%,
-      100% {
-        text-shadow: 4px 4px 0 var(--c-red), 8px 8px 0 #000;
-        clip-path: none;
-      }
-
-      92% {
-        text-shadow: -4px 0 var(--c-cyan), 4px 0 var(--c-red), 8px 8px 0 #000;
-        clip-path: inset(10% 0 75% 0);
-        transform: translate(-3px, 0);
-      }
-
-      94% {
-        text-shadow: 4px 0 var(--c-yellow), -4px 0 var(--c-red), 8px 8px 0 #000;
-        clip-path: inset(55% 0 15% 0);
-        transform: translate(3px, 0);
-      }
-
-      96% {
-        text-shadow: 4px 4px 0 var(--c-red), 8px 8px 0 #000;
-        clip-path: none;
-        transform: translate(0, 0);
-      }
-    }
-
-    /* ── Sub-caption ── */
-    .caption {
-      font-family: 'DM Sans', sans-serif;
-      font-size: clamp(0.8rem, 1.8vw, 1rem);
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.35);
-      opacity: 0;
-      animation: slide-up 0.6s ease 1s forwards;
-    }
-
-    /* ── Back button ── */
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 12px;
-      padding: 0.75rem 2rem;
-      text-decoration: none;
-      font-family: 'Anton', sans-serif;
-      font-size: 1rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--c-yellow);
-      border: 2px solid var(--c-yellow);
-      background: transparent;
-      box-shadow: 4px 4px 0 rgba(252, 238, 10, 0.3);
-      transition: transform 0.22s ease, box-shadow 0.22s ease, color 0.22s ease;
-      opacity: 0;
-      animation: slide-up 0.6s ease 1.2s forwards;
-    }
-
-    .back-btn:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0 var(--c-yellow);
-      color: #fff;
-    }
-
-    .back-btn__arrow {
-      display: inline-block;
-      transition: transform 0.22s ease;
-    }
-
-    .back-btn:hover .back-btn__arrow {
-      transform: translateX(-4px);
-    }
-
-    .resource-card {
-      width: min(680px, 100%);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 22px;
-      padding: 1.1rem 1.2rem;
-      border: 2px solid rgba(0, 240, 255, 0.35);
-      background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(255, 255, 255, 0.03));
-      box-shadow: inset 4px 0 0 var(--c-cyan);
-      opacity: 0;
-      animation: slide-up 0.6s ease 1.1s forwards;
-    }
-
-    .resource-card__copy {
-      text-align: left;
-    }
-
-    .resource-card__eyebrow {
-      display: block;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--c-cyan);
-      margin-bottom: 0.35rem;
-    }
-
-    .resource-card__title {
-      font-family: 'Anton', sans-serif;
-      font-size: clamp(1.1rem, 2vw, 1.55rem);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--c-white);
-      margin-bottom: 0.3rem;
-    }
-
-    .resource-card__desc {
-      font-size: 0.92rem;
-      line-height: 1.45;
-      color: rgba(255, 255, 255, 0.72);
-    }
-
-    .resource-card__btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      min-width: 190px;
-      padding: 0.9rem 1.15rem;
-      text-decoration: none;
-      font-family: 'Anton', sans-serif;
-      font-size: 0.95rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #000;
-      background: var(--c-yellow);
-      border: 2px solid var(--c-yellow);
-      box-shadow: 4px 4px 0 rgba(252, 238, 10, 0.28);
-      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
-    }
-
-    .resource-card__btn:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0 var(--c-yellow);
-      background: #fff27a;
-    }
-
-    @media (max-width: 640px) {
-      .resource-card {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1rem;
-      }
-
-      .resource-card__btn {
-        width: 100%;
-        min-width: 0;
-      }
-    }
-
-    /* ── Shared slide-up keyframe ── */
-    @keyframes slide-up {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* ── Reduced motion ── */
-    @media (prefers-reduced-motion: reduce) {
-
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-  </style>
-  <link rel="stylesheet" href="css/tutorial.css" />
 </head>
-
 <body class="track-page-body">
 
-  <body>
-
-    <!-- Nav -->
-    <nav class="comic-nav universe-nav">
-      <div class="nav__container">
-        <a href="index.html?nl=1#problems" class="nav__logo" aria-label="Back to main">
-          <img src="assets/Logo/logo.svg" alt="Makeathon 7.0" class="nav__logo-img" />
-        </a>
-        <ul class="nav__links">
-          <li><a href="index.html#about" class="nav__link">About Us</a></li>
-          <li><a href="index.html#timeline" class="nav__link">Timeline</a></li>
-          <li><a href="index.html#problems" class="nav__link">Problem Statements</a></li>
-          <li><a href="index.html#sponsorship" class="nav__link">Sponsors</a></li>
-          <li><a href="index.html#team" class="nav__link">The Crew</a></li>
-          <li><a href="index.html#faq" class="nav__link">FAQ</a></li>
-        </ul>
-        <a href="index.html#hero" class="btn btn--nav text-yellow">REGISTER</a>
-        <button class="nav__hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false"
-          aria-controls="nav-drawer">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </nav>
-
-    <!-- Mobile drawer -->
-    <div class="nav__drawer" id="nav-drawer" role="dialog" aria-label="Navigation menu">
-      <a href="index.html#about" class="nav__drawer-link">About Us</a>
-      <a href="index.html#timeline" class="nav__drawer-link">Timeline</a>
-      <a href="index.html#problems" class="nav__drawer-link">Problem Statements</a>
-      <a href="index.html#sponsorship" class="nav__drawer-link">Sponsors</a>
-      <a href="index.html#team" class="nav__drawer-link">The Crew</a>
-      <a href="index.html#faq" class="nav__drawer-link">FAQ</a>
-      <a href="index.html#hero" class="btn btn--nav text-yellow">REGISTER</a>
-    </div>
-    <div class="nav__overlay" id="nav-overlay" aria-hidden="true"></div>
-
-    <!-- Main 2-col layout -->
-    <div class="track-layout" id="track-layout">
-
-      <!-- LEFT — Company selector -->
-      <aside class="track-left" id="track-left" aria-label="Company selector">
-        <div class="track-left__header" id="track-left-header"></div>
-        <div class="track-left__list" id="track-left-list"></div>
-      </aside>
-
-      <!-- RIGHT — Company detail -->
-      <main class="track-right" id="track-right" aria-label="Company problem statements"></main>
-
-    </div>
-
-    <!-- PS Modal -->
-    <div class="ps-modal" id="ps-modal" aria-hidden="true">
-      <div class="ps-modal__overlay" id="ps-modal-overlay"></div>
-      <div class="ps-modal__content">
-        <button class="ps-modal__close" id="ps-modal-close" aria-label="Close modal">&times;</button>
-        <div id="ps-modal-body"></div>
-      </div>
-    </div>
-
-    <script src="js/core/hamburger.js"></script>
-    <script src="js/cursor.js"></script>
-    <script>
-      /* ═══════════════════════════════════════════════
-         INDUSTRY COMPANIES DATA
-         Each company has:
-           name, code, sector, logo, background,
-           tagline, category,
-           problems[] — each with:
-             title, domain, subdomain, tag, desc,
-             solution[], sdg
-      ═══════════════════════════════════════════════ */
-      const COMPANIES = [
-        {
-          name: "Ford Motor Company",
-          code: "FORD",
-          sector: "Automotive",
-          category: "Software",
-          logo: "assets/industry_logos/ford.jpg",
-          background: "assets/background/prowler_bg.jpg",
-          tagline: "Driving Innovation. Engineering Tomorrow.",
-          problems: [
-            {
-              title: "AI-Based Interview Preparation Assistant",
-              domain: "AI & Machine Learning",
-              subdomain: "Customer Experience",
-              tag: "AI / NLP",
-              desc: "Students preparing for placements often rely on generic practice resources and lack access to personalized, real-time interview feedback. This results in poor communication skills, weak technical articulation, and reduced confidence during actual interviews.",
-              solution: [
-                "Build a chat + voice-based AI interviewer that simulates real interview scenarios (HR + technical).",
-                "Analyze candidate responses for clarity, confidence, correctness, and structure.",
-                "Provide real-time feedback on communication, tone, and content quality.",
-                "Generate personalized improvement suggestions and mock interview reports.",
-                "Maintain user history to track progress over time and adapt difficulty levels."
-              ],
-              sdg: "SDG 4 - Quality Education"
-            },
-            {
-              title: "Smart Expense Analyzer for Students",
-              domain: "FinTech",
-              subdomain: "Personal Finance",
-              tag: "FinTech / AI",
-              desc: "Students frequently overspend due to lack of awareness about their financial habits and poor budgeting practices. Existing tools do not provide intelligent insights or personalized recommendations. This results in inefficient money management and reduced savings.",
-              solution: [
-                "Build an expense tracking system with automatic categorization of transactions.",
-                "Analyze spending patterns using AI to detect unnecessary expenses.",
-                "Provide personalized budgeting plans and savings recommendations.",
-                "Generate visual dashboards showing trends and category breakdowns.",
-                "Send alerts for overspending and unusual financial behavior."
-              ],
-              sdg: "SDG 8 - Decent Work & Economic Growth"
-            },
-            {
-              title: "Subscription Tracker",
-              domain: "FinTech",
-              subdomain: "Personal Finance",
-              tag: "FinTech / Productivity",
-              desc: "Users often forget about recurring subscriptions, leading to unnecessary charges and financial loss. Many platforms lack centralized tracking and timely reminders. This results in poor subscription management and wasted expenses.",
-              solution: [
-                "Track and manage all recurring subscriptions in a centralized platform.",
-                "Send proactive alerts before billing cycles and renewal dates.",
-                "Provide detailed spending insights across subscription categories.",
-                "Identify and recommend cancellation of unused or redundant subscriptions.",
-                "Enable easy subscription management and renewal control."
-              ],
-              sdg: "SDG 12 - Responsible Consumption"
-            },
-            {
-              title: "Mental Health Chat Support Bot",
-              domain: "Healthcare",
-              subdomain: "Digital Health",
-              tag: "Healthcare / NLP",
-              desc: "Mental health issues among students are increasing due to academic and social pressures, yet many avoid seeking help due to stigma and lack of access. Traditional support systems are limited and not always available. This creates a gap in timely and accessible mental health support.",
-              solution: [
-                "Develop an anonymous AI chatbot capable of empathetic conversations.",
-                "Use NLP to detect emotional states such as stress, anxiety, or distress.",
-                "Provide coping strategies, mindfulness exercises, and supportive guidance.",
-                "Implement escalation mechanisms for critical cases with professional resources.",
-                "Ensure strong privacy, anonymity, and multilingual accessibility."
-              ],
-              sdg: "SDG 3 - Good Health & Well-being"
-            },
-            {
-              title: "Medicine Reminder + Interaction Checker",
-              domain: "Healthcare",
-              subdomain: "Digital Health",
-              tag: "Healthcare / Safety",
-              desc: "Patients often forget to take medications on time or unknowingly consume unsafe drug combinations. Lack of proper tracking and awareness can lead to serious health risks. Existing solutions are not proactive or intelligent enough.",
-              solution: [
-                "Provide intelligent medication reminders with scheduling and notifications.",
-                "Detect potential drug interactions using a medical database.",
-                "Maintain medication history and dosage tracking.",
-                "Alert users about missed doses and potential risks.",
-                "Offer basic guidance and safety warnings for medication usage."
-              ],
-              sdg: "SDG 3 - Good Health & Well-being"
-            },
-            {
-              title: "Energy Consumption Dashboard",
-              domain: "Energy & Sustainability",
-              subdomain: "Energy Analytics",
-              tag: "Energy / IoT",
-              desc: "Users lack visibility into their energy usage patterns, leading to inefficient consumption and higher costs. Traditional systems do not provide real-time insights or actionable recommendations. This results in energy wastage and poor optimization.",
-              solution: [
-                "Collect energy usage data via smart meters or IoT sensors.",
-                "Visualize real-time and historical consumption through dashboards.",
-                "Analyze usage patterns to detect inefficiencies and anomalies.",
-                "Provide actionable recommendations for reducing energy consumption.",
-                "Estimate cost savings and optimize energy usage behavior."
-              ],
-              sdg: "SDG 7 - Affordable & Clean Energy"
-            },
-            {
-              title: "Skill Gap Analyzer for Students",
-              domain: "Education",
-              subdomain: "Career Development",
-              tag: "EdTech / AI",
-              desc: "Students are often unaware of the skills required by the industry and how they compare to current expectations. This leads to poor preparation and missed opportunities. Existing tools lack personalized and actionable insights.",
-              solution: [
-                "Build an AI-powered system that parses resumes and user profiles to extract structured skill data using NLP techniques.",
-                "Map extracted skills against real-time industry requirements using job descriptions, hiring trends, and role-specific frameworks.",
-                "Compute a skill gap score or readiness index highlighting missing competencies across technical and soft skill dimensions.",
-                "Generate personalized learning pathways with curated courses, projects, and timelines aligned to target roles.",
-                "Provide resume optimization feedback including keyword enhancement and ATS compatibility improvements.",
-                "Continuously track user progress and dynamically update recommendations through periodic reassessment."
-              ],
-              sdg: "SDG 4 - Quality Education"
-            },
-            {
-              title: "Live Phishing URL Detector",
-              domain: "Cybersecurity",
-              subdomain: "Web Security",
-              tag: "Cybersecurity / ML",
-              desc: "Users frequently fall victim to phishing attacks due to lack of awareness and real-time detection tools. Malicious links can lead to data breaches and financial loss. Existing solutions are not always accessible or immediate.",
-              solution: [
-                "Develop a real-time URL analysis engine using machine learning models trained on phishing and legitimate datasets.",
-                "Extract features such as domain age, URL structure, SSL certificates, and content patterns for classification.",
-                "Provide instant classification results with a risk score and explainability (why the URL is flagged).",
-                "Integrate browser extensions or mobile APIs for real-time detection during user interaction.",
-                "Continuously update threat intelligence using dynamic datasets and feedback loops."
-              ],
-              sdg: "SDG 9 - Industry, Innovation & Infrastructure"
-            },
-            {
-              title: "Smart Parking Availability System",
-              domain: "Smart Cities",
-              subdomain: "Urban Mobility",
-              tag: "IoT / Smart Cities",
-              desc: "Drivers spend significant time searching for parking in crowded areas, leading to traffic congestion and fuel wastage. Lack of real-time parking data worsens the issue. This creates inefficiency in urban mobility.",
-              solution: [
-                "Deploy IoT sensors or computer vision models to detect real-time parking space occupancy.",
-                "Aggregate data from multiple parking zones into a centralized backend system.",
-                "Use predictive analytics to forecast parking availability based on historical and live data.",
-                "Provide a map-based interface displaying available slots with dynamic updates.",
-                "Integrate navigation assistance guiding users to nearest available parking spots."
-              ],
-              sdg: "SDG 11 - Sustainable Cities & Communities"
-            },
-            {
-              title: "AI-Based Smart Notes Summarizer",
-              domain: "Productivity Tools",
-              subdomain: "NLP",
-              tag: "NLP / AI",
-              desc: "Users spend excessive time reading long documents to extract key information. Manual summarization is inefficient and time-consuming. Existing tools lack accuracy and customization.",
-              solution: [
-                "Build an NLP-based system that processes text and PDF documents for summarization.",
-                "Use transformer-based models to generate context-aware, concise summaries.",
-                "Extract key phrases, topics, and important sections using semantic analysis.",
-                "Provide customizable summary outputs (short, detailed, bullet-based formats).",
-                "Support batch processing and multi-document summarization."
-              ],
-              sdg: "SDG 9 - Industry, Innovation & Infrastructure"
-            },
-            {
-              title: "Real-Time Quiz & Leaderboard System",
-              domain: "Education Technology",
-              subdomain: "EdTech Systems",
-              tag: "EdTech / Backend",
-              desc: "Traditional learning methods lack interactive and engaging assessment tools. Students do not receive instant feedback or competitive motivation. This reduces engagement and learning effectiveness.",
-              solution: [
-                "Design a scalable backend system to handle real-time quiz participation with low latency.",
-                "Implement instant evaluation logic with dynamic scoring and feedback mechanisms.",
-                "Maintain live leaderboards with ranking updates based on user performance.",
-                "Support multiple quiz formats (MCQ, timed rounds, adaptive difficulty).",
-                "Enable concurrent participation with efficient session and state management.",
-                "Provide analytics on user performance, accuracy, and response time."
-              ],
-              sdg: "SDG 4 - Quality Education"
-            }
-          ]
-        }
-        /* ─── ADD MORE COMPANIES HERE ─── */
-      ];
-
-      /* ═══════════════════════════════════════════════
-         STATE & DOM REFS
-      ═══════════════════════════════════════════════ */
-      const ABSTRACT_PPT = 'assets/MAKEATHON%207.0%20ABSTRACT%20PPT%20TEMPLATE.pptx';
-      let activeIndex = 0;
-
-      const leftHeader = document.getElementById('track-left-header');
-      const leftList = document.getElementById('track-left-list');
-      const rightPanel = document.getElementById('track-right');
-      const modal = document.getElementById('ps-modal');
-      const modalBody = document.getElementById('ps-modal-body');
-      const modalClose = document.getElementById('ps-modal-close');
-      const modalOverlay = document.getElementById('ps-modal-overlay');
-
-      /* ═══════════════════════════════════════════════
-         BUILD LEFT PANEL
-      ═══════════════════════════════════════════════ */
-      function buildLeft() {
-        leftHeader.innerHTML = `
-        <div class="track-left__track-name">
-          <span>TRACK</span>INDUSTRY
-        </div>
-        <div class="track-left__accent-bar"></div>
-      `;
-
-
-        leftList.innerHTML = COMPANIES.map((c, i) => `
-        <div class="track-thumb ${i === activeIndex ? 'is-active' : ''}"
-             data-index="${i}" role="button" tabindex="0" aria-label="${c.name}">
-          <div class="track-thumb__img-wrap">
-            <img class="track-thumb__img" src="${c.logo}" alt="${c.name}" loading="lazy" onerror="this.style.opacity='0'" />
-          </div>
-          <div class="track-thumb__text">
-            <span class="track-thumb__code">${c.code} · ${c.sector}</span>
-            <span class="track-thumb__title">${c.name}</span>
-          </div>
-        </div>
-      `).join('');
-
-        leftList.querySelectorAll('.track-thumb').forEach(card => {
-          const select = () => selectCompany(+card.dataset.index);
-          card.addEventListener('click', select);
-          card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') select(); });
-        });
-      }
-
-      /* ═══════════════════════════════════════════════
-         RENDER RIGHT PANEL
-      ═══════════════════════════════════════════════ */
-      function selectCompany(idx) {
-        activeIndex = idx;
-        leftList.querySelectorAll('.track-thumb').forEach((c, i) => c.classList.toggle('is-active', i === idx));
-
-        const co = COMPANIES[idx];
-
-        rightPanel.innerHTML = `
-        <!-- Hero -->
-        <div class="detail-hero">
-          <div class="detail-hero__bg" style="background-image:url('${co.background}')"></div>
-          <div class="detail-hero__overlay"></div>
-          <div class="detail-hero__dots"></div>
-
-          <!-- Prowler Flip Card — same position as Spider-Man variants in other tracks -->
-          <div class="detail-hero__art-wrap flip-card" id="prowler-flip-card">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <img class="detail-hero__art"
-                     src="assets/variants/prowler.jpg"
-                     alt="The Prowler"
-                     onerror="this.style.display='none'" />
-              </div>
-              <div class="flip-card-back" style="border-color:rgba(145,70,255,0.4); box-shadow:0 0 30px rgba(145,70,255,0.2);">
-                <div class="detail-hero__info-card" style="border-color:var(--ind-accent); box-shadow:0 0 30px rgba(145,70,255,0.25);">
-                  <span class="detail-hero__info-label" style="color:var(--ind-accent); font-family:'Anton',sans-serif; letter-spacing:0.1em; font-size:0.75rem; text-transform:uppercase; display:block; margin-bottom:10px;">Earth-42 Variant</span>
-                  <strong class="detail-hero__info-name" style="color:#fff; font-family:'Anton',sans-serif; font-size:1.6rem; text-transform:uppercase; letter-spacing:0.05em; display:block;">THE PROWLER</strong>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="detail-hero__text">
-            <span class="detail-hero__code">${co.sector} · ${co.category}</span>
-            <h1 class="detail-hero__name">${co.name}</h1>
-            <p class="detail-hero__tagline">${co.tagline}</p>
-
-            <div class="detail-hero__actions">
-              <a class="detail-hero__action detail-hero__action--download"
-                 href="${ABSTRACT_PPT}" download>Download PPT Template</a>
-              <a class="detail-hero__action detail-hero__action--back"
-                 href="index.html#problems">
-                <span class="detail-hero__action-arrow">←</span> Back to Tracks
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Body -->
-        <div class="detail-body">
-          <div class="detail-problems">
-            <p class="detail-problems__heading">Problem Statements</p>
-            <div class="problem-list">
-              ${co.problems.map((p, pi) => `
-                <div class="problem-skill" data-problem-index="${pi}">
-                  <div class="problem-skill__icon">P${pi + 1}</div>
-                  <div class="problem-skill__text">
-                    <span class="problem-skill__id">${co.code}-${String(pi + 1).padStart(2, '0')} · ${p.domain}</span>
-                    <span class="problem-skill__name">${p.title}</span>
-                    <span class="problem-skill__desc">${p.subdomain}</span>
-                  </div>
-                  <span class="problem-skill__tag">${p.tag}</span>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-        </div>
-      `;
-
-        /* Attach problem card click → modal */
-        rightPanel.querySelectorAll('.problem-skill').forEach(el => {
-          el.addEventListener('click', () => {
-            const pIdx = Number(el.dataset.problemIndex);
-            openModal(co, pIdx);
-          });
-        });
-
-        /* Prowler flip card click */
-        const prowlerCard = document.getElementById('prowler-flip-card');
-        if (prowlerCard) {
-          prowlerCard.addEventListener('click', function () {
-            this.classList.toggle('is-flipped');
-          });
-        }
-      }
-
-      /* ═══════════════════════════════════════════════
-         MODAL
-      ═══════════════════════════════════════════════ */
-      function openModal(co, pIdx) {
-        const p = co.problems[pIdx];
-        const problemId = `${co.code}-${String(pIdx + 1).padStart(2, '0')}`;
-
-        modalBody.innerHTML = `
-        <div class="ps-modal__meta">
-          <span class="ps-modal__tag">${p.tag}</span>
-          <span class="ps-modal__id">Problem ID: ${problemId}</span>
-        </div>
-        <h2 class="ps-modal__title" style="padding-right:40px;">${p.title}</h2>
-
-        <!-- Domain Info (no company/sector chips) -->
-        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px;">
-          <span class="sdg-badge" style="background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.15); color:rgba(255,255,255,0.7);">• ${co.category}</span>
-          <span class="sdg-badge" style="background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.15); color:rgba(255,255,255,0.7);">• ${p.domain}</span>
-          <span class="sdg-badge" style="background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.15); color:rgba(255,255,255,0.7);">• ${p.subdomain}</span>
-        </div>
-
-        <p class="ps-modal__desc">${p.desc}</p>
-
-        <div style="margin-top:1rem;">
-          <h3 style="font-family:'Anton',sans-serif; color:var(--ind-accent,#9146ff); font-size:0.95rem; margin-bottom:0.5rem; letter-spacing:0.05em;">EXPECTED SOLUTION</h3>
-          <ul style="list-style:none; padding:0; margin:0;">
-            ${p.solution.map(s => `<li style="padding:0.45rem 0; border-bottom:1px solid rgba(255,255,255,0.07); color:rgba(255,255,255,0.85); font-size:0.9rem;">→ ${s}</li>`).join('')}
-          </ul>
-        </div>
-
-        <div style="margin-top:1.2rem; display:flex; flex-wrap:wrap; gap:8px;">
-          <span class="sdg-badge">${p.sdg}</span>
-        </div>
-      `;
-
-        modal.setAttribute('aria-hidden', 'false');
-      }
-
-      function closeModal() {
-        modal.setAttribute('aria-hidden', 'true');
-      }
-
-      modalClose.onclick = closeModal;
-      modalOverlay.onclick = closeModal;
-      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-      /* ═══════════════════════════════════════════════
-         INIT
-      ═══════════════════════════════════════════════ */
-      buildLeft();
-      selectCompany(0);
-    </script>
-    <!-- Ambient layers -->
-    <div class="halftone" aria-hidden="true"></div>
-    <div class="blob blob--yellow" aria-hidden="true"></div>
-    <div class="blob blob--red" aria-hidden="true"></div>
-
-    <!-- Cobweb corners (injected by JS below) -->
-    <div id="cobweb-mount" aria-hidden="true"></div>
-
-    <!-- Main content -->
-    <main class="content">
-      <p class="eyebrow">Industrial Problem Statements</p>
-      <h1 class="coming-soon">COMING SOON</h1>
-      <p class="caption">Check back later — something's being built</p>
-      <section class="resource-card" aria-label="Submission resources">
-        <div class="resource-card__copy">
-          <span class="resource-card__eyebrow">Submission Resource</span>
-          <h2 class="resource-card__title">Abstract PPT Template</h2>
-          <p class="resource-card__desc">Download the official Makeathon 7.0 PPT template and use it when
-            preparing your industrial track submission.</p>
-        </div>
-        <a class="resource-card__btn" href="assets/MAKEATHON%207.0%20ABSTRACT%20PPT%20TEMPLATE.pptx" download>
-          Download PPT
-        </a>
-      </section>
-      <a href="index.html#problems" class="back-btn">
-        <span class="back-btn__arrow">←</span>
-        BACK TO TRACKS
+  <!-- Nav -->
+  <nav class="comic-nav universe-nav">
+    <div class="nav__container">
+      <a href="index.html" class="nav__logo" aria-label="Back to main">
+        <img src="assets/Logo/logo.svg" alt="Makeathon 7.0" class="nav__logo-img" />
       </a>
-    </main>
+      <ul class="nav__links">
+        <li><a href="index.html#about"        class="nav__link">About Us</a></li>
+        <li><a href="index.html#timeline"     class="nav__link">Timeline</a></li>
+        <li><a href="index.html#problems"     class="nav__link">Problem Statements</a></li>
+        <li><a href="index.html#sponsorship"  class="nav__link">Sponsors</a></li>
+        <li><a href="index.html#team"         class="nav__link">The Crew</a></li>
+        <li><a href="index.html#faq"          class="nav__link">FAQ</a></li>
+      </ul>
+      <a href="index.html#hero" class="btn btn--nav text-yellow">REGISTER</a>
+      <button class="nav__hamburger" id="nav-hamburger"
+              aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-drawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
 
-    <script>
-      // ── Generate cobweb SVG (same algorithm as problems.js) ──
-      function generateWeb(w, h, originX, originY) {
-        const cx = originX === 0 ? 0 : w;
-        const cy = originY === 0 ? 0 : h;
-        const rays = 8, rings = 6;
-        const maxR = Math.max(w, h) * 0.95;
-        let svg = '';
+  <!-- Mobile drawer -->
+  <div class="nav__drawer" id="nav-drawer" role="dialog" aria-label="Navigation menu">
+    <a href="index.html#about"       class="nav__drawer-link">About Us</a>
+    <a href="index.html#timeline"    class="nav__drawer-link">Timeline</a>
+    <a href="index.html#problems"    class="nav__drawer-link">Problem Statements</a>
+    <a href="index.html#sponsorship" class="nav__drawer-link">Sponsors</a>
+    <a href="index.html#team"        class="nav__drawer-link">The Crew</a>
+    <a href="index.html#faq"         class="nav__drawer-link">FAQ</a>
+    <a href="index.html#hero" class="btn btn--nav text-yellow">REGISTER</a>
+  </div>
+  <div class="nav__overlay" id="nav-overlay" aria-hidden="true"></div>
 
-        const angleStart =
-          originX === 0 && originY === 0 ? 0 :
-            originX > 0 && originY === 0 ? 90 :
-              originX === 0 && originY > 0 ? 270 : 180;
+  <!-- 2-col layout -->
+  <div class="track-layout" id="track-layout">
+    <aside class="track-left" id="track-left" aria-label="Company selector">
+      <div class="track-left__header" id="track-left-header"></div>
+      <div class="track-left__list"   id="track-left-list"></div>
+    </aside>
+    <main class="track-right" id="track-right" aria-label="Company problem statements"></main>
+  </div>
 
-        for (let i = 0; i < rays; i++) {
-          const angle = (angleStart + (i / rays) * 90) * (Math.PI / 180);
-          const x2 = cx + Math.cos(angle) * maxR;
-          const y2 = cy + Math.sin(angle) * maxR;
-          svg += `<line x1="${cx}" y1="${cy}" x2="${x2.toFixed(2)}" y2="${y2.toFixed(2)}"
-                              stroke="rgba(252,238,10,0.35)" stroke-width="0.8"/>`;
+  <!-- PS Modal -->
+  <div class="ps-modal" id="ps-modal" aria-hidden="true">
+    <div class="ps-modal__overlay" id="ps-modal-overlay"></div>
+    <div class="ps-modal__content">
+      <button class="ps-modal__close" id="ps-modal-close" aria-label="Close">&times;</button>
+      <div id="ps-modal-body"></div>
+    </div>
+  </div>
+
+  <script src="js/core/hamburger.js"></script>
+  <script src="js/cursor.js"></script>
+  <script>
+  /* ═══════════════════════════════════════
+     DATA
+  ═══════════════════════════════════════ */
+  const COMPANIES = [
+    {
+      name: "Ford Motor Company",
+      code: "FORD",
+      sector: "Automotive",
+      category: "Software",
+      logo: "assets/industry_logos/ford.jpg",
+      background: "assets/background/prowler_bg.jpg",
+      tagline: "Driving Innovation. Engineering Tomorrow.",
+      problems: [
+        {
+          title: "AI-Based Interview Preparation Assistant",
+          domain: "AI & Machine Learning", subdomain: "Customer Experience", tag: "AI / NLP",
+          desc: "Students preparing for placements often rely on generic practice resources and lack access to personalized, real-time interview feedback. This results in poor communication skills, weak technical articulation, and reduced confidence during actual interviews.",
+          solution: [
+            "Build a chat + voice-based AI interviewer that simulates real interview scenarios (HR + technical).",
+            "Analyze candidate responses for clarity, confidence, correctness, and structure.",
+            "Provide real-time feedback on communication, tone, and content quality.",
+            "Generate personalized improvement suggestions and mock interview reports.",
+            "Maintain user history to track progress over time and adapt difficulty levels."
+          ],
+          sdg: "SDG 4 - Quality Education"
+        },
+        {
+          title: "Smart Expense Analyzer for Students",
+          domain: "FinTech", subdomain: "Personal Finance", tag: "FinTech / AI",
+          desc: "Students frequently overspend due to lack of awareness about their financial habits and poor budgeting practices. Existing tools do not provide intelligent insights or personalized recommendations. This results in inefficient money management and reduced savings.",
+          solution: [
+            "Build an expense tracking system with automatic categorization of transactions.",
+            "Analyze spending patterns using AI to detect unnecessary expenses.",
+            "Provide personalized budgeting plans and savings recommendations.",
+            "Generate visual dashboards showing trends and category breakdowns.",
+            "Send alerts for overspending and unusual financial behavior."
+          ],
+          sdg: "SDG 8 - Decent Work & Economic Growth"
+        },
+        {
+          title: "Subscription Tracker",
+          domain: "FinTech", subdomain: "Personal Finance", tag: "FinTech / Productivity",
+          desc: "Users often forget about recurring subscriptions, leading to unnecessary charges and financial loss. Many platforms lack centralized tracking and timely reminders. This results in poor subscription management and wasted expenses.",
+          solution: [
+            "Track and manage all recurring subscriptions in a centralized platform.",
+            "Send proactive alerts before billing cycles and renewal dates.",
+            "Provide detailed spending insights across subscription categories.",
+            "Identify and recommend cancellation of unused or redundant subscriptions.",
+            "Enable easy subscription management and renewal control."
+          ],
+          sdg: "SDG 12 - Responsible Consumption"
+        },
+        {
+          title: "Mental Health Chat Support Bot",
+          domain: "Healthcare", subdomain: "Digital Health", tag: "Healthcare / NLP",
+          desc: "Mental health issues among students are increasing due to academic and social pressures, yet many avoid seeking help due to stigma and lack of access. Traditional support systems are limited and not always available. This creates a gap in timely and accessible mental health support.",
+          solution: [
+            "Develop an anonymous AI chatbot capable of empathetic conversations.",
+            "Use NLP to detect emotional states such as stress, anxiety, or distress.",
+            "Provide coping strategies, mindfulness exercises, and supportive guidance.",
+            "Implement escalation mechanisms for critical cases with professional resources.",
+            "Ensure strong privacy, anonymity, and multilingual accessibility."
+          ],
+          sdg: "SDG 3 - Good Health & Well-being"
+        },
+        {
+          title: "Medicine Reminder + Interaction Checker",
+          domain: "Healthcare", subdomain: "Digital Health", tag: "Healthcare / Safety",
+          desc: "Patients often forget to take medications on time or unknowingly consume unsafe drug combinations. Lack of proper tracking and awareness can lead to serious health risks. Existing solutions are not proactive or intelligent enough.",
+          solution: [
+            "Provide intelligent medication reminders with scheduling and notifications.",
+            "Detect potential drug interactions using a medical database.",
+            "Maintain medication history and dosage tracking.",
+            "Alert users about missed doses and potential risks.",
+            "Offer basic guidance and safety warnings for medication usage."
+          ],
+          sdg: "SDG 3 - Good Health & Well-being"
+        },
+        {
+          title: "Energy Consumption Dashboard",
+          domain: "Energy & Sustainability", subdomain: "Energy Analytics", tag: "Energy / IoT",
+          desc: "Users lack visibility into their energy usage patterns, leading to inefficient consumption and higher costs. Traditional systems do not provide real-time insights or actionable recommendations. This results in energy wastage and poor optimization.",
+          solution: [
+            "Collect energy usage data via smart meters or IoT sensors.",
+            "Visualize real-time and historical consumption through dashboards.",
+            "Analyze usage patterns to detect inefficiencies and anomalies.",
+            "Provide actionable recommendations for reducing energy consumption.",
+            "Estimate cost savings and optimize energy usage behavior."
+          ],
+          sdg: "SDG 7 - Affordable & Clean Energy"
+        },
+        {
+          title: "Skill Gap Analyzer for Students",
+          domain: "Education", subdomain: "Career Development", tag: "EdTech / AI",
+          desc: "Students are often unaware of the skills required by the industry and how they compare to current expectations. This leads to poor preparation and missed opportunities. Existing tools lack personalized and actionable insights.",
+          solution: [
+            "Build an AI-powered system that parses resumes and user profiles to extract structured skill data using NLP techniques.",
+            "Map extracted skills against real-time industry requirements using job descriptions, hiring trends, and role-specific frameworks.",
+            "Compute a skill gap score or readiness index highlighting missing competencies across technical and soft skill dimensions.",
+            "Generate personalized learning pathways with curated courses, projects, and timelines aligned to target roles.",
+            "Provide resume optimization feedback including keyword enhancement and ATS compatibility improvements.",
+            "Continuously track user progress and dynamically update recommendations through periodic reassessment."
+          ],
+          sdg: "SDG 4 - Quality Education"
+        },
+        {
+          title: "Live Phishing URL Detector",
+          domain: "Cybersecurity", subdomain: "Web Security", tag: "Cybersecurity / ML",
+          desc: "Users frequently fall victim to phishing attacks due to lack of awareness and real-time detection tools. Malicious links can lead to data breaches and financial loss. Existing solutions are not always accessible or immediate.",
+          solution: [
+            "Develop a real-time URL analysis engine using ML models trained on phishing and legitimate datasets.",
+            "Extract features such as domain age, URL structure, SSL certificates, and content patterns for classification.",
+            "Provide instant classification results with a risk score and explainability.",
+            "Integrate browser extensions or mobile APIs for real-time detection during user interaction.",
+            "Continuously update threat intelligence using dynamic datasets and feedback loops."
+          ],
+          sdg: "SDG 9 - Industry, Innovation & Infrastructure"
+        },
+        {
+          title: "Smart Parking Availability System",
+          domain: "Smart Cities", subdomain: "Urban Mobility", tag: "IoT / Smart Cities",
+          desc: "Drivers spend significant time searching for parking in crowded areas, leading to traffic congestion and fuel wastage. Lack of real-time parking data worsens the issue. This creates inefficiency in urban mobility.",
+          solution: [
+            "Deploy IoT sensors or computer vision models to detect real-time parking space occupancy.",
+            "Aggregate data from multiple parking zones into a centralized backend system.",
+            "Use predictive analytics to forecast parking availability based on historical and live data.",
+            "Provide a map-based interface displaying available slots with dynamic updates.",
+            "Integrate navigation assistance guiding users to nearest available parking spots."
+          ],
+          sdg: "SDG 11 - Sustainable Cities & Communities"
+        },
+        {
+          title: "AI-Based Smart Notes Summarizer",
+          domain: "Productivity Tools", subdomain: "NLP", tag: "NLP / AI",
+          desc: "Users spend excessive time reading long documents to extract key information. Manual summarization is inefficient and time-consuming. Existing tools lack accuracy and customization.",
+          solution: [
+            "Build an NLP-based system that processes text and PDF documents for summarization.",
+            "Use transformer-based models to generate context-aware, concise summaries.",
+            "Extract key phrases, topics, and important sections using semantic analysis.",
+            "Provide customizable summary outputs (short, detailed, bullet-based formats).",
+            "Support batch processing and multi-document summarization."
+          ],
+          sdg: "SDG 9 - Industry, Innovation & Infrastructure"
+        },
+        {
+          title: "Real-Time Quiz & Leaderboard System",
+          domain: "Education Technology", subdomain: "EdTech Systems", tag: "EdTech / Backend",
+          desc: "Traditional learning methods lack interactive and engaging assessment tools. Students do not receive instant feedback or competitive motivation. This reduces engagement and learning effectiveness.",
+          solution: [
+            "Design a scalable backend system to handle real-time quiz participation with low latency.",
+            "Implement instant evaluation logic with dynamic scoring and feedback mechanisms.",
+            "Maintain live leaderboards with ranking updates based on user performance.",
+            "Support multiple quiz formats (MCQ, timed rounds, adaptive difficulty).",
+            "Enable concurrent participation with efficient session and state management.",
+            "Provide analytics on user performance, accuracy, and response time."
+          ],
+          sdg: "SDG 4 - Quality Education"
         }
-        for (let r = 1; r <= rings; r++) {
-          const radius = (r / rings) * maxR;
-          const sa = angleStart * (Math.PI / 180);
-          const ea = (angleStart + 90) * (Math.PI / 180);
-          const x1 = cx + Math.cos(sa) * radius;
-          const y1 = cy + Math.sin(sa) * radius;
-          const x2 = cx + Math.cos(ea) * radius;
-          const y2 = cy + Math.sin(ea) * radius;
-          svg += `<path d="M ${x1.toFixed(2)} ${y1.toFixed(2)} A ${radius.toFixed(2)} ${radius.toFixed(2)} 0 0 1 ${x2.toFixed(2)} ${y2.toFixed(2)}"
-                              fill="none" stroke="rgba(252,238,10,0.28)" stroke-width="0.7"/>`;
-        }
-        return svg;
-      }
+      ]
+    }
+    /* ─── ADD MORE COMPANIES HERE ─── */
+  ];
 
-      const mount = document.getElementById('cobweb-mount');
-      const corners = [
-        { cls: 'tl', ox: 0, oy: 0 },
-        { cls: 'tr', ox: 300, oy: 0 },
-        { cls: 'bl', ox: 0, oy: 300 },
-        { cls: 'br', ox: 300, oy: 300 },
-      ];
-      corners.forEach(({ cls, ox, oy }) => {
-        mount.innerHTML += `
-                <svg class="cobweb-corner cobweb-corner--${cls}"
-                     viewBox="0 0 300 300"
-                     xmlns="http://www.w3.org/2000/svg">
-                    ${generateWeb(300, 300, ox, oy)}
-                </svg>`;
-      });
-    </script>
-    <script src="js/tutorial.js"></script>
-    <script src="js/cursor.js"></script>
-  </body>
+  /* ═══════════════════════════════════════
+     STATE & DOM REFS
+  ═══════════════════════════════════════ */
+  const ABSTRACT_PPT = 'assets/MAKEATHON%207.0%20ABSTRACT%20PPT%20TEMPLATE.pptx';
+  let activeIndex = 0;
 
+  const leftHeader   = document.getElementById('track-left-header');
+  const leftList     = document.getElementById('track-left-list');
+  const rightPanel   = document.getElementById('track-right');
+  const modal        = document.getElementById('ps-modal');
+  const modalBody    = document.getElementById('ps-modal-body');
+  const modalClose   = document.getElementById('ps-modal-close');
+  const modalOverlay = document.getElementById('ps-modal-overlay');
+
+  /* ═══════════════════════════════════════
+     BUILD LEFT PANEL
+  ═══════════════════════════════════════ */
+  function buildLeft() {
+    leftHeader.innerHTML = `
+      <div class="track-left__track-name">
+        <span>TRACK</span>INDUSTRY
+      </div>
+      <div class="track-left__accent-bar"></div>
+    `;
+
+    leftList.innerHTML = COMPANIES.map((c, i) => `
+      <div class="track-thumb ${i === activeIndex ? 'is-active' : ''}"
+           data-index="${i}" role="button" tabindex="0" aria-label="${c.name}">
+        <div class="track-thumb__img-wrap">
+          <img class="track-thumb__img" src="${c.logo}" alt="${c.name}"
+               loading="lazy" onerror="this.style.opacity='0'" />
+        </div>
+        <div class="track-thumb__text">
+          <span class="track-thumb__code">${c.code} · ${c.sector}</span>
+          <span class="track-thumb__title">${c.name}</span>
+        </div>
+      </div>
+    `).join('');
+
+    leftList.querySelectorAll('.track-thumb').forEach(card => {
+      const select = () => selectCompany(+card.dataset.index);
+      card.addEventListener('click', select);
+      card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') select(); });
+    });
+  }
+
+  /* ═══════════════════════════════════════
+     RENDER RIGHT PANEL
+  ═══════════════════════════════════════ */
+  function selectCompany(idx) {
+    activeIndex = idx;
+    leftList.querySelectorAll('.track-thumb').forEach((c, i) => c.classList.toggle('is-active', i === idx));
+    const co = COMPANIES[idx];
+
+    rightPanel.innerHTML = `
+      <!-- Hero -->
+      <div class="detail-hero">
+        <div class="detail-hero__bg" style="background-image:url('${co.background}')"></div>
+        <div class="detail-hero__overlay"></div>
+        <div class="detail-hero__dots"></div>
+
+        <!-- Prowler flip card — same position/size as Spider-Man variants -->
+        <div class="detail-hero__art-wrap flip-card" id="prowler-flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img class="detail-hero__art"
+                   src="assets/variants/prowler.jpg"
+                   alt="The Prowler"
+                   onerror="this.style.display='none'" />
+            </div>
+            <div class="flip-card-back"
+                 style="border-color:rgba(145,70,255,0.4); box-shadow:0 0 30px rgba(145,70,255,0.2);">
+              <div class="detail-hero__info-card"
+                   style="border-color:var(--ind-accent); box-shadow:0 0 30px rgba(145,70,255,0.25);">
+                <span style="color:var(--ind-accent); font-family:'Anton',sans-serif;
+                             letter-spacing:0.1em; font-size:0.75rem; text-transform:uppercase;
+                             display:block; margin-bottom:10px;">Earth-42 Variant</span>
+                <strong style="color:#fff; font-family:'Anton',sans-serif;
+                               font-size:1.6rem; text-transform:uppercase;
+                               letter-spacing:0.05em; display:block;">THE PROWLER</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Left text -->
+        <div class="detail-hero__text">
+          <span class="detail-hero__code">${co.sector} · ${co.category}</span>
+          <h1 class="detail-hero__name">${co.name}</h1>
+          <p class="detail-hero__tagline">${co.tagline}</p>
+          <div class="detail-hero__actions">
+            <a class="detail-hero__action detail-hero__action--download"
+               href="${ABSTRACT_PPT}" download>Download PPT Template</a>
+            <a class="detail-hero__action detail-hero__action--back"
+               href="index.html#problems">
+              <span class="detail-hero__action-arrow">←</span> Back to Tracks
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="detail-body">
+        <div class="detail-problems">
+          <p class="detail-problems__heading">Problem Statements</p>
+          <div class="problem-list">
+            ${co.problems.map((p, pi) => `
+              <div class="problem-skill" data-problem-index="${pi}">
+                <div class="problem-skill__icon">P${pi + 1}</div>
+                <div class="problem-skill__text">
+                  <span class="problem-skill__id">${co.code}-${String(pi+1).padStart(2,'0')} · ${p.domain}</span>
+                  <span class="problem-skill__name">${p.title}</span>
+                  <span class="problem-skill__desc">${p.subdomain}</span>
+                </div>
+                <span class="problem-skill__tag">${p.tag}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+
+    /* Problem card → modal */
+    rightPanel.querySelectorAll('.problem-skill').forEach(el => {
+      el.addEventListener('click', () => openModal(co, +el.dataset.problemIndex));
+    });
+
+    /* Prowler card flip */
+    const prowlerCard = document.getElementById('prowler-flip-card');
+    if (prowlerCard) {
+      prowlerCard.addEventListener('click', function() { this.classList.toggle('is-flipped'); });
+    }
+  }
+
+  /* ═══════════════════════════════════════
+     MODAL
+  ═══════════════════════════════════════ */
+  function openModal(co, pIdx) {
+    const p = co.problems[pIdx];
+    const problemId = `${co.code}-${String(pIdx+1).padStart(2,'0')}`;
+
+    modalBody.innerHTML = `
+      <div class="ps-modal__meta">
+        <span class="ps-modal__tag">${p.tag}</span>
+        <span class="ps-modal__id">Problem ID: ${problemId}</span>
+      </div>
+      <h2 class="ps-modal__title" style="padding-right:40px;">${p.title}</h2>
+
+      <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px;">
+        <span class="sdg-badge" style="background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.15); color:rgba(255,255,255,0.7);">• ${co.category}</span>
+        <span class="sdg-badge" style="background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.15); color:rgba(255,255,255,0.7);">• ${p.domain}</span>
+        <span class="sdg-badge" style="background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.15); color:rgba(255,255,255,0.7);">• ${p.subdomain}</span>
+      </div>
+
+      <p class="ps-modal__desc">${p.desc}</p>
+
+      <div style="margin-top:1rem;">
+        <h3 style="font-family:'Anton',sans-serif; color:var(--ind-accent,#9146ff);
+                   font-size:0.95rem; margin-bottom:0.5rem; letter-spacing:0.05em;">EXPECTED SOLUTION</h3>
+        <ul style="list-style:none; padding:0; margin:0;">
+          ${p.solution.map(s => `
+            <li style="padding:0.45rem 0; border-bottom:1px solid rgba(255,255,255,0.07);
+                       color:rgba(255,255,255,0.85); font-size:0.9rem;">→ ${s}</li>
+          `).join('')}
+        </ul>
+      </div>
+
+      <div style="margin-top:1.2rem; display:flex; flex-wrap:wrap; gap:8px;">
+        <span class="sdg-badge">${p.sdg}</span>
+      </div>
+    `;
+
+    modal.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeModal() { modal.setAttribute('aria-hidden', 'true'); }
+
+  modalClose.onclick   = closeModal;
+  modalOverlay.onclick = closeModal;
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  /* ═══════════════════════════════════════
+     INIT
+  ═══════════════════════════════════════ */
+  buildLeft();
+  selectCompany(0);
+  </script>
+</body>
 </html>
