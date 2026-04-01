@@ -421,6 +421,45 @@
           sdg: "SDG 12: Responsible Consumption & Production"
         }
       ]
+    },
+    {
+      name: "Upcheck Technologies Private Limited",
+      code: "UPCHECK",
+      sector: "Aqua-Tech Solutions / IoT & Field Instrumentation",
+      category: "Hardware",
+      logo: "assets/industry_logos/upcheck.jpeg",
+      background: "assets/background/prowler_bg.jpg",
+      tagline: "",
+      problems: [
+        {
+          title: "Dependable Data Systems for Low-Connectivity Field Environments",
+          domain: "Embedded Systems & IoT", subdomain: "Offline-First Data Systems / Edge Computing", tag: "IoT / Edge Computing",
+          desc: "<span style=\"font-family:'Anton',sans-serif; color:var(--ind-accent,#9146ff); font-size:0.95rem; margin-bottom:0.5rem; letter-spacing:0.05em; display:block;\">BACKGROUND</span>A wide range of field operations from agriculture and aquaculture to environmental monitoring and rural healthcare depend on continuous data collection from remote sites. These sites often share a common challenge: network infrastructure that is either absent, intermittent, or unreliable. When data systems are designed with the assumption of stable connectivity, even a brief network outage can result in gaps in collected data, loss of time-sensitive readings, or delayed alerts that render monitoring systems ineffective. As field instrumentation becomes more capable and sensors become cheaper to deploy, the bottleneck has shifted from data generation to data reliability, specifically ensuring that useful data is never lost simply because a network was unavailable at the time of capture.<br><br><span style=\"font-family:'Anton',sans-serif; color:var(--ind-accent,#9146ff); font-size:0.95rem; margin-bottom:0.5rem; letter-spacing:0.05em; display:block;\">PROBLEM STATEMENT</span>Field environments with limited, intermittent, or absent internet connectivity present a fundamental challenge for data-dependent systems: how do you ensure that critical sensor or operational data is captured accurately, preserved safely, and made available for decision-making without any guarantee of a continuous network connection? Existing solutions often treat connectivity as a prerequisite rather than a variable. This assumption fails in real-world deployments where network availability can fluctuate unpredictably across hours, days, or longer. A robust system must be capable of operating independently during connectivity gaps and synchronizing reliably when a connection becomes available, all without manual intervention.",
+          solution: [
+            "Objective: Design a hardware-software system that ensures critical field data is captured, stored locally, and synchronized reliably operating autonomously across variable and unpredictable network conditions, with no data loss and no requirement for manual intervention during network disruptions or recovery.",
+            "Maintaining uninterrupted data capture and local storage when network connectivity is lost",
+            "Designing efficient synchronization mechanisms to transfer locally stored data when connectivity is restored",
+            "Preventing data duplication, corruption, or loss during repeated connect-disconnect cycles",
+            "Ensuring the system remains operational and autonomous without requiring manual resets or intervention",
+            "Building in resilience against edge cases such as partial syncs, storage overflow, and power interruptions during sync"
+          ],
+          sdg: "SDG 9: Industry, Innovation and Infrastructure</span><span class=\"sdg-badge\">SDG 2: Zero Hunger (Agriculture/Aquaculture)</span><span class=\"sdg-badge\">SDG 3: Good Health and Well-Being (Rural Healthcare)"
+        },
+        {
+          title: "Energy-Efficient Sensor Network Design for Extended Field Deployments",
+          domain: "Embedded Systems & IoT", subdomain: "Energy Management / Low-Power Wireless Sensor Networks", tag: "IoT / Energy Management",
+          desc: "<span style=\"font-family:'Anton',sans-serif; color:var(--ind-accent,#9146ff); font-size:0.95rem; margin-bottom:0.5rem; letter-spacing:0.05em; display:block;\">BACKGROUND</span>Wireless sensor networks deployed in remote or off-grid field locations face an energy problem that grows more acute with every additional sensing node. Battery-operated sensors that transmit data frequently can exhaust their power reserves within days or weeks - far short of the months-long deployment cycles that practical field applications demand. While renewable energy sources such as solar panels offer partial relief, they introduce their own constraints: variable generation, storage limitations, and the overhead of energy management. The challenge is not simply reducing power consumption, but doing so in a way that preserves the usefulness and timeliness of the data being collected.<br><br><span style=\"font-family:'Anton',sans-serif; color:var(--ind-accent,#9146ff); font-size:0.95rem; margin-bottom:0.5rem; letter-spacing:0.05em; display:block;\">PROBLEM STATEMENT</span>Sensor networks in field environments are constrained by limited and unreliable power availability. Continuous sensing and high-frequency data transmission are the primary energy consumers in such systems, yet reducing either can compromise data quality and system responsiveness. How can a sensor network be designed to maximize operational lifetime while retaining the ability to deliver timely, accurate data across a range of field conditions? The solution must go beyond simply reducing transmission frequency: it should incorporate intelligent strategies that allow the system to adapt its behavior based on available energy, observed conditions, and operational priorities - functioning effectively even in environments where charging infrastructure is minimal or inconsistent.",
+          solution: [
+            "Objective: Design an energy-aware sensor node and network architecture that maximizes operational lifespan under constrained power conditions. The system should dynamically adapt its sensing and communication behavior to available energy, prioritizing critical data collection while minimizing unnecessary power draw - without relying on stable or continuous charging infrastructure.",
+            "Balancing the trade-off between sensing frequency, data resolution, and energy consumption",
+            "Designing adaptive duty-cycling strategies that adjust system behavior based on remaining energy reserves",
+            "Selecting or proposing low-power communication protocols suited to constrained field environments",
+            "Handling energy variability introduced by renewable sources such as solar or kinetic harvesters",
+            "Maintaining system responsiveness for time-sensitive readings even under low-energy conditions"
+          ],
+          sdg: "SDG 9: Industry, Innovation and Infrastructure</span><span class=\"sdg-badge\">SDG 2: Zero Hunger (Agriculture/Aquaculture)</span><span class=\"sdg-badge\">SDG 3: Good Health and Well-Being (Rural Healthcare)"
+        }
+      ]
     }
     /* ─── ADD MORE COMPANIES HERE ─── */
   ];
