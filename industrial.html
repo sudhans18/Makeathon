@@ -27,14 +27,7 @@
       --ind-glow:   rgba(145, 70, 255, 0.45);
     }
 
-    /* ── Page background ── */
-    .track-page-body {
-      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)),
-                  url('assets/background/prowler_bg.jpg');
-      background-size: cover;
-      background-attachment: fixed;
-      background-position: center;
-    }
+
 
     /* ── Left panel ── */
     .track-left {
@@ -201,7 +194,7 @@
       code: "FORD",
       sector: "Automotive",
       category: "Software",
-      logo: "assets/industry_logos/ford.jpg",
+      logo: "", 
       background: "assets/background/prowler_bg.jpg",
       tagline: "Driving Innovation. Engineering Tomorrow.",
       problems: [
@@ -421,8 +414,8 @@
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img class="detail-hero__art"
-                   src="assets/variants/prowler.jpg"
-                   alt="The Prowler"
+                   src="${co.logo}"
+                   alt="${co.name}"
                    onerror="this.style.display='none'" />
             </div>
             <div class="flip-card-back"
@@ -431,10 +424,10 @@
                    style="border-color:var(--ind-accent); box-shadow:0 0 30px rgba(145,70,255,0.25);">
                 <span style="color:var(--ind-accent); font-family:'Anton',sans-serif;
                              letter-spacing:0.1em; font-size:0.75rem; text-transform:uppercase;
-                             display:block; margin-bottom:10px;">Earth-42 Variant</span>
+                             display:block; margin-bottom:10px;">Industry Partner</span>
                 <strong style="color:#fff; font-family:'Anton',sans-serif;
                                font-size:1.6rem; text-transform:uppercase;
-                               letter-spacing:0.05em; display:block;">THE PROWLER</strong>
+                               letter-spacing:0.05em; display:block;">${co.name}</strong>
               </div>
             </div>
           </div>
@@ -465,7 +458,7 @@
               <div class="problem-skill" data-problem-index="${pi}">
                 <div class="problem-skill__icon">P${pi + 1}</div>
                 <div class="problem-skill__text">
-                  <span class="problem-skill__id">${co.code}-${String(pi+1).padStart(2,'0')} · ${p.domain}</span>
+                  <span class="problem-skill__id">IS${String(idx+1).padStart(2,'0')}${String(pi+1).padStart(2,'0')} · ${p.domain}</span>
                   <span class="problem-skill__name">${p.title}</span>
                   <span class="problem-skill__desc">${p.subdomain}</span>
                 </div>
@@ -494,7 +487,7 @@
   ═══════════════════════════════════════ */
   function openModal(co, pIdx) {
     const p = co.problems[pIdx];
-    const problemId = `${co.code}-${String(pIdx+1).padStart(2,'0')}`;
+    const problemId = `IS${String(activeIndex+1).padStart(2,'0')}${String(pIdx+1).padStart(2,'0')}`;
 
     modalBody.innerHTML = `
       <div class="ps-modal__meta">

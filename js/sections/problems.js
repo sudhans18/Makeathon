@@ -422,7 +422,7 @@ export function initProblems() {
                 <a href="industrial.html" class="track-choose-btn track-choose-btn--ind" style="box-shadow: 6px 6px 0 #ffffff;">
                     <span class="track-choose-btn__icon">🚚</span>
                     <span class="track-choose-btn__label" style="text-shadow: 2px 2px 0 #333 !important;">INDUSTRIAL PROBLEM STATEMENTS</span>
-                    <span class="track-choose-btn__sub">THE PROWLER'S DOMAIN</span>
+                    <span class="track-choose-btn__sub">TOP COMPANIES · MULTIPLE DOMAINS</span>
                 </a>
             </div>
 
