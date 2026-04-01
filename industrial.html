@@ -381,7 +381,7 @@
                loading="lazy" onerror="this.style.opacity='0'" />
         </div>
         <div class="track-thumb__text">
-          <span class="track-thumb__code">${c.code} · ${c.sector}</span>
+          <span class="track-thumb__code">${c.code}</span>
           <span class="track-thumb__title">${c.name}</span>
         </div>
       </div>
@@ -414,8 +414,8 @@
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img class="detail-hero__art"
-                   src="${co.logo}"
-                   alt="${co.name}"
+                   src="assets/variants/prowler.jpg"
+                   alt="The Prowler"
                    onerror="this.style.display='none'" />
             </div>
             <div class="flip-card-back"
@@ -424,10 +424,10 @@
                    style="border-color:var(--ind-accent); box-shadow:0 0 30px rgba(145,70,255,0.25);">
                 <span style="color:var(--ind-accent); font-family:'Anton',sans-serif;
                              letter-spacing:0.1em; font-size:0.75rem; text-transform:uppercase;
-                             display:block; margin-bottom:10px;">Industry Partner</span>
+                             display:block; margin-bottom:10px;">Earth-42 Variant</span>
                 <strong style="color:#fff; font-family:'Anton',sans-serif;
                                font-size:1.6rem; text-transform:uppercase;
-                               letter-spacing:0.05em; display:block;">${co.name}</strong>
+                               letter-spacing:0.05em; display:block;">THE PROWLER</strong>
               </div>
             </div>
           </div>
@@ -453,18 +453,49 @@
       <div class="detail-body">
         <div class="detail-problems">
           <p class="detail-problems__heading">Problem Statements</p>
-          <div class="problem-list">
+          <div class="problem-list" style="margin-bottom: 2.5rem;">
             ${co.problems.map((p, pi) => `
               <div class="problem-skill" data-problem-index="${pi}">
                 <div class="problem-skill__icon">P${pi + 1}</div>
                 <div class="problem-skill__text">
-                  <span class="problem-skill__id">IS${String(idx+1).padStart(2,'0')}${String(pi+1).padStart(2,'0')} · ${p.domain}</span>
+                  <span class="problem-skill__id">IS${String(idx+1).padStart(2,'0')}${String(pi+1).padStart(2,'0')}</span>
                   <span class="problem-skill__name">${p.title}</span>
-                  <span class="problem-skill__desc">${p.subdomain}</span>
                 </div>
-                <span class="problem-skill__tag">${p.tag}</span>
               </div>
             `).join('')}
+          </div>
+
+          <div id="rules" style="padding: 1.5rem; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.4); border-radius: 8px; text-align: left;">
+            <h4 style="font-family:'Anton',sans-serif; color:#fcee0a; font-size:1.1rem; margin-bottom:0.8rem; letter-spacing:0.04em; text-transform:uppercase;">Rules and Regulations: Participation Guidelines</h4>
+            <div style="color: rgba(255,255,255,0.85); font-size: 0.9rem; line-height: 1.6;">
+              <strong style="color: var(--ind-accent); letter-spacing:0.03em;">Eligibility:</strong>
+              <ul style="list-style-type: disc; margin-left: 1.2rem; margin-bottom: 1rem;">
+                <li>Open to all undergraduate engineering students</li>
+                <li>Teams must be from the same college only (inter-college teams are not permitted)</li>
+                <li>Inter-department teams are allowed</li>
+              </ul>
+
+              <strong style="color: var(--ind-accent); letter-spacing:0.03em;">Team Composition:</strong>
+              <ul style="list-style-type: disc; margin-left: 1.2rem; margin-bottom: 1rem;">
+                <li>Minimum: 4 members</li>
+                <li>Maximum: 6 members</li>
+              </ul>
+
+              <strong style="color: var(--ind-accent); letter-spacing:0.03em;">Rules:</strong>
+              <ul style="list-style-type: disc; margin-left: 1.2rem; margin-bottom: 1rem;">
+                <li>Organizers will not provide any hardware components or software tools</li>
+                <li>PPT template must be followed strictly (no extra slides should be added)</li>
+                <li>The abstract must not exceed 10 slides</li>
+                <li>Upload your solutions in PDF format only</li>
+                <li>Only the team leader must fill the form on behalf of the team</li>
+                <li>Ensure that the Google Drive document you upload has Viewer/Open access enabled for all</li>
+              </ul>
+
+              <strong style="color: var(--ind-accent); letter-spacing:0.03em;">Queries:</strong>
+              <ul style="list-style-type: disc; margin-left: 1.2rem; margin-bottom: 0;">
+                <li>For further queries, please refer to the <a href="index.html#faq" style="color: var(--ind-accent);">FAQ</a> page</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
