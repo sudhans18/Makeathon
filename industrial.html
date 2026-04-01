@@ -382,7 +382,7 @@
           domain: "Artificial Intelligence & Financial Technology",
           subdomain: "Small Language Models / Domain-Specific NLP for Finance",
           tag: "SLM / FinTech",
-          desc: "<strong>Background:</strong><br>The democratisation of retail investing over the past decade has substantially increased the proportion of individual investors participating in equity markets. Modern investment platforms now offer a broad suite of tools—screeners, analytics dashboards, and increasingly, AI-powered assistants—to support this growing user base. The most capable AI models available today are general-purpose Large Language Models (LLMs). While these models demonstrate impressive breadth of knowledge, their application in financial contexts reveals consistent limitations: imprecision on domain-specific terminology, hallucinated facts, regulatory unawareness, and a tendency to produce verbose responses that are difficult to act on. For retail investors, these shortcomings are not merely inconvenient—they can directly influence financial decisions.<br><br><strong>Problem Statement:</strong><br>General-purpose Large Language Models are ill-suited as-is for retail investment applications. They lack domain depth, struggle with regulatory nuance, and are computationally expensive to run at scale. Yet the need for AI-powered financial guidance at the retail level is real and growing.<br><br><strong>Core Design Challenge:</strong><br>How can we build a specialised Small Language Model (SLM) that delivers investment-grade financial intelligence to retail investors addressing the accuracy, efficiency, and domain-specificity limitations of general-purpose LLMs while operating within the practical compute constraints of consumer investment platforms?<br><br><strong>Objective:</strong><br>Propose, design, and pitch a specialised SLM architecture tailored to retail investment use cases. The solution should demonstrate how a smaller, domain-focused model can outperform a general-purpose LLM in financial NLP tasks, operate within real-time deployment constraints, and maintain regulatory compliance while remaining accessible and useful to retail investors without deep financial expertise.",
+          desc: "<strong>Background:</strong><br>The democratisation of retail investing over the past decade has substantially increased the proportion of individual investors participating in equity markets. Modern investment platforms now offer a broad suite of tools\u2014screeners, analytics dashboards, and increasingly, AI-powered assistants\u2014to support this growing user base. The most capable AI models available today are general-purpose Large Language Models (LLMs). While these models demonstrate impressive breadth of knowledge, their application in financial contexts reveals consistent limitations: imprecision on domain-specific terminology, hallucinated facts, regulatory unawareness, and a tendency to produce verbose responses that are difficult to act on. For retail investors, these shortcomings are not merely inconvenient\u2014they can directly influence financial decisions.<br><br><strong>Problem Statement:</strong><br>General-purpose Large Language Models are ill-suited as-is for retail investment applications. They lack domain depth, struggle with regulatory nuance, and are computationally expensive to run at scale. Yet the need for AI-powered financial guidance at the retail level is real and growing.<br><br><strong>Core Design Challenge:</strong><br>How can we build a specialised Small Language Model (SLM) that delivers investment-grade financial intelligence to retail investors addressing the accuracy, efficiency, and domain-specificity limitations of general-purpose LLMs while operating within the practical compute constraints of consumer investment platforms?<br><br><strong>Objective:</strong><br>Propose, design, and pitch a specialised SLM architecture tailored to retail investment use cases. The solution should demonstrate how a smaller, domain-focused model can outperform a general-purpose LLM in financial NLP tasks, operate within real-time deployment constraints, and maintain regulatory compliance while remaining accessible and useful to retail investors without deep financial expertise.",
           solution: [
             "Define the domain boundaries and knowledge requirements of a financial SLM suited to retail investor needs.",
             "Design a training or fine-tuning strategy that improves domain accuracy without sacrificing fluency or usability.",
@@ -440,10 +440,10 @@
           domain: "IoT & Embedded Systems",
           subdomain: "Automation",
           tag: "IoT / Hardware",
-          desc: "In industrial environments such as warehouses, manufacturing units, and logistics hubs, diesel forklifts are widely used for material handling operations. However, many of these forklifts lack built-in speed monitoring or odometer systems, making it difficult to regulate their operating speed.<br><br>Operating forklifts beyond safe speed limits (typically 5–7 km/h in indoor environments) poses significant risks, including: workplace accidents and collisions, damage to goods and infrastructure, and increased safety hazards for personnel.<br><br>Existing solutions often require intrusive modifications to the forklift’s engine or control system, which void manufacturer warranties, increase installation complexity, and raise maintenance costs.<br><br>There is a critical need for a non-intrusive, plug-and-play solution that can monitor forklift speed accurately, detect overspeed conditions, and instantly notify concerned authorities.",
+          desc: "In industrial environments such as warehouses, manufacturing units, and logistics hubs, diesel forklifts are widely used for material handling operations. However, many of these forklifts lack built-in speed monitoring or odometer systems, making it difficult to regulate their operating speed.<br><br>Operating forklifts beyond safe speed limits (typically 5\u20137 km/h in indoor environments) poses significant risks, including: workplace accidents and collisions, damage to goods and infrastructure, and increased safety hazards for personnel.<br><br>Existing solutions often require intrusive modifications to the forklift\u2019s engine or control system, which void manufacturer warranties, increase installation complexity, and raise maintenance costs.<br><br>There is a critical need for a non-intrusive, plug-and-play solution that can monitor forklift speed accurately, detect overspeed conditions, and instantly notify concerned authorities.",
           solution: [
             "Develop a plug-and-play module that can be easily installed without altering the forklift.",
-            "Accurately monitor vehicle speed and detect overspeed conditions (above 5–7 km/h).",
+            "Accurately monitor vehicle speed and detect overspeed conditions (above 5\u20137 km/h).",
             "Send real-time alerts to authorities and support configurable speed thresholds.",
             "Constraint: The system must operate without GSM-based communication.",
             "Ensure the solution is compact, reliable, and suitable for industrial environments.",
@@ -536,7 +536,7 @@
           domain: "Disaster Management",
           subdomain: "Public Protection and Disaster Relief",
           tag: "Hardware / RF",
-          desc: "<strong>Problem Statement:</strong><br>In disaster situations such as floods, earthquakes, and large-scale accidents, conventional communication infrastructure often fails, leaving survivors unable to send distress signals despite having functional personal devices such as mobile phones or radios.<br><br>The challenge is to design and prototype a lightweight, aerostat-compatible payload system (deployable on a tethered aerostat at ~2 km altitude) that can detect, capture, and relay distress signals from survivors using existing devices, without relying on cellular or internet connectivity.<br><br>The system should function as a temporary aerial “last-resort communication bridge”, enabling rescue teams to identify and prioritize areas where survivors are likely present.<br><br><strong>Impact:</strong><br>This problem addresses a critical gap in disaster response: the inability to detect and communicate with survivors when conventional networks fail. The proposed solutions have direct relevance to NDMA, SDRF, defense, and emergency response agencies, and encourage participants to build systems that can save lives in real-world scenarios.",
+          desc: "<strong>Problem Statement:</strong><br>In disaster situations such as floods, earthquakes, and large-scale accidents, conventional communication infrastructure often fails, leaving survivors unable to send distress signals despite having functional personal devices such as mobile phones or radios.<br><br>The challenge is to design and prototype a lightweight, aerostat-compatible payload system (deployable on a tethered aerostat at ~2 km altitude) that can detect, capture, and relay distress signals from survivors using existing devices, without relying on cellular or internet connectivity.<br><br>The system should function as a temporary aerial \u201clast-resort communication bridge\u201d, enabling rescue teams to identify and prioritize areas where survivors are likely present.<br><br><strong>Impact:</strong><br>This problem addresses a critical gap in disaster response: the inability to detect and communicate with survivors when conventional networks fail. The proposed solutions have direct relevance to NDMA, SDRF, defense, and emergency response agencies, and encourage participants to build systems that can save lives in real-world scenarios.",
           solution: [
             "Develop a working prototype or system-level solution that includes a distress signal detection mechanism.",
             "Use passive detection of RF emissions (e.g., WiFi probe requests, Bluetooth signals, LoRa transmissions), or active triggering.",
@@ -552,6 +552,242 @@
           sdg: [
             "SDG 11 - Sustainable Cities and Communities",
             "SDG 13 - Climate Action"
+          ]
+        }
+      ]
+    },
+    {
+      name: "ApexFlow Technologies",
+      code: "APEX",
+      sector: "Practical IT Solutions for SMEs",
+      category: "Hybrid & Software",
+      logo: "assets/industry_logos/apex.jpeg",
+      background: "assets/background/prowler_bg.jpg",
+      tagline: "Securing the Future of IT.",
+      problems: [
+        {
+          title: "The Air Gapped Optical Data Bridge",
+          domain: "Cyber Security", subdomain: "Air-Gapped Systems & Secure Data Transfer", tag: "Security / Hardware",
+          desc: "The Problem: Air gapped computers, like high-security computers used by the defense department or top-tier fintech companies, are not connected to the internet for security purposes. However, sometimes it is necessary for a small amount of information, like a piece of encrypted data, to be extracted without having access to a USB cord.",
+          solution: [
+            "The Hardware: Create a transmitter using a fast-blinking LED light and a receiver using a Light Dependent Resistor (LDR) or a photodiode.",
+            "The Software: Create a script that can convert a text document or image into a binary code, transmit it as a blinking light, and a second script that can receive this light and translate it back into the original document/image on a completely disconnected computer."
+          ],
+          sdg: ["SDG 9 - Industry, Innovation & Infrastructure"]
+        },
+        {
+          title: "Hardware-Level Anti-Deepfake Audio Nodes",
+          domain: "Cyber Security & AI", subdomain: "Deepfake Detection & Audio Authentication", tag: "AI / Hardware",
+          desc: "The Problem: Deepfake technology is so advanced that software alone can't reliably detect it. We need a piece of hardware that can cryptographically \"sign\" real human audio as it first hits the microphone.",
+          solution: [
+            "The Hardware: Create a special microphone (with a Raspberry Pi or ESP32) that can pick up audio and simultaneously add a cryptographic watermark, like an ultrasonic sound, into the audio stream.",
+            "The Software: Create a web interface where a journalist/user can upload a piece of audio. The software can then scan for this special watermark. If it is not present, it can flag the audio as \"Potentially AI-Generated or Tampered\"."
+          ],
+          sdg: ["SDG 16 - Peace, Justice & Strong Institutions"]
+        },
+        {
+          title: "Passive Crowd Crush Detection via Packet Sniffing",
+          domain: "Embedded Systems & Smart Cities", subdomain: "Crowd Monitoring & Detection", tag: "IoT / Smart Cities",
+          desc: "The Problem: Using cameras to monitor the density of crowds in festivals or railway stations requires immense bandwidth and invades users' privacy.",
+          solution: [
+            "Hardware: Utilize an ESP32 microcontroller in monitor mode to passively detect and record all the WiFi probe requests and Bluetooth MAC addresses in the immediate area.",
+            "Software: Utilize a data visualization platform to monitor the number of devices sending probe requests to the microcontroller. If the number of devices in the 5-meter radius suddenly surges beyond a critical point, then an automated alert will be sent to the authorities."
+          ],
+          sdg: ["SDG 11 - Sustainable Cities & Communities"]
+        },
+        {
+          title: "DNS Tunneling and Data Exfiltration Detector",
+          domain: "Network Security", subdomain: "DNS Security & Threat Detection", tag: "Cybersecurity / Networking",
+          desc: "The Problem: Malware authors have developed cunning methods to evade traditional firewall security measures by encoding their stolen data and sending it via normal DNS queries.",
+          solution: [
+            "The Challenge: Develop a network packet sniffing application that monitors DNS queries in real time to detect data exfiltration.",
+            "Expected Deliverable: A script that analyzes the lengths, frequency, and entropy of DNS queries. The script will have to create a baseline of normal DNS queries and raise a high-priority alert if it detects abnormal, long, and random subdomains associated with data exfiltration attacks, such as askjdfhakjdhfak.badguyserver.com."
+          ],
+          sdg: ["SDG 9 - Industry, Innovation & Infrastructure"]
+        },
+        {
+          title: "Zero-Trust CI/CD Pipeline Auditor",
+          domain: "Software Engineering Security", subdomain: "CI/CD Pipeline Security", tag: "DevSecOps / Security",
+          desc: "The Problem: Supply chain attacks are extremely destructive. An attacker hacks into the software development pipelines (CI/CD) where software is created and injects their malicious malware into the company's official software updates before it even reaches the end customer.",
+          solution: [
+            "The Challenge: Create a software auditing tool to automatically scan a repository's deployment config files (e.g., GitHub Actions or Jenkins Pipelines) for security misconfigurations.",
+            "Expected Deliverable: A software tool to ingest a repository and identify critical security vulnerabilities such as overly privileged tokens, hardcoded credentials, or execution of unknown third-party scripts. It should produce a clean and easy-to-read \"security grade\" report for the development team."
+          ],
+          sdg: ["SDG 9 - Industry, Innovation & Infrastructure"]
+        },
+        {
+          title: "Intelligent Phishing & Scam Spotter",
+          domain: "Artificial Intelligence", subdomain: "Phishing Detection & NLP", tag: "AI / NLP",
+          desc: "The Problem: Phishing emails are becoming too realistic, and spam filters are not catching them.",
+          solution: [
+            "The Challenge: Design a browser extension or a simple web interface that will allow users to paste their suspicious emails or text messages.",
+            "The AI will not simply say \"safe\" or \"spam.\" Instead, it will point out the sentences in the email that are using psychological manipulation tactics and explain why they're suspicious.",
+            "Expected Deliverable: A working browser extension or web interface that will allow users to paste their suspicious emails or text messages and receive a color-coded explanation of the suspicious sentences using psychological manipulation tactics."
+          ],
+          sdg: ["SDG 16 - Peace, Justice & Strong Institutions"]
+        },
+        {
+          title: "Smart Receipt & Budget Categorizer",
+          domain: "Artificial Intelligence", subdomain: "OCR & Expense Management", tag: "AI / FinTech",
+          desc: "The Problem: Budgeting is a pain. People have receipts but don't want to manually enter all the information into a spreadsheet.",
+          solution: [
+            "The Challenge: Design a mobile-friendly web app that will allow users to upload a picture of their receipts. The app will need to parse the receipt to determine the total amount and then automatically categorize the expense using artificial intelligence.",
+            "Expected Deliverable: A working web app that will allow users to upload a picture of their receipts and then display the information in a neat and clean JSON format using an LLM prompt and Optical Character Recognition API."
+          ],
+          sdg: ["SDG 8 - Decent Work & Economic Growth"]
+        }
+      ]
+    },
+    {
+      name: "ThynkLoop",
+      code: "TL",
+      sector: "HealthTech",
+      category: "HARDWARE",
+      logo: "assets/industry_logos/thinkloop.png",
+      background: "assets/background/prowler_bg.jpg",
+      tagline: "Connecting Healthcare Through Innovation.",
+      problems: [
+        {
+          title: "Digitalization of Mechanical Medical Devices for Remote Monitoring and Safer Healthcare",
+          domain: "HealthTech", subdomain: "Internet of Medical Things", tag: "HealthTech / IoT",
+          desc: "During critical situations such as the COVID-19 pandemic, healthcare professionals faced significant risks while manually operating and monitoring ventilators and other mechanical medical devices. Most conventional ventilators are either partially digital or completely mechanical, requiring doctors and nurses to be physically present for adjustments and observation. This close interaction increases the risk of infection transmission and limits the ability to monitor multiple patients efficiently.<br><br>Additionally, existing solutions are often expensive, require full equipment replacement, or lack compatibility with older devices commonly used in rural and resource-limited hospitals. There is a need for a cost-effective and scalable approach to transform existing mechanical ventilators into smart, connected systems.",
+          solution: [
+            "Plug-and-play smart adapter that can be attached to existing ventilator tubes without affecting airflow.",
+            "Integration of sensors to capture key parameters such as airflow, pressure, oxygen levels, and breathing rate.",
+            "Microcontroller-based system for real-time data processing and wireless transmission.",
+            "Mobile or web application for remote monitoring of patient data.",
+            "Real-time alerts and notifications for abnormal conditions.",
+            "Centralized dashboard for monitoring multiple patients simultaneously.",
+            "Secure data transmission and storage for medical reliability.",
+            "Scalable design adaptable to other mechanical medical devices (e.g., CPAP, oxygen concentrators)."
+          ],
+          sdg: [
+            "SDG 3 - Good Health & Well-being",
+            "SDG 9 - Industry, Innovation & Infrastructure"
+          ]
+        }
+      ]
+    },
+    {
+      name: "Walmart",
+      code: "WALMART",
+      sector: "Retail / E-Commerce",
+      category: "Software",
+      logo: "",
+      background: "assets/background/prowler_bg.jpg",
+      tagline: "Save Money. Live Better.",
+      problems: [
+        {
+          title: "AI-Based Garment Return Reduction System",
+          domain: "AI & Machine Learning", subdomain: "Customer Experience / Retail Analytics", tag: "AI / Retail Analytics",
+          desc: "E-commerce platforms face high return rates in apparel due to inconsistent sizing, poor fit, and mismatched customer expectations. This leads to increased logistics costs, operational inefficiencies, and environmental impact. Existing solutions lack personalization and predictive capabilities.",
+          solution: [
+            "Develop a predictive system that analyzes historical return data, user behavior, and product attributes to estimate return probability and generate a confidence score during purchase.",
+            "Build a personalized size and fit recommendation engine using user profiles, past purchases, and brand-specific variations, optionally enhanced with computer vision for virtual try-on or body measurement.",
+            "Implement real-time decision support at checkout, including risk alerts, fit suggestions, and product insights derived from metadata such as fabric, reviews, and fit type.",
+            "Create retailer dashboards with analytics on high-return products, customer patterns, and feedback loops to continuously improve model accuracy and optimize inventory decisions."
+          ],
+          sdg: ["SDG 12 - Responsible Consumption & Production"]
+        },
+        {
+          title: "AI Agent for Government E-Seva Services",
+          domain: "AI & Machine Learning", subdomain: "Conversational AI / Public Services", tag: "AI / Public Services",
+          desc: "Accessing government services is often complex, time-consuming, and language-restricted. Many users struggle with forms, procedures, and documentation. This leads to inefficiency and dependency on intermediaries.",
+          solution: [
+            "Develop a multilingual conversational AI agent using NLP and speech processing models.",
+            "Enable end-to-end workflow automation for services like certificates, ID updates, and applications.",
+            "Provide step-by-step guidance with real-time validation of user inputs and documents.",
+            "Integrate voice input/output for accessibility in low-literacy environments.",
+            "Connect with government APIs or simulated workflows for seamless processing.",
+            "Ensure data privacy, security, and compliance with government standards."
+          ],
+          sdg: ["SDG 8 - Decent Work & Economic Growth"]
+        },
+        {
+          title: "AI Agent for Event Management in India",
+          domain: "AI & Machine Learning", subdomain: "Event Management Automation", tag: "AI / Event Management",
+          desc: "Event planning involves multiple tasks such as scheduling, vendor coordination, communication, and resource management, which are often handled manually. This leads to inefficiencies, delays, and poor user experience. Existing tools lack intelligent automation and personalization.",
+          solution: [
+            "Design an AI-driven agent capable of managing end-to-end event workflows through conversational interfaces, including planning, scheduling, and coordination of tasks.",
+            "Integrate vendor and resource management by connecting to service providers (venues, catering, logistics) with real-time availability and automated booking capabilities.",
+            "Automate timeline management, reminders, and task prioritization while providing intelligent recommendations for budgeting, vendor selection, and event configurations.",
+            "Develop centralized dashboards and communication systems for real-time updates, stakeholder coordination, and post-event analytics including cost tracking and performance insights."
+          ],
+          sdg: ["SDG 8 - Decent Work & Economic Growth"]
+        },
+        {
+          title: "Automatic Library Book Arranging Robot using Computer Vision",
+          domain: "Computer Vision", subdomain: "Robotics Automation", tag: "CV / Robotics",
+          desc: "Manual arrangement of books in libraries is time-consuming and prone to errors, especially in large systems. Misplaced books reduce efficiency and accessibility. Automation in this area is limited.",
+          solution: [
+            "Develop a robotic system integrated with computer vision for book identification and classification.",
+            "Use image recognition or tagging (QR/RFID) to detect misplaced books and correct positions.",
+            "Implement autonomous navigation with obstacle avoidance within library environments.",
+            "Design a mechanical system for picking, sorting, and placing books accurately.",
+            "Sync robot actions with a digital catalog for real-time inventory updates.",
+            "Optimize path planning for efficient movement across shelves.",
+            "Ensure system reliability and scalability for large libraries."
+          ],
+          sdg: ["SDG 9 - Industry, Innovation & Infrastructure"]
+        },
+        {
+          title: "Solution for Cart Abandonment in E-Commerce Websites",
+          domain: "Customer Experience", subdomain: "Conversion Optimization", tag: "CX / Optimization",
+          desc: "E-commerce platforms face high cart abandonment rates due to indecision, pricing concerns, or lack of engagement. This leads to significant revenue loss. Existing systems lack intelligent intervention mechanisms.",
+          solution: [
+            "Build a behavioral analytics system to track user interactions during browsing and checkout.",
+            "Use predictive models to estimate abandonment probability in real-time.",
+            "Trigger personalized interventions such as discounts, urgency prompts, or recommendations.",
+            "Implement multi-channel re-engagement strategies (email, push notifications, SMS).",
+            "Analyze drop-off points and optimize UI/UX flows based on insights."
+          ],
+          sdg: ["SDG 12 - Responsible Consumption & Production"]
+        }
+      ]
+    },
+    {
+      name: "Upcheck Technologies Private Limited",
+      code: "UPCHECK",
+      sector: "Aqua-Tech Solutions / IoT & Field Instrumentation",
+      category: "Hardware",
+      logo: "assets/industry_logos/upcheck.jpeg",
+      background: "assets/background/prowler_bg.jpg",
+      tagline: "IoT & Field Instrumentation Solutions",
+      problems: [
+        {
+          title: "Dependable Data Systems for Low-Connectivity Field Environments",
+          domain: "Embedded Systems & IoT", subdomain: "Offline-First Data Systems / Edge Computing", tag: "IoT / Edge Computing",
+          desc: "<strong>Background:</strong><br>A wide range of field operations from agriculture and aquaculture to environmental monitoring and rural healthcare depend on continuous data collection from remote sites. These sites often share a common challenge: network infrastructure that is either absent, intermittent, or unreliable. When data systems are designed with the assumption of stable connectivity, even a brief network outage can result in gaps in collected data, loss of time-sensitive readings, or delayed alerts that render monitoring systems ineffective.<br><br>As field instrumentation becomes more capable and sensors become cheaper to deploy, the bottleneck has shifted from data generation to data reliability \u2014 specifically ensuring that useful data is never lost simply because a network was unavailable at the time of capture.<br><br><strong>Problem Statement:</strong><br>Field environments with limited, intermittent, or absent internet connectivity present a fundamental challenge for data-dependent systems: how do you ensure that critical sensor or operational data is captured accurately, preserved safely, and made available for decision-making without any guarantee of a continuous network connection? Existing solutions often treat connectivity as a prerequisite rather than a variable. A robust system must be capable of operating independently during connectivity gaps and synchronizing reliably when a connection becomes available, all without manual intervention.",
+          solution: [
+            "Objective: Design a hardware-software system that ensures critical field data is captured, stored locally, and synchronized reliably \u2014 operating autonomously across variable and unpredictable network conditions, with no data loss and no requirement for manual intervention.",
+            "Maintaining uninterrupted data capture and local storage when network connectivity is lost.",
+            "Designing efficient synchronization mechanisms to transfer locally stored data when connectivity is restored.",
+            "Preventing data duplication, corruption, or loss during repeated connect-disconnect cycles.",
+            "Ensuring the system remains operational and autonomous without requiring manual resets or intervention.",
+            "Building in resilience against edge cases such as partial syncs, storage overflow, and power interruptions during sync."
+          ],
+          sdg: [
+            "SDG 9 - Industry, Innovation and Infrastructure",
+            "SDG 2 - Zero Hunger (Agriculture/Aquaculture)",
+            "SDG 3 - Good Health and Well-Being (Rural Healthcare)"
+          ]
+        },
+        {
+          title: "Energy-Efficient Sensor Network Design for Extended Field Deployments",
+          domain: "Embedded Systems & IoT", subdomain: "Energy Management / Low-Power Wireless Sensor Networks", tag: "IoT / Energy Management",
+          desc: "<strong>Background:</strong><br>Wireless sensor networks deployed in remote or off-grid field locations face an energy problem that grows more acute with every additional sensing node. Battery-operated sensors that transmit data frequently can exhaust their power reserves within days or weeks \u2014 far short of the months-long deployment cycles that practical field applications demand. While renewable energy sources such as solar panels offer partial relief, they introduce their own constraints: variable generation, storage limitations, and the overhead of energy management.<br><br><strong>Problem Statement:</strong><br>Sensor networks in field environments are constrained by limited and unreliable power availability. Continuous sensing and high-frequency data transmission are the primary energy consumers in such systems, yet reducing either can compromise data quality and system responsiveness. How can a sensor network be designed to maximize operational lifetime while retaining the ability to deliver timely, accurate data across a range of field conditions? The solution must incorporate intelligent strategies that allow the system to adapt its behavior based on available energy, observed conditions, and operational priorities.",
+          solution: [
+            "Objective: Design an energy-aware sensor node and network architecture that maximizes operational lifespan under constrained power conditions, dynamically adapting sensing and communication behavior to available energy.",
+            "Balancing the trade-off between sensing frequency, data resolution, and energy consumption.",
+            "Designing adaptive duty-cycling strategies that adjust system behavior based on remaining energy reserves.",
+            "Selecting or proposing low-power communication protocols suited to constrained field environments.",
+            "Handling energy variability introduced by renewable sources such as solar or kinetic harvesters.",
+            "Maintaining system responsiveness for time-sensitive readings even under low-energy conditions."
+          ],
+          sdg: [
+            "SDG 9 - Industry, Innovation and Infrastructure",
+            "SDG 2 - Zero Hunger (Agriculture/Aquaculture)",
+            "SDG 3 - Good Health and Well-Being (Rural Healthcare)"
           ]
         }
       ]
