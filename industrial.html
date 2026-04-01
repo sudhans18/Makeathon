@@ -344,6 +344,115 @@
           sdg: "SDG 4 - Quality Education"
         }
       ]
+    },
+    {
+      name: "ApexFlow Technologies",
+      code: "APEX",
+      sector: "Practical IT Solutions for SMEs",
+      category: "Hybrid & Software",
+      logo: "marketview360.jpeg", 
+      background: "assets/background/prowler_bg.jpg",
+      tagline: "Securing the Future of IT.",
+      problems: [
+        {
+          title: "The Air Gapped Optical Data Bridge",
+          domain: "Cyber Security", subdomain: "Air-Gapped Systems & Secure Data Transfer", tag: "Security / Hardware",
+          desc: "The Problem: Air gapped computers, like high-security computers used by the defense department or top-tier fintech companies, are not connected to the internet for security purposes. However, sometimes it is necessary for a small amount of information, like a piece of encrypted data, to be extracted without having access to a USB cord.",
+          solution: [
+            "The Hardware: Create a transmitter using a fast-blinking LED light and a receiver using a Light Dependent Resistor (LDR) or a photodiode.",
+            "The Software: Create a script that can convert a text document or image into a binary code, transmit it as a blinking light, and a second script that can receive this light and translate it back into the original document/image on a completely disconnected computer."
+          ],
+          sdg: "SDG 9 - Industry, Innovation & Infrastructure"
+        },
+        {
+          title: "Hardware-Level Anti-Deepfake Audio Nodes",
+          domain: "Cyber Security & AI", subdomain: "Deepfake Detection & Audio Authentication", tag: "AI / Hardware",
+          desc: "The Problem: Deepfake technology is so advanced that software alone can't reliably detect it. We need a piece of hardware that can cryptographically \"sign\" real human audio as it first hits the microphone.",
+          solution: [
+            "The Hardware: Create a special microphone (with a Raspberry Pi or ESP32) that can pick up audio and simultaneously add a cryptographic watermark, like an ultrasonic sound, into the audio stream.",
+            "The Software: Create a web interface where a journalist/user can upload a piece of audio. The software can then scan for this special watermark. If it is not present, it can flag the audio as \"Potentially AI-Generated or Tampered\"."
+          ],
+          sdg: "SDG 16 - Peace, Justice & Strong Institutions"
+        },
+        {
+          title: "Passive Crowd Crush Detection via Packet Sniffing",
+          domain: "Embedded Systems & Smart Cities", subdomain: "Crowd Monitoring & Detection", tag: "IoT / Smart Cities",
+          desc: "The Problem: Using cameras to monitor the density of crowds in festivals or railway stations requires immense bandwidth and invades users' privacy.",
+          solution: [
+            "Hardware: Utilize an ESP32 microcontroller in monitor mode to passively detect and record all the WiFi probe requests and Bluetooth MAC addresses in the immediate area.",
+            "Software: Utilize a data visualization platform to monitor the number of devices sending probe requests to the microcontroller. If the number of devices in the 5-meter radius suddenly surges beyond a critical point, then an automated alert will be sent to the authorities."
+          ],
+          sdg: "SDG 11 - Sustainable Cities & Communities"
+        },
+        {
+          title: "DNS Tunneling and Data Exfiltration Detector",
+          domain: "Network Security", subdomain: "DNS Security & Threat Detection", tag: "Cybersecurity / Networking",
+          desc: "The Problem: Malware authors have developed cunning methods to evade traditional firewall security measures by encoding their stolen data and sending it via normal DNS queries.",
+          solution: [
+            "The Challenge: Develop a network packet sniffing application that monitors DNS queries in real time to detect data exfiltration.",
+            "Expected Deliverable: A script that analyzes the lengths, frequency, and entropy of DNS queries. The script will have to create a baseline of normal DNS queries and raise a high-priority alert if it detects abnormal, long, and random subdomains associated with data exfiltration attacks, such as askjdfhakjdhfak.badguyserver.com."
+          ],
+          sdg: "SDG 9 - Industry, Innovation & Infrastructure"
+        },
+        {
+          title: "Zero-Trust CI/CD Pipeline Auditor",
+          domain: "Software Engineering Security", subdomain: "CI/CD Pipeline Security", tag: "DevSecOps / Security",
+          desc: "The Problem: Supply chain attacks are extremely destructive. An attacker hacks into the software development pipelines (CI/CD) where software is created and injects their malicious malware into the company's official software updates before it even reaches the end customer.",
+          solution: [
+            "The Challenge: Create a software auditing tool to automatically scan a repository's deployment config files (e.g., GitHub Actions or Jenkins Pipelines) for security misconfigurations.",
+            "Expected Deliverable: A software tool to ingest a repository and identify critical security vulnerabilities such as overly privileged tokens, hardcoded credentials, or execution of unknown third-party scripts. It should produce a clean and easy-to-read \"security grade\" report for the development team."
+          ],
+          sdg: "SDG 9 - Industry, Innovation & Infrastructure"
+        },
+        {
+          title: "Intelligent Phishing & Scam Spotter",
+          domain: "Artificial Intelligence", subdomain: "Phishing Detection & NLP", tag: "AI / NLP",
+          desc: "The Problem: Phishing emails are becoming too realistic, and spam filters are not catching them.",
+          solution: [
+            "The Challenge: Design a browser extension or a simple web interface that will allow users to paste their suspicious emails or text messages.",
+            "The AI will not simply say \"safe\" or \"spam.\" Instead, it will point out the sentences in the email that are using psychological manipulation tactics and explain why they're suspicious.",
+            "Expected Deliverable: A working browser extension or web interface that will allow users to paste their suspicious emails or text messages and receive a color-coded explanation of the suspicious sentences using psychological manipulation tactics."
+          ],
+          sdg: "SDG 16 - Peace, Justice & Strong Institutions"
+        },
+        {
+          title: "Smart Receipt & Budget Categorizer",
+          domain: "Artificial Intelligence", subdomain: "OCR & Expense Management", tag: "AI / FinTech",
+          desc: "The Problem: Budgeting is a pain. People have receipts but don't want to manually enter all the information into a spreadsheet.",
+          solution: [
+            "The Challenge: Design a mobile-friendly web app that will allow users to upload a picture of their receipts. The app will need to parse the receipt to determine the total amount and then automatically categorize the expense using artificial intelligence.",
+            "Expected Deliverable: A working web app that will allow users to upload a picture of their receipts and then display the information in a neat and clean JSON format using an LLM prompt and Optical Character Recognition API."
+          ],
+          sdg: "SDG 8 - Decent Work & Economic Growth"
+        }
+      ]
+    },
+    {
+      name: "ThynkLoop",
+      code: "TL",
+      sector: "HealthTech",
+      category: "HARDWARE",
+      logo: "thinkloop.png",
+      background: "assets/background/prowler_bg.jpg",
+      tagline: "Connecting Healthcare Through Innovation.",
+      problems: [
+        {
+          title: "Digitalization of Mechanical Medical Devices for Remote Monitoring and Safer Healthcare",
+          domain: "HealthTech", subdomain: "Internet of Medical Things", tag: "HealthTech / IoT",
+          desc: "During critical situations such as the COVID-19 pandemic, healthcare professionals faced significant risks while manually operating and monitoring ventilators and other mechanical medical devices. Most conventional ventilators are either partially digital or completely mechanical, requiring doctors and nurses to be physically present for adjustments and observation. This close interaction increases the risk of infection transmission and limits the ability to monitor multiple patients efficiently. Additionally, existing solutions are often expensive, require full equipment replacement, or lack compatibility with older devices commonly used in rural and resource-limited hospitals. There is a need for a cost-effective and scalable approach to transform existing mechanical ventilators into smart, connected systems. By leveraging IoT technology for real-time data acquisition and remote monitoring, healthcare professionals can improve patient care, reduce exposure risks, and enhance operational efficiency in intensive care environments.",
+          solution: [
+            "Plug-and-play smart adapter that can be attached to existing ventilator tubes without affecting airflow.",
+            "Integration of sensors to capture key parameters such as airflow, pressure, oxygen levels, and breathing rate.",
+            "Microcontroller-based system for real-time data processing and wireless transmission.",
+            "Mobile or web application for remote monitoring of patient data",
+            "Real-time alerts and notifications for abnormal conditions.",
+            "Centralized dashboard for monitoring multiple patients simultaneously.",
+            "Secure data transmission and storage for medical reliability",
+            "Scalable design adaptable to other mechanical medical devices (e.g., CPAP, oxygen concentrators)."
+          ],
+          sdg: "SDG 3 - Good Health & Well-being, SDG 9 - Industry, Innovation & Infrastructure"
+        }
+      ]
     }
     /* ─── ADD MORE COMPANIES HERE ─── */
   ];
