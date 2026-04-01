@@ -31,7 +31,7 @@ if (root) {
                         <div class="universe-section-head" style="text-align: left; margin: 0 0 1.5rem;">
                             <span class="universe-section-head__chip">Problem Statements</span>
                         </div>
-                        <div class="universe-grid" style="grid-template-columns: 1fr; gap: 1rem;">
+                        <div class="universe-grid" style="grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2.5rem;">
                             ${universe.problems.map((problem, index) => `
                                 <article class="universe-card problem-card" data-index="${index}">
                                     <div class="problem-card__header">
@@ -59,6 +59,39 @@ if (root) {
                                     </div>
                                 </article>
                             `).join('')}
+                        </div>
+
+                        <div id="rules" style="padding: 1.5rem; border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.3); border-radius: 8px; text-align: left;">
+                          <h4 style="font-family:'Anton',sans-serif; color:#fcee0a; font-size:1.1rem; margin-bottom:0.8rem; letter-spacing:0.04em; text-transform:uppercase;">Rules and Regulations: Participation Guidelines</h4>
+                          <div style="color: rgba(255,255,255,0.85); font-size: 0.9rem; line-height: 1.6;">
+                            <strong style="color: #00f0ff; letter-spacing:0.03em;">Eligibility:</strong>
+                            <ul style="list-style-type: disc; margin-left: 1.2rem; margin-bottom: 1rem;">
+                              <li>Open to all undergraduate engineering students</li>
+                              <li>Teams must be from the same college only (inter-college teams are not permitted)</li>
+                              <li>Inter-department teams are allowed</li>
+                            </ul>
+
+                            <strong style="color: #00f0ff; letter-spacing:0.03em;">Team Composition:</strong>
+                            <ul style="list-style-type: disc; margin-left: 1.2rem; margin-bottom: 1rem;">
+                              <li>Minimum: 4 members</li>
+                              <li>Maximum: 6 members</li>
+                            </ul>
+
+                            <strong style="color: #00f0ff; letter-spacing:0.03em;">Rules:</strong>
+                            <ul style="list-style-type: disc; margin-left: 1.2rem; margin-bottom: 1rem;">
+                              <li>Organizers will not provide any hardware components or software tools</li>
+                              <li>PPT template must be followed strictly (no extra slides should be added)</li>
+                              <li>The abstract must not exceed 10 slides</li>
+                              <li>Upload your solutions in PDF format only</li>
+                              <li>Only the team leader must fill the form on behalf of the team</li>
+                              <li>Ensure that the Google Drive document you upload has Viewer/Open access enabled for all</li>
+                            </ul>
+
+                            <strong style="color: #00f0ff; letter-spacing:0.03em;">Queries:</strong>
+                            <ul style="list-style-type: disc; margin-left: 1.2rem; margin-bottom: 0;">
+                              <li>For further queries, please refer to the <a href="index.html#faq">FAQ</a> page</li>
+                            </ul>
+                          </div>
                         </div>
                     </div>
 

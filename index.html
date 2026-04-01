@@ -523,9 +523,77 @@
         </div>
 
         <h2 class="section__heading comic-heading text-cyan" style="margin-top: var(--sp-xl);">PARTNERS</h2>
-        <p class="section__sub"
-          style="text-align:center; font-family: var(--ff-display); font-size: clamp(1.1rem, 2.5vw, 1.6rem); letter-spacing: 0.15em; color: var(--c-text-dim); margin-top: var(--sp-sm);">
-          COMING SOON...</p>
+        
+        <div class="partners-container">
+          <!-- TITLE SPONSOR -->
+          <div class="partner__section">
+            <h3 class="partner__category text-red">Title Sponsor</h3>
+            <p class="partner__coming-soon">COMING SOON...</p>
+          </div>
+
+          <!-- GOLD SPONSOR -->
+          <div class="partner__section">
+            <h3 class="partner__category text-yellow">Gold Sponsor</h3>
+            <p class="partner__coming-soon">COMING SOON...</p>
+          </div>
+
+          <!-- SILVER SPONSOR -->
+          <div class="partner__section">
+            <h3 class="partner__category text-cyan">Silver Sponsor</h3>
+            <p class="partner__coming-soon">COMING SOON...</p>
+          </div>
+
+          <!-- AUTOMATION & WORKFLOW PARTNER -->
+          <div class="partner__section">
+            <h3 class="partner__category text-magenta">Automation &amp; Workflow Partner</h3>
+            <div class="partner__grid">
+              <a href="https://n8n.io/" target="_blank" rel="noopener noreferrer" class="partner__card">
+                <div class="partner__logo-wrapper border-magenta">
+                  <img src="assets/n8n.png" alt="n8n Logo" class="partner__logo" />
+                </div>
+                <p class="partner__name">n8n</p>
+              </a>
+            </div>
+          </div>
+
+          <!-- TECHNOLOGY PARTNERS -->
+          <div class="partner__section">
+            <h3 class="partner__category text-cyan">Technology Partners</h3>
+            <div class="partner__grid">
+              <a href="https://codecrafters.io/" target="_blank" rel="noopener noreferrer" class="partner__card">
+                <div class="partner__logo-wrapper border-cyan">
+                  <img src="assets/Codecrafters.jpg" alt="Codecrafters Logo" class="partner__logo" />
+                </div>
+                <p class="partner__name">Codecrafters</p>
+              </a>
+              <a href="https://gen.xyz/" target="_blank" rel="noopener noreferrer" class="partner__card">
+                <div class="partner__logo-wrapper border-cyan">
+                  <img src="assets/XYZ.png" alt=".XYZ Logo" class="partner__logo" />
+                </div>
+                <p class="partner__name">.XYZ</p>
+              </a>
+              <a href="https://www.interviewcake.com/" target="_blank" rel="noopener noreferrer" class="partner__card">
+                <div class="partner__logo-wrapper border-cyan">
+                  <img src="assets/Interview Cake.png" alt="Interview Cake Logo" class="partner__logo" />
+                </div>
+                <p class="partner__name">Interview Cake</p>
+              </a>
+            </div>
+          </div>
+
+          <!-- MEDIA PARTNER -->
+          <div class="partner__section">
+            <h3 class="partner__category text-yellow">Media Partner</h3>
+            <div class="partner__grid">
+              <a href="https://eventopia.in/" target="_blank" rel="noopener noreferrer" class="partner__card">
+                <div class="partner__logo-wrapper border-yellow">
+                  <img src="assets/Eventopia.jpg" alt="Eventopia Logo" class="partner__logo" />
+                </div>
+                <p class="partner__name">Eventopia</p>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1007,6 +1075,293 @@
       </div>
     </div>
   </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       TEAM CREDITS SECTION
+  ═══════════════════════════════════════════════════════════ -->
+  <style>
+    /* ── Credits Section ── */
+    .credits-section {
+      padding: 3.5rem 0 2.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(10, 12, 22, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle glow backdrop */
+    .credits-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(0, 240, 255, 0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ── Label ── */
+    .credits__label {
+      font-family: var(--ff-body);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--c-text-dim);
+      text-align: center;
+      margin-bottom: 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .credits__label::before,
+    .credits__label::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--c-cyan), transparent);
+      opacity: 0.5;
+    }
+
+    /* ── Names Row ── */
+    .credits__row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      row-gap: 12px;
+    }
+
+    /* ── Each name item (wrapper for name + separator) ── */
+    .credits__item {
+      display: flex;
+      align-items: center;
+    }
+
+    /* ── Separator dot ── */
+    .credits__sep {
+      color: rgba(255, 255, 255, 0.25);
+      font-size: 1.1rem;
+      padding: 0 14px;
+      line-height: 1;
+      user-select: none;
+    }
+
+    /* ── Regular name link ── */
+    .credits__name {
+      font-family: var(--ff-body);
+      font-size: clamp(0.85rem, 1.5vw, 1rem);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: rgba(232, 234, 246, 0.75);
+      text-decoration: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px 2px;
+      transition: color 0.22s ease, text-shadow 0.22s ease;
+      position: relative;
+    }
+
+    .credits__name::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--c-cyan);
+      box-shadow: 0 0 6px var(--c-cyan);
+      transition: width 0.25s ease;
+    }
+
+    .credits__name:hover {
+      color: var(--c-cyan);
+      text-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+      text-decoration: none;
+    }
+
+    .credits__name:hover::after {
+      width: 100%;
+    }
+
+    /* ── Lead card (Sudhan S) ── */
+    .credits__lead {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 6px 18px 7px;
+      border: 1px solid rgba(0, 240, 255, 0.45);
+      border-radius: 6px;
+      background: rgba(0, 240, 255, 0.05);
+      box-shadow:
+        0 0 16px rgba(0, 240, 255, 0.12),
+        inset 0 1px 0 rgba(0, 240, 255, 0.1);
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      position: relative;
+    }
+
+    .credits__lead:hover {
+      border-color: rgba(0, 240, 255, 0.9);
+      background: rgba(0, 240, 255, 0.1);
+      box-shadow:
+        0 0 28px rgba(0, 240, 255, 0.28),
+        inset 0 1px 0 rgba(0, 240, 255, 0.15);
+      text-decoration: none;
+    }
+
+    .credits__lead-name {
+      font-family: var(--ff-body);
+      font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--c-cyan);
+      line-height: 1.3;
+    }
+
+    .credits__lead-subtitle {
+      font-family: var(--ff-body);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(0, 240, 255, 0.55);
+      margin-top: 1px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .credits__label {
+        font-size: 0.58rem;
+        letter-spacing: 0.25em;
+      }
+
+      .credits__sep {
+        padding: 0 10px;
+      }
+    }
+  </style>
+
+  <section class="credits-section" aria-label="Website Credits">
+    <div class="container">
+      <p class="credits__label">WEBSITE DESIGNED AND DEVELOPED BY</p>
+
+      <div class="credits__row">
+
+        <!-- Sudhan S — Lead Developer (highlighted card) -->
+        <div class="credits__item">
+          <a class="credits__lead" href="#team" onclick="event.preventDefault(); scrollToMember('race', 'sudhan');" aria-label="Sudhan S – Lead Developer">
+            <span class="credits__lead-name">Sudhan S</span>
+            <span class="credits__lead-subtitle">LEAD DEVELOPER</span>
+          </a>
+          <span class="credits__sep">·</span>
+        </div>
+
+        <!-- Surya K -->
+        <div class="credits__item">
+          <a class="credits__name" href="#team" onclick="event.preventDefault(); scrollToMember('ecea', 'surya');">Surya K</a>
+          <span class="credits__sep">·</span>
+        </div>
+
+        <!-- Rohith Kanna -->
+        <div class="credits__item">
+          <a class="credits__name" href="#team" onclick="event.preventDefault(); scrollToMember('iete', 'rohith');">Rohith Kanna</a>
+          <span class="credits__sep">·</span>
+        </div>
+
+        <!-- Mahalakshmi L -->
+        <div class="credits__item">
+          <a class="credits__name" href="#team" onclick="event.preventDefault(); scrollToMember('iete', 'mahalakshmi');">Mahalakshmi L</a>
+          <span class="credits__sep">·</span>
+        </div>
+
+        <!-- B S Aarti -->
+        <div class="credits__item">
+          <a class="credits__name" href="#team" onclick="event.preventDefault(); scrollToMember('race', 'aarti');">B S Aarti</a>
+          <span class="credits__sep">·</span>
+        </div>
+
+        <!-- Rithvik R -->
+        <div class="credits__item">
+          <a class="credits__name" href="#team" onclick="event.preventDefault(); scrollToMember('race', 'rithvik');">Rithvik R</a>
+          <span class="credits__sep">·</span>
+        </div>
+
+        <!-- N Yaazhinii -->
+        <div class="credits__item">
+          <a class="credits__name" href="#team" onclick="event.preventDefault(); scrollToMember('ecea', 'yaazhinii');">N Yaazhinii</a>
+          <span class="credits__sep">·</span>
+        </div>
+
+        <!-- Karunya D (no trailing sep — last item) -->
+        <div class="credits__item">
+          <a class="credits__name" href="#team" onclick="event.preventDefault(); scrollToMember('iete', 'karunya');">Karunya D</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    /**
+     * Scrolls to the #team section, activates the correct tab,
+     * and slides the Swiper carousel so the target member is
+     * the centred (active) card.
+     * @param {string} teamTab   - 'race' | 'iete' | 'ecea'
+     * @param {string} memberKey - partial lower-case name to match
+     */
+    function scrollToMember(teamTab, memberKey) {
+      const teamSection = document.getElementById('team');
+      if (!teamSection) return;
+
+      // 1. Switch to the correct tab if not already active
+      const tab = document.querySelector(`.team__tab[data-team="${teamTab}"]`);
+      if (tab && !tab.classList.contains('active')) {
+        tab.click();
+      }
+
+      // 2. Find the swiper element and navigate to the member's slide
+      setTimeout(() => {
+        const swiperId = `swiper-team-panel-${teamTab}`;
+        const swiperEl = document.getElementById(swiperId);
+        if (!swiperEl || !swiperEl.swiper) return;
+
+        const swiper = swiperEl.swiper;
+
+        // Force Swiper to recalculate layout now that the panel is visible
+        swiper.update();
+
+        // Find the matching real (non-clone) slide
+        const realSlides = Array.from(
+          swiperEl.querySelectorAll('.swiper-slide:not(.swiper-slide-duplicate)')
+        );
+        const matchSlide = realSlides.find(slide => {
+          const nameEl = slide.querySelector('.team-card__name');
+          return nameEl && nameEl.textContent.toLowerCase().includes(memberKey.toLowerCase());
+        });
+
+        if (!matchSlide) return;
+
+        // Swiper stamps data-swiper-slide-index on every real slide —
+        // this is the exact value slideToLoop() expects.
+        const loopIdx = parseInt(matchSlide.getAttribute('data-swiper-slide-index'), 10);
+        const fallbackIdx = realSlides.indexOf(matchSlide);
+        const targetIdx = Number.isFinite(loopIdx) ? loopIdx : fallbackIdx;
+
+        // Navigate the carousel to centre the target card
+        swiper.slideToLoop(targetIdx, 600);
+
+        // 3. Scroll the swiper strip itself into the centre of the viewport
+        //    so the cards are fully visible (not hidden behind the heading/tabs)
+        swiperEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 300);
+    }
+  </script>
 
   <!-- ═══════════════════════════════════════════════════════════
        SECTION 10 FOOTER
