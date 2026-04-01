@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/nav.css" />
   <link rel="stylesheet" href="css/track.css" />
+  <link rel="stylesheet" href="css/tutorial.css" />
 
   <style>
     :root {
@@ -346,62 +347,79 @@
       ]
     },
     {
-      name: "Marketview360",
-      code: "MV360",
-      sector: "Financial Technology",
+      name: "Walmart",
+      code: "WALMART",
+      sector: "Retail / E-Commerce",
       category: "Software",
-      logo: "assets/industry_logos/marketview360.jpeg",
+      logo: "",
       background: "assets/background/prowler_bg.jpg",
-      tagline: "Proactive Signal Detection & Early Warnings",
+      tagline: "Save Money. Live Better.",
       problems: [
         {
-          title: "Proactive Signal Detection - Early Warnings and Event-Driven Risk Identification in Equity Markets",
-          domain: "Artificial Intelligence & Financial Technology",
-          subdomain: "Signal Detection / Equity Market Risk Intelligence",
-          tag: "FinTech / AI",
-          desc: "<strong>Background:</strong><br>Equity markets generate enormous volumes of signals daily from price movements and volume patterns to macroeconomic announcements, earnings reports, and geopolitical developments. The challenge for individual investors is twofold: the volume of available information far exceeds human processing capacity, and the signals that matter most are rarely the most visible.<br><br><strong>Problem Statement:</strong><br>Stock performance is influenced by two distinct categories of signals: gradual, accumulating early warning indicators that build over time, and discrete, time-sensitive events that can materially alter a company's outlook in a short window. Current tools available to retail investors tend to focus on one or the other without meaningfully integrating the two into a coherent, actionable view. How can a system be designed to simultaneously monitor for emerging risk patterns across financial and operational indicators while remaining responsive to breaking events - and surface this intelligence to users in a form that is timely, clear, and contextually relevant?<br><br><strong>Objective:</strong><br>Design a system that continuously monitors equity-related data to detect both gradual early warning indicators and discrete material events. The system should correlate these signals, assess their likely impact on the relevant stock or portfolio, and present users with timely, clearly structured insights that support informed decision-making.",
+          title: "AI-Based Garment Return Reduction System",
+          domain: "AI & Machine Learning", subdomain: "Customer Experience / Retail Analytics", tag: "AI / Retail Analytics",
+          desc: "E-commerce platforms face high return rates in apparel due to inconsistent sizing, poor fit, and mismatched customer expectations. This leads to increased logistics costs, operational inefficiencies, and environmental impact. Existing solutions lack personalization and predictive capabilities.",
           solution: [
-            "Define what constitutes a meaningful early warning signal versus routine market noise.",
-            "Identify and classify event types that carry material impact on stock valuations.",
-            "Design a system architecture that can process both slowly evolving trends and fast-moving event signals.",
-            "Deliver insights to users in a form that is actionable not just informative.",
-            "Avoid alert fatigue by maintaining signal quality and ensuring relevance to the user's holdings or watchlist.",
-            "Quality and relevance of the signal detection approach what is monitored and why.",
-            "Ability to distinguish material signals from background noise.",
-            "Integration of early warning and event-based detection into a coherent output.",
-            "Clarity and usability of the insight format presented to the end user.",
-            "Scalability of the approach across multiple stocks, sectors, or event types."
+            "Develop a predictive system that analyzes historical return data, user behavior, and product attributes to estimate return probability and generate a confidence score during purchase.",
+            "Build a personalized size and fit recommendation engine using user profiles, past purchases, and brand-specific variations, optionally enhanced with computer vision for virtual try-on or body measurement.",
+            "Implement real-time decision support at checkout, including risk alerts, fit suggestions, and product insights derived from metadata such as fabric, reviews, and fit type.",
+            "Create retailer dashboards with analytics on high-return products, customer patterns, and feedback loops to continuously improve model accuracy and optimize inventory decisions."
           ],
-          sdg: [
-            "SDG 8 - Decent Work & Economic Growth",
-            "SDG 10 - Reduced Inequalities"
-          ]
+          sdg: ["SDG 12 - Responsible Consumption & Production"]
         },
         {
-          title: "Domain-Specific Small Language Models for Retail Investment Intelligence",
-          domain: "Artificial Intelligence & Financial Technology",
-          subdomain: "Small Language Models / Domain-Specific NLP for Finance",
-          tag: "SLM / FinTech",
-          desc: "<strong>Background:</strong><br>The democratisation of retail investing over the past decade has substantially increased the proportion of individual investors participating in equity markets. Modern investment platforms now offer a broad suite of tools\u2014screeners, analytics dashboards, and increasingly, AI-powered assistants\u2014to support this growing user base. The most capable AI models available today are general-purpose Large Language Models (LLMs). While these models demonstrate impressive breadth of knowledge, their application in financial contexts reveals consistent limitations: imprecision on domain-specific terminology, hallucinated facts, regulatory unawareness, and a tendency to produce verbose responses that are difficult to act on. For retail investors, these shortcomings are not merely inconvenient\u2014they can directly influence financial decisions.<br><br><strong>Problem Statement:</strong><br>General-purpose Large Language Models are ill-suited as-is for retail investment applications. They lack domain depth, struggle with regulatory nuance, and are computationally expensive to run at scale. Yet the need for AI-powered financial guidance at the retail level is real and growing.<br><br><strong>Core Design Challenge:</strong><br>How can we build a specialised Small Language Model (SLM) that delivers investment-grade financial intelligence to retail investors addressing the accuracy, efficiency, and domain-specificity limitations of general-purpose LLMs while operating within the practical compute constraints of consumer investment platforms?<br><br><strong>Objective:</strong><br>Propose, design, and pitch a specialised SLM architecture tailored to retail investment use cases. The solution should demonstrate how a smaller, domain-focused model can outperform a general-purpose LLM in financial NLP tasks, operate within real-time deployment constraints, and maintain regulatory compliance while remaining accessible and useful to retail investors without deep financial expertise.",
+          title: "AI Agent for Government E-Seva Services",
+          domain: "AI & Machine Learning", subdomain: "Conversational AI / Public Services", tag: "AI / Public Services",
+          desc: "Accessing government services is often complex, time-consuming, and language-restricted. Many users struggle with forms, procedures, and documentation. This leads to inefficiency and dependency on intermediaries.",
           solution: [
-            "Define the domain boundaries and knowledge requirements of a financial SLM suited to retail investor needs.",
-            "Design a training or fine-tuning strategy that improves domain accuracy without sacrificing fluency or usability.",
-            "Address hallucination risks specific to financial contexts where incorrect outputs can have direct financial consequences.",
-            "Ensure regulatory awareness, including appropriate handling of advice-adjacent language and disclaimers.",
-            "Optimise model architecture for real-time inference with low latency, suitable for integration into live platform environments.",
-            "Structure outputs so that responses are concise, contextually relevant, and actionable for non-expert retail users.",
-            "Evaluation: Clarity and soundness of the proposed model architecture and training/fine-tuning approach.",
-            "Evaluation: Depth of financial domain understanding reflected in the design.",
-            "Evaluation: Strategies for reducing hallucination and ensuring output accuracy.",
-            "Evaluation: Handling of regulatory and compliance considerations.",
-            "Evaluation: Computational efficiency and feasibility for real-time platform deployment.",
-            "Evaluation: Quality and clarity of the pitch, including the team's ability to answer technical questions on the design."
+            "Develop a multilingual conversational AI agent using NLP and speech processing models.",
+            "Enable end-to-end workflow automation for services like certificates, ID updates, and applications.",
+            "Provide step-by-step guidance with real-time validation of user inputs and documents.",
+            "Integrate voice input/output for accessibility in low-literacy environments.",
+            "Connect with government APIs or simulated workflows for seamless processing.",
+            "Ensure data privacy, security, and compliance with government standards."
           ],
-          sdg: [
-            "SDG 8 - Decent Work & Economic Growth",
-            "SDG 9 - Industry, Innovation & Infrastructure",
-            "SDG 10 - Reduced Inequalities"
-          ]
+          sdg: ["SDG 8 - Decent Work & Economic Growth"]
+        },
+        {
+          title: "AI Agent for Event Management in India",
+          domain: "AI & Machine Learning", subdomain: "Event Management Automation", tag: "AI / Event Management",
+          desc: "Event planning involves multiple tasks such as scheduling, vendor coordination, communication, and resource management, which are often handled manually. This leads to inefficiencies, delays, and poor user experience. Existing tools lack intelligent automation and personalization.",
+          solution: [
+            "Design an AI-driven agent capable of managing end-to-end event workflows through conversational interfaces, including planning, scheduling, and coordination of tasks.",
+            "Integrate vendor and resource management by connecting to service providers (venues, catering, logistics) with real-time availability and automated booking capabilities.",
+            "Automate timeline management, reminders, and task prioritization while providing intelligent recommendations for budgeting, vendor selection, and event configurations.",
+            "Develop centralized dashboards and communication systems for real-time updates, stakeholder coordination, and post-event analytics including cost tracking and performance insights."
+          ],
+          sdg: ["SDG 8 - Decent Work & Economic Growth"]
+        },
+        {
+          title: "Automatic Library Book Arranging Robot using Computer Vision",
+          domain: "Computer Vision", subdomain: "Robotics Automation", tag: "CV / Robotics",
+          desc: "Manual arrangement of books in libraries is time-consuming and prone to errors, especially in large systems. Misplaced books reduce efficiency and accessibility. Automation in this area is limited.",
+          solution: [
+            "Develop a robotic system integrated with computer vision for book identification and classification.",
+            "Use image recognition or tagging (QR/RFID) to detect misplaced books and correct positions.",
+            "Implement autonomous navigation with obstacle avoidance within library environments.",
+            "Design a mechanical system for picking, sorting, and placing books accurately.",
+            "Sync robot actions with a digital catalog for real-time inventory updates.",
+            "Optimize path planning for efficient movement across shelves.",
+            "Ensure system reliability and scalability for large libraries."
+          ],
+          sdg: ["SDG 9 - Industry, Innovation & Infrastructure"]
+        },
+        {
+          title: "Solution for Cart Abandonment in E-Commerce Websites",
+          domain: "Customer Experience", subdomain: "Conversion Optimization", tag: "CX / Optimization",
+          desc: "E-commerce platforms face high cart abandonment rates due to indecision, pricing concerns, or lack of engagement. This leads to significant revenue loss. Existing systems lack intelligent intervention mechanisms.",
+          solution: [
+            "Build a behavioral analytics system to track user interactions during browsing and checkout.",
+            "Use predictive models to estimate abandonment probability in real-time.",
+            "Trigger personalized interventions such as discounts, urgency prompts, or recommendations.",
+            "Implement multi-channel re-engagement strategies (email, push notifications, SMS).",
+            "Analyze drop-off points and optimize UI/UX flows based on insights."
+          ],
+          sdg: ["SDG 12 - Responsible Consumption & Production"]
         }
       ]
     },
@@ -669,79 +687,62 @@
       ]
     },
     {
-      name: "Walmart",
-      code: "WALMART",
-      sector: "Retail / E-Commerce",
+      name: "Marketview360",
+      code: "MV360",
+      sector: "Financial Technology",
       category: "Software",
-      logo: "",
+      logo: "assets/industry_logos/marketview360.jpeg",
       background: "assets/background/prowler_bg.jpg",
-      tagline: "Save Money. Live Better.",
+      tagline: "Proactive Signal Detection & Early Warnings",
       problems: [
         {
-          title: "AI-Based Garment Return Reduction System",
-          domain: "AI & Machine Learning", subdomain: "Customer Experience / Retail Analytics", tag: "AI / Retail Analytics",
-          desc: "E-commerce platforms face high return rates in apparel due to inconsistent sizing, poor fit, and mismatched customer expectations. This leads to increased logistics costs, operational inefficiencies, and environmental impact. Existing solutions lack personalization and predictive capabilities.",
+          title: "Proactive Signal Detection - Early Warnings and Event-Driven Risk Identification in Equity Markets",
+          domain: "Artificial Intelligence & Financial Technology",
+          subdomain: "Signal Detection / Equity Market Risk Intelligence",
+          tag: "FinTech / AI",
+          desc: "<strong>Background:</strong><br>Equity markets generate enormous volumes of signals daily from price movements and volume patterns to macroeconomic announcements, earnings reports, and geopolitical developments. The challenge for individual investors is twofold: the volume of available information far exceeds human processing capacity, and the signals that matter most are rarely the most visible.<br><br><strong>Problem Statement:</strong><br>Stock performance is influenced by two distinct categories of signals: gradual, accumulating early warning indicators that build over time, and discrete, time-sensitive events that can materially alter a company's outlook in a short window. Current tools available to retail investors tend to focus on one or the other without meaningfully integrating the two into a coherent, actionable view. How can a system be designed to simultaneously monitor for emerging risk patterns across financial and operational indicators while remaining responsive to breaking events - and surface this intelligence to users in a form that is timely, clear, and contextually relevant?<br><br><strong>Objective:</strong><br>Design a system that continuously monitors equity-related data to detect both gradual early warning indicators and discrete material events. The system should correlate these signals, assess their likely impact on the relevant stock or portfolio, and present users with timely, clearly structured insights that support informed decision-making.",
           solution: [
-            "Develop a predictive system that analyzes historical return data, user behavior, and product attributes to estimate return probability and generate a confidence score during purchase.",
-            "Build a personalized size and fit recommendation engine using user profiles, past purchases, and brand-specific variations, optionally enhanced with computer vision for virtual try-on or body measurement.",
-            "Implement real-time decision support at checkout, including risk alerts, fit suggestions, and product insights derived from metadata such as fabric, reviews, and fit type.",
-            "Create retailer dashboards with analytics on high-return products, customer patterns, and feedback loops to continuously improve model accuracy and optimize inventory decisions."
+            "Define what constitutes a meaningful early warning signal versus routine market noise.",
+            "Identify and classify event types that carry material impact on stock valuations.",
+            "Design a system architecture that can process both slowly evolving trends and fast-moving event signals.",
+            "Deliver insights to users in a form that is actionable not just informative.",
+            "Avoid alert fatigue by maintaining signal quality and ensuring relevance to the user's holdings or watchlist.",
+            "Quality and relevance of the signal detection approach what is monitored and why.",
+            "Ability to distinguish material signals from background noise.",
+            "Integration of early warning and event-based detection into a coherent output.",
+            "Clarity and usability of the insight format presented to the end user.",
+            "Scalability of the approach across multiple stocks, sectors, or event types."
           ],
-          sdg: ["SDG 12 - Responsible Consumption & Production"]
+          sdg: [
+            "SDG 8 - Decent Work & Economic Growth",
+            "SDG 10 - Reduced Inequalities"
+          ]
         },
         {
-          title: "AI Agent for Government E-Seva Services",
-          domain: "AI & Machine Learning", subdomain: "Conversational AI / Public Services", tag: "AI / Public Services",
-          desc: "Accessing government services is often complex, time-consuming, and language-restricted. Many users struggle with forms, procedures, and documentation. This leads to inefficiency and dependency on intermediaries.",
+          title: "Domain-Specific Small Language Models for Retail Investment Intelligence",
+          domain: "Artificial Intelligence & Financial Technology",
+          subdomain: "Small Language Models / Domain-Specific NLP for Finance",
+          tag: "SLM / FinTech",
+          desc: "<strong>Background:</strong><br>The democratisation of retail investing over the past decade has substantially increased the proportion of individual investors participating in equity markets. Modern investment platforms now offer a broad suite of tools—screeners, analytics dashboards, and increasingly, AI-powered assistants—to support this growing user base. The most capable AI models available today are general-purpose Large Language Models (LLMs). While these models demonstrate impressive breadth of knowledge, their application in financial contexts reveals consistent limitations: imprecision on domain-specific terminology, hallucinated facts, regulatory unawareness, and a tendency to produce verbose responses that are difficult to act on. For retail investors, these shortcomings are not merely inconvenient—they can directly influence financial decisions.<br><br><strong>Problem Statement:</strong><br>General-purpose Large Language Models are ill-suited as-is for retail investment applications. They lack domain depth, struggle with regulatory nuance, and are computationally expensive to run at scale. Yet the need for AI-powered financial guidance at the retail level is real and growing.<br><br><strong>Core Design Challenge:</strong><br>How can we build a specialised Small Language Model (SLM) that delivers investment-grade financial intelligence to retail investors addressing the accuracy, efficiency, and domain-specificity limitations of general-purpose LLMs while operating within the practical compute constraints of consumer investment platforms?<br><br><strong>Objective:</strong><br>Propose, design, and pitch a specialised SLM architecture tailored to retail investment use cases. The solution should demonstrate how a smaller, domain-focused model can outperform a general-purpose LLM in financial NLP tasks, operate within real-time deployment constraints, and maintain regulatory compliance while remaining accessible and useful to retail investors without deep financial expertise.",
           solution: [
-            "Develop a multilingual conversational AI agent using NLP and speech processing models.",
-            "Enable end-to-end workflow automation for services like certificates, ID updates, and applications.",
-            "Provide step-by-step guidance with real-time validation of user inputs and documents.",
-            "Integrate voice input/output for accessibility in low-literacy environments.",
-            "Connect with government APIs or simulated workflows for seamless processing.",
-            "Ensure data privacy, security, and compliance with government standards."
+            "Define the domain boundaries and knowledge requirements of a financial SLM suited to retail investor needs.",
+            "Design a training or fine-tuning strategy that improves domain accuracy without sacrificing fluency or usability.",
+            "Address hallucination risks specific to financial contexts where incorrect outputs can have direct financial consequences.",
+            "Ensure regulatory awareness, including appropriate handling of advice-adjacent language and disclaimers.",
+            "Optimise model architecture for real-time inference with low latency, suitable for integration into live platform environments.",
+            "Structure outputs so that responses are concise, contextually relevant, and actionable for non-expert retail users.",
+            "Evaluation: Clarity and soundness of the proposed model architecture and training/fine-tuning approach.",
+            "Evaluation: Depth of financial domain understanding reflected in the design.",
+            "Evaluation: Strategies for reducing hallucination and ensuring output accuracy.",
+            "Evaluation: Handling of regulatory and compliance considerations.",
+            "Evaluation: Computational efficiency and feasibility for real-time platform deployment.",
+            "Evaluation: Quality and clarity of the pitch, including the team's ability to answer technical questions on the design."
           ],
-          sdg: ["SDG 8 - Decent Work & Economic Growth"]
-        },
-        {
-          title: "AI Agent for Event Management in India",
-          domain: "AI & Machine Learning", subdomain: "Event Management Automation", tag: "AI / Event Management",
-          desc: "Event planning involves multiple tasks such as scheduling, vendor coordination, communication, and resource management, which are often handled manually. This leads to inefficiencies, delays, and poor user experience. Existing tools lack intelligent automation and personalization.",
-          solution: [
-            "Design an AI-driven agent capable of managing end-to-end event workflows through conversational interfaces, including planning, scheduling, and coordination of tasks.",
-            "Integrate vendor and resource management by connecting to service providers (venues, catering, logistics) with real-time availability and automated booking capabilities.",
-            "Automate timeline management, reminders, and task prioritization while providing intelligent recommendations for budgeting, vendor selection, and event configurations.",
-            "Develop centralized dashboards and communication systems for real-time updates, stakeholder coordination, and post-event analytics including cost tracking and performance insights."
-          ],
-          sdg: ["SDG 8 - Decent Work & Economic Growth"]
-        },
-        {
-          title: "Automatic Library Book Arranging Robot using Computer Vision",
-          domain: "Computer Vision", subdomain: "Robotics Automation", tag: "CV / Robotics",
-          desc: "Manual arrangement of books in libraries is time-consuming and prone to errors, especially in large systems. Misplaced books reduce efficiency and accessibility. Automation in this area is limited.",
-          solution: [
-            "Develop a robotic system integrated with computer vision for book identification and classification.",
-            "Use image recognition or tagging (QR/RFID) to detect misplaced books and correct positions.",
-            "Implement autonomous navigation with obstacle avoidance within library environments.",
-            "Design a mechanical system for picking, sorting, and placing books accurately.",
-            "Sync robot actions with a digital catalog for real-time inventory updates.",
-            "Optimize path planning for efficient movement across shelves.",
-            "Ensure system reliability and scalability for large libraries."
-          ],
-          sdg: ["SDG 9 - Industry, Innovation & Infrastructure"]
-        },
-        {
-          title: "Solution for Cart Abandonment in E-Commerce Websites",
-          domain: "Customer Experience", subdomain: "Conversion Optimization", tag: "CX / Optimization",
-          desc: "E-commerce platforms face high cart abandonment rates due to indecision, pricing concerns, or lack of engagement. This leads to significant revenue loss. Existing systems lack intelligent intervention mechanisms.",
-          solution: [
-            "Build a behavioral analytics system to track user interactions during browsing and checkout.",
-            "Use predictive models to estimate abandonment probability in real-time.",
-            "Trigger personalized interventions such as discounts, urgency prompts, or recommendations.",
-            "Implement multi-channel re-engagement strategies (email, push notifications, SMS).",
-            "Analyze drop-off points and optimize UI/UX flows based on insights."
-          ],
-          sdg: ["SDG 12 - Responsible Consumption & Production"]
+          sdg: [
+            "SDG 8 - Decent Work & Economic Growth",
+            "SDG 9 - Industry, Innovation & Infrastructure",
+            "SDG 10 - Reduced Inequalities"
+          ]
         }
       ]
     },
@@ -936,6 +937,13 @@
                 <li>Upload your solutions in PDF format only</li>
                 <li>Only the team leader must fill the form on behalf of the team</li>
                 <li>Ensure that the Google Drive document you upload has Viewer/Open access enabled for all</li>
+                <li>This page and submission flow are only for Industry Problem Statement submissions</li>
+                <li>Industry PS and HW/SW PS submissions are evaluated independently</li>
+                <li>Your submission must clearly mention the Industry PS Number and Industry Provider Name</li>
+                <li>If you are switching from HW/SW to Industry PS, you must also mention your HW/SW PS Number in the Industry submission</li>
+                <li>Teams switching from HW/SW to Industry PS must complete the Industry submission by April 4, 2026; the earlier HW/SW submission will then be ignored</li>
+                <li>Teams submitting only for Industry PS must not submit the same team through the HW/SW form; conflicting submissions may lead to disqualification</li>
+                <li>Industry-track benefits such as internships, goodies, or prizes are not guaranteed and remain subject to industry evaluation; the industry partner's decision is final</li>
               </ul>
 
               <strong style="color: var(--ind-accent); letter-spacing:0.03em;">Queries:</strong>
@@ -1013,5 +1021,6 @@
   buildLeft();
   selectCompany(0);
   </script>
+  <script src="js/tutorial.js"></script>
 </body>
 </html>

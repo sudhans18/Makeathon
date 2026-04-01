@@ -6,6 +6,9 @@
    Spider-Man drops from the top, hangs upside-down,
    and guides the user step-by-step. He NEVER moves
    between steps — only the speech bubble text changes.
+
+   NEW: On mobile, Step 1 auto-scrolls the top category bar
+   so users can see all available domains/companies.
 ═══════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
@@ -18,6 +21,55 @@
   var params = new URLSearchParams(location.search);
   var trackType = (params.get('t') || '').toLowerCase();   // "hardware" | "software" | ""
 
+  /* ── Auto-scroll state ── */
+  var autoScrollInterval = null;
+  var autoScrollPhase = 'forward'; // 'forward' | 'backward'
+
+  /* ══════════════════════════════════════════════════════════
+     autoScrollCategories() — smoothly scrolls the horizontal
+     category bar on mobile to show all items, then back.
+  ══════════════════════════════════════════════════════════ */
+  function autoScrollCategories() {
+    if (!isMobile()) return;
+
+    var list = document.getElementById('track-left-list');
+    if (!list) return;
+
+    var scrollMax = list.scrollWidth - list.clientWidth;
+    if (scrollMax <= 0) return; // nothing to scroll
+
+    var speed = 1.2; // px per frame
+    autoScrollPhase = 'forward';
+
+    autoScrollInterval = setInterval(function () {
+      if (autoScrollPhase === 'forward') {
+        list.scrollLeft += speed;
+        if (list.scrollLeft >= scrollMax) {
+          autoScrollPhase = 'pause-end';
+          // Pause at the end for 600ms
+          clearInterval(autoScrollInterval);
+          autoScrollInterval = setTimeout(function () {
+            autoScrollPhase = 'backward';
+            autoScrollInterval = setInterval(function () {
+              list.scrollLeft -= speed;
+              if (list.scrollLeft <= 0) {
+                stopAutoScroll();
+              }
+            }, 16);
+          }, 600);
+        }
+      }
+    }, 16);
+  }
+
+  function stopAutoScroll() {
+    if (autoScrollInterval) {
+      clearInterval(autoScrollInterval);
+      clearTimeout(autoScrollInterval);
+      autoScrollInterval = null;
+    }
+  }
+
   /* ══════════════════════════════════════════════════════════
      Build step definitions based on the current page
   ══════════════════════════════════════════════════════════ */
@@ -26,9 +78,13 @@
       return [
         {
           getText: function () {
-            return 'Welcome! This page lists the Industrial Problem Statements. They\'re coming soon — stay tuned!';
+            return isMobile()
+              ? 'Welcome! There are 9 industry partners above. Scroll horizontally to see them all, and tap one to view its problem statements.'
+              : 'Welcome! There are 9 industry partners on the left. Click any company to explore its problem statements.';
           },
-          scrollTo: null,
+          scrollTo: '#track-left',
+          onEnter: function () { autoScrollCategories(); },
+          onLeave: function () { stopAutoScroll(); },
           nextLabel: 'Next →'
         },
         {
@@ -46,10 +102,12 @@
       {
         getText: function () {
           return isMobile()
-            ? 'There are 6 domains above. Tap one to explore its problem statements.'
+            ? 'There are 6 domains above. Scroll horizontally to see them all, then tap one to explore its problem statements.'
             : 'There are 6 domains to your left. Click one to explore its problem statements.';
         },
         scrollTo: '#track-left',
+        onEnter: function () { autoScrollCategories(); },
+        onLeave: function () { stopAutoScroll(); },
         nextLabel: 'Next →'
       },
       {
@@ -95,6 +153,11 @@
   ══════════════════════════════════════════════════════════ */
   function nextStep() {
     if (!tutorialActive) return;
+
+    /* Fire onLeave for the current step */
+    var prevStep = tutorialSteps[currentStep];
+    if (prevStep && prevStep.onLeave) prevStep.onLeave();
+
     currentStep++;
     if (currentStep >= tutorialSteps.length) { skipTutorial(); return; }
     showStep(currentStep);
@@ -106,6 +169,10 @@
   function skipTutorial() {
     if (!tutorialActive) return;
     tutorialActive = false;
+
+    /* Fire onLeave for any active step */
+    var activeStep = tutorialSteps[currentStep];
+    if (activeStep && activeStep.onLeave) activeStep.onLeave();
 
     bubble.classList.remove('visible');
     clearHighlight();
@@ -137,6 +204,11 @@
       }
     } else {
       clearHighlight();
+    }
+
+    /* Fire onEnter callback */
+    if (step.onEnter) {
+      setTimeout(function () { step.onEnter(); }, 400);
     }
 
     setTimeout(function () {

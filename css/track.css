@@ -588,8 +588,9 @@
 
   .track-thumb {
     flex-direction: column;
-    min-width: 80px;
-    max-width: 80px;
+    min-width: 90px;
+    max-width: 90px;
+    overflow: hidden;
     padding: 6px;
     gap: 4px;
     align-items: center;
@@ -601,7 +602,15 @@
   }
 
   .track-thumb__code { font-size: 0.5rem; }
-  .track-thumb__title { font-size: 0.58rem; -webkit-line-clamp: 3; line-clamp: 3; }
+  .track-thumb__title {
+    font-size: 0.55rem;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+  }
 
   .detail-hero {
     min-height: 220px;
