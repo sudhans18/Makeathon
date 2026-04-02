@@ -354,8 +354,15 @@
      init() — called on DOMContentLoaded
   ══════════════════════════════════════════════════════════ */
   function init() {
+    /* Show the tutorial only once per session */
+    var storageKey = 'tutorialShown_' + (isIndustrial ? 'industrial' : trackType || 'track');
+    if (sessionStorage.getItem(storageKey)) return;
+
     buildDOM();
     wireEvents();
+
+    /* Mark as shown so it won't appear again this session */
+    sessionStorage.setItem(storageKey, '1');
 
     /* Auto-start 1.5 s after DOM is ready
        (gives track.js time to render its panels) */

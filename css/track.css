@@ -189,6 +189,7 @@
   overflow-y: auto;
   background: #09090f;
   padding: 0;
+  height: calc(100vh - 64px);
 }
 
 /* Full-bleed background hero */
@@ -646,6 +647,10 @@
   .detail-hero__action {
     width: 100%;
     min-width: 0;
+  }
+
+  .track-right {
+    height: auto;
   }
 }
 

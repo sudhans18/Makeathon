@@ -124,6 +124,12 @@ function buildLeft() {
 function selectDomain(idx) {
   activeIndex = idx;
 
+  /* Scroll right panel to top when switching categories */
+  rightPanel.scrollTop = 0;
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+
   /* Update left highlights */
   leftList.querySelectorAll('.track-thumb').forEach((c, i) => {
     c.classList.toggle('is-active', i === idx);
