@@ -488,13 +488,7 @@
           subdomain: "Human-Machine Interaction / Industrial AI / Workplace Safety Systems",
           tag: "Industrial AI / Safety",
           desc: "Industrial environments often demand long working hours and repetitive tasks, leading to worker fatigue, stress, and reduced attention levels. These factors can significantly impact productivity and increase the risk of workplace accidents. Existing factory monitoring systems focus primarily on machine performance, with limited consideration for human factors.<br><br>There is a need for an intelligent system that can monitor indicators of worker fatigue and stress using non-intrusive sensing methods and adapt factory operations accordingly. The solution should enable real-time analysis of worker conditions and support safer, more efficient industrial workflows while ensuring privacy and ethical data handling.",
-          solution: [
-            "Monitor indicators of worker fatigue and stress using non-intrusive sensing methods.",
-            "Adapt factory operations accordingly based on the monitored human factors.",
-            "Enable real-time analysis of worker conditions.",
-            "Support safer, more efficient industrial workflows.",
-            "Ensure privacy and ethical data handling in all monitoring processes."
-          ],
+          solution: [],
           sdg: [
             "SDG 3 - Good Health and Well-being",
             "SDG 8 - Decent Work and Economic Growth",
@@ -506,13 +500,8 @@
           domain: "Robotics & Industrial Automation",
           subdomain: "Autonomous Systems / Industrial IoT / Smart Manufacturing",
           tag: "Industrial IoT / AI",
-          desc: "Industrial operations during night shifts often face reduced supervision, increased safety risks, and lower efficiency due to limited human presence. Fully manual monitoring during these hours is inefficient and prone to delays in fault detection and response.<br><br>There is a need for an intelligent system that enables factories to operate autonomously during night shifts with minimal or no human intervention.",
-          solution: [
-            "Integrate real-time monitoring and fault detection mechanisms.",
-            "Enable autonomous decision-making to ensure safe and continuous operation.",
-            "Implement security mechanisms for robust night-shift operations.",
-            "Ensure the system minimizes or eliminates the need for human intervention."
-          ],
+          desc: "Industrial operations during night shifts often face reduced supervision, increased safety risks, and lower efficiency due to limited human presence. Fully manual monitoring during these hours is inefficient and prone to delays in fault detection and response. There is a need for an intelligent system that enables factories to operate autonomously during night shifts with minimal or no human intervention. The system should integrate real-time monitoring, fault detection, decision-making, and security mechanisms to ensure safe and continuous operation.",
+          solution: [],
           sdg: [
             "SDG 8 - Decent Work and Economic Growth",
             "SDG 9 - Industry, Innovation, and Infrastructure"
@@ -523,14 +512,8 @@
           domain: "Smart Manufacturing / Industrial Automation",
           subdomain: "Energy Optimization / AI Based Scheduling / Industrial IoT",
           tag: "Industrial AI / Energy",
-          desc: "Industrial manufacturing processes typically follow fixed production schedules without considering fluctuations in renewable energy availability. As industries increasingly adopt renewable sources such as solar and wind, variability in power generation creates challenges in efficient energy utilization and cost optimization.<br><br>There is a need for an intelligent scheduling system that dynamically aligns production tasks with renewable energy availability.",
-          solution: [
-            "Dynamically align production tasks with renewable energy availability.",
-            "Optimize task allocation based on energy conditions.",
-            "Reduce dependence on non-renewable energy sources.",
-            "Maintain production efficiency by adapting to real-time and predicted energy conditions.",
-            "Integrate real-time monitoring of energy generation and consumption."
-          ],
+          desc: "Industrial manufacturing processes typically follow fixed production schedules without considering fluctuations in renewable energy availability. As industries increasingly adopt renewable sources such as solar and wind, variability in power generation creates challenges in efficient energy utilization and cost optimization. There is a need for an intelligent scheduling system that dynamically aligns production tasks with renewable energy availability. The system should optimize task allocation, reduce dependence on non-renewable energy, and maintain production efficiency by adapting to real-time and predicted energy conditions.",
+          solution: [],
           sdg: [
             "SDG 7 - Affordable and Clean Energy",
             "SDG 9 - Industry, Innovation, and Infrastructure",
@@ -557,9 +540,9 @@
           desc: "<strong>Problem Statement:</strong><br>In disaster situations such as floods, earthquakes, and large-scale accidents, conventional communication infrastructure often fails, leaving survivors unable to send distress signals despite having functional personal devices such as mobile phones or radios.<br><br>The challenge is to design and prototype a lightweight, aerostat-compatible payload system (deployable on a tethered aerostat at ~2 km altitude) that can detect, capture, and relay distress signals from survivors using existing devices, without relying on cellular or internet connectivity.<br><br>The system should function as a temporary aerial \u201clast-resort communication bridge\u201d, enabling rescue teams to identify and prioritize areas where survivors are likely present.<br><br><strong>Impact:</strong><br>This problem addresses a critical gap in disaster response: the inability to detect and communicate with survivors when conventional networks fail. The proposed solutions have direct relevance to NDMA, SDRF, defense, and emergency response agencies, and encourage participants to build systems that can save lives in real-world scenarios.",
           solution: [
             "Develop a working prototype or system-level solution that includes a distress signal detection mechanism.",
-            "Use passive detection of RF emissions (e.g., WiFi probe requests, Bluetooth signals, LoRa transmissions), or active triggering.",
+            "Use passive detection of RF emissions (e.g., WiFi probe requests, Bluetooth signals, LoRa transmissions), or active triggering mechanism to elicit responses from nearby devices.",
             "Integrate a low-bandwidth communication module to relay critical information to a ground station (e.g., LoRa, mesh, or SDR).",
-            "Build a basic edge intelligence layer to filter noise, identify and prioritize human presence, and optimally estimate location.",
+            "Build a basic edge intelligence layer to filter noise and false positives, identify and prioritize human presence, and optimally estimate location using signal strength or clustering.",
             "Design a payload system suitable for aerostat deployment, including a clear block diagram (sensing, processing, communication, power).",
             "Time Constraint: Scope for a 24-hour hackathon, focusing on proof-of-concept using readily available hardware.",
             "Power Limitation: Operate under limited power conditions with efficient sensing and communication strategies.",
@@ -581,76 +564,76 @@
       category: "Hybrid & Software",
       logo: "assets/industry_logos/apex.jpeg",
       background: "assets/background/prowler_bg.jpg",
+      pdf: "assets/Hackathon Problem Statements.pdf",
       tagline: "Securing the Future of IT.",
       problems: [
         {
           title: "The Air Gapped Optical Data Bridge",
           domain: "Cyber Security", subdomain: "Air-Gapped Systems & Secure Data Transfer", tag: "Security / Hardware",
-          desc: "The Problem: Air gapped computers, like high-security computers used by the defense department or top-tier fintech companies, are not connected to the internet for security purposes. However, sometimes it is necessary for a small amount of information, like a piece of encrypted data, to be extracted without having access to a USB cord.",
+          desc: "<strong>The Problem:</strong> Air gapped computers, like high-security computers used by the defense department or top-tier fintech companies, are not connected to the internet for security purposes. However, sometimes it is necessary for a small amount of information, like a piece of encrypted data, to be extracted without having access to a USB cord.",
           solution: [
-            "The Hardware: Create a transmitter using a fast-blinking LED light and a receiver using a Light Dependent Resistor (LDR) or a photodiode.",
-            "The Software: Create a script that can convert a text document or image into a binary code, transmit it as a blinking light, and a second script that can receive this light and translate it back into the original document/image on a completely disconnected computer."
+            "<strong>The Hardware:</strong> Create a transmitter using a fast-blinking LED light and a receiver using a Light Dependent Resistor (LDR) or a photodiode.",
+            "<strong>The Software:</strong> Create a script that can convert a text document or image into a binary code, transmit it as a blinking light, and a second script that can receive this light and translate it back into the original document/image on a completely disconnected computer."
           ],
           sdg: ["SDG 9 - Industry, Innovation & Infrastructure"]
         },
         {
           title: "Hardware-Level Anti-Deepfake Audio Nodes",
           domain: "Cyber Security & AI", subdomain: "Deepfake Detection & Audio Authentication", tag: "AI / Hardware",
-          desc: "The Problem: Deepfake technology is so advanced that software alone can't reliably detect it. We need a piece of hardware that can cryptographically \"sign\" real human audio as it first hits the microphone.",
+          desc: "<strong>The Problem:</strong> Deepfake technology is so advanced that software alone can't reliably detect it. We need a piece of hardware that can cryptographically \"sign\" real human audio as it first hits the microphone.",
           solution: [
-            "The Hardware: Create a special microphone (with a Raspberry Pi or ESP32) that can pick up audio and simultaneously add a cryptographic watermark, like an ultrasonic sound, into the audio stream.",
-            "The Software: Create a web interface where a journalist/user can upload a piece of audio. The software can then scan for this special watermark. If it is not present, it can flag the audio as \"Potentially AI-Generated or Tampered\"."
+            "<strong>The Hardware:</strong> Create a special microphone (with a Raspberry Pi or ESP32) that can pick up audio and simultaneously add a cryptographic watermark, like an ultrasonic sound, into the audio stream.",
+            "<strong>The Software:</strong> Create a web interface where a journalist/user can upload a piece of audio. The software can then scan for this special watermark. If it is not present, it can flag the audio as \"Potentially AI-Generated or Tampered\"."
           ],
           sdg: ["SDG 16 - Peace, Justice & Strong Institutions"]
         },
         {
           title: "Passive Crowd Crush Detection via Packet Sniffing",
           domain: "Embedded Systems & Smart Cities", subdomain: "Crowd Monitoring & Detection", tag: "IoT / Smart Cities",
-          desc: "The Problem: Using cameras to monitor the density of crowds in festivals or railway stations requires immense bandwidth and invades users' privacy.",
+          desc: "<strong>The Problem:</strong> Using cameras to monitor the density of crowds in festivals or railway stations requires immense bandwidth and invades users' privacy.",
           solution: [
-            "Hardware: Utilize an ESP32 microcontroller in monitor mode to passively detect and record all the WiFi probe requests and Bluetooth MAC addresses in the immediate area.",
-            "Software: Utilize a data visualization platform to monitor the number of devices sending probe requests to the microcontroller. If the number of devices in the 5-meter radius suddenly surges beyond a critical point, then an automated alert will be sent to the authorities."
+            "<strong>Hardware:</strong> Utilize an ESP32 microcontroller in monitor mode to passively detect and record all the WiFi probe requests and Bluetooth MAC addresses in the immediate area.",
+            "<strong>Software:</strong> Utilize a data visualization platform to monitor the number of devices sending probe requests to the microcontroller. If the number of devices in the 5-meter radius suddenly surges beyond a critical point, then an automated alert will be sent to the authorities."
           ],
           sdg: ["SDG 11 - Sustainable Cities & Communities"]
         },
         {
           title: "DNS Tunneling and Data Exfiltration Detector",
           domain: "Network Security", subdomain: "DNS Security & Threat Detection", tag: "Cybersecurity / Networking",
-          desc: "The Problem: Malware authors have developed cunning methods to evade traditional firewall security measures by encoding their stolen data and sending it via normal DNS queries.",
+          desc: "<strong>The Problem:</strong> Malware authors have developed cunning methods to evade traditional firewall security measures by encoding their stolen data and sending it via normal DNS queries.",
           solution: [
-            "The Challenge: Develop a network packet sniffing application that monitors DNS queries in real time to detect data exfiltration.",
-            "Expected Deliverable: A script that analyzes the lengths, frequency, and entropy of DNS queries. The script will have to create a baseline of normal DNS queries and raise a high-priority alert if it detects abnormal, long, and random subdomains associated with data exfiltration attacks, such as askjdfhakjdhfak.badguyserver.com."
+            "<strong>The Challenge:</strong> Develop a network packet sniffing application that monitors DNS queries in real time to detect data exfiltration.",
+            "<strong>Expected Deliverable:</strong> A script that analyzes the lengths, frequency, and entropy of DNS queries. The script will have to create a baseline of normal DNS queries and raise a high-priority alert if it detects abnormal, long, and random subdomains associated with data exfiltration attacks, such as askjdfhakjdhfak.badguyserver.com."
           ],
           sdg: ["SDG 9 - Industry, Innovation & Infrastructure"]
         },
         {
           title: "Zero-Trust CI/CD Pipeline Auditor",
           domain: "Software Engineering Security", subdomain: "CI/CD Pipeline Security", tag: "DevSecOps / Security",
-          desc: "The Problem: Supply chain attacks are extremely destructive. An attacker hacks into the software development pipelines (CI/CD) where software is created and injects their malicious malware into the company's official software updates before it even reaches the end customer.",
+          desc: "<strong>The Problem:</strong> Supply chain attacks are extremely destructive. An attacker hacks into the software development pipelines (CI/CD) where software is created and injects their malicious malware into the company's official software updates before it even reaches the end customer.",
           solution: [
-            "The Challenge: Create a software auditing tool to automatically scan a repository's deployment config files (e.g., GitHub Actions or Jenkins Pipelines) for security misconfigurations.",
-            "Expected Deliverable: A software tool to ingest a repository and identify critical security vulnerabilities such as overly privileged tokens, hardcoded credentials, or execution of unknown third-party scripts. It should produce a clean and easy-to-read \"security grade\" report for the development team."
+            "<strong>The Challenge:</strong> Create a software auditing tool to automatically scan a repository's deployment config files (e.g., GitHub Actions or Jenkins Pipelines) for security misconfigurations.",
+            "<strong>Expected Deliverable:</strong> A software tool to ingest a repository and identify critical security vulnerabilities such as overly privileged tokens, hardcoded credentials, or execution of unknown third-party scripts. It should produce a clean and easy-to-read \"security grade\" report for the development team."
           ],
           sdg: ["SDG 9 - Industry, Innovation & Infrastructure"]
         },
         {
           title: "Intelligent Phishing & Scam Spotter",
           domain: "Artificial Intelligence", subdomain: "Phishing Detection & NLP", tag: "AI / NLP",
-          desc: "The Problem: Phishing emails are becoming too realistic, and spam filters are not catching them.",
+          desc: "<strong>The Problem:</strong> Phishing emails are becoming too realistic, and spam filters are not catching them.",
           solution: [
-            "The Challenge: Design a browser extension or a simple web interface that will allow users to paste their suspicious emails or text messages.",
-            "The AI will not simply say \"safe\" or \"spam.\" Instead, it will point out the sentences in the email that are using psychological manipulation tactics and explain why they're suspicious.",
-            "Expected Deliverable: A working browser extension or web interface that will allow users to paste their suspicious emails or text messages and receive a color-coded explanation of the suspicious sentences using psychological manipulation tactics."
+            "<strong>The Challenge:</strong> Design a browser extension or a simple web interface that will allow users to paste their suspicious emails or text messages. The AI will not simply say \"safe\" or \"spam.\" Instead, it will point out the sentences in the email that are using psychological manipulation tactics and explain why they're suspicious.",
+            "<strong>Expected Deliverable:</strong> A working browser extension or web interface that will allow users to paste their suspicious emails or text messages and receive a color-coded explanation of the suspicious sentences using psychological manipulation tactics."
           ],
           sdg: ["SDG 16 - Peace, Justice & Strong Institutions"]
         },
         {
           title: "Smart Receipt & Budget Categorizer",
           domain: "Artificial Intelligence", subdomain: "OCR & Expense Management", tag: "AI / FinTech",
-          desc: "The Problem: Budgeting is a pain. People have receipts but don't want to manually enter all the information into a spreadsheet.",
+          desc: "<strong>The Problem:</strong> Budgeting is a pain. People have receipts but don't want to manually enter all the information into a spreadsheet.",
           solution: [
-            "The Challenge: Design a mobile-friendly web app that will allow users to upload a picture of their receipts. The app will need to parse the receipt to determine the total amount and then automatically categorize the expense using artificial intelligence.",
-            "Expected Deliverable: A working web app that will allow users to upload a picture of their receipts and then display the information in a neat and clean JSON format using an LLM prompt and Optical Character Recognition API."
+            "<strong>The Challenge:</strong> Design a mobile-friendly web app that will allow users to upload a picture of their receipts. The app will need to parse the receipt to determine the total amount and then automatically categorize the expense using artificial intelligence.",
+            "<strong>Expected Deliverable:</strong> A working web app that will allow users to upload a picture of their receipts and then display the information in a neat and clean JSON format using an LLM prompt and Optical Character Recognition API."
           ],
           sdg: ["SDG 8 - Decent Work & Economic Growth"]
         }
@@ -693,6 +676,7 @@
       category: "Software",
       logo: "assets/industry_logos/marketview360.jpeg",
       background: "assets/background/prowler_bg.jpg",
+      pdf: "assets/Upcheck and Marketview360 Industry Statement (1).pdf",
       tagline: "Proactive Signal Detection & Early Warnings",
       problems: [
         {
@@ -742,6 +726,7 @@
       category: "Hardware",
       logo: "assets/industry_logos/upcheck.jpeg",
       background: "assets/background/prowler_bg.jpg",
+      pdf: "assets/Upcheck and Marketview360 Industry Statement (1).pdf",
       tagline: "IoT & Field Instrumentation Solutions",
       problems: [
         {
@@ -895,6 +880,24 @@
       <div class="detail-body">
         <div class="detail-problems">
           <p class="detail-problems__heading">Problem Statements</p>
+
+          ${co.pdf ? `
+          <div style="background: rgba(20, 15, 35, 0.4); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 4px; padding: 1.5rem; margin-bottom: 2rem;">
+            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.2rem; font-family: var(--ff-body, sans-serif);">
+              Download the official document for the full requirements, evaluation context, and expected submission scope before you finalize your approach.
+            </p>
+            <a href="${co.pdf}" target="_blank" style="display: inline-flex; align-items: stretch; background: var(--ind-accent, #9146ff); text-decoration: none; position: relative; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 6px 6px 0 rgba(45, 20, 75, 0.8);" onmouseover="this.style.transform='translate(-2px, -2px)'; this.style.boxShadow='8px 8px 0 rgba(45, 20, 75, 0.8)'" onmouseout="this.style.transform='translate(0, 0)'; this.style.boxShadow='6px 6px 0 rgba(45, 20, 75, 0.8)'">
+              <div style="display: flex; align-items: center; justify-content: center; padding: 0 1.2rem; border-right: 1px solid rgba(255,255,255,0.2);">
+                <span style="color: #fff; font-family: var(--ff-body, sans-serif); font-size: 1.3rem; font-weight: 300; letter-spacing: 0.05em;">PDF</span>
+              </div>
+              <div style="padding: 0.8rem 1.2rem; display: flex; flex-direction: column; justify-content: center;">
+                <span style="color: #fff; font-family: 'Anton', sans-serif; font-size: 1.1rem; letter-spacing: 0.05em; line-height: 1.2;">DOWNLOAD DETAILED PROBLEM STATEMENTS PDF</span>
+                <span style="color: rgba(255,255,255,0.8); font-family: var(--ff-body, sans-serif); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px;">OPEN FULL BRIEF</span>
+              </div>
+            </a>
+          </div>
+          ` : ''}
+
           <div class="problem-list" style="margin-bottom: 2.5rem;">
             ${co.problems.map((p, pi) => `
               <div class="problem-skill" data-problem-index="${pi}">
@@ -906,6 +909,7 @@
               </div>
             `).join('')}
           </div>
+
 
           <div id="rules" style="padding: 1.5rem; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.4); border-radius: 8px; text-align: left;">
             <h4 style="font-family:'Anton',sans-serif; color:#fcee0a; font-size:1.1rem; margin-bottom:0.8rem; letter-spacing:0.04em; text-transform:uppercase;">Rules and Regulations: Participation Guidelines</h4>
@@ -984,7 +988,7 @@
 
       <p class="ps-modal__desc">${p.desc}</p>
 
-      <div style="margin-top:1rem;">
+      ${p.solution && p.solution.length ? `<div style="margin-top:1rem;">
         <h3 style="font-family:'Anton',sans-serif; color:var(--ind-accent,#9146ff);
                    font-size:0.95rem; margin-bottom:0.5rem; letter-spacing:0.05em;">EXPECTED SOLUTION</h3>
         <ul style="list-style:none; padding:0; margin:0;">
@@ -993,7 +997,7 @@
                        color:rgba(255,255,255,0.85); font-size:0.9rem;">→ ${s}</li>
           `).join('')}
         </ul>
-      </div>
+      </div>` : ''}
 
       <div style="margin-top:1.2rem; display:flex; flex-wrap:wrap; gap:8px;">
         ${Array.isArray(p.sdg) ? p.sdg.map(s => `<span class="sdg-badge">${s}</span>`).join('') : `<span class="sdg-badge">${p.sdg}</span>`}

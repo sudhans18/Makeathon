@@ -10,6 +10,7 @@
   background: #09090f;
   min-height: 100vh;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 /* Push content below fixed nav */
@@ -638,6 +639,10 @@
     padding: 0 20px 48px;
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+
+  .track-page-body {
+    overflow-y: auto; /* Re-enable main scrolling for mobile */
   }
 
   .detail-hero__actions {
