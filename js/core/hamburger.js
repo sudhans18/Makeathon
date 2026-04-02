@@ -121,7 +121,7 @@
         <div class="reg-modal__options">
           <a href="https://forms.gle/MSiu9x7Mo2kYBmmA9" target="_blank" rel="noopener noreferrer" class="reg-modal__btn reg-modal__btn--hw">Hardware</a>
           <a href="https://forms.gle/MSiu9x7Mo2kYBmmA9" target="_blank" rel="noopener noreferrer" class="reg-modal__btn reg-modal__btn--sw">Software</a>
-          <a href="https://forms.gle/2wbVLEJFr9LJrytW9" target="_blank" rel="noopener noreferrer" class="reg-modal__btn reg-modal__btn--ind">Industrial</a>
+          <a href="https://forms.gle/2wbVLEJFr9LJrytW9" target="_blank" rel="noopener noreferrer" class="reg-modal__btn reg-modal__btn--ind">Industry</a>
         </div>
       </div>
     `;
