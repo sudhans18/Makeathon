@@ -79,8 +79,8 @@
         {
           getText: function () {
             return isMobile()
-              ? 'Welcome! There are 9 industry partners above. Scroll horizontally to see them all, and tap one to view its problem statements.'
-              : 'Welcome! There are 9 industry partners on the left. Click any company to explore its problem statements.';
+              ? 'Welcome! There are 10 industry partners above. Scroll horizontally to see them all, and tap one to view its problem statements.'
+              : 'Welcome! There are 10 industry partners on the left. Click any company to explore its problem statements.';
           },
           scrollTo: '#track-left',
           onEnter: function () { autoScrollCategories(); },
