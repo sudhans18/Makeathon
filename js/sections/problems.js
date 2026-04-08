@@ -426,7 +426,7 @@ export function initProblems() {
                 </a>
             </div>
 
-            <p class="track-deadline">DEADLINE : APRIL 6th</p>
+            <p class="track-deadline">DEADLINE : APRIL 8th (EXTENDED)</p>
         </div>
     `;
 }
