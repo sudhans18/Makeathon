@@ -541,13 +541,21 @@
             </div>
           </div>
 
-          <!-- MEDIA, AUTOMATION & PLATFORM PARTNERS -->
+          <!-- ═══════════════════════════════════════════════════════
+               MEDIA, AUTOMATION, PLATFORM & CODING PARTNERS
+               FIX: min-height on headings keeps all 4 logo cards
+               vertically aligned regardless of heading line-count.
+          ═══════════════════════════════════════════════════════ -->
           <div
             style="display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: var(--sp-md);">
-            <!-- MEDIA (Left) -->
-            <div class="partner__section" style="flex: 1 1 0; min-width: 240px;">
-              <h3 class="partner__category text-yellow">Media Partner</h3>
-              <div class="partner__grid">
+
+            <!-- MEDIA -->
+            <div class="partner__section"
+              style="flex: 1 1 0; min-width: 200px; display: flex; flex-direction: column; align-items: center;">
+              <h3 class="partner__category text-yellow"
+                style="min-height: 3.2rem; display: flex; align-items: center; justify-content: center; text-align: center; width: 100%;">
+                Media Partner</h3>
+              <div class="partner__grid" style="flex: 1; display: flex; align-items: center; justify-content: center;">
                 <a href="https://eventopia.in/" target="_blank" rel="noopener noreferrer" class="partner__card">
                   <div class="partner__logo-wrapper">
                     <img src="assets/partners/Eventopia%20logo.png" alt="Eventopia Logo" class="partner__logo" />
@@ -556,10 +564,13 @@
               </div>
             </div>
 
-            <!-- AUTOMATION (Center) -->
-            <div class="partner__section" style="flex: 1 1 0; min-width: 240px;">
-              <h3 class="partner__category text-magenta">Automation &amp; Workflow Partner</h3>
-              <div class="partner__grid">
+            <!-- AUTOMATION -->
+            <div class="partner__section"
+              style="flex: 1 1 0; min-width: 200px; display: flex; flex-direction: column; align-items: center;">
+              <h3 class="partner__category text-magenta"
+                style="min-height: 3.2rem; display: flex; align-items: center; justify-content: center; text-align: center; width: 100%;">
+                Automation &amp; Workflow Partner</h3>
+              <div class="partner__grid" style="flex: 1; display: flex; align-items: center; justify-content: center;">
                 <a href="https://n8n.io/" target="_blank" rel="noopener noreferrer" class="partner__card">
                   <div class="partner__logo-wrapper">
                     <img src="assets/partners/n8n_pink+black_logo.png" alt="n8n Logo" class="partner__logo" />
@@ -568,10 +579,13 @@
               </div>
             </div>
 
-            <!-- PLATFORM (Right) -->
-            <div class="partner__section" style="flex: 1 1 0; min-width: 240px;">
-              <h3 class="partner__category text-magenta">Platform Partner</h3>
-              <div class="partner__grid">
+            <!-- PLATFORM -->
+            <div class="partner__section"
+              style="flex: 1 1 0; min-width: 200px; display: flex; flex-direction: column; align-items: center;">
+              <h3 class="partner__category text-magenta"
+                style="min-height: 3.2rem; display: flex; align-items: center; justify-content: center; text-align: center; width: 100%;">
+                Platform Partner</h3>
+              <div class="partner__grid" style="flex: 1; display: flex; align-items: center; justify-content: center;">
                 <a href="https://www.geeksforgeeks.org/" target="_blank" rel="noopener noreferrer"
                   class="partner__card">
                   <div class="partner__logo-wrapper">
@@ -580,7 +594,24 @@
                 </a>
               </div>
             </div>
+
+            <!-- CODING -->
+            <div class="partner__section"
+              style="flex: 1 1 0; min-width: 200px; display: flex; flex-direction: column; align-items: center;">
+              <h3 class="partner__category text-cyan"
+                style="min-height: 3.2rem; display: flex; align-items: center; justify-content: center; text-align: center; width: 100%;">
+                Coding Partner</h3>
+              <div class="partner__grid" style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                <a href="https://www.codechef.com/" target="_blank" rel="noopener noreferrer" class="partner__card">
+                  <div class="partner__logo-wrapper">
+                    <img src="assets/industry_logos/codechef.png" alt="CodeChef Logo" class="partner__logo" />
+                  </div>
+                </a>
+              </div>
+            </div>
+
           </div>
+          <!-- END MEDIA/AUTOMATION/PLATFORM/CODING ROW -->
 
           <!-- TECHNOLOGY PARTNERS -->
           <div class="partner__section">
@@ -1471,8 +1502,6 @@
                 <p style="font-family: var(--ff-body); color: var(--c-cyan); font-size: 0.85rem; font-weight: bold;">
                   73581 20955</p>
               </div>
-
-
             </div>
           </div>
         </div>
@@ -1492,7 +1521,6 @@
           </p>
 
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; width: 100%;">
-
 
             <!-- RACE -->
             <div
@@ -1555,6 +1583,7 @@
                 </a>
               </div>
             </div>
+
             <!-- ECEA -->
             <div
               style="border-left: 2px solid var(--c-cyan); padding-left: 12px; display: flex; flex-direction: column; gap: 8px;">
@@ -1586,14 +1615,9 @@
               </div>
             </div>
 
-
-
-
           </div>
         </div>
       </div>
-
-
 
       <!-- ── Bottom Bar ── -->
       <div class="footer__bottom">
