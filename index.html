@@ -103,6 +103,7 @@
         <li><a href="#sponsorship" class="nav__link">Sponsors</a></li>
         <li><a href="#team" class="nav__link">The Crew</a></li>
         <li><a href="#faq" class="nav__link">FAQ</a></li>
+        <li><a href="notifications.html" class="nav__link">Notifications</a></li>
       </ul>
       <a href="https://forms.gle/MSiu9x7Mo2kYBmmA9" target="_blank" rel="noopener noreferrer"
         class="btn btn--nav text-yellow">REGISTER</a>
@@ -124,6 +125,7 @@
     <a href="#sponsorship" class="nav__drawer-link">Sponsors</a>
     <a href="#team" class="nav__drawer-link">The Crew</a>
     <a href="#faq" class="nav__drawer-link">FAQ</a>
+    <a href="notifications.html" class="nav__drawer-link">Notifications</a>
     <a href="https://forms.gle/MSiu9x7Mo2kYBmmA9" target="_blank" rel="noopener noreferrer"
       class="btn btn--nav text-yellow">REGISTER</a>
   </div>
@@ -510,13 +512,43 @@
           <!-- GOLD SPONSOR -->
           <div class="partner__section">
             <h3 class="partner__category text-yellow">Gold Sponsor</h3>
-            <p class="partner__coming-soon">COMING SOON...</p>
+            <div class="partner__grid">
+              <a href="https://www.jeyachandran.com/?srsltid=AfmBOorU6SC4BFmQ0qg3zJLT0NM-Goc7ovATHSUpR0-vsYEEbFp-dXSL" target="_blank" rel="noopener noreferrer" class="partner__card">
+                <div class="partner__logo-wrapper">
+                  <img src="assets/industry_logos/JT-01.webp" alt="Jeyachandran Gold Sponsor" class="partner__logo" />
+                </div>
+              </a>
+            </div>
           </div>
 
           <!-- SILVER SPONSOR -->
           <div class="partner__section">
             <h3 class="partner__category text-cyan">Silver Sponsor</h3>
             <p class="partner__coming-soon">COMING SOON...</p>
+          </div>
+
+          <!-- BRONZE SPONSOR -->
+          <div class="partner__section">
+            <h3 class="partner__category text-red">Bronze Partner</h3>
+            <div class="partner__grid">
+              <a href="https://www.ricchierichinvestments.com/" target="_blank" rel="noopener noreferrer" class="partner__card">
+                <div class="partner__logo-wrapper">
+                  <img src="assets/industry_logos/richee.jpeg" alt="Richee Rick Investments" class="partner__logo" />
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- PRODUCT PARTNER -->
+          <div class="partner__section">
+            <h3 class="partner__category text-magenta">Product Partner</h3>
+            <div class="partner__grid">
+              <a href="https://pcbcupid.com" target="_blank" rel="noopener noreferrer" class="partner__card">
+                <div class="partner__logo-wrapper">
+                  <img src="assets/industry_logos/pcb.png" alt="PCB Cupid" class="partner__logo" />
+                </div>
+              </a>
+            </div>
           </div>
 
           <!-- INTERNSHIP PARTNERS -->
@@ -541,13 +573,21 @@
             </div>
           </div>
 
-          <!-- MEDIA, AUTOMATION & PLATFORM PARTNERS -->
+          <!-- ═══════════════════════════════════════════════════════
+               MEDIA, AUTOMATION, PLATFORM & CODING PARTNERS
+               FIX: min-height on headings keeps all 4 logo cards
+               vertically aligned regardless of heading line-count.
+          ═══════════════════════════════════════════════════════ -->
           <div
             style="display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: var(--sp-md);">
-            <!-- MEDIA (Left) -->
-            <div class="partner__section" style="flex: 1 1 0; min-width: 240px;">
-              <h3 class="partner__category text-yellow">Media Partner</h3>
-              <div class="partner__grid">
+
+            <!-- MEDIA -->
+            <div class="partner__section"
+              style="flex: 1 1 0; min-width: 200px; display: flex; flex-direction: column; align-items: center;">
+              <h3 class="partner__category text-yellow"
+                style="min-height: 3.2rem; display: flex; align-items: center; justify-content: center; text-align: center; width: 100%;">
+                Media Partner</h3>
+              <div class="partner__grid" style="flex: 1; display: flex; align-items: center; justify-content: center;">
                 <a href="https://eventopia.in/" target="_blank" rel="noopener noreferrer" class="partner__card">
                   <div class="partner__logo-wrapper">
                     <img src="assets/partners/Eventopia%20logo.png" alt="Eventopia Logo" class="partner__logo" />
@@ -556,10 +596,13 @@
               </div>
             </div>
 
-            <!-- AUTOMATION (Center) -->
-            <div class="partner__section" style="flex: 1 1 0; min-width: 240px;">
-              <h3 class="partner__category text-magenta">Automation &amp; Workflow Partner</h3>
-              <div class="partner__grid">
+            <!-- AUTOMATION -->
+            <div class="partner__section"
+              style="flex: 1 1 0; min-width: 200px; display: flex; flex-direction: column; align-items: center;">
+              <h3 class="partner__category text-magenta"
+                style="min-height: 3.2rem; display: flex; align-items: center; justify-content: center; text-align: center; width: 100%;">
+                Automation &amp; Workflow Partner</h3>
+              <div class="partner__grid" style="flex: 1; display: flex; align-items: center; justify-content: center;">
                 <a href="https://n8n.io/" target="_blank" rel="noopener noreferrer" class="partner__card">
                   <div class="partner__logo-wrapper">
                     <img src="assets/partners/n8n_pink+black_logo.png" alt="n8n Logo" class="partner__logo" />
@@ -568,10 +611,13 @@
               </div>
             </div>
 
-            <!-- PLATFORM (Right) -->
-            <div class="partner__section" style="flex: 1 1 0; min-width: 240px;">
-              <h3 class="partner__category text-magenta">Platform Partner</h3>
-              <div class="partner__grid">
+            <!-- PLATFORM -->
+            <div class="partner__section"
+              style="flex: 1 1 0; min-width: 200px; display: flex; flex-direction: column; align-items: center;">
+              <h3 class="partner__category text-magenta"
+                style="min-height: 3.2rem; display: flex; align-items: center; justify-content: center; text-align: center; width: 100%;">
+                Platform Partner</h3>
+              <div class="partner__grid" style="flex: 1; display: flex; align-items: center; justify-content: center;">
                 <a href="https://www.geeksforgeeks.org/" target="_blank" rel="noopener noreferrer"
                   class="partner__card">
                   <div class="partner__logo-wrapper">
@@ -580,7 +626,24 @@
                 </a>
               </div>
             </div>
+
+            <!-- CODING -->
+            <div class="partner__section"
+              style="flex: 1 1 0; min-width: 200px; display: flex; flex-direction: column; align-items: center;">
+              <h3 class="partner__category text-cyan"
+                style="min-height: 3.2rem; display: flex; align-items: center; justify-content: center; text-align: center; width: 100%;">
+                Coding Partner</h3>
+              <div class="partner__grid" style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                <a href="https://www.codechef.com/" target="_blank" rel="noopener noreferrer" class="partner__card">
+                  <div class="partner__logo-wrapper">
+                    <img src="assets/industry_logos/codechef.png" alt="CodeChef Logo" class="partner__logo" />
+                  </div>
+                </a>
+              </div>
+            </div>
+
           </div>
+          <!-- END MEDIA/AUTOMATION/PLATFORM/CODING ROW -->
 
           <!-- TECHNOLOGY PARTNERS -->
           <div class="partner__section">
@@ -1471,8 +1534,6 @@
                 <p style="font-family: var(--ff-body); color: var(--c-cyan); font-size: 0.85rem; font-weight: bold;">
                   73581 20955</p>
               </div>
-
-
             </div>
           </div>
         </div>
@@ -1492,7 +1553,6 @@
           </p>
 
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; width: 100%;">
-
 
             <!-- RACE -->
             <div
@@ -1555,6 +1615,7 @@
                 </a>
               </div>
             </div>
+
             <!-- ECEA -->
             <div
               style="border-left: 2px solid var(--c-cyan); padding-left: 12px; display: flex; flex-direction: column; gap: 8px;">
@@ -1586,14 +1647,9 @@
               </div>
             </div>
 
-
-
-
           </div>
         </div>
       </div>
-
-
 
       <!-- ── Bottom Bar ── -->
       <div class="footer__bottom">
@@ -1601,8 +1657,31 @@
         <p class="copyright">&copy; 2026 Makeathon 7.0 — All realities reserved.</p>
       </div>
 
-    </div>
   </footer>
+
+  <style>
+    @keyframes bell-ring {
+      0%, 100% { transform: rotate(0deg); }
+      15% { transform: rotate(15deg); }
+      30% { transform: rotate(-15deg); }
+      45% { transform: rotate(10deg); }
+      60% { transform: rotate(-10deg); }
+      75% { transform: rotate(5deg); }
+    }
+    .notification-bell svg {
+      animation: bell-ring 2s infinite ease-in-out;
+      transform-origin: top center;
+    }
+  </style>
+  <!-- Floating Notification Bell Button -->
+  <a href="notifications.html" aria-label="Notifications" class="notification-bell" style="position: fixed; bottom: 30px; right: 30px; width: 64px; height: 64px; border-radius: 50%; background: var(--c-yellow, #FFD700); border: 3.5px solid #0A0A0F; box-shadow: 4px 4px 0 #0A0A0F; display: flex; align-items: center; justify-content: center; z-index: 9999; text-decoration: none; transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px) scale(1.1)'; this.style.boxShadow='8px 8px 0 #0A0A0F';" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='4px 4px 0 #0A0A0F';">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;">
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+      <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+    </svg>
+    <!-- Notification Red Dot -->
+    <div style="position: absolute; top: 14px; right: 16px; width: 12px; height: 12px; background: #E62429; border: 2.5px solid #0A0A0F; border-radius: 50%;"></div>
+  </a>
 
   <script src="js/core/hamburger.js"></script>
   <script type="module" src="js/main.js"></script>
