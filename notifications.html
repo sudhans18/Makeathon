@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MAKEATHON 7.0 — TRANSMISSIONS</title>
   <!-- Main site fonts for navbar -- Anton, Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Montserrat:ital,wght@0,400;0,600;0,800;1,400;1,800&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Montserrat:ital,wght@0,400;0,600;0,800;1,400;1,800&family=Rajdhani:wght@400;600;700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/nav.css" />
   <style>
@@ -21,17 +24,29 @@
       --dot-color: rgba(255, 255, 255, 0.15);
       --gwen-pink: #FF3EA5;
     }
- 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
- 
-    html, body { height: 100%; overflow-x: hidden; margin: 0; padding: 0; }
- 
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: 'Rajdhani', sans-serif !important;
       background: #050A1F !important;
       position: relative;
     }
- 
+
     /* halftone dots */
     body::before {
       content: '';
@@ -42,11 +57,12 @@
       z-index: 0;
       pointer-events: none;
     }
- 
+
     /* diagonal blue slab */
     .slab {
       position: fixed;
-      top: -10%; left: -8%;
+      top: -10%;
+      left: -8%;
       width: 48%;
       height: 130%;
       background: var(--ink);
@@ -55,34 +71,50 @@
       opacity: 0.12;
       pointer-events: none;
     }
- 
+
     /* web bg svg */
     .web-bg {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       z-index: 0;
       pointer-events: none;
       opacity: 0.06;
     }
- 
+
     /* falling strands */
     .web-strand {
       position: fixed;
       top: 0;
       width: 1px;
-      background: linear-gradient(180deg, transparent, rgba(230,36,41,0.25), transparent);
+      background: linear-gradient(180deg, transparent, rgba(230, 36, 41, 0.25), transparent);
       animation: strandFall linear infinite;
       z-index: 0;
       pointer-events: none;
     }
+
     @keyframes strandFall {
-      0%   { transform: translateY(-100vh); opacity: 0; }
-      10%  { opacity: 1; }
-      90%  { opacity: 1; }
-      100% { transform: translateY(100vh); opacity: 0; }
+      0% {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
     }
- 
+
     /* ── PAGE WRAP ── */
     .page-wrap {
       position: relative;
@@ -91,9 +123,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 7rem 1rem 5rem; /* Adjusted for navbar */
+      padding: 7rem 1rem 5rem;
+      /* Adjusted for navbar */
     }
- 
+
     /* ── HEADER ── */
     .header {
       width: 100%;
@@ -101,7 +134,7 @@
       margin-bottom: 2rem;
       position: relative;
     }
- 
+
     .header-box {
       background: var(--ink);
       border: 4px solid var(--ink);
@@ -110,25 +143,25 @@
       position: relative;
       overflow: hidden;
     }
- 
+
     .header-box::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: repeating-linear-gradient(
-        -55deg,
-        transparent, transparent 8px,
-        rgba(255,255,255,0.03) 8px, rgba(255,255,255,0.03) 16px
-      );
+      background: repeating-linear-gradient(-55deg,
+          transparent, transparent 8px,
+          rgba(255, 255, 255, 0.03) 8px, rgba(255, 255, 255, 0.03) 16px);
     }
- 
+
     .header-accent {
       position: absolute;
-      top: 0; left: 0;
-      width: 8px; height: 100%;
+      top: 0;
+      left: 0;
+      width: 8px;
+      height: 100%;
       background: var(--red);
     }
- 
+
     .event-eyebrow {
       font-size: 0.7rem;
       font-weight: 700;
@@ -137,7 +170,7 @@
       text-transform: uppercase;
       margin-bottom: 0.25rem;
     }
- 
+
     .header-title {
       font-family: 'Bangers', cursive;
       font-size: clamp(2.8rem, 7vw, 4.8rem);
@@ -146,27 +179,31 @@
       line-height: 0.92;
       text-shadow: 5px 5px 0 var(--red), 9px 9px 0 var(--blue);
     }
- 
-    .header-title span { color: var(--yellow); text-shadow: 3px 3px 0 var(--red); }
- 
+
+    .header-title span {
+      color: var(--yellow);
+      text-shadow: 3px 3px 0 var(--red);
+    }
+
     .header-sub {
       margin-top: 0.5rem;
       font-size: 0.82rem;
-      color: rgba(245,240,232,0.5);
+      color: rgba(245, 240, 232, 0.5);
       letter-spacing: 0.22em;
       text-transform: uppercase;
       font-weight: 600;
     }
- 
+
     .spider-corner {
       position: absolute;
-      bottom: -8px; right: 22px;
+      bottom: -8px;
+      right: 22px;
       font-size: 2.8rem;
       transform: rotate(-14deg);
       line-height: 1;
       filter: drop-shadow(2px 2px 0 var(--red));
     }
- 
+
     /* ── SIGNAL BAR ── */
     .signal-bar {
       width: 100%;
@@ -176,15 +213,16 @@
       gap: 0.7rem;
       margin-bottom: 1.8rem;
     }
- 
+
     .signal-dot {
-      width: 9px; height: 9px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: var(--red);
       animation: pulse 1.4s ease-in-out infinite;
       flex-shrink: 0;
     }
- 
+
     .signal-label {
       font-size: 0.7rem;
       font-weight: 700;
@@ -193,18 +231,27 @@
       text-transform: uppercase;
       white-space: nowrap;
     }
- 
+
     .signal-line {
       flex: 1;
       height: 2px;
       background: linear-gradient(90deg, var(--red) 0%, transparent 100%);
     }
- 
+
     @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.25; transform: scale(0.65); }
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.25;
+        transform: scale(0.65);
+      }
     }
- 
+
     /* ── CHAT BOX ── */
     #chat-box {
       width: 100%;
@@ -213,7 +260,7 @@
       flex-direction: column;
       gap: 1.6rem;
     }
- 
+
     /* ── MESSAGE ── */
     .chat-message {
       display: flex;
@@ -223,14 +270,22 @@
       transform: translateY(32px);
       animation: slideIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
- 
+
     @keyframes slideIn {
-      to { opacity: 1; transform: translateY(0); }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
- 
-    .chat-message:nth-child(even) .bubble { transform: rotate(0.25deg); }
-    .chat-message:nth-child(odd)  .bubble { transform: rotate(-0.25deg); }
- 
+
+    .chat-message:nth-child(even) .bubble {
+      transform: rotate(0.25deg);
+    }
+
+    .chat-message:nth-child(odd) .bubble {
+      transform: rotate(-0.25deg);
+    }
+
     .bubble {
       background: var(--white);
       border: 3.5px solid var(--ink);
@@ -240,43 +295,64 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       cursor: default;
     }
- 
+
     .bubble:hover {
       transform: translateY(-4px) rotate(0deg) !important;
       box-shadow: 9px 9px 0 var(--ink);
     }
- 
+
     /* left color stripe per card */
-    .chat-message:nth-child(1) .bubble { border-left: 7px solid var(--blue); }
-    .chat-message:nth-child(2) .bubble { border-left: 7px solid var(--red); }
-    .chat-message:nth-child(3) .bubble { border-left: 7px solid var(--gwen-pink); }
-    .chat-message:nth-child(4) .bubble { border-left: 7px solid var(--yellow); }
-    .chat-message:nth-child(5) .bubble { border-left: 7px solid var(--blue); }
-    .chat-message:nth-child(6) .bubble { border-left: 7px solid var(--red); }
- 
+    .chat-message:nth-child(1) .bubble {
+      border-left: 7px solid var(--blue);
+    }
+
+    .chat-message:nth-child(2) .bubble {
+      border-left: 7px solid var(--red);
+    }
+
+    .chat-message:nth-child(3) .bubble {
+      border-left: 7px solid var(--gwen-pink);
+    }
+
+    .chat-message:nth-child(4) .bubble {
+      border-left: 7px solid var(--yellow);
+    }
+
+    .chat-message:nth-child(5) .bubble {
+      border-left: 7px solid var(--blue);
+    }
+
+    .chat-message:nth-child(6) .bubble {
+      border-left: 7px solid var(--red);
+    }
+
     /* tail */
     .bubble::after {
       content: '';
       position: absolute;
-      bottom: -14px; left: 24px;
+      bottom: -14px;
+      left: 24px;
       border-left: 11px solid transparent;
       border-right: 4px solid transparent;
       border-top: 13px solid var(--ink);
     }
+
     .bubble::before {
       content: '';
       position: absolute;
-      bottom: -9px; left: 27px;
+      bottom: -9px;
+      left: 27px;
       border-left: 8px solid transparent;
       border-right: 3px solid transparent;
       border-top: 10px solid var(--white);
       z-index: 1;
     }
- 
+
     /* ID badge */
     .msg-badge {
       position: absolute;
-      top: -15px; right: 14px;
+      top: -15px;
+      right: 14px;
       background: var(--ink);
       color: var(--yellow);
       font-family: 'Bangers', cursive;
@@ -285,22 +361,22 @@
       padding: 2px 12px;
       clip-path: polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%);
     }
- 
+
     .bubble-text {
       font-size: 1.06rem;
       font-weight: 600;
       color: var(--ink);
       line-height: 1.6;
     }
- 
+
     .bubble-text strong {
       color: var(--red);
       font-weight: 700;
-      background: linear-gradient(90deg, rgba(255,215,0,0.55), rgba(255,215,0,0.1));
+      background: linear-gradient(90deg, rgba(255, 215, 0, 0.55), rgba(255, 215, 0, 0.1));
       padding: 0 4px;
       border-radius: 2px;
     }
- 
+
     /* ── META ── */
     .meta {
       display: flex;
@@ -309,7 +385,7 @@
       padding-left: 1rem;
       margin-top: 0.3rem;
     }
- 
+
     .sender-chip {
       font-family: 'Bangers', cursive;
       font-size: 0.82rem;
@@ -320,27 +396,30 @@
       padding: 1px 10px 0;
       border-radius: 3px;
     }
- 
-    .meta-sep { color: rgba(10,10,15,0.3); font-size: 0.65rem; }
- 
+
+    .meta-sep {
+      color: rgba(10, 10, 15, 0.3);
+      font-size: 0.65rem;
+    }
+
     .time-text {
       font-size: 0.74rem;
       font-weight: 600;
-      color: rgba(10,10,15,0.45);
+      color: rgba(10, 10, 15, 0.45);
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
- 
+
     /* ── NO MESSAGES ── */
     .no-messages {
       font-family: 'Bangers', cursive;
       font-size: 2rem;
       letter-spacing: 0.3em;
-      color: rgba(10,10,15,0.18);
+      color: rgba(10, 10, 15, 0.18);
       text-align: center;
       padding: 5rem 0;
     }
- 
+
     /* ── FOOTER ── */
     .footer {
       margin-top: 3.5rem;
@@ -351,8 +430,13 @@
       gap: 1rem;
       opacity: 0.3;
     }
- 
-    .footer-line { flex: 1; height: 2px; background: var(--ink); }
+
+    .footer-line {
+      flex: 1;
+      height: 2px;
+      background: var(--ink);
+    }
+
     .footer-txt {
       font-family: 'Bangers', cursive;
       font-size: 0.88rem;
@@ -362,8 +446,9 @@
     }
   </style>
 </head>
+
 <body>
- 
+
   <!-- Navigation Bar -->
   <nav class="comic-nav">
     <div class="nav__container">
@@ -377,7 +462,6 @@
         <li><a href="index.html#sponsorship" class="nav__link">Sponsors</a></li>
         <li><a href="index.html#team" class="nav__link">The Crew</a></li>
         <li><a href="index.html#faq" class="nav__link">FAQ</a></li>
-        <li><a href="notifications.html" class="nav__link">Notifications</a></li>
       </ul>
       <a href="https://forms.gle/MSiu9x7Mo2kYBmmA9" target="_blank" rel="noopener noreferrer"
         class="btn btn--nav text-yellow">REGISTER</a>
@@ -399,7 +483,6 @@
     <a href="index.html#sponsorship" class="nav__drawer-link">Sponsors</a>
     <a href="index.html#team" class="nav__drawer-link">The Crew</a>
     <a href="index.html#faq" class="nav__drawer-link">FAQ</a>
-    <a href="notifications.html" class="nav__drawer-link">Notifications</a>
     <a href="https://forms.gle/MSiu9x7Mo2kYBmmA9" target="_blank" rel="noopener noreferrer"
       class="btn btn--nav text-yellow">REGISTER</a>
   </div>
@@ -407,24 +490,24 @@
   <div class="nav__overlay" id="nav-overlay" aria-hidden="true"></div>
 
   <div class="slab"></div>
- 
+
   <svg class="web-bg" viewBox="0 0 900 650" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
     <g stroke="#003DA5" stroke-width="1" fill="none">
-      <line x1="900" y1="0" x2="0"   y2="350"/>
-      <line x1="900" y1="0" x2="200" y2="650"/>
-      <line x1="900" y1="0" x2="500" y2="650"/>
-      <line x1="900" y1="0" x2="750" y2="650"/>
-      <line x1="900" y1="0" x2="900" y2="650"/>
-      <line x1="900" y1="0" x2="420" y2="320"/>
-      <line x1="900" y1="0" x2="80"  y2="520"/>
-      <path d="M700,0 Q900,140 700,280 Q500,420 350,340 Q150,250 0,340"/>
-      <path d="M800,0 Q900,240 700,420 Q480,590 260,550 Q80,510 0,570"/>
-      <path d="M900,100 Q840,320 640,470 Q400,610 80,650"/>
+      <line x1="900" y1="0" x2="0" y2="350" />
+      <line x1="900" y1="0" x2="200" y2="650" />
+      <line x1="900" y1="0" x2="500" y2="650" />
+      <line x1="900" y1="0" x2="750" y2="650" />
+      <line x1="900" y1="0" x2="900" y2="650" />
+      <line x1="900" y1="0" x2="420" y2="320" />
+      <line x1="900" y1="0" x2="80" y2="520" />
+      <path d="M700,0 Q900,140 700,280 Q500,420 350,340 Q150,250 0,340" />
+      <path d="M800,0 Q900,240 700,420 Q480,590 260,550 Q80,510 0,570" />
+      <path d="M900,100 Q840,320 640,470 Q400,610 80,650" />
     </g>
   </svg>
- 
+
   <div class="page-wrap">
- 
+
     <header class="header">
       <div class="header-box">
         <div class="header-accent"></div>
@@ -434,25 +517,23 @@
       </div>
       <div class="spider-corner">🕷️</div>
     </header>
- 
+
     <div class="signal-bar">
       <div class="signal-dot"></div>
       <div class="signal-label">Live Channel Active</div>
       <div class="signal-line"></div>
     </div>
- 
+
     <div id="chat-box"></div>
- 
-    <div class="footer">
-      <div class="footer-line"></div>
-      <div class="footer-txt" style="color:var(--white);">⚡ WITH GREAT POWER — SVCE IETE ⚡</div>
-      <div class="footer-line"></div>
-    </div>
- 
-    <a href="index.html" style="margin-top: 2rem; padding: 0.8rem 2rem; font-family: 'Bangers', cursive; font-size: 1.5rem; letter-spacing: 0.1em; color: var(--ink); background: var(--yellow); text-decoration: none; border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); transition: transform 0.2s, box-shadow 0.2s; display: inline-block;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='7px 7px 0 var(--ink)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='4px 4px 0 var(--ink)';">RETURN TO MAIN PAGE</a>
+
+    <a href="index.html"
+      style="margin-top: 2rem; padding: 0.8rem 2rem; font-family: 'Bangers', cursive; font-size: 1.5rem; letter-spacing: 0.1em; color: var(--ink); background: var(--yellow); text-decoration: none; border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); transition: transform 0.2s, box-shadow 0.2s; display: inline-block;"
+      onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='7px 7px 0 var(--ink)';"
+      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='4px 4px 0 var(--ink)';">RETURN TO MAIN
+      PAGE</a>
 
   </div>
- 
+
   <script>
     // Falling web strands
     for (let i = 0; i < 7; i++) {
@@ -464,10 +545,10 @@
       s.style.animationDelay = (Math.random() * 12) + 's';
       document.body.appendChild(s);
     }
- 
+
     document.addEventListener('DOMContentLoaded', () => {
       const chatBox = document.getElementById('chat-box');
- 
+
       const baseMessages = [
         "Welcome to Make-A-Thon 7.0! We are thrilled to have you here. Get ready to build beyond limits.",
         "Due to institutional commitments related to upcoming election processes and venue requirements, the event has been postponed and will now be tentatively held in the last week of April 2026.",
@@ -478,44 +559,44 @@
 
       const notificationsData = [];
       const startDate = new Date('2026-04-06T10:00:00+05:30'); // Every morning at 10 AM
-      
-      // Auto spam these messages repeatedly every morning at 10 AM
-      for (let i = 0; i < 60; i++) {
+
+      // Load messages up to the length of baseMessages
+      for (let i = 0; i < baseMessages.length; i++) {
         let d = new Date(startDate.getTime());
         d.setDate(startDate.getDate() + i);
         notificationsData.push({
           id: i + 1,
           releaseDate: d.getTime(),
-          content: baseMessages[i % baseMessages.length]
+          content: baseMessages[i]
         });
       }
- 
+
       const now = new Date().getTime();
       const visibleMessages = notificationsData.filter(msg => now >= msg.releaseDate);
- 
+
       if (visibleMessages.length === 0) {
         chatBox.innerHTML = '<div class="no-messages">— NO TRANSMISSIONS YET —</div>';
         return;
       }
- 
+
       function parseContent(text) {
         return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
       }
- 
+
       function formatDate(ts) {
         return new Date(ts).toLocaleDateString('en-US', {
           month: 'short', day: 'numeric',
           hour: '2-digit', minute: '2-digit'
         });
       }
- 
+
       visibleMessages.forEach((msg, i) => {
         const el = document.createElement('div');
         el.className = 'chat-message';
         el.style.animationDelay = `${i * 0.18}s`;
         el.innerHTML = `
           <div class="bubble">
-            <div class="msg-badge">MSG #${String(msg.id).padStart(2,'0')}</div>
+            <div class="msg-badge">MSG #${String(msg.id).padStart(2, '0')}</div>
             <div class="bubble-text">${parseContent(msg.content)}</div>
             <div style="font-size: 0.75rem; color: rgba(10,10,15,0.5); font-weight: 700; text-align: right; margin-top: 0.5rem; letter-spacing: 0.05em;">
               ${formatDate(msg.releaseDate)}
@@ -524,10 +605,11 @@
         `;
         chatBox.appendChild(el);
       });
- 
+
       setTimeout(() => { chatBox.scrollTop = chatBox.scrollHeight; }, 100);
     });
   </script>
   <script src="js/core/hamburger.js"></script>
 </body>
+
 </html>
