@@ -103,7 +103,6 @@
         <li><a href="#sponsorship" class="nav__link">Sponsors</a></li>
         <li><a href="#team" class="nav__link">The Crew</a></li>
         <li><a href="#faq" class="nav__link">FAQ</a></li>
-        <li><a href="notifications.html" class="nav__link">Notifications</a></li>
       </ul>
       <a href="https://forms.gle/MSiu9x7Mo2kYBmmA9" target="_blank" rel="noopener noreferrer"
         class="btn btn--nav text-yellow">REGISTER</a>
@@ -125,7 +124,6 @@
     <a href="#sponsorship" class="nav__drawer-link">Sponsors</a>
     <a href="#team" class="nav__drawer-link">The Crew</a>
     <a href="#faq" class="nav__drawer-link">FAQ</a>
-    <a href="notifications.html" class="nav__drawer-link">Notifications</a>
     <a href="https://forms.gle/MSiu9x7Mo2kYBmmA9" target="_blank" rel="noopener noreferrer"
       class="btn btn--nav text-yellow">REGISTER</a>
   </div>
@@ -539,15 +537,30 @@
             </div>
           </div>
 
-          <!-- PRODUCT PARTNER -->
-          <div class="partner__section">
-            <h3 class="partner__category text-magenta">Product Partner</h3>
-            <div class="partner__grid">
-              <a href="https://pcbcupid.com" target="_blank" rel="noopener noreferrer" class="partner__card">
-                <div class="partner__logo-wrapper">
-                  <img src="assets/industry_logos/pcb.png" alt="PCB Cupid" class="partner__logo" />
-                </div>
-              </a>
+          <!-- PRODUCT & BEVERAGE PARTNERS -->
+          <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 4rem;">
+            <!-- PRODUCT PARTNER -->
+            <div class="partner__section" style="width: auto;">
+              <h3 class="partner__category text-magenta">Product Partner</h3>
+              <div class="partner__grid" style="margin-top: 0;">
+                <a href="https://pcbcupid.com" target="_blank" rel="noopener noreferrer" class="partner__card">
+                  <div class="partner__logo-wrapper">
+                    <img src="assets/industry_logos/pcb.png" alt="PCB Cupid" class="partner__logo" />
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- BEVERAGE PARTNER -->
+            <div class="partner__section" style="width: auto;">
+              <h3 class="partner__category text-red">Beverage Partner</h3>
+              <div class="partner__grid" style="margin-top: 0;">
+                <a href="https://www.haggfoods.com/" target="_blank" rel="noopener noreferrer" class="partner__card">
+                  <div class="partner__logo-wrapper">
+                    <img src="assets/partners/haggfoods.png" alt="Hagg Foods Logo" class="partner__logo" />
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -1482,7 +1495,7 @@
             <h4 class="footer__subheading"
               style="width: 100%; border-bottom: 1px solid var(--c-cyan); padding-bottom: 0.5rem; margin-bottom: 1rem; text-align: left;">
               QUICK LINKS</h4>
-            <ul class="footer__links" style="text-align: left;">
+            <ul class="footer__links" style="text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px;">
               <li><a href="#hero">Home</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#timeline">Timeline</a></li>
@@ -1490,6 +1503,7 @@
               <li><a href="#sponsorship">Sponsors</a></li>
               <li><a href="#gallery">Gallery</a></li>
               <li><a href="#team">Team</a></li>
+              <li><a href="#faq">FAQ</a></li>
             </ul>
           </div>
 
@@ -1671,6 +1685,26 @@
     .notification-bell svg {
       animation: bell-ring 2s infinite ease-in-out;
       transform-origin: top center;
+    }
+    @media (max-width: 768px) {
+      .notification-bell {
+        width: 48px !important;
+        height: 48px !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        border-width: 2.5px !important;
+      }
+      .notification-bell svg {
+        width: 20px !important;
+        height: 20px !important;
+      }
+      .notification-bell div {
+        top: 10px !important;
+        right: 12px !important;
+        width: 9px !important;
+        height: 9px !important;
+        border-width: 2px !important;
+      }
     }
   </style>
   <!-- Floating Notification Bell Button -->

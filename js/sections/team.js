@@ -21,7 +21,7 @@ const eceaMembers = [
   { name: "Preethika R", role: "Executive Member", img: "PREETHIKA R ECE.jpg", linkedin: "https://www.linkedin.com/in/preethika-radhakrishnan-269958336", email: "preethiradha13@gmail.com" },
   { name: "Sudesh Pillai", role: "Executive Member", img: "SUDESH SHRIKANT PILLAI ECE.jpg", linkedin: "https://www.linkedin.com/in/sudesh-pillai-9bbb16292/", email: "sudesh120305@gmail.com" },
   { name: "Lavanya P", role: "Executive Member", img: "LAVANYA P ECE.jpg", linkedin: "https://www.linkedin.com/in/lavanya-p-6745ab322/", github: "https://github.com/LavanyaGKP", email: "2023ec0234@svce.ac.in" },
-  { name: "N. Yaazhinii", role: "Joint Secretary", img: "N YAAZHINII ECE.jpg", linkedin: "https://www.linkedin.com/in/yaazhinii-narayanan-89b954326", email: "n.yaazhinii@gmail.com" },
+  { name: "N. Yaazhinii", role: "Joint Secretary", img: "N YAAZHINII ECE.jpg", linkedin: "https://www.linkedin.com/in/yaazhinii-narayanan-89b954326", github: "https://github.com/yaazhinii", email: "n.yaazhinii@gmail.com" },
   { name: "Abhimanyu Singh Bhati", role: "Joint Secretary", img: "ABHIMANYU SINGH BHATI ECE.jpg", linkedin: "https://www.linkedin.com/in/abhimanyu-singh-bhati-7255a0328", email: "abhimanyubhati22@gmail.com" },
   { name: "Prathiba MSK", role: "Joint Secretary", img: "PRATHIBA S.png", linkedin: "https://www.linkedin.com/in/m-s-k-prathiba-608588329", email: "2024ec0664@svce.ac.in" }
 ].map(m => ({ ...m, path: `assets/ECEA-MEMBERS/${m.img}` }));
@@ -54,7 +54,7 @@ const raceMembers = [
   { name: "Vinayagamurthi E", role: "Mentor", img: "VINAYAGAMURTHI E ECE.jpg", linkedin: "https://www.linkedin.com/in/vinayagamurthi1212", email: "vinayagamurthire@gmail.com" },
   { name: "Sudhan S", role: "Mentor", img: "SUDHAN S ECE.png", linkedin: "https://www.linkedin.com/in/sudhan18/", github: "https://github.com/sudhans18", email: "sudhan4843@gmail.com" },
   { name: "Rithvik R", role: "Mentor", img: "RITHVIK R ECE.jpg", linkedin: "https://www.linkedin.com/in/rithvik-r-008663292/", github: "https://github.com/WhiteDevil1716", email: "rithvikr86@gmail.com" },
-  { name: "B S Aarti", role: "Joint Secretary", img: "B S AARTI ECE.jpg", linkedin: "https://www.linkedin.com/in/aarti-swaminathan-a55327375", email: "2024ec0223@svce.ac.in" },
+  { name: "B S Aarti", role: "Joint Secretary", img: "B S AARTI ECE.jpg", linkedin: "https://www.linkedin.com/in/aarti-swaminathan-a55327375", github: "https://github.com/aartiswami06", email: "2024ec0223@svce.ac.in" },
   { name: "Preethika R", role: "Joint Secretary", img: "PREETHIKA R ECE.jpg", linkedin: "https://www.linkedin.com/in/preethika-r-158285329", email: "rpreethika0608@gmail.com" },
   { name: "Sanjai P", role: "Joint Secretary", img: "SANJAI P ECE.jpg", linkedin: "https://www.linkedin.com/in/sanjai-parthiban-57015337b", email: "Indsanjai@gmail.com" }
 ].map(m => ({ ...m, path: `assets/RACE-MEMBERS/${m.img}` }));
