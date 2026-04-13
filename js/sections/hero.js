@@ -10,7 +10,7 @@ export function initHero() {
 }
 
 /**
- * Handles the countdown logic to April 15
+ * Handles the countdown logic to April 27
  */
 function setupCountdownTimer() {
     const domDays = document.getElementById('t-days');
@@ -21,7 +21,7 @@ function setupCountdownTimer() {
     if (!domDays || !domHours || !domMins || !domSecs) return;
 
     // Use explicitly defined Date constructor (Year, Month[0-indexed], Day, Hour, Min, Sec)
-    let targetDate = new Date(2026, 3, 15, 9, 0, 0).getTime();
+    let targetDate = new Date(2026, 3, 27, 9, 0, 0).getTime();
 
     function updateTimer() {
         const now = new Date().getTime();
