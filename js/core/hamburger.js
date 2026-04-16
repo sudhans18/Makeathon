@@ -119,9 +119,9 @@
         <button class="reg-modal__close" id="reg-modal-close" aria-label="Close">&times;</button>
         <h3 class="reg-modal__title">Choose Your Domain</h3>
         <div class="reg-modal__options">
-          <a href="https://forms.gle/MSiu9x7Mo2kYBmmA9" target="_blank" rel="noopener noreferrer" class="reg-modal__btn reg-modal__btn--hw">Hardware</a>
-          <a href="https://forms.gle/MSiu9x7Mo2kYBmmA9" target="_blank" rel="noopener noreferrer" class="reg-modal__btn reg-modal__btn--sw">Software</a>
-          <a href="https://forms.gle/2wbVLEJFr9LJrytW9" target="_blank" rel="noopener noreferrer" class="reg-modal__btn reg-modal__btn--ind">Industry</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLScpwvE6Kv8xaptuxsB94GtzM7T47dGvnl6bz6-la-zJvvRqdg/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="reg-modal__btn reg-modal__btn--hw">Hardware</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLScpwvE6Kv8xaptuxsB94GtzM7T47dGvnl6bz6-la-zJvvRqdg/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="reg-modal__btn reg-modal__btn--sw">Software</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfwVOCCczDX_1iWUV9X5SoeZWcKvzmdLpobrOl43qA0XFthsw/viewform" target="_blank" rel="noopener noreferrer" class="reg-modal__btn reg-modal__btn--ind">Industry</a>
         </div>
       </div>
     `;
