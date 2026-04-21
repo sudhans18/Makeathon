@@ -161,6 +161,10 @@
     overlay.classList.add('active');
     guide.classList.add('entering');
 
+    if (isResults && window.startContinuousConfetti) {
+      window.startContinuousConfetti();
+    }
+
     /* After drop completes → idle swing + show first bubble */
     setTimeout(function () {
       guide.classList.add('idle');
@@ -189,6 +193,10 @@
   function skipTutorial() {
     if (!tutorialActive) return;
     tutorialActive = false;
+
+    if (isResults && window.stopContinuousConfetti) {
+      window.stopContinuousConfetti();
+    }
 
     /* Fire onLeave for any active step */
     var activeStep = tutorialSteps[currentStep];

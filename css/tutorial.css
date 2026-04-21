@@ -10,7 +10,7 @@
 .tutorial-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(10, 12, 20, 0.2); /* Increased transparency */
+  background: rgba(10, 12, 20, 0.75); /* Dark filter */
   z-index: 9997;
   opacity: 0;
   pointer-events: none;
