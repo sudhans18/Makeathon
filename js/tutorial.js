@@ -18,6 +18,7 @@
 
   /* ── Page detection ── */
   var isIndustrial = location.pathname.indexOf('industrial') !== -1;
+  var isResults = location.pathname.indexOf('results') !== -1;
   var params = new URLSearchParams(location.search);
   var trackType = (params.get('t') || '').toLowerCase();   // "hardware" | "software" | ""
 
@@ -74,6 +75,25 @@
      Build step definitions based on the current page
   ══════════════════════════════════════════════════════════ */
   function buildSteps() {
+    if (isResults) {
+      return [
+        {
+          getText: function () {
+            return 'Hey there creators! The anomalies have been detected and the final dimensions are set!';
+          },
+          scrollTo: '.header-title',
+          nextLabel: 'Next →'
+        },
+        {
+          getText: function () {
+            return 'Congratulations to all the shortlisted teams. Scroll down to check if your team made it to the ultimate showdown!';
+          },
+          scrollTo: '.celebrate-btn-wrap, .notification-bell',
+          nextLabel: 'Let\'s go! 🕷️'
+        }
+      ];
+    }
+
     if (isIndustrial) {
       return [
         {
@@ -355,7 +375,7 @@
   ══════════════════════════════════════════════════════════ */
   function init() {
     /* Show the tutorial only once per session */
-    var storageKey = 'tutorialShown_' + (isIndustrial ? 'industrial' : trackType || 'track');
+    var storageKey = 'tutorialShown_' + (isResults ? 'results' : (isIndustrial ? 'industrial' : trackType || 'track'));
     if (sessionStorage.getItem(storageKey)) return;
 
     buildDOM();
@@ -365,7 +385,7 @@
     sessionStorage.setItem(storageKey, '1');
 
     /* Auto-start 1.5 s after DOM is ready
-       (gives track.js time to render its panels) */
+       (gives time to render panels) */
     setTimeout(startTutorial, 1500);
   }
 
