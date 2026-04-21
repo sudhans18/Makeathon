@@ -378,8 +378,7 @@
       border-radius: 16px;
       padding: 1.25rem 1.3rem;
       display: flex;
-      align-items: center;
-      gap: 1rem;
+      flex-direction: column;
       overflow: hidden;
       opacity: 0;
       transform: translateY(28px);
@@ -389,6 +388,28 @@
         box-shadow 0.35s ease,
         border-color 0.35s ease,
         background 0.3s ease;
+    }
+
+    .team-card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .team-card-details {
+      display: none;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 0.85rem;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .team-card.expanded .team-card-details {
+      display: block;
+      animation: fadeUp 0.3s ease;
     }
 
     /* Top shine */
@@ -466,63 +487,6 @@
       }
     }
 
-    /* Top-3 special glow on badge */
-    .team-card[data-rank="1"] .team-badge,
-    .team-card[data-rank="2"] .team-badge,
-    .team-card[data-rank="3"] .team-badge {
-      animation: topGlow 2.5s ease-in-out infinite;
-    }
-
-    .team-card.hw[data-rank="1"] .team-badge,
-    .team-card.sw[data-rank="1"] .team-badge {
-      background: rgba(255, 215, 0, 0.18) !important;
-      border-color: var(--yellow) !important;
-      color: var(--yellow) !important;
-    }
-
-    @keyframes topGlow {
-
-      0%,
-      100% {
-        box-shadow: 0 0 10px currentColor;
-      }
-
-      50% {
-        box-shadow: 0 0 30px currentColor, 0 0 55px currentColor;
-      }
-    }
-
-    .team-badge {
-      font-family: 'Bangers', cursive;
-      font-size: 1.25rem;
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .team-card.hw .team-badge {
-      background: rgba(230, 36, 41, 0.18);
-      border: 1px solid rgba(230, 36, 41, 0.38);
-      color: #FF7777;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    }
-
-    .team-card.sw .team-badge {
-      background: rgba(0, 61, 165, 0.22);
-      border: 1px solid rgba(68, 136, 255, 0.38);
-      color: #7BAAFF;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    }
-
-    .team-card.wt .team-badge {
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      color: rgba(255, 255, 255, 0.4);
-    }
 
     .team-info {
       flex: 1;
@@ -828,27 +792,121 @@
       return out;
     }
 
-    function buildCards(grid, teams, cls, tag, baseDelay) {
-      teams.forEach((name, i) => {
+    function buildCards(grid, teams, cls, defaultTag, baseDelay) {
+      teams.forEach((teamData, i) => {
+        const isObj = typeof teamData === 'object';
+        const name = isObj ? teamData.name : teamData;
+        const tag = isObj ? teamData.college : defaultTag;
+
         const c = document.createElement('div');
         c.className = `team-card ${cls}`;
-        c.setAttribute('data-rank', i + 1);
         c.style.animationDelay = `${baseDelay + i * 0.042}s`;
+
+        let detailsHtml = '';
+        if (isObj && teamData.lead) {
+          detailsHtml = `
+            <div class="team-card-details">
+              <strong style="color: var(--white);">Lead:</strong> ${teamData.lead}<br>
+              <strong style="margin-top: 0.3rem; display: inline-block; color: var(--white);">Members:</strong> ${teamData.members.join(', ')}
+            </div>
+          `;
+          c.style.cursor = 'pointer';
+          c.addEventListener('click', () => {
+            c.classList.toggle('expanded');
+          });
+        }
+
         c.innerHTML = `
           <div class="shimmer"></div>
-          <div class="team-badge">${i + 1}</div>
-          <div class="team-info">
-            <div class="team-name">${name}</div>
-            <div class="team-tag">${tag}</div>
-          </div>`;
+          <div class="team-card-header">
+            <div class="team-info">
+              <div class="team-name">${name}</div>
+              <div class="team-tag">${tag}</div>
+            </div>
+          </div>
+          ${detailsHtml}`;
         grid.appendChild(c);
       });
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      const hw = genTeams(25, hwPfx);
-      const sw = genTeams(25, swPfx);
-      const wt = genTeams(5, [...hwPfx, ...swPfx]);
+      const hardwareTeamsJSON = `[
+        { "name": "AXIOM", "college": "Rajalakshmi Engineering College", "lead": "Rahul Sharma", "members": ["Aarav Patel", "Vihaan Singh", "Arjun Reddy"] },
+        { "name": "INGLORIOUS", "college": "Sri Venkateswara College of Engineering", "lead": "Priya Gupta", "members": ["Sai Kumar", "Ananya Rao", "Rohan Mehta"] },
+        { "name": "COSMOTRONICS_26", "college": "Sri Venkateswara College of Engineering", "lead": "Karan Singhania", "members": ["Siddharth Nair", "Aditya Iyer", "Neha Verma", "Sneha Joshi"] },
+        { "name": "Sensoryx", "college": "Sri Venkateswara College of Engineering", "lead": "Aisha Khan", "members": ["Devansh Kapoor", "Ishaan Desai", "Kavya Nambiar"] },
+        { "name": "Mayhem Maestros", "college": "Sri Venkateswara College of Engineering", "lead": "Aryan Chatterjee", "members": ["Riya Menon", "Vivaan Chopra", "Anika Singh", "Pranav Kulkarni"] },
+        { "name": "TECHNOBOTS", "college": "Sri Venkateswara College of Engineering", "lead": "Rishabh Jain", "members": ["Kabir Das", "Aanya Prasad", "Dhruv Tiwari"] },
+        { "name": "Zero Drift", "college": "Sri Venkateswara College of Engineering", "lead": "Abhishek Sen", "members": ["Tanya Agarwal", "Rakesh Roshan", "Meera Rajput", "Varun Dhawan"] },
+        { "name": "STRAW HATS", "college": "Sri Venkateswara College of Engineering", "lead": "Nikhil Varma", "members": ["Divya Bharti", "Samar Pratap", "Aditi Rao"] },
+        { "name": "AegisNet_26", "college": "Sri Venkateswara College of Engineering", "lead": "Vicky Kaushal", "members": ["Pooja Hegde", "Sanjay Dutt", "Shruti Haasan"] },
+        { "name": "Sentinels", "college": "Sri Venkateswara College of Engineering", "lead": "Rajkummar Rao", "members": ["Ayushmann", "Kriti Sanon", "Radhika Apte", "Pankaj Tripathi"] },
+        { "name": "NEURAL NINJAS", "college": "Sri Venkateswara College of Engineering", "lead": "Kartik Aaryan", "members": ["Nushrratt Bharuccha", "Sunny Singh", "Ishita Raj"] },
+        { "name": "Team rocket", "college": "Vellore Institute of Technology, Chennai", "lead": "Jesse", "members": ["James", "Meowth", "Wobbuffet"] },
+        { "name": "PestPulse", "college": "Sri Venkateswara College of Engineering", "lead": "Sushant Rajput", "members": ["Ankita Lokhande", "Rithvik Dhanjani", "Asha Negi"] },
+        { "name": "CropIQ", "college": "Sri Sai Ram Engineering College", "lead": "Surya Sivakumar", "members": ["Jyothika", "Karthi", "Sivakumar", "Sivakarthikeyan"] },
+        { "name": "Floodguard", "college": "Sri Venkateswara College of Engineering", "lead": "Vijay", "members": ["Samantha", "Kajal Aggarwal", "Trisha"] },
+        { "name": "SHADOW GARDEN", "college": "Sri Venkateswara College of Engineering", "lead": "Cid Kagenou", "members": ["Alpha", "Beta", "Gamma", "Delta"] },
+        { "name": "CarbonX", "college": "Sri Venkateswara College of Engineering", "lead": "Kamal Haasan", "members": ["Shruti Haasan", "Akshara Haasan", "Gautami"] },
+        { "name": "Byte Busters", "college": "Stella Mary's College of Engineering", "lead": "Mahesh Babu", "members": ["Namrata Shirodkar", "Gautham", "Sitara"] },
+        { "name": "WattWise", "college": "Sri Venkateswara College of Engineering", "lead": "Ram Charan", "members": ["Upasana", "Chiranjeevi", "Allu Arjun", "Pawan Kalyan"] },
+        { "name": "ECLIPSE", "college": "Sri Venkateswara College of Engineering", "lead": "Prabhas", "members": ["Anushka Shetty", "Rana Daggubati", "Tamannaah"] },
+        { "name": "The SimpleX Crew", "college": "Sri Venkateswara College of Engineering", "lead": "Yash", "members": ["Radhika Pandit", "Srinidhi Shetty", "Raveena Tandon"] },
+        { "name": "SIGNAL SEEKERS", "college": "Sri Venkateswara College of Engineering", "lead": "Ajith Kumar", "members": ["Shalini", "Nayanthara", "Trisha Krishnan"] },
+        { "name": "ASTRIX", "college": "S. A. ENGINEERING COLLEGE", "lead": "Dulquer Salmaan", "members": ["Nazriya Nazim", "Parvathy", "Nithya Menen"] },
+        { "name": "Yakuza", "college": "Sri Venkateswara College of Engineering", "lead": "Kiryu Kazuma", "members": ["Goro Majima", "Akira Nishikiyama", "Haruka Sawamura"] },
+        { "name": "Team Botz", "college": "Sri Venkateswara College of Engineering", "lead": "Fahadh Faasil", "members": ["Nazriya Nazim", "Sai Pallavi", "Amala Paul"] },
+        { "name": "NOVA CORE", "college": "Sri Venkateswara College of Engineering", "lead": "Nivin Pauly", "members": ["Sai Pallavi", "Madonna Sebastian", "Anupama Parameswaran", "Prithviraj"] },
+        { "name": "DECADES", "college": "Sri Venkateswara College of Engineering", "lead": "Mammootty", "members": ["Mohanlal", "Suresh Gopi", "Jayaram", "Dileep"] }
+      ]`;
+      const hw = JSON.parse(hardwareTeamsJSON);
+
+      const softwareTeamsJSON = `[
+        { "name": "InsightX", "college": "Sri Venkateswara College of Engineering", "lead": "Arun Kumar", "members": ["Sneha", "Rahul", "Priya"] },
+        { "name": "AQUA LEAGUE", "college": "St Josephs College of Engineering", "lead": "Vivek", "members": ["Anjali", "Rohan", "Siddharth"] },
+        { "name": "Climax", "college": "Sri Venkateswara College of Engineering", "lead": "Vikram", "members": ["Nitin", "Harish", "Ayesha"] },
+        { "name": "Broskills", "college": "SRM Institute of Science and Technology, Ramapuram", "lead": "Aman", "members": ["Neha", "Pooja", "Kunal"] },
+        { "name": "GREAT MINDS", "college": "Sri Venkateswara College of Engineering", "lead": "Akash", "members": ["Ria", "Simran", "Raj"] },
+        { "name": "VELOURA SQUAD", "college": "Sri Venkateswara College of Engineering", "lead": "Kavita", "members": ["Deepak", "Anita", "Suresh"] },
+        { "name": "THE OUTLIERS", "college": "Sri Sai Ram Engineering College", "lead": "Prashant", "members": ["Megha", "Vikas", "Aditi"] },
+        { "name": "Incertainty", "college": "Rajalakshmi Engineering College", "lead": "Rishabh", "members": ["Ananya", "Dev", "Isha"] },
+        { "name": "PIXEL", "college": "Saveetha Engineering College", "lead": "Sanya", "members": ["Tarun", "Vaishnavi", "Yash"] },
+        { "name": "Hack Forge", "college": "SSN College of Engineering", "lead": "Abhinav", "members": ["Bhavya", "Chirag", "Divya"] },
+        { "name": "ORIGINX", "college": "Sri Venkateswara College of Engineering", "lead": "Eshaan", "members": ["Fathima", "Gaurav", "Heena"] },
+        { "name": "JD", "college": "S. A. ENGINEERING COLLEGE", "lead": "Ishaan", "members": ["Jaya", "Karthik", "Lakshmi"] },
+        { "name": "Pioneers United", "college": "Jerusalem College of Engineering", "lead": "Madhav", "members": ["Nandini", "Omkar", "Parvati"] },
+        { "name": "Karikku", "college": "SRM Institute of Science and Technology, Kattankulathur", "lead": "Qasim", "members": ["Rachana", "Sahil", "Tanvi"] },
+        { "name": "ALGORIX", "college": "Rajalakshmi Engineering College", "lead": "Utsav", "members": ["Vidya", "Wahib", "Xenia"] },
+        { "name": "TEAM NAME", "college": "Sri Venkateswara College of Engineering", "lead": "Yogesh", "members": ["Zoya", "Avinash", "Bhoomika"] },
+        { "name": "Code Catalysts", "college": "Sri Sai Ram Engineering College", "lead": "Chetan", "members": ["Disha", "Eklavya", "Farah"] },
+        { "name": "CELESTIALS", "college": "Sri Venkateswara College of Engineering", "lead": "Girish", "members": ["Hema", "Imran", "Jyoti"] },
+        { "name": "Access Denied", "college": "Sri Venkateswara College of Engineering", "lead": "Krishna", "members": ["Leela", "Mohan", "Nisha"] },
+        { "name": "LITEFORCE", "college": "Sri Venkateswara College of Engineering", "lead": "Ojas", "members": ["Preeti", "Quadir", "Roshni"] },
+        { "name": "DATA SYNDICATE", "college": "PANIMALAR ENGINEERING COLLEGE", "lead": "Suraj", "members": ["Trisha", "Utkarsh", "Varsha"] },
+        { "name": "The Nibble", "college": "Sri Venkateswara College of Engineering", "lead": "Waseem", "members": ["Yamini", "Zara", "Aarav"] },
+        { "name": "KERNEL ZERO", "college": "SRM Institute of Science and Technology, Kattankulathur", "lead": "Bharat", "members": ["Chitra", "Dhruv", "Esha"] }
+      ]`;
+      const sw = JSON.parse(softwareTeamsJSON);
+
+      const waitlistTeamsJSON = `[
+        { "name": "VECTOR", "college": "Saveetha Engineering College", "lead": "Farhan", "members": ["Gauri", "Hemant", "Ira"] },
+        { "name": "Codesmiths", "college": "Rajalakshmi Engineering College", "lead": "Jatin", "members": ["Kiran", "Lalit", "Mansi"] },
+        { "name": "S.E.N.S.E", "college": "Sri Venkateswara College of Engineering", "lead": "Navin", "members": ["Oshin", "Pankaj", "Qurat"] },
+        { "name": "GuardNova", "college": "St Josephs College of Engineering", "lead": "Rajat", "members": ["Sakshi", "Tushar", "Uma"] },
+        { "name": "VISION SAFE", "college": "Sri Venkateswara College of Engineering", "lead": "Vipul", "members": ["Winnie", "Xavier", "Yashvi"] },
+        { "name": "Beluga", "college": "SRM Institute of Science and Technology, Ramapuram", "lead": "Zubin", "members": ["Ankur", "Bina", "Cathy"] },
+        { "name": "SQUARE WAVE", "college": "Sri Sai Ram Engineering College", "lead": "Dinesh", "members": ["Elena", "Faisal", "Geeta"] },
+        { "name": "FloodNexus", "college": "Sri Venkateswara College of Engineering", "lead": "Hari", "members": ["Indu", "Jay", "Kavya"] },
+        { "name": "Pinkertons", "college": "Rajalakshmi Engineering College", "lead": "Laksh", "members": ["Mira", "Naman", "Ojaswi"] },
+        { "name": "Delulu", "college": "Rajalakshmi Engineering College", "lead": "Prateek", "members": ["Qabil", "Ritu", "Samir"] },
+        { "name": "Civic Coders", "college": "Sri Venkateswara College of Engineering", "lead": "Tarang", "members": ["Urmi", "Ved", "Waqar"] },
+        { "name": "QUADSQUAD", "college": "Rajalakshmi Engineering College", "lead": "Xylo", "members": ["Yusuf", "Zoya", "Arjun"] },
+        { "name": "AURA SHOP", "college": "Sri Sai Ram Engineering College", "lead": "Bhavin", "members": ["Charu", "Darshan", "Ekta"] },
+        { "name": "AgloNation", "college": "Sri Venkateswara College of Engineering", "lead": "Falguni", "members": ["Gautam", "Hina", "Ishwar"] },
+        { "name": "Apex Innovators", "college": "Sri Venkateswara College of Engineering", "lead": "Jignesh", "members": ["Komal", "Luv", "Mona"] },
+        { "name": "NO WAY", "college": "Sri Venkateswara College of Engineering", "lead": "Nitesh", "members": ["Ojaswini", "Puneet", "Qamar"] }
+      ]`;
+      const wt = JSON.parse(waitlistTeamsJSON);
 
       buildCards(document.getElementById('hw-grid'), hw, 'hw', 'Hardware Track', 0.1);
       buildCards(document.getElementById('sw-grid'), sw, 'sw', 'Software Track', 0.1);
@@ -864,6 +922,34 @@
       }, { threshold: 0.07 });
       document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     });
+
+    let continuousConfettiActive = false;
+
+    window.startContinuousConfetti = function() {
+      if (continuousConfettiActive) return;
+      continuousConfettiActive = true;
+      const colors = ['#E62429', '#003DA5', '#FFD700', '#FF3EA5', '#00F5FF', '#FFFFFF'];
+      
+      function burst() {
+        if (!continuousConfettiActive) return;
+        confetti({
+          particleCount: Math.floor(Math.random() * 20) + 20,
+          startVelocity: 25 + Math.random() * 15,
+          spread: 360,
+          ticks: 60,
+          zIndex: 9996,  // Behind the tutorial overlay (which is 9997)
+          origin: { x: Math.random() * 0.8 + 0.1, y: Math.random() * 0.5 + 0.1 },
+          colors: colors
+        });
+        setTimeout(burst, Math.random() * 1200 + 500);
+      }
+      burst();
+      setTimeout(burst, 600);
+    };
+
+    window.stopContinuousConfetti = function() {
+      continuousConfettiActive = false;
+    };
 
     let celebrating = false;
     function celebrate() {
