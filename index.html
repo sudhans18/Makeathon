@@ -1785,13 +1785,14 @@
     .results-popup-desc {
       font-family: var(--ff-body, 'Montserrat', sans-serif);
       color: rgba(255,255,255,0.85);
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-transform: none;
       position: relative;
       z-index: 2;
       margin-bottom: 2.5rem;
+      line-height: 1.4;
     }
     .results-popup-btn-grp {
       display: flex;
@@ -1834,12 +1835,20 @@
   <div class="results-popup-overlay" id="results-popup">
     <div class="results-popup-content">
       <div class="results-popup-accent"></div>
+      
+      <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 0.5rem; position: relative; z-index: 2;">
+        <div style="height: 1px; width: 40px; background: rgba(255,255,255,0.5);"></div>
+        <div style="color: var(--c-yellow, #FFD700); font-size: 1.2rem;">★</div>
+        <div style="height: 1px; width: 40px; background: rgba(255,255,255,0.5);"></div>
+      </div>
+      
       <h2 class="results-popup-title">THE RESULTS <span>ARE OUT!</span></h2>
-      <p class="results-popup-desc">Anomalies Detected. Check your dimension status.</p>
+      <hr style="width: 100px; border: none; border-top: 2px solid var(--c-red, #E62429); margin: 0 auto 1.5rem; position: relative; z-index: 2;" />
+      <p class="results-popup-desc">The results are here.<br>Kindly check out the results.</p>
       
       <div class="results-popup-btn-grp">
         <button class="btn--popup" id="results-popup-close-btn" type="button" onclick="document.getElementById('results-popup').classList.remove('active');">CLOSE</button>
-        <button class="btn--popup btn--popup-check" onclick="window.location.href='results.html'" type="button">CHECK</button>
+        <button class="btn--popup btn--popup-check" onclick="window.location.href='results.html'" type="button">VIEW RESULTS</button>
       </div>
     </div>
   </div>
