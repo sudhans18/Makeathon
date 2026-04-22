@@ -416,7 +416,7 @@
       line-height: 1.4;
       color: rgba(255, 255, 255, 0.8);
     }
-    
+
     .team-card.expanded .team-card-details {
       display: block;
       animation: fadeUp 0.3s ease;
@@ -933,23 +933,67 @@
       const wt = JSON.parse(waitlistTeamsJSON);
 
       const industryTeamsJSON = `[
-        { "name": "CELESTIALS", "college": "Sri Venkateswara College of Engineering", "lead": "Girish" },
-        { "name": "Yakuza", "college": "Sri Venkateswara College of Engineering", "lead": "Kiryu Kazuma" },
-        { "name": "ECLIPSE", "college": "Sri Venkateswara College of Engineering", "lead": "Prabhas" },
-        { "name": "Apex Innovators", "college": "Sri Venkateswara College of Engineering", "lead": "Jignesh" },
-        { "name": "DECADES", "college": "Sri Venkateswara College of Engineering", "lead": "Mammootty" },
-        { "name": "NOVA CORE", "college": "Sri Venkateswara College of Engineering", "lead": "Nivin Pauly" },
-        { "name": "THE REGIMENTS", "college": "Sri Venkateswara College of Engineering", "lead": "TBD" },
-        { "name": "Team Botz", "college": "Sri Venkateswara College of Engineering", "lead": "Fahadh Faasil" },
-        { "name": "NO WAY", "college": "Sri Venkateswara College of Engineering", "lead": "Nitesh" },
-        { "name": "LITEFORCE", "college": "Sri Venkateswara College of Engineering", "lead": "Ojas" },
-        { "name": "DATA SYNDICATE", "college": "PANIMALAR ENGINEERING COLLEGE", "lead": "Suraj" },
-        { "name": "SIGNAL SEEKERS", "college": "Sri Venkateswara College of Engineering", "lead": "Ajith Kumar" },
-        { "name": "The SimpleX Crew", "college": "Sri Venkateswara College of Engineering", "lead": "Yash" },
-        { "name": "The Nibble", "college": "Sri Venkateswara College of Engineering", "lead": "Waseem" },
-        { "name": "Hackx", "college": "Sri Venkateswara College of Engineering", "lead": "TBD" },
-        { "name": "FordCare+", "college": "Sri Venkateswara College of Engineering", "lead": "TBD" },
-        { "name": "KERNEL ZERO", "college": "SRM Institute of Science and Technology, Kattankulathur", "lead": "Bharat" }
+        { "name": "CELESTIALS", "college": "Sri Venkateswara College of Engineering", "lead": "Vippin Antony P" },
+        { "name": "N3S squad", "college": "Sri Venkateswara College of Engineering", "lead": "Nivetha S S" },
+        { "name": "NINJA TURTLES", "college": "Sri Venkateswara College of Engineering", "lead": "SABARISH M" },
+        { "name": "Hack Titans", "college": "Sri Venkateswara College of Engineering", "lead": "Sanjay B" },
+        { "name": "TEAM NONE", "college": "Sri Venkateswara College of Engineering", "lead": "PREMKUMAR P" },
+        { "name": "KINETIC KINGS", "college": "Sri Venkateswara College of Engineering", "lead": "SANJITH.M" },
+        { "name": "Digital Dreamy", "college": "Sri Venkateswara College of Engineering", "lead": "V RAGHAV" },
+        { "name": "NAVSLOT", "college": "Sri Venkateswara College of Engineering", "lead": "HARISH.R" },
+        { "name": "code_RED", "college": "Sri Venkateswara College of Engineering", "lead": "G Mathav Karthik" },
+        { "name": "AgloNation", "college": "Sri Venkateswara College of Engineering", "lead": "B Jashwanth Shankar" },
+        { "name": "Adengappa Naalu Peru", "college": "Sri Venkateswara College of Engineering", "lead": "Prakash S" },
+        { "name": "SPACE SAVERS", "college": "Sri Venkateswara College of Engineering", "lead": "Vasuki P" },
+        { "name": "THE REGIMENTS", "college": "Sri Venkateswara College of Engineering", "lead": "KOWSIK M" },
+        { "name": "VectraFit", "college": "Sri Venkateswara College of Engineering", "lead": "Yaathra P" },
+        { "name": "ElevateX", "college": "Sri Venkateswara College of Engineering", "lead": "Hariharan S" },
+        { "name": "Access Denied", "college": "Sri Venkateswara College of Engineering", "lead": "Jai Ganesh S" },
+        { "name": "Yakuza", "college": "Sri Venkateswara College of Engineering", "lead": "Abrar" },
+        { "name": "TEAM ROGERS", "college": "Sri Venkateswara College of Engineering", "lead": "KISHORE .P" },
+        { "name": "Naanga Naalu Peru", "college": "Sri Venkateswara College of Engineering", "lead": "K S Shivani" },
+        { "name": "Nexus", "college": "Sri Venkateswara College of Engineering", "lead": "Rajeshwar s" },
+        { "name": "SmartHealer", "college": "Sri Venkateswara College of Engineering", "lead": "M R PAVITHRA" },
+        { "name": "NO WAY", "college": "Sri Venkateswara College of Engineering", "lead": "ABIJITH P" },
+        { "name": "LITEFORCE", "college": "Sri Venkateswara College of Engineering", "lead": "DIVYA SHREE M" },
+        { "name": "SIGNAL SEEKERS", "college": "Sri Venkateswara College of Engineering", "lead": "MAHALAKSHMI L" },
+        { "name": "SOBBER_SQUAD", "college": "Sri Venkateswara College of Engineering", "lead": "HARSITH PRITHVI D S" },
+        { "name": "ELEKTRICIANS", "college": "Sri Venkateswara College of Engineering", "lead": "ROGINI D" },
+        { "name": "PANJAMUM BUDGET - UHM", "college": "Sri Venkateswara College of Engineering", "lead": "T R ASHWIN KUMAR" },
+        { "name": "APXGP", "college": "Sri Venkateswara College of Engineering", "lead": "CINTHIYAN R.D" },
+        { "name": "Park-Sphere", "college": "Sri Venkateswara College of Engineering", "lead": "Srivishnu S" },
+        { "name": "Hackx", "college": "Sri Venkateswara College of Engineering", "lead": "Tanish S" },
+        { "name": "KERNEL ZERO", "college": "Sri Venkateswara College of Engineering", "lead": "PRIYAN" },
+        { "name": "AI DIVAS", "college": "Sri Venkateswara College of Engineering", "lead": "Krithika Balu" },
+        { "name": "TURBO LAG", "college": "Sri Venkateswara College of Engineering", "lead": "Guhaprasath.v" },
+        { "name": "Schrodinger's Cats", "college": "Sri Venkateswara College of Engineering", "lead": "TR Hemachander" },
+        { "name": "The SimpleX Crew", "college": "Sri Venkateswara College of Engineering", "lead": "SAISHA PRIYADARSHINI" },
+        { "name": "FordCare+", "college": "Sri Venkateswara College of Engineering", "lead": "Monasri J" },
+        { "name": "Apex Innovators", "college": "Sri Venkateswara College of Engineering", "lead": "Lessanth N" },
+        { "name": "DATA SYNDICATE", "college": "Sri Venkateswara College of Engineering", "lead": "SAMYUKTHA P" },
+        { "name": "Brain Rot", "college": "Sri Venkateswara College of Engineering", "lead": "Abhijit P" },
+        { "name": "OHM MY GOD", "college": "Sri Venkateswara College of Engineering", "lead": "MOHAMED AASHIQ J" },
+        { "name": "Sentry", "college": "Sri Venkateswara College of Engineering", "lead": "Kaushiq Srikanth S S" },
+        { "name": "DECADES", "college": "Sri Venkateswara College of Engineering", "lead": "LOGESHWARAN R" },
+        { "name": "The Nerds", "college": "Sri Venkateswara College of Engineering", "lead": "Madhan V M" },
+        { "name": "Team Botz", "college": "Sri Venkateswara College of Engineering", "lead": "MUKESH K" },
+        { "name": "ERROR 404", "college": "Sri Venkateswara College of Engineering", "lead": "Viswanathan L" },
+        { "name": "NEUTRON", "college": "Sri Venkateswara College of Engineering", "lead": "RAJ KUMAR MEHTA" },
+        { "name": "Electrifyrzzz", "college": "Sri Venkateswara College of Engineering", "lead": "Sweathaa G" },
+        { "name": "Syntax Squad", "college": "Sri Venkateswara College of Engineering", "lead": "Dhanush Kumar S" },
+        { "name": "NOVA CORE", "college": "Sri Venkateswara College of Engineering", "lead": "YOGESWAREN S" },
+        { "name": "NOVA", "college": "Sri Venkateswara College of Engineering", "lead": "Dhanya M" },
+        { "name": "Tahiti", "college": "Sri Venkateswara College of Engineering", "lead": "Y.NISHANTH" },
+        { "name": "The Nibble", "college": "Sri Venkateswara College of Engineering", "lead": "ASHWINKUMAR S" },
+        { "name": "ECLIPSE", "college": "Sri Venkateswara College of Engineering", "lead": "NIRANJAN V" },
+        { "name": "TECH KNIGHTS", "college": "Sri Venkateswara College of Engineering", "lead": "SPURGEN A" },
+        { "name": "Tech Maniacs", "college": "Sri Venkateswara College of Engineering", "lead": "Harish Raagav K J" },
+        { "name": "TECHIZZ", "college": "Sri Venkateswara College of Engineering", "lead": "SANJAY K J" },
+        { "name": "SYNAPTIC", "college": "Sri Venkateswara College of Engineering", "lead": "Krithika Balu" },
+        { "name": "ASTRIX", "college": "Sri Venkateswara College of Engineering", "lead": "GIRIDHAR S" },
+        { "name": "EXPLORERS", "college": "Sri Venkateswara College of Engineering", "lead": "SANTHOSH K" },
+        { "name": "QUADSQUAD", "college": "Sri Venkateswara College of Engineering", "lead": "DIVYADHARANI J" },
+        { "name": "Pantheon", "college": "Sri Venkateswara College of Engineering", "lead": "Bharathraj R" }
       ]`;
       const ind = JSON.parse(industryTeamsJSON);
 
@@ -972,11 +1016,11 @@
 
     let continuousConfettiActive = false;
 
-    window.startContinuousConfetti = function() {
+    window.startContinuousConfetti = function () {
       if (continuousConfettiActive) return;
       continuousConfettiActive = true;
       const colors = ['#E62429', '#003DA5', '#FFD700', '#FF3EA5', '#00F5FF', '#FFFFFF'];
-      
+
       function burst() {
         if (!continuousConfettiActive) return;
         confetti({
@@ -984,7 +1028,7 @@
           startVelocity: 25 + Math.random() * 15,
           spread: 360,
           ticks: 60,
-          zIndex: 9996,  // Behind the tutorial overlay (which is 9997)
+          zIndex: 9996,
           origin: { x: Math.random() * 0.8 + 0.1, y: Math.random() * 0.5 + 0.1 },
           colors: colors
         });
@@ -994,7 +1038,7 @@
       setTimeout(burst, 600);
     };
 
-    window.stopContinuousConfetti = function() {
+    window.stopContinuousConfetti = function () {
       continuousConfettiActive = false;
     };
 
