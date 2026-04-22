@@ -79,13 +79,6 @@
       return [
         {
           getText: function () {
-            return 'Hey there creators! The anomalies have been detected and the final dimensions are set!';
-          },
-          scrollTo: '.header-title',
-          nextLabel: 'Next →'
-        },
-        {
-          getText: function () {
             return 'Congratulations to all the shortlisted teams. Scroll down to check if your team made it to the ultimate showdown!';
           },
           scrollTo: '.celebrate-btn-wrap, .notification-bell',
